@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_bar"/>
+    <TextView
+        style="@style/divider_line" />
+
+        <TextView
+            android:background="#ffead3"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/btn_bj"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:text="定制类商品购买前记得先和商家联系"/>
+
+    <TextView
+        style="@style/divider_line" />
+    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
+        android:id="@+id/pullLoadMoreRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <include layout="@layout/layout_no_datas"/>
+
+</LinearLayout>

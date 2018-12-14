@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_bar" />
+      <TextView
+          android:layout_height="8dp"
+          style="@style/divider_line"/>
+
+    <WebView
+        android:textColor="@color/tx99"
+        android:lineSpacingExtra="3dp"
+        android:id="@+id/wb_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:ellipsize="end"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="16dp"
+        ></WebView>
+
+
+
+
+</LinearLayout>

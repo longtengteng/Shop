@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/F7"
+
+    >
+    <include layout="@layout/title_bar"/>
+    <TextView
+        style="@style/divider_line" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="@color/tx33"
+            android:textSize="12sp"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="退款形式" />
+    <RadioGroup
+        android:background="@color/white"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:id="@+id/rg_1"
+        android:paddingLeft="12dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/rb_quan"
+            android:background="@drawable/selector_radiobuttontwo"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:button="@null"
+            android:text="仅退款"
+            android:layout_width="80dp"
+            android:layout_height="30dp" />
+        <RadioButton
+            android:checked="true"
+            android:id="@+id/rb_bufen"
+            android:background="@drawable/selector_radiobuttontwo"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:button="@null"
+            android:layout_marginLeft="10dp"
+            android:text="退货退款"
+            android:layout_width="80dp"
+            android:layout_height="30dp" />
+    </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+        <TextView
+            android:textColor="@color/tx33"
+            android:textSize="12sp"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="退款原因" />
+
+        <TextView
+
+            android:id="@+id/tv_cause"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableRight="@mipmap/my_icon_more"
+            android:gravity="center_vertical"
+            android:text="请选择退款原因"
+            android:textColor="@color/tx99"
+            android:textSize="13sp" />
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line" />
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+        <TextView
+            android:textColor="@color/tx33"
+            android:textSize="12sp"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="退款金额" />
+
+        <TextView
+            android:gravity="center_vertical"
+            android:id="@+id/et_price"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入您和商家商量好的金额"
+            android:maxLength="20"
+            android:minLines="2"
+            android:textColor="@color/tx99"
+            android:textColorHint="@color/tx99"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line" />
+    <!--<LinearLayout-->
+
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:background="@color/white"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:paddingLeft="12dp"-->
+        <!--android:paddingRight="12dp">-->
+        <!--<TextView-->
+            <!--android:textColor="@color/tx33"-->
+            <!--android:textSize="12sp"-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="手机号码" />-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/et_phone"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginLeft="12dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@null"-->
+            <!--android:hint="请输入您的手机号"-->
+            <!--android:maxLength="20"-->
+            <!--android:minLines="2"-->
+            <!--android:textColor="@color/tx99"-->
+            <!--android:textColorHint="@color/tx99"-->
+            <!--android:textSize="13sp" />-->
+
+    <!--</LinearLayout>-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@color/F7"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:text="上传凭证"
+        android:textColor="@color/tx99"
+        android:textSize="13sp" />
+    <com.lnkj.privateshop.view.MyGridView
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="4dp"
+        android:background="@color/white"
+        android:id="@+id/mGridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="4"
+        android:padding="8dp"
+        ></com.lnkj.privateshop.view.MyGridView>
+    <EditText
+        android:id="@+id/et_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:hint="说明理由：详细的内容能让商家更清楚你的情况"
+        android:maxLength="50"
+        android:textColor="@color/tx99"
+        android:textColorHint="@color/tx99"
+        android:textSize="13sp" />
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="提交"
+            style="@style/Button_default"/>
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>

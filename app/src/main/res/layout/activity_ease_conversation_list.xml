@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.lnkj.privateshop.ui.ease.EaseConversationListActivity">
+
+    <include layout="@layout/title_bar" />
+
+    <TextView style="@style/divider_line" />
+
+    <TextView
+        android:id="@+id/tv_server"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="#fee5c9"
+        android:drawableRight="@mipmap/my_icon_more"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:text="遇到问题，欢迎咨询客服"
+        android:textColor="@color/btn_bj"
+        android:textSize="12sp"></TextView>
+
+    <LinearLayout
+        android:id="@+id/ll_system"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="12dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/img_head"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@mipmap/avatar_system"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="121212122"
+                    android:id="@+id/tv_title_t"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/tx66"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/tx99"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <TextView
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_below="@+id/ll_1"
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:textColor="@color/tx66"
+                android:textSize="12sp" />
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="12dp"
+            android:src="@mipmap/my_icon_more" />
+    </LinearLayout>
+
+    <TextView style="@style/divider_line" />
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+</LinearLayout>

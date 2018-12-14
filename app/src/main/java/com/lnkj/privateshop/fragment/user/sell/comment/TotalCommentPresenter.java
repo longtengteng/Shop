@@ -1,0 +1,136 @@
+package com.lnkj.privateshop.fragment.user.sell.comment;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+
+import com.alibaba.fastjson.JSON;
+import com.lnkj.privateshop.entity.ClientCommentBean;
+import com.lnkj.privateshop.utils.LLog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+
+import static com.lnkj.privateshop.utils.HttpUtil.meApi;
+
+/**
+ * Created by Administrator on 2017/7/31 0031.
+ */
+
+public class TotalCommentPresenter implements TotalCommentContract.Presenter {
+   private  TotalCommentContract.View mView ;
+    private Context mContext;
+ private String token;
+    public TotalCommentPresenter(TotalCommentContract.View mView, Context mContext) {
+        this.mView = mView;
+        this.mContext = mContext;
+    }
+
+    @Override
+    public void attachView(@NonNull TotalCommentContract.View view) {
+
+    }
+
+    @Override
+    public void detachView() {
+
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+
+
+ @Override
+ public void setToken(String token) {
+  this.token = token;
+ }
+
+    @Override
+    public void getShomComment(String shopid,int p,String level) {
+        mView.showLoading();
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("token",token);
+        map.put("shop_id",shopid);
+        map.put("p",p);
+        map.put("level",level);
+
+        meApi.getClentComment(map)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String data) {
+                        mView.hideLoading();
+                        LLog.d("数据", data);
+                        try {
+                            JSONObject object = new JSONObject(data);
+                            int status = object.getInt("status");
+                            if (status==1){
+                                ClientCommentBean beass = JSON.parseObject(data,ClientCommentBean.class);
+                                mView.getShopCommentSucceed(beass);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                        mView.hideLoading();
+                        LLog.d("数据错误", throwable.toString() + "");
+                    }
+                });
+
+    }
+
+    @Override
+    public void putCommtent(String context, String commentid) {
+        mView.showLoading();
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("token",token);
+        map.put("comment_id",commentid);
+        map.put("content",context);
+        meApi.getRevertClentComment(map)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String data) {
+                        mView.hideLoading();
+                        LLog.d("数据", data);
+                        try {
+                            JSONObject object = new JSONObject(data);
+                            int status = object.getInt("status");
+                            if (status==1){
+                                mView.puCommentSuccreed( );
+                            }else {
+                                mView.putCommentFailure();
+                            }
+                        } catch (JSONException e) {
+                            mView.putCommentFailure();
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                        mView.hideLoading();
+                        mView.putCommentFailure();
+                        LLog.d("数据错误", throwable.toString() + "");
+                    }
+                });
+
+    }
+
+
+}

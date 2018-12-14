@@ -1,0 +1,155 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'android-apt'
+//apply plugin: 'com.droidtitan.lintcleaner'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+    aaptOptions.cruncherEnabled = false
+
+    aaptOptions.useNewCruncher = false
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "com.lnkj.privateshop"
+        minSdkVersion 15
+        targetSdkVersion 22
+        multiDexEnabled true
+        versionCode 7
+        versionName "1.0.6"
+//        ndk {
+//            moduleName "native"
+//            abiFilters "armeabi-v7a", "x86", "armeabi"
+//        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath = true
+            }
+        }
+    }
+    buildTypes {
+        release {
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    signingConfigs {
+//        正式 {
+//            storeFile file('D:/android/liuniu.keys')
+//            storePassword "lnkj@2015"
+//            keyAlias "liuniu"
+//            keyPassword "lnkj@2015"
+//        }
+
+        useLibrary 'org.apache.http.legacy'
+        greendao {
+            schemaVersion 1
+            daoPackage 'com.lnkj.privateshop.greendao'
+            targetGenDir 'src/main/java'
+        }
+    }
+    buildscript {
+        repositories {
+            jcenter()
+        }
+        dependencies {
+//            classpath 'com.android.tools.build:gradle:2.3.3'
+//        // Since Android's Gradle plugin 0.11, you have to use android-apt >= 1.3
+//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+//            classpath 'com.droidtitan:lint-cleaner-plugin:0.3.0'
+        }
+    }
+//apt {
+//    arguments {
+//        resourcePackageName "com.lnkj.android"
+//        // androidManifestFile variant.outputs[0].processResources.manifestFile
+//    }
+//}
+
+    allprojects {
+        repositories {
+            jcenter()
+            maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
+            maven { url "https://jitpack.io" }
+            maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+            maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
+            maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
+            maven {
+                url 'https://maven.google.com/'
+                name 'Google'
+            }
+            google()
+        }
+    }
+
+    dependencies {
+        compile fileTree(include: ['*.jar'], dir: 'libs')
+        //Dagger
+
+        //上拉加载，下拉刷新
+        compile files('libs/zxing.jar')
+        compile files('libs/alipaySdk-20170725.jar')
+        compile files('libs/ShareSDK-Wechat-Core-3.0.2.jar')
+        compile files('libs/jpush-android-3.0.8.jar')
+        compile project(':easeui')
+        // add library
+        compile 'com.squareup.picasso:picasso:2.5.2'
+        compile 'com.alibaba:fastjson:1.1.46.android'
+        compile 'com.pgyersdk:sdk:2.8.0'
+        compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+        compile 'com.alibaba:fastjson:1.1.46.android'
+        compile 'com.android.support:design:25.4.0'
+        compile 'com.android.support:cardview-v7:25.4.0'
+        compile 'com.android.support:recyclerview-v7:25.4.0'
+        compile 'com.android.support:support-v13:25.4.0'
+        compile 'com.jakewharton:butterknife:7.0.1'
+        compile 'com.google.dagger:dagger:2.0.2'
+        compile 'com.squareup:otto:1.3.8'
+        compile 'com.squareup.okhttp3:okhttp:3.2.0'
+        compile 'com.squareup.retrofit2:retrofit:2.0.1'
+        compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
+        compile 'io.reactivex:rxandroid:1.1.0'
+        compile 'io.reactivex:rxjava:1.1.5'
+        compile 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
+        compile 'com.github.clans:fab:1.6.2'
+        compile 'com.umeng.analytics:analytics:latest.integration'
+        compile 'com.github.castorflex.smoothprogressbar:library:1.1.0'
+        compile 'com.yalantis:phoenix:1.2.3'
+        compile 'com.demievil.library:refreshlayout:1.0.0@aar'
+        compile 'com.android.support:multidex:1.0.0'
+        compile 'com.bm.photoview:library:1.4.1'
+        compile 'com.github.bumptech.glide:glide:3.7.0'
+        compile 'com.wuxiaolong.pullloadmorerecyclerview:library:1.1.2'
+        
+        compile 'de.hdodenhof:circleimageview:2.1.0'
+        compile 'com.github.jiang111:IndicatorDialog:v1.2.3'
+        compile 'com.blankj:utilcode:1.1.5'
+        compile 'com.contrarywind:Android-PickerView:3.2.5'
+        compile 'liji.library.dev:citypickerview:0.7.0'
+        compile 'com.android.support.constraint:constraint-layout:1.0.2'
+        compile 'com.google.code.gson:gson:2.6.2'
+        compile 'com.lzy.widget:imagepicker:0.5.0'
+        compile 'com.bigkoo:convenientbanner:2.0.5'
+        compile 'ren.qinc.numberbutton:numberbutton:0.0.1'
+        compile 'org.greenrobot:greendao:3.2.2'
+        compile 'com.parse:parse-android:1.13.1'
+        compile 'com.ms-square:expandableTextView:0.1.4'
+        testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.0.2'
+//        compile 'com.google.dagger:dagger:2.0.2'
+        compile 'com.google.dagger:dagger-compiler:2.0.2'
+        provided 'javax.annotation:javax.annotation-api:1.2'
+    }
+}

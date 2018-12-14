@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+<RelativeLayout
+    android:id="@+id/rl_seach"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/rl_reach"
+            android:background="@drawable/seach_bj"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_toLeftOf="@+id/rl_1"
+            android:layout_toStartOf="@+id/rl_1">
+    <ImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/img_seach"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@mipmap/nav_icon_search"/>
+            <TextView
+                android:layout_toRightOf="@+id/img_seach"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:textColor="@color/tx99"
+                android:text="搜索商品或店铺"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                />
+        </RelativeLayout>
+<RelativeLayout
+    android:id="@+id/rl_1"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
+    android:layout_width="40dp"
+    android:layout_height="40dp">
+    <ImageView
+        android:padding="8dp"
+        android:src="@mipmap/nav_icon_massage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/imageView" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_count"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentRight="true"
+        android:textSize="9sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:text="1"
+        android:background="@drawable/round_red"
+        android:layout_width="12dp"
+        android:layout_height="12dp" />
+</RelativeLayout>
+
+    </RelativeLayout>
+    <TextView
+        android:layout_alignParentBottom="true"
+        style="@style/divider_line"/>
+</RelativeLayout>
+    <FrameLayout
+        android:layout_below="@+id/rl_seach"
+        android:id="@+id/fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_main" >
+    </FrameLayout>
+
+    <View
+        style="@style/divider_line"
+        android:layout_above="@+id/bottom_main"></View>
+
+    <RadioGroup
+        android:gravity="center_vertical"
+        android:id="@+id/bottom_main"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_home"
+            style="@style/main_bottom_item_parent"
+            android:layout_weight="1"
+            android:checked="true"
+            android:drawableTop="@drawable/home_button_selector"
+            android:text="首页"
+            android:textColor="@drawable/radiobutton_textcolor_selector"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/radio_near"
+            style="@style/main_bottom_item_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/near_button_selector"
+            android:text="圈子"
+            android:textColor="@drawable/radiobutton_textcolor_selector"
+            android:textSize="12sp" />
+        <ImageView
+            android:visibility="gone"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/img_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/tabbar_ico_add"/>
+        <RadioButton
+            android:id="@+id/radio_looking"
+            style="@style/main_bottom_item_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/looking_button_selector"
+            android:text="找货"
+            android:textColor="@drawable/radiobutton_textcolor_selector"
+            android:textSize="12sp" />
+        <RadioButton
+            android:id="@+id/radio_goods"
+            style="@style/main_bottom_item_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/goods_button_selector"
+            android:text="进货车"
+            android:textColor="@drawable/radiobutton_textcolor_selector"
+            android:textSize="12sp" />
+        <RadioButton
+            android:id="@+id/radio_me"
+            style="@style/main_bottom_item_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/my_button_selector"
+            android:text="我的"
+            android:textColor="@drawable/radiobutton_textcolor_selector"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+</RelativeLayout>

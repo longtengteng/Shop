@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/ll_parent"
+      android:orientation="horizontal"
+        android:background="#00000000">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:id="@+id/ll"
+        android:layout_alignParentBottom="true"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="6dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="46dp">
+        <EditText
+            android:textSize="14sp"
+            android:textColor="@color/tx33"
+            android:id="@+id/et_content"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:background="@drawable/button_bj"
+            android:textColorHint="@color/tx99"
+            android:hint="回复"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <Button
+
+            android:textColor="@color/white"
+            android:id="@+id/btn"
+            android:layout_marginLeft="6dp"
+            android:textSize="14sp"
+            android:background="@drawable/button_default"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+            android:text="发送"
+            ></Button>
+
+    </LinearLayout>
+</LinearLayout>

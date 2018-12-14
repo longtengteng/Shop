@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f7f7f7"
+    >
+    <include layout="@layout/title_bar" />
+    <TextView
+        style="@style/divider_line"/>
+<LinearLayout
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_mones"
+        android:paddingTop="4dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/tx33"
+        android:textSize="14sp"
+        android:background="@color/white"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="本月实况"/>
+    <TextView
+        android:id="@+id/tv_look"
+        android:textSize="12sp"
+        android:textColor="@color/tx99"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       />
+</LinearLayout>
+    <LinearLayout
+        android:background="@color/white"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginBottom="12dp"
+            android:textSize="12sp"
+            android:textColor="@color/tx33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="交易金额"/>
+        <TextView
+            android:id="@+id/tv_main_mones"
+
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textColor="@color/btn_bj"
+            android:textSize="24sp"/>
+
+    </LinearLayout>
+
+    <TextView style="@style/divider_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="访客数量"
+                android:textColor="@color/tx66"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="18dp"
+                android:text="0.00"
+                android:textColor="@color/btn_bj"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="支付买家数"
+                android:textColor="@color/tx66"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_consum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="18dp"
+                android:text="0.00"
+                android:textColor="@color/btn_bj"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView style="@style/divider_line"/>
+
+
+
+
+</LinearLayout>
+

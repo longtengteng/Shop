@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_dis"
+        android:background="#80000000"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+
+        android:id="@+id/ll_popup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:gravity="center"
+            android:text="请根据实际情况开店"
+            android:textColor="@color/tx33"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/item_popupwindows_Photo"
+            style="@style/Button_default"
+            android:layout_marginTop="8dp"
+            android:text="实体仓库(我有批发市场档口)" />
+
+        <Button
+            android:id="@+id/item_popupwindows_video"
+            style="@style/Button_default"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_bj_orange"
+            android:text="实体工厂(我自设工厂)"
+            android:textColor="@color/btn_bj" />
+
+        <Button
+            android:id="@+id/item_popupwindows_camera"
+            style="@style/Button_default"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_bj_orange"
+            android:text="网批店"
+            android:textColor="@color/btn_bj" />
+
+        <Button
+            android:id="@+id/item_popupwindows_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="注意：一旦发现店铺类型不匹配，平台将做关店处罚"
+            android:textColor="@color/tx99"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

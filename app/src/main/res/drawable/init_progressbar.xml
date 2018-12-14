@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 背景 -->
+    <item android:id="@android:id/background"
+        >
+        <!--android:drawable="@drawable/bg_progressbar_orange"-->
+        <shape>
+            <corners
+                android:radius="5dp"
+                />
+            <stroke android:width="0.5dp" android:color="@color/btn_bj"></stroke>
+            <gradient
+                android:angle="270"
+                android:centerY="0.75"
+                android:endColor="#fff"
+                android:startColor="#fff"/>
+        </shape>
+
+    </item>
+    <!-- 第二进度条样式，用不怎么到直接设置成了和背景色一样的颜色，隐藏起来 -->
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="5dp"/>
+                <gradient
+                    android:angle="270"
+                    android:centerY="0.75"
+                    android:endColor="#CCCCCC"
+                    android:startColor="#CCCCCC"/>
+            </shape>
+        </clip>
+    </item>
+    <!-- 第一进度条样式，我想修改的，修改成简单的灰色 -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <!-- 圆角设置 -->
+                <corners android:radius="5dp"/>
+                <gradient
+                    android:angle="270"
+                    android:centerY="0.75"
+                    android:endColor="#FF7722"
+                    android:startColor="#FF7722"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

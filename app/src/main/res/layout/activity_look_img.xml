@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#a0000000"
+    android:orientation="vertical"
+    >
+<TextView
+    android:layout_marginRight="15dp"
+    android:gravity="right|center_vertical"
+    android:layout_alignParentRight="true"
+    android:textColor="@color/white"
+    android:text="关闭"
+    android:id="@+id/tv_close"
+    android:layout_width="match_parent"
+    android:layout_height="40dp" />
+    <ImageView
+        android:src="@mipmap/add_shop_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mImageView"/>
+    <ImageView
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/add_shop_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mImageView_2"/>
+    <ImageView
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/add_shop_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mImageView3"/>
+</LinearLayout>

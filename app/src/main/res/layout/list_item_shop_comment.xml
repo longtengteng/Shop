@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="12dp"
+            android:paddingTop="12dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/img_shop_head"
+                android:layout_width="23dp"
+                android:layout_height="26dp"
+                android:src="@mipmap/de_photo" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:gravity="center"
+                    android:textColor="@color/tx33"
+                    android:textSize="14sp" />
+
+                <RatingBar
+                    android:id="@+id/rc_rate_mass"
+                    style="@style/fiveRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/white"
+                    android:clickable="false"
+                    android:isIndicator="true"
+                    android:numStars="5"
+
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:textColor="@color/tx99"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_toLeftOf="@+id/tv_huiping"
+                android:id="@+id/tv_context"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12sp"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+
+                android:textColor="@color/tx33"
+                android:textSize="12sp" />
+
+            <TextView
+                android:visibility="gone"
+              android:layout_alignParentRight="true"
+                android:textSize="12sp"
+                android:id="@+id/tv_huiping"
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/button_default"
+                android:gravity="center"
+                android:text="回评"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+            <com.lnkj.privateshop.view.picture.NineGridTestLayout
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                android:id="@+id/mNineGridTestLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.lnkj.privateshop.view.picture.NineGridTestLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_zhuiping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="6dp"
+            android:background="#f7f7f7"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="卖家回评"
+                android:textColor="@color/btn_bj"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_chuiping"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/tx33"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="4dp"
+        style="@style/divider_line"/>
+</LinearLayout>

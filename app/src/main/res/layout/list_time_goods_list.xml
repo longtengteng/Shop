@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_check"
+        android:layout_marginLeft="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <CheckBox
+        android:clickable="false"
+        android:layout_marginTop="17dp"
+        android:id="@+id/cb_check_goods"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="6dp"
+        android:button="@drawable/checkbox_goods_selector_two"
+        android:focusable="false"
+        android:gravity="center"
+        android:textSize="12sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginRight="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:id="@+id/rl_goods"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_goods_img"
+                android:layout_width="48dp"
+                android:layout_height="55dp"
+                android:scaleType="centerCrop"
+              />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_valid"
+                    android:textColor="@color/tx99"
+                    android:gravity="center"
+                    android:text="失效"
+                    android:layout_width="48dp"
+                    android:layout_height="55dp"
+                    android:background="#a0000000"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_goods_name"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/tx38"
+                    android:textSize="14sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/btn_bj"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/tx66"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/lin_default_gray">
+    <com.lnkj.privateshop.view.MyGridView
+        android:layout_toLeftOf="@+id/tv_btn_alter"
+        android:id="@+id/mGridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="4">
+    </com.lnkj.privateshop.view.MyGridView>
+
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/tv_btn_alter"
+                android:textSize="12sp"
+                android:textColor="@color/blue_delault"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="修改" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

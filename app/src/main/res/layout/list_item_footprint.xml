@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+<TextView
+    android:id="@+id/tv_title"
+    android:gravity="bottom"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+
+    android:textSize="14sp"
+    android:textColor="@color/tx33"/>
+    <com.lnkj.privateshop.view.MyGridView
+        android:gravity="center"
+        android:numColumns="2"
+        android:id="@+id/mgridview"
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+</LinearLayout>

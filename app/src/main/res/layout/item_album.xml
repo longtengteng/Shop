@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    >
+<TextView
+    android:paddingBottom="2dp"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:text="封面图"
+    android:layout_marginBottom="2dp"
+    android:id="@+id/tv_fengmiantu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/btn_fengmian"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_grid_image"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/jinyou_me_mine_dynamic_release_addim"
+        >
+    </ImageView>
+    <ImageView
+
+        android:id="@+id/item_grid_image_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/delete_image"
+        android:scaleType="centerInside"
+        android:layout_alignRight="@+id/item_grid_image"
+        />
+    </RelativeLayout>
+</LinearLayout>

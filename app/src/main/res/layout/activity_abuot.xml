@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_bar" />
+    <TextView
+        style="@style/divider_line"/>
+    <ImageView
+        android:id="@+id/tip_logo_view"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:src="@mipmap/logo"/>
+<TextView
+    android:layout_marginTop="40dp"
+    android:textColor="@color/tx33"
+    android:textSize="14sp"
+    android:paddingRight="24dp"
+    android:paddingLeft="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="        朗凡定制是互联网服装批发的新贵，通过移动端的力量，汇聚全国的优秀一手服装货源，同时支持私人定制的综合型批发平台。 "/>
+
+    <TextView
+        android:lineSpacingExtra="3dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/tx99"
+        android:textSize="14sp"
+        android:paddingRight="24dp"
+        android:paddingLeft="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Copyright @2006-2018\n义乌市朗凡电子商务有限公司 "/>
+
+</LinearLayout>

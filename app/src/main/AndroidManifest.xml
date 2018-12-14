@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lnkj.privateshop">
+
+    <!-- Required -->
+    <permission
+        android:name="com.lnkj.privateshop.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
+
+    <uses-permission android:name="com.lnkj.privateshop.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- 蓝牙分享所需的权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- Required -->
+    <uses-permission android:name="com.wisee.penpal.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- 读取联系人权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 拨打电话权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 必选 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取网络状态 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 网络通信 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 获取设备信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 获取MAC地址 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 读写sdcard，storage等等 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 允许程序录制音频 -->
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 短信相关权限 -->
+    <!-- 发送消息 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!-- 阅读消息 -->
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <!-- 写入消息 -->
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <!-- 接收消息 -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <!-- 可选 -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="false"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <!-- 获取logcat日志 -->
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:resizeableActivity="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Rich push 核心功能 since 2.0.6 -->
+        <activity
+            android:name="cn.jpush.android.ui.PopWinActivity"
+            android:exported="false"
+            android:resizeableActivity="true"
+            android:theme="@style/MyDialogStyle" />
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.lnkj.privateshop" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:exported="false"
+            android:process=":mult">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+        <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" /> <!-- Required  显示通知栏 -->
+                <category android:name="com.lnkj.privateshop" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.AlarmReceiver"
+            android:exported="false" />
+
+        <!-- <receiver -->
+        <!-- android:name="com.example.jpushdemo.MyReceiver" -->
+        <!-- android:exported="false" -->
+        <!-- android:enabled="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="cn.jpush.android.intent.REGISTRATION" /> &lt;!&ndash;Required  用户注册SDK的intent&ndash;&gt; -->
+        <!-- <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> &lt;!&ndash;Required  用户接收SDK消息的intent&ndash;&gt; -->
+        <!-- <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> &lt;!&ndash;Required  用户接收SDK通知栏信息的intent&ndash;&gt; -->
+        <!-- <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> &lt;!&ndash;Required  用户打开自定义通知栏的intent&ndash;&gt; -->
+        <!-- <action android:name="cn.jpush.android.intent.CONNECTION" />&lt;!&ndash; 接收网络变化 连接/断开 since 1.6.3 &ndash;&gt; -->
+        <!-- <category android:name="com.lnkj.privateshop" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+
+        <activity
+            android:name=".BaseWebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.splash.SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- android:launchMode="singleTask" -->
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.login.findpwd.FindPwdActivity" />
+        <activity android:name=".ui.login.register.RegisterActivity" />
+        <activity android:name=".ui.goods.GoodsInfoActivity" />
+        <activity android:name=".ui.mybuy.myorder.MyOrderActivity" />
+        <activity android:name=".ui.mybuy.favoritegoods.GoodsCollectionActivity" />
+        <activity android:name=".ui.mybuy.followshops.FollowActivity" />
+        <activity android:name=".ui.mybuy.footprint.FootPrintActivity" />
+        <activity android:name=".ui.mybuy.mredund.MyRedundActivity" />
+        <activity android:name=".ui.mybuy.mredund.look.LookRedundActivity" />
+        <activity android:name=".ui.mybuy.address.AddressActivity" />
+        <activity android:name=".ui.mybuy.address.addaddress.AddressTwoActivity" />
+        <activity android:name=".ui.mybuy.sttting.SettingActivity" />
+        <activity android:name=".ui.mybuy.sttting.chagepwd.ChagePwdActivity" />
+        <activity android:name=".ui.mybuy.sell.order.SellOrderActivity" />
+        <activity android:name=".ui.mybuy.sell.order.goods.SellGoodsActivity" />
+        <activity android:name=".ui.mybuy.sell.order.months.MonthsActivity" />
+        <activity android:name=".ui.addgoods.AddGoodsActivity" />
+        <activity
+            android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
+            android:theme="@style/ImagePickerThemeFullScreen" />
+        <activity android:name=".ui.mybuy.openshop.OpenShopNetActivity" />
+        <activity android:name=".ui.mybuy.openshop.OpenShopRealityActivity" />
+        <activity android:name=".ui.mybuy.openshop.OpenShopFactory2Activity" />
+        <activity android:name=".ui.mybuy.openshop.money.MoneyActivity" />
+        <activity
+            android:name=".ui.seachgoods.SeachGoodsActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity android:name=".ui.mybuy.openshop.money.qualificationActivity" />
+        <activity android:name=".ui.mybuy.openshop.money.RealityActivity" />
+        <activity android:name=".ui.mybuy.openshop.money.LookImgActivity" />
+
+        <!-- <activity android:name=".ui.mybuy.myorder.upgoods.UpGoodsActivity"/> -->
+        <!-- <activity android:name=".ui.mybuy.myorder.downgoods.DownGoodsActivity"/> -->
+        <!-- <activity android:name=".ui.mybuy.myorder.goodsdetailed.GoodsSdetailedActivity"/> -->
+        <activity android:name=".ui.mybuy.sell.order.goods.upgoods.UpGoodsActivity" />
+        <activity android:name=".ui.mybuy.sell.order.goods.downgoods.DownGoodsActivity" />
+        <activity android:name=".ui.mybuy.sell.order.goods.goodsdetailed.GoodsSdetailedActivity" />
+        <activity android:name=".ui.mybuy.myorder.orderdetailed.OrderDetailedActivity" />
+        <activity android:name=".ui.mybuy.myorder.commentaries.OredrCommetActivity" />
+        <activity android:name=".ui.mybuy.myorder.looktransit.LookTransitActivity" />
+        <activity android:name=".ui.mybuy.myorder.payorder.PayOrderActivity" />
+        <activity android:name=".ui.seachgoods.SeachGOodsPublicActivity" />
+        <activity android:name=".ui.shop.ShopCommentActivity" />
+        <activity android:name=".ui.shop.shopInfo.ShopInfoActivity" />
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".ui.addshoppingcart.AddShopPingCarActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ui.mybuy.sell.order.orderdetailed.SellOrderDetaildeActivity" />
+        <activity android:name=".ui.mybuy.sell.order.shipping.ShipPingActivity" />
+        <activity android:name=".ui.mybuy.sell.order.shipping.MipcaActivityCapture" />
+        <activity android:name=".ui.mybuy.sell.order.carriage.CarriageActivity" />
+        <activity android:name=".ui.mybuy.returngoods.ReturnGoodsActivity" />
+        <activity android:name=".ui.near.AddGroupActivity" />
+        <activity android:name=".ui.near.shopgoods.ShopGoodsActivity" />
+        <activity android:name=".ui.mybuy.refunds.RefundsActivity" />
+        <activity android:name=".ui.mybuy.sell.order.refunds.SellReturnActivity" />
+        <activity android:name=".ui.mybuy.mredund.recharge.RechargeActivity" />
+        <activity
+            android:name=".ui.mybuy.help.HelpActivity"
+            android:label="@string/title_activity_help"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.mybuy.help.HelpDetailActivity" />
+        <activity android:name=".ui.mybuy.refunds.shipping.ShipPingReturnActivity" />
+        <activity android:name=".ui.mybuy.refunds.shipping.details.RetrunDetailsActivity" />
+        <activity android:name=".ui.mybuy.sell.order.refunds.details.SellRetrunDetailsActivity" />
+        <activity android:name=".ui.mybuy.sell.order.carriage.province.SelectProvinceActivity" />
+        <activity android:name=".ui.mybuy.sell.order.money.MoneyActivity" />
+        <activity android:name=".ui.mybuy.sell.order.money.paydeposit.PayDepositActivity" />
+        <activity
+            android:name=".ui.mybuy.sttting.cashpwd.ChageChagPwdActivity"
+            android:label="@string/title_activity_chage_chag_pwd"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.mybuy.userinfo.EditUserActivity" />
+        <activity android:name=".ui.mybuy.sell.order.money.bankcard.BankCardActivity" />
+        <activity android:name=".ui.mybuy.sell.order.money.bankcard.addbankcard.AddBankCardActivity" />
+        <activity android:name=".ui.goodscar.ClearingActivity" />
+        <activity android:name=".ui.goodscar.speak.SpeakActivity" />
+        <activity android:name=".ui.goodscar.gopay.GoPayOrderActivity" />
+        <activity android:name=".ui.shop.shoparchives.ShopArchivesActivity" />
+        <activity android:name=".ui.timelinit.TimeGoodsActivity" />
+        <activity android:name=".ui.addshoppingcart.altercart.AlterGoodsCarActivity" />
+        <activity android:name=".ui.wholesale.WholesaleActivity" />
+        <activity android:name=".ui.mybuy.sell.order.money.detail.DetailActivity" />
+        <activity android:name=".ui.mybuy.sell.order.orderdetailed.modify.ModifyPriceActivity" />
+        <activity android:name=".ui.mybuy.sell.order.appraiseadmin.CommentAdminActivity" />
+        <activity android:name=".ui.mybuy.sell.order.money.withdrawals.WithdrawalsActivity" />
+        <activity android:name=".ui.shop.shopclass.ShopClassActivity" />
+        <activity android:name=".ui.shop.shopclass.shopclassddetailed.ShopClassDetActivity" />
+        <activity
+            android:name=".ui.mybuy.sttting.chagephone.ChagePhoneActivity"
+            android:label="@string/title_activity_chage_phone"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.mybuy.sttting.editpwd.EditCashPwdActivity" />
+        <!-- Required  . Enable it you can get statistics data with channel -->
+        <meta-data
+            android:name="PGYER_APPID"
+            android:value="3f2acc02dcab24a61d52058f79c56185"></meta-data>
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="ratio_float" />
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="af4080171beb392510aa6f63" /> <!-- </>值来自开发者平台取得的AppKey -->
+        <activity android:name=".ui.WebActivity" />
+
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="af4080171beb392510aa6f63" /> <!-- </>值来自开发者平台取得的AppKey -->
+        <!-- 设置环信应用的AppKey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="1117170918115153#sirendingzhi" />
+        <!-- 声明SDK所需的service SDK核心功能 -->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
+            android:exported="true" />
+        <service
+            android:name="com.hyphenate.chat.EMJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".chat.ChatActivity" />
+        <activity android:name=".chat.chatvideo.ImageGridActivity" />
+        <activity android:name=".chat.chatvideo.RecorderVideoActivity" />
+        <activity android:name="com.hyphenate.easeui.ui.EaseShowVideoActivity" />
+        <activity android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity" />
+        <activity android:name=".ui.mybuy.returngoods.record.RecordActivity" />
+        <activity android:name=".ui.ease.EaseConversationListActivity" />
+        <activity android:name=".ui.ease.systemnews.NoticeActivity" />
+        <activity android:name=".ui.seachgoods.seachshop.SeachShopActivity" />
+        <activity android:name=".ui.mybuy.sttting.about.AbuotActivity" />
+        <activity android:name=".ui.mybuy.myorder.paysuccess.PaySuccessActivity" />
+        <activity android:name=".ui.ease.systemnews.noticedetails.NoticeDetailsActivity" />
+        <activity
+            android:name=".ui.mybuy.sell.order.shopdata.ShopNetActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity android:name=".ui.LookBigImgActivity" />
+        <activity android:name=".ui.mybuy.sell.order.shopdata.ShopFactoryActivity" />
+        <activity android:name=".ui.mybuy.sell.order.shopdata.EntityShopActivity" />
+        <activity android:name=".ui.mybuy.sttting.chagepwd.ChagePwdSucceedActivity" />
+        <activity android:name=".ui.mybuy.feedback.BeedBackActivity" />
+        <activity android:name=".ui.mybuy.sell.order.shopdata.ShopGradeActivity" />
+        <activity android:name=".ui.mybuy.sell.order.seach.SeachOrderActivity" />
+        <activity android:name=".ui.mybuy.sttting.paypwd.ChagePayPwdActivity" />
+        <activity android:name=".ui.mybuy.sttting.paypwd.edit.EditPayPwdActivity"></activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.mydomain.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+
+</manifest>

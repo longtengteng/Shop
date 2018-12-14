@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/ll_back"
+        android:background="#a0000000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+
+<RelativeLayout
+    android:layout_alignParentBottom="true"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="160dp">
+    <TextView
+        android:id="@+id/tv_shuom"
+        android:textColor="@color/tx33"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="说明"
+        />
+    <TextView
+        android:lineSpacingExtra="4dp"
+        android:padding="12dp"
+        android:layout_above="@+id/tv_zhifu"
+        android:layout_below="@+id/tv_shuom"
+        android:textColor="@color/tx33"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="\t\t可用余额实际为可提现余额，不包含待确认收货、待退款的订单金额。"
+        />
+    <TextView
+        android:id="@+id/tv_zhifu"
+        android:layout_alignParentBottom="true"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:background="@color/btn_bj"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:text="关闭"/>
+
+</RelativeLayout>
+</LinearLayout>

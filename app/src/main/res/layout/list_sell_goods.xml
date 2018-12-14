@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:background="@color/white"
+        android:id="@+id/ll_prent"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <CheckBox
+            android:layout_marginRight="6dp"
+            android:id="@+id/cb_check"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/checkbox_goods_selector_two"
+            android:button="@null"
+            android:focusable="false" />
+        <ImageView
+            android:id="@+id/img_goods"
+
+            android:layout_width="48dp"
+            android:layout_height="55dp" />
+        <LinearLayout
+            android:layout_marginLeft="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_goods_name"
+                android:textColor="@color/tx38"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+             />
+            <TextView
+                android:id="@+id/tv_price"
+               android:gravity="center_vertical"
+                android:textColor="@color/btn_bj"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:id="@+id/shop_address"
+                android:textColor="@color/tx99"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line"/>
+</LinearLayout>

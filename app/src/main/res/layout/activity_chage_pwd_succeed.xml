@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/F7"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_bar" />
+    <TextView
+        android:background="@color/white"
+        android:layout_marginTop="6dp"
+        android:id="@+id/tv_validation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="提交完成"
+        android:textColor="@color/tx33"
+        android:textSize="18sp" />
+    <TextView
+        android:padding="12dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="        您的资料已成功上传，24小时内客服人员将会进行审核，审 核结果将会以站内信形式通知您，请注意查收“系统消息”"
+        android:textColor="@color/tx99"
+        android:textSize="13sp" />
+
+    <Button
+        android:textSize="14sp"
+        android:id="@+id/btn_coles"
+        android:background="@drawable/button_bj_to"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/tx33"
+        android:text="关闭"
+        style="@style/Button_default"/>
+
+</LinearLayout>

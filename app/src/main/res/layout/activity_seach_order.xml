@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <RelativeLayout
+        android:id="@+id/rl_seach"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:padding="2dp"
+                android:id="@+id/img_back"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="12sp"
+                android:src="@mipmap/back_back" />
+            <RelativeLayout
+                android:layout_weight="1"
+                android:background="@drawable/seach_bj"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_toLeftOf="@+id/imageView"
+                android:layout_toStartOf="@+id/imageView">
+                <ImageView
+                    android:id="@+id/img_seach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/nav_icon_search"/>
+                <EditText
+
+                    android:textColorHint="@color/tx99"
+                    android:id="@+id/et_seach"
+                    android:background="@null"
+                    android:layout_toRightOf="@+id/img_seach"
+                    android:gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:textColor="@color/tx99"
+                    android:hint="买家名称/订单编号"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_marginRight="12dp"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:text="搜索"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/blue_delault"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/tv_seach" />
+        </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_below="@+id/rl_seach"
+        style="@style/divider_line"
+        ></View>
+    <LinearLayout
+        android:layout_below="@+id/view"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:id="@+id/layout_no_datas"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/me_null" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="没有数据"
+            android:textColor="@color/tx99"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+        android:layout_below="@+id/view"
+        android:id="@+id/pullLoadMoreRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

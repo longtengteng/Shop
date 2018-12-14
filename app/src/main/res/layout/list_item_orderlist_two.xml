@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_goods"
+            android:layout_width="39dp"
+            android:layout_height="57dp"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:text="1111"
+                android:id="@+id/tv_goods_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/tx38"
+                android:textSize="12sp" />
+
+            <TextView
+                android:text="1111"
+                android:id="@+id/tv_goods_count"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/tx99"
+                android:textSize="12sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="1111"
+                    android:id="@+id/tv_goods_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/tx38"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_goods_return"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="4dp"
+                    android:text="退款中"
+                    android:textColor="#FFB90F"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:paddingTop="4dp"
+        android:paddingBottom="6dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.lnkj.privateshop.view.MyGridView
+            android:visibility="invisible"
+            android:paddingRight="4dp"
+            android:paddingLeft="4dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_marginRight="71dp"
+            android:layout_marginLeft="4dp"
+            android:verticalSpacing="2dp"
+            android:horizontalSpacing="2dp"
+            android:background="@drawable/lin_default_gray"
+            android:layout_weight="1"
+            android:layout_toLeftOf="@+id/tv_btn_alter"
+            android:id="@+id/mGridView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:numColumns="3">
+        </com.lnkj.privateshop.view.MyGridView>
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_refunds"
+            android:layout_width="65dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="6dp"
+            android:background="@drawable/button_default"
+            android:gravity="center"
+            android:text="隐藏"
+            android:textColor="@color/white"
+            android:textSize="11sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,73 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="main_text">13dp</dimen>
+    <dimen name="divider_line_height_0.5">1dip</dimen>
+    <dimen name="padding_5">5dip</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="height_160">160dip</dimen>
+    <dimen name="height_80">80dip</dimen>
+    <dimen name="height_60">60dip</dimen>
+    <dimen name="height_45">45dip</dimen>
+    <dimen name="height_32">32dip</dimen>
+    <dimen name="height_25">25dip</dimen>
+    <dimen name="height_20">20dip</dimen>
+    <dimen name="height_18">18dip</dimen>
+
+    <dimen name="width_220">220dip</dimen>
+    <dimen name="width_90">90dip</dimen>
+    <dimen name="width_73">73dip</dimen>
+    <dimen name="width_63">63dip</dimen>
+    <!--title  height-->
+    <dimen name="title_height">50dip</dimen>
+
+    <!--divider  line  height-->
+    <dimen name="divider_line_height">0.5dip</dimen>
+    <dimen name="line_height_2">2dip</dimen>
+    <!--text  size-->
+    <dimen name="sizesimiller">8sp</dimen>
+    <dimen name="sizesmall">10sp</dimen>
+    <dimen name="sizedefault">14sp</dimen>
+    <dimen name="sizebig">16sp</dimen>
+    <dimen name="sizehuge">20sp</dimen>
+
+    <!--margin-->
+    <dimen name="margin_12">12dip</dimen>
+    <dimen name="margin_30">30dip</dimen>
+    <dimen name="margin_40">40dip</dimen>
+    <!--padding-->
+    <dimen name="padding_3">3dip</dimen>
+    <dimen name="padding_10">10dip</dimen>
+    <dimen name="padding_15">15dip</dimen>
+    <dimen name="padding_20">20dip</dimen>
+    <dimen name="padding_30">30dip</dimen>
+    <dimen name="padding_40">40dip</dimen>
+
+
+    <!-- 顶部按钮栏高度 -->
+    <dimen name="pickerview_topbar_height">44dp</dimen>
+    <!-- 顶部按钮paddingLeft -->
+    <dimen name="pickerview_topbar_paddingleft">10dp</dimen>
+    <!-- 顶部按钮paddingRight -->
+    <dimen name="pickerview_topbar_paddingright">30dp</dimen>
+    <!-- 顶部按钮文字大小 -->
+    <dimen name="pickerview_topbar_btn_textsize">14sp</dimen>
+    <dimen name="pickerview_topbar_title_textsize">21sp</dimen>
+    <!-- 选项文字大小 需要配合 bools.xml 的 pickerview_customTextSize 为 true 才有效果 -->
+    <dimen name="pickerview_textsize">14sp</dimen>
+
+    <dimen name="avater_height">55dip</dimen>
+    <dimen name="avater_item_height">45dip</dimen>
+
+    <dimen name="margin_15">15dip</dimen>
+    <dimen name="margin_5">5dip</dimen>
+    <dimen name="margin_10">10dip</dimen>
+    <dimen name="margin_20">20dip</dimen>
+    <dimen name="margin_25">25dip</dimen>
+
+    <dimen name="height_40">40dip</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:id="@+id/ll_blank"
+        android:background="#a0000000"
+        android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       ></LinearLayout>
+
+        <TextView
+            android:background="#fff"
+            android:id="@+id/tv_attri"
+            android:paddingLeft="12dp"
+            android:textColor="@color/tx33"
+            android:textSize="13sp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:text="选择退货原因"/>
+        <TextView
+            android:id="@+id/tv_line"
+            android:layout_below="@+id/tv_attri"
+            style="@style/divider_line" />
+        <ListView
+          android:dividerHeight="4dp"
+            android:divider="#f0f0f0"
+            android:id="@+id/mListView"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+
+        </ListView>
+
+   <Button
+       android:textColor="@color/white"
+       android:textSize="14sp"
+       android:background="@color/btn_bj"
+       android:layout_width="match_parent"
+       android:layout_height="36dp"
+       android:layout_marginTop="6dp"
+       android:id="@+id/btn_coles"
+
+       android:text="完成"
+     />
+
+
+</LinearLayout>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_bar" />
+    <TextView
+        style="@style/divider_line"/>
+    <TextView
+        android:id="@+id/tv_validation"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/F7"
+        android:gravity="center_vertical"
+        android:paddingLeft="35dp"
+        android:text="请输入提现密码"
+        android:textColor="@color/tx99"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_chagpwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="35dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="提现密码"
+                android:textColor="@color/tx66"
+                android:textSize="14sp" />
+
+            <EditText
+                android:inputType="numberPassword"
+                android:id="@+id/et_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint="输入6位提现密码"
+                android:singleLine="true"
+                android:textColorHint="#999999"
+                android:textSize="14sp"></EditText>
+        </LinearLayout>
+
+        <View
+            style="@style/divider_line"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="35dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="再次输入"
+                android:textColor="@color/tx66"
+                android:textSize="14sp" />
+
+            <EditText
+                android:inputType="numberPassword"
+                android:id="@+id/et_to_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint="请再次输入密码"
+                android:singleLine="true"
+                android:textColorHint="#999999"
+                android:textSize="14sp"></EditText>
+        </LinearLayout>
+
+        <View
+            style="@style/divider_line"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"></View>
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="35dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="身份证号"
+                android:textColor="@color/tx66"
+                android:textSize="14sp" />
+
+            <EditText
+                android:digits="0123456789xX"
+                android:id="@+id/et_namber"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint="请输入18位有效身份证号"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColorHint="#999999"
+                android:textSize="14sp"></EditText>
+        </LinearLayout>
+
+        <View
+            style="@style/divider_line"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="35dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本人姓名"
+                android:textColor="@color/tx66"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:background="@null"
+                android:gravity="left|center_vertical"
+                android:hint="请填写真实姓名"
+                android:singleLine="true"
+                android:textColorHint="#999999"
+                android:textSize="14sp"></EditText>
+        </LinearLayout>
+
+        <View
+            style="@style/divider_line"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"></View>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/F7"
+            android:gravity="center_vertical"
+            android:paddingLeft="35dp"
+            android:textColor="@color/tx99"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="35dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="证件照片"
+                android:textColor="@color/tx66"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_marginLeft="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/iv_pic"
+                    android:layout_width="66dp"
+                    android:layout_height="66dp"
+                    android:src="@mipmap/btn_addgood" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="人像与身份证照片"
+                    android:textColor="@color/tx99"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="35dp"
+            android:paddingTop="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="示例图"
+                android:textColor="@color/tx99"
+                android:textSize="12sp" />
+                <ImageView
+
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_shilvtu" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

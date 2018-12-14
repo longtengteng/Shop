@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/F7"
+    >
+    <include layout="@layout/title_bar"/>
+    <TextView
+        android:focusableInTouchMode="true"
+        android:id="@+id/tv_11"
+        android:layout_below="@+id/title_bar"
+        style="@style/divider_line"/>
+
+    <ScrollView
+        android:layout_below="@+id/tv_11"
+        android:layout_above="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/ll_shipping"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:paddingRight="12dp"
+                android:paddingLeft="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="@color/tx33"
+                    android:textSize="12sp"
+                    android:layout_width="62dp"
+                    android:layout_height="wrap_content"
+                    android:text="物流公司"/>
+                <TextView
+                    android:text="请选择物流公司"
+                    android:background="@null"
+                    android:layout_weight="1"
+                    android:id="@+id/tv_company"
+                    android:textColor="@color/tx99"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="36dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <ImageView
+                    android:src="@mipmap/my_icon_more"
+                    android:layout_marginLeft="36dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="复制单号"/>
+            </LinearLayout>
+            <TextView
+                style="@style/divider_line"/>
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:paddingRight="12dp"
+                android:paddingLeft="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="@color/tx33"
+                    android:textSize="12sp"
+                    android:layout_width="62dp"
+                    android:layout_height="wrap_content"
+                    android:text="物流条形码"/>
+                <EditText
+                    android:textColorHint="@color/tx99"
+                    android:hint="请输入条形码"
+                    android:background="@null"
+                    android:id="@+id/tv_number"
+                    android:layout_weight="1"
+                    android:textColor="@color/tx99"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="36dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <ImageView
+                    android:src="@mipmap/order_icon_scan"
+                    android:id="@+id/tv_copy_nummber"
+                    android:layout_marginLeft="36dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="复制单号"/>
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/divider_line"/>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_btn_ok"
+            android:background="@color/btn_bj"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="确认发货"/>
+    </LinearLayout>
+</RelativeLayout>

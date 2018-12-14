@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<LinearLayout
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/tx33"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/tx33"
+            android:textSize="14sp" />
+    </LinearLayout>
+<LinearLayout
+    android:id="@+id/ll_check"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:clickable="false"
+        android:id="@+id/mCheckbox"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:button="@drawable/checkbox_goods_selector_two"
+        android:checked="true"
+        android:gravity="center" />
+</LinearLayout>
+</LinearLayout>
+
+</LinearLayout>

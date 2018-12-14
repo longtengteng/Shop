@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+         android:orientation="vertical"
+        >
+
+    <include layout="@layout/title_bar" />
+    <TextView
+        style="@style/divider_line"/>
+
+<android.support.design.widget.CoordinatorLayout
+
+    android:id="@+id/scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+
+    <!-- 第二部分:缩放控件-->
+    <android.support.design.widget.AppBarLayout
+
+        android:id="@+id/id_appbarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            app:layout_scrollFlags="scroll"
+            android:id="@+id/rl_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="好评率"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_good_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+
+                    android:textColor="@color/btn_bj"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_count_comment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+
+                    android:textColor="@color/tx99"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="6dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商品质量"
+                    android:textColor="@color/tx99"
+                    android:textSize="12sp" />
+
+                <RatingBar
+                    android:isIndicator="true"
+                    android:clickable="false"
+                    android:id="@+id/rc_rate_mass"
+                    style="@style/fiveRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/white"
+                    android:numStars="5"
+                    android:rating="0"
+                  />
+
+                <TextView
+                    android:id="@+id/tv_mass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5.0"
+                    android:textColor="@color/tx33"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="6dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="服务态度"
+                    android:textColor="@color/tx99"
+                    android:textSize="12sp" />
+
+                <RatingBar
+                    android:isIndicator="true"
+                    android:clickable="false"
+                    android:id="@+id/rb_rate_ervice"
+                    style="@style/fiveRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:numStars="5"
+                    android:rating="0"
+                   />
+
+                <TextView
+                    android:id="@+id/tv_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5.0"
+                    android:textColor="@color/tx33"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="6dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发货速度"
+                    android:textColor="@color/tx99"
+                    android:textSize="12sp" />
+
+                <RatingBar
+                    android:isIndicator="true"
+                    android:id="@+id/rb_rate_velocity"
+                    style="@style/fiveRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:numStars="5"
+                    android:rating="0"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_velocity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5.0"
+                    android:textColor="@color/tx33"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/divider_line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/F7"
+            app:tabIndicatorColor="@color/btn_bj"
+            app:tabSelectedTextColor="@color/btn_bj"
+            app:tabTextColor="@color/text_64" />
+
+        <TextView
+            style="@style/divider_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v4.view.ViewPager>
+</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

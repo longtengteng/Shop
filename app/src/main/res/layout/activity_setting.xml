@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/title_bar" />
+    <TextView
+        style="@style/divider_line"/>
+    <TextView
+        android:paddingLeft="12dp"
+        android:gravity="center_vertical"
+        android:textSize="11sp"
+        android:textColor="@color/tx99"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:text="账户相关"/>
+    <LinearLayout
+        android:id="@+id/ll_edit_phone"
+        android:background="@color/white"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="13sp"
+            android:textColor="@color/tx33"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="修改手机"/>
+        <TextView
+
+            android:drawableRight="@mipmap/my_icon_more"
+            android:gravity="center_vertical|right"
+            android:textSize="12sp"
+            android:textColor="@color/tx99"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line"/>
+    <LinearLayout
+        android:id="@+id/ll_edit_pwd"
+        android:background="@color/white"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="13sp"
+            android:textColor="@color/tx33"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="修改密码"/>
+        <TextView
+            android:drawableRight="@mipmap/my_icon_more"
+            android:gravity="center_vertical|right"
+            android:textSize="12sp"
+            android:textColor="@color/tx99"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_edit_cash_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="提现密码"
+            android:textColor="@color/tx33"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_pwd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:drawableRight="@mipmap/my_icon_more"
+            android:gravity="center_vertical|right"
+
+            android:textColor="@color/tx99"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_lin_1"
+        style="@style/divider_line"/>
+    <LinearLayout
+        android:id="@+id/ll_pay_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="支付密码"
+            android:textColor="@color/tx33"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tv_pay_pwd"
+            android:text="未设置"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:drawableRight="@mipmap/my_icon_more"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/tx99"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_pay"
+        style="@style/divider_line"/>
+    <LinearLayout
+        android:id="@+id/ll_freight"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="运费模板"
+            android:textColor="@color/tx33"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:drawableRight="@mipmap/my_icon_more"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/tx99"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_lin"
+        style="@style/divider_line"/>
+
+
+    <TextView
+        android:paddingLeft="12dp"
+        android:gravity="center_vertical"
+        android:textSize="11sp"
+        android:textColor="@color/tx99"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:text="其他"/>
+
+    <LinearLayout
+        android:id="@+id/ll_remove_cache"
+        android:background="@color/white"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="13sp"
+            android:textColor="@color/tx33"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="清除缓存"/>
+        <TextView
+            android:id="@+id/tv_cache"
+            android:drawableRight="@mipmap/my_icon_more"
+            android:gravity="center_vertical|right"
+            android:textSize="12sp"
+            android:textColor="@color/tx99"
+            android:text="请选择"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_beedback"
+        android:background="@color/white"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="13sp"
+            android:textColor="@color/tx33"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="意见反馈"/>
+        <TextView
+            android:drawableRight="@mipmap/my_icon_more"
+            android:gravity="center_vertical|right"
+            android:textSize="12sp"
+            android:textColor="@color/tx99"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line"/>
+
+    <LinearLayout
+        android:id="@+id/ll_we"
+        android:background="@color/white"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="13sp"
+            android:textColor="@color/tx33"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="关于我们"/>
+        <TextView
+            android:drawableRight="@mipmap/my_icon_more"
+            android:gravity="center_vertical|right"
+            android:textSize="12sp"
+            android:textColor="@color/tx99"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line"/>
+
+    <Button
+        android:id="@+id/btn_pull"
+        style="@style/Button_default"
+        android:layout_marginTop="16dp"
+        android:text="退出登录" />
+
+
+</LinearLayout>

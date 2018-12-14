@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginTop="12dp"
+            android:textSize="16sp"
+            android:textColor="@color/tx33"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="40dp"
+            android:text="店铺实拍图示例"/>
+
+        <TextView
+            android:paddingRight="22dp"
+            android:paddingLeft="22dp"
+            android:lineSpacingExtra="4dp"
+            android:textSize="12sp"
+            android:textColor="@color/tx99"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.照片上所有的信息清晰可见，必须能看清楚【招牌】、 【档口号】及服装【整体的陈列】。 \n2.照片上所有细节必须和填写的店铺信息一致。 \n3.请保证图片内容真实有效，提交后无法更改。"/>
+
+        <ImageView
+            android:layout_marginBottom="22dp"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/img4"/>
+    </LinearLayout>
+
+</LinearLayout>

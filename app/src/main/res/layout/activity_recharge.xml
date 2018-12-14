@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/F7"
+    >
+    <include layout="@layout/title_bar" />
+
+<LinearLayout
+    android:layout_marginTop="8dp"
+    android:background="@color/white"
+    android:paddingRight="12dp"
+    android:paddingLeft="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal">
+    <TextView
+
+        android:textSize="13sp"
+        android:textColor="@color/tx33"
+        android:gravity="center_vertical"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:text="充值金额"/>
+    <EditText
+        android:inputType="numberDecimal"
+        android:id="@+id/et_price"
+        android:background="@null"
+        android:textColor="@color/tx33"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:hint="请输入充值金额"
+        android:textSize="13sp"
+        android:textColorHint="@color/tx99"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:drawablePadding="6dp"
+            android:drawableLeft="@mipmap/me_icon_alipay"
+            android:textSize="13sp"
+            android:textColor="@color/tx33"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="支付宝充值"/>
+        <LinearLayout
+            android:id="@+id/ll_alipay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+    <CheckBox
+        android:clickable="false"
+        android:id="@+id/cb_alipay"
+        android:button="@drawable/checkbox_goods_selector_two"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:drawablePadding="6dp"
+            android:drawableLeft="@mipmap/me_icon_wechat"
+            android:textSize="13sp"
+            android:textColor="@color/tx33"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="微信充值"/>
+        <LinearLayout
+            android:id="@+id/ll_WeChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <CheckBox
+            android:clickable="false"
+            android:id="@+id/cb_WeChat"
+            android:button="@drawable/checkbox_goods_selector_two"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp" />
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+
+        android:id="@+id/btn_ok"
+        android:layout_marginTop="20dp"
+        android:text="充值"
+        style="@style/Button_default"/>
+
+
+</LinearLayout>
+

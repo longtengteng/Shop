@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:paddingLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp">
+
+        <LinearLayout
+            android:id="@+id/ll_chb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <CheckBox
+                android:id="@+id/cb_check_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="6dp"
+                android:button="@drawable/checkbox_goods_selector_two"
+                android:clickable="false"
+                android:focusable="false"
+                android:gravity="center"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/my_icon_follow" />
+
+        <TextView
+            android:id="@+id/tv_shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/tx66"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingBottom="5dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.lnkj.privateshop.view.MyListView
+            android:divider="@null"
+            android:id="@+id/mListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+        </com.lnkj.privateshop.view.MyListView>
+<LinearLayout
+    android:visibility="gone"
+    android:id="@+id/ll_1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@color/tx33"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="运费"/>
+        <TextView
+            android:textColor="@color/tx99"
+            android:textSize="14sp"
+            android:gravity="right|center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="运费 "/>
+
+        <TextView
+            android:id="@+id/tv_price_freight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/btn_bj"
+            android:textSize="14sp" />
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line"/>
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textColor="@color/tx33"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="给卖家留言"/>
+        <TextView
+            android:id="@+id/tv_speak"
+            android:drawableRight="@mipmap/my_icon_more"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/tx99"
+            android:textSize="14sp"
+            android:gravity="right|center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="给卖家留言"/>
+
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line"/>
+</LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

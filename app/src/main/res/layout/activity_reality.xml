@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fafafa"
+    >
+    <include layout="@layout/title_bar" />
+    <TextView
+        style="@style/divider_line"/>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+        <TextView
+            android:textColor="@color/tx33"
+            android:textSize="12sp"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="营业执照名称" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入营业执照名称"
+            android:maxLength="20"
+            android:minLines="2"
+            android:textColor="@color/tx99"
+            android:textColorHint="@color/tx99"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line"/>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+        <TextView
+            android:textColor="@color/tx33"
+            android:textSize="12sp"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="营业执照注册号" />
+
+        <EditText
+            android:id="@+id/et_http"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="12dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入营业执照注册号"
+            android:maxLength="20"
+            android:minLines="2"
+            android:textColor="@color/tx99"
+            android:textColorHint="@color/tx99"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+    <TextView
+        style="@style/divider_line"/>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+        <TextView
+            android:textColor="@color/tx33"
+            android:textSize="12sp"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="上传资质" />
+        <LinearLayout
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/iv_zhizhao"
+                    android:src="@mipmap/btn_addgood"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp" />
+                <TextView
+                    android:textSize="12sp"
+                    android:textColor="@color/tx99"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="营业执照"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+<TextView
+    android:id="@+id/tv_look"
+    android:textSize="12sp"
+    android:textColor="@color/blue_delault"
+    android:layout_marginRight="12dp"
+    android:layout_gravity="right"
+    android:background="@color/white"
+    android:gravity="center_vertical|right"
+    android:layout_width="wrap_content"
+    android:layout_height="32dp"
+    android:text="查看示例"/>
+
+    <Button
+        android:layout_marginTop="50dp"
+        android:text="提交"
+        android:id="@+id/btn_ok"
+        style="@style/Button_default"/>
+</LinearLayout>

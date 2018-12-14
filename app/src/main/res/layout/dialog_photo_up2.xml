@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="#50000000"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        >
+        <TextView
+            android:textColor="@color/tx33"
+            android:paddingBottom="20dp"
+            android:id="@+id/tv_tite"
+            android:gravity="center"
+            android:layout_marginBottom="-20dp"
+            android:background="@drawable/text_top_titel"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="选择商品图片"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/view"
+            style="@style/divider_line"
+            android:layout_height="1dip"
+            ></TextView>
+        <TextView
+            android:id="@+id/dialog_camero"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:text="拍照"
+            android:background="@drawable/text_top_fillet"
+            android:textColor="@color/tx33"
+            android:textSize="14sp" />
+
+        <View style="@style/divider_line"
+            android:layout_height="1dip"
+            ></View>
+
+        <TextView
+            android:id="@+id/dialog_album"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:text="相册"
+            android:background="@color/white"
+            android:textColor="@color/tx33"
+            android:textSize="14sp"
+            android:layout_marginBottom="5dip"
+            />
+
+        <View style="@style/divider_line"></View>
+
+        <TextView
+            android:id="@+id/dialog_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="取消"
+            android:background="@drawable/text_bottom_fillet"
+            android:textColor="@color/tx33"
+            android:textSize="14sp" />
+    </LinearLayout>
+</RelativeLayout>

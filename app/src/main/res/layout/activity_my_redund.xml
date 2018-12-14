@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f7f7f7"
+  >
+    <include layout="@layout/title_bar" />
+    <TextView
+        style="@style/divider_line"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_mones"
+        android:paddingTop="4dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/tx66"
+        android:textSize="14sp"
+        android:background="@color/white"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:drawableRight="@mipmap/my_balance_icon_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="可用余额(余额)"/>
+    <TextView
+        android:id="@+id/tv_main_mones"
+        android:background="@color/white"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:textColor="@color/btn_bj"
+        android:textSize="24sp"/>
+    <TextView style="@style/divider_line"/>
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+<LinearLayout
+    android:id="@+id/ll_shouru"
+    android:layout_marginRight="0.5dp"
+    android:gravity="center"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="12sp"
+        android:textColor="@color/tx66"
+        android:paddingTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="累计收入(元)"/>
+    <TextView
+        android:id="@+id/tv_income"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="18dp"
+        android:textSize="12sp"
+        android:textColor="@color/tx33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       />
+</LinearLayout>
+        <TextView
+            android:layout_width="@dimen/divider_line_height_0.5"
+            android:layout_height="match_parent"
+            android:background="#ebebeb"/>
+        <LinearLayout
+            android:id="@+id/ll_xiaofei"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="12sp"
+                android:textColor="@color/tx66"
+                android:paddingTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="累计消费(元)"/>
+
+            <TextView
+                android:id="@+id/tv_consum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="18dp"
+                android:textColor="@color/tx33"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView style="@style/divider_line"/>
+    <TextView
+        android:id="@+id/tv_look"
+        android:background="@color/white"
+        android:textSize="16sp"
+        android:textColor="@color/tx33"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:gravity="center"
+        android:text="查看"/>
+    <TextView style="@style/divider_line"/>
+    <Button
+        android:id="@+id/btn_toview"
+        android:layout_marginTop="10dp"
+      android:text="充值"
+        style="@style/Button_default"/>
+    <TextView
+        android:padding="12sp"
+        android:textSize="14sp"
+        android:textColor="@color/tx66"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="充值须知：买家充值可在平台消费，但不支持提现"/>
+
+</LinearLayout>
+

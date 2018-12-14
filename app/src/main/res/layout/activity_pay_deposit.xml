@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fafafa"
+    >
+    <include layout="@layout/title_bar" />
+    <TextView
+        style="@style/divider_line"/>
+
+
+    <TextView
+        android:background="@color/white"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:textColor="@color/tx66"
+        android:padding="12dp"
+        android:text="已缴纳额度(元)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/tv_quota"
+        android:background="@color/white"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textColor="@color/btn_bj"
+        android:padding="12dp"
+        android:text="0.00"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <RelativeLayout
+
+        android:background="@color/white"
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_already"
+            android:layout_centerInParent="true"
+            android:background="@color/white"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textColor="@color/tx33"
+            android:padding="12dp"
+            android:text="0.00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_pay"
+        android:layout_marginTop="20dp"
+        android:text="缴纳"
+        style="@style/Button_default"/>
+    <Button
+        android:id="@+id/btn_defrosting"
+        android:textColor="@color/tx33"
+        android:layout_marginTop="10dp"
+        android:text="解冻"
+        android:background="@drawable/button_bj_to"
+        style="@style/Button_default"/>
+
+    <Button
+        android:id="@+id/btn_restart"
+        android:textColor="@color/tx33"
+        android:layout_marginTop="10dp"
+        android:text="重新开店"
+        android:background="@drawable/button_bj_to"
+        style="@style/Button_default"/>
+<TextView
+    android:padding="12dp"
+    android:textColor="@color/tx99"
+    android:textSize="12sp"
+    android:text="1,诚信保证金对买家来说，是一种进货信任和保障的象征。它就像 一颗定心丸，让买家买得放心！保证金额越高，买家对店铺的信任 度越高，超70%买家会首选有这个标志的商家。\n\n
+    2,诚信保证金对卖家来说，是让店铺排名流量起飞的必备利器。缴 纳诚信保证金，在相同条件下，排名更有优势，流量？当然扶持！ 缴纳诚信保证金是参加各种活动的前提，大大增加了店铺的曝光度。\n\n
+    3,平台店铺按自愿原则缴纳诚信保证金，诚信保证金分6档：2000 元、3000元、5000元、10000元、20000元、50000元。\n\n
+    4,已缴纳诚信金的卖家可随时申请解冻全额诚信保证金。若无交易 纠纷，申请解冻的保证金将于45天内返回到账号余额。\n\n
+    5,当卖家不再经营，申请注销店铺后，45天内将返还全额诚信保证 金。"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    />
+
+</LinearLayout>

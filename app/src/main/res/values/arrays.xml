@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="choose_order">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+    </array>
+    <array name="sex">
+        <item>男</item>
+        <item>女</item>
+    </array>
+    <array name="age">
+        <item>0-15岁</item>
+        <item>15-25岁</item>
+        <item>25-35岁</item>
+        <item>35-45岁</item>
+        <item>45-55岁</item>
+        <item>55-80岁</item>
+    </array>
+</resources>

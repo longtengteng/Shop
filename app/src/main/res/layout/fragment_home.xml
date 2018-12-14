@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<android.support.v4.widget.SwipeRefreshLayout-->
+    <!---->
+    <!--android:id="@+id/layout_swipe_refresh"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <!-- 第二部分:缩放控件-->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/id_appbarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/rl_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_scrollFlags="scroll">
+                <!--app:layout_scrollFlags="scroll|snap"-->
+            <com.bigkoo.convenientbanner.ConvenientBanner
+                android:id="@+id/mCb"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:canLoop="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        />
+
+                        <!--android:background="#ffb7b6"-->
+                    <LinearLayout
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/home_icon_time_limited" />
+
+                            <!--android:background="#c7c9ff"-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_time_h"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/text_blace"
+                                android:padding="3dp"
+                                android:text="00"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:text=":" />
+
+                            <TextView
+                                android:id="@+id/tv_time_m"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:background="@drawable/text_blace"
+                                android:padding="3dp"
+                                android:text="00"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:text=":" />
+
+                            <TextView
+                                android:id="@+id/tv_time_s"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:background="@drawable/text_blace"
+                                android:padding="3dp"
+                                android:text="00"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_wholesale"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                       />
+                    <LinearLayout
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                            <!--android:background="#ffb7b6"-->
+                        <ImageView
+                            android:layout_width="92dp"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/home_icon_customized" />
+
+                        <TextView
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/tx66"
+                            android:textSize="12sp"
+                            android:text="定制专属产品"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:gravity="center"
+                            />
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+            <com.lnkj.privateshop.view.MyListView
+                android:id="@+id/myListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:scrollbars="none">
+            </com.lnkj.privateshop.view.MyListView>
+        </LinearLayout>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            app:tabIndicatorColor="@color/btn_bj"
+            app:tabSelectedTextColor="@color/btn_bj"
+            app:tabTextColor="@color/text_64" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v4.view.ViewPager>
+</android.support.design.widget.CoordinatorLayout>
+<!--</android.support.v4.widget.SwipeRefreshLayout>-->
