@@ -12,10 +12,15 @@ public class RegisterContract {
     interface View extends BaseView {
 
         void initView();
+
         void showLoading();//显示加载框
+
         void hideLoading();//隐藏加载框
+
         void toLogIn();//登陆成功前往主界面
+
         void setTitel(String s);
+
         void countDown();
     }
 

@@ -27,6 +27,7 @@ import com.lnkj.privateshop.adapter.HomeAdverAdapter;
 import com.lnkj.privateshop.adapter.OrderViewPagerAdapter;
 import com.lnkj.privateshop.entity.AdvertisingBean;
 import com.lnkj.privateshop.entity.BannerBean;
+import com.lnkj.privateshop.entity.HotBannerBean;
 import com.lnkj.privateshop.entity.LimitedFavourBean;
 import com.lnkj.privateshop.entity.OrderWholeSaleBean;
 import com.lnkj.privateshop.fragment.home.goodslist.FollowFragment;
@@ -55,6 +56,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     HomePresenter mPresenter = new HomePresenter(this);
     @Bind(R.id.mCb)
     ConvenientBanner mCb;
+    @Bind(R.id.mCb_hot)
+    ConvenientBanner mCb_hot;
     @Bind(R.id.tabLayout)
     TabLayout tabLayout;
     @Bind(R.id.viewpager)
@@ -75,7 +78,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     ImageView ivWholesale;
     @Bind(R.id.id_appbarlayout)
     AppBarLayout appBarLayout;
-//    @Bind(R.id.layout_swipe_refresh)
+    //    @Bind(R.id.layout_swipe_refresh)
 //    SwipeRefreshLayout swipLayout;
     private List<Fragment> fragmentList;
     private List<String> titeList;
@@ -144,15 +147,16 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         tabLayout.setupWithViewPager(viewpager);
         adapter.bind(fragmentList, titeList);
     }
+
     @OnClick({R.id.iv_time, R.id.iv_wholesale})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_time:
-                if (time<1000){
+                if (time < 1000) {
                     ToastUtil.showToast("暂无特惠商品");
-                }else {
-                Intent intent = new Intent(getActivity(), TimeGoodsActivity.class);
-                startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getActivity(), TimeGoodsActivity.class);
+                    startActivity(intent);
                 }
                 break;
             case R.id.iv_wholesale:
@@ -163,6 +167,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
         }
     }
+
     @Override
     public void onEmpty() {
 
@@ -190,9 +195,10 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     private List<String> imgurllist;
     List<BannerBean.DataBean> databeans;
+
     @Override
     public void getBannerSucceed(BannerBean beass) {
-        databeans=beass.getData();
+        databeans = beass.getData();
         imgurllist = new ArrayList<>();
         for (int i = 0; i < beass.getData().size(); i++) {
             imgurllist.add(Constants.Base_IMG_URL + databeans.get(i).getContent());
@@ -210,27 +216,78 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                     @Override
                     public void onItemClick(int position) {
                         try {
-                    if (databeans.get(position).getType().equals("5")){
-                        if (!TextUtils.isEmpty(databeans.get(position).getItem_id())){
-                        Intent intent  = new Intent(getActivity(), ShopInfoActivity.class);
-                        intent.putExtra("shop_id",databeans.get(position).getItem_id());
-                        startActivity(intent);
+                            if (databeans.get(position).getType().equals("5")) {
+                                if (!TextUtils.isEmpty(databeans.get(position).getItem_id())) {
+                                    Intent intent = new Intent(getActivity(), ShopInfoActivity.class);
+                                    intent.putExtra("shop_id", databeans.get(position).getItem_id());
+                                    startActivity(intent);
+
+                                }
+                            } else if (databeans.get(position).getType().equals("6")) {
+                                if (!TextUtils.isEmpty(databeans.get(position).getItem_id())) {
+
+                                    Intent intent = new Intent(getActivity(), GoodsInfoActivity.class);
+                                    intent.putExtra("goods_id", databeans.get(position).getItem_id());
+                                    startActivity(intent);
+                                }
+                            } else if (databeans.get(position).getType().equals("0")) {
+                                Intent intent = new Intent(getActivity(), WebActivity.class);
+                                intent.putExtra("title", databeans.get(position).getTitle());
+                                intent.putExtra("url", databeans.get(position).getLink_url());
+                                startActivity(intent);
+                            }
+                        } catch (Exception e) {
 
                         }
-                    }else if (databeans.get(position).getType().equals("6")){
-                        if (!TextUtils.isEmpty(databeans.get(position).getItem_id())){
-
-                        Intent intent  = new Intent(getActivity(), GoodsInfoActivity.class);
-                        intent.putExtra("goods_id",databeans.get(position).getItem_id());
-                        startActivity(intent);
-                        }
-                    }else if (databeans.get(position).getType().equals("0")){
-                        Intent intent  = new Intent(getActivity(), WebActivity.class);
-                        intent.putExtra("title",databeans.get(position).getTitle());
-                        intent.putExtra("url",databeans.get(position).getLink_url());
-                        startActivity(intent);
                     }
-                        }catch (Exception e){
+                })
+                .setCanLoop(true);
+    }
+
+    private List<String> imgurllist_hot;
+    List<HotBannerBean.DataBean> databeans_hot;
+
+    @Override
+    public void gethotBannerSucceed(HotBannerBean hotBannerBean) {
+        databeans_hot = hotBannerBean.getData();
+        imgurllist_hot = new ArrayList<>();
+        for (int i = 0; i < hotBannerBean.getData().size(); i++) {
+            imgurllist_hot.add(Constants.Base_IMG_URL + databeans_hot.get(i).getContent());
+        }
+        mCb_hot.setPages(new CBViewHolderCreator<ImageViewHolder>() {
+            @Override
+            public ImageViewHolder createHolder() {
+                return new ImageViewHolder();
+            }
+        }, imgurllist_hot)
+                //   .setPageIndicator(new int[]{R.drawable.ponit_normal, R.drawable.point_select}) //设置两个点作为指示器
+                //   .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)//设置指示器的方向水平  居中
+                .startTurning(3000)
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        try {
+                            if (databeans_hot.get(position).getType().equals("5")) {
+                                if (!TextUtils.isEmpty(databeans_hot.get(position).getItem_id())) {
+                                    Intent intent = new Intent(getActivity(), ShopInfoActivity.class);
+                                    intent.putExtra("shop_id", databeans_hot.get(position).getItem_id());
+                                    startActivity(intent);
+
+                                }
+                            } else if (databeans_hot.get(position).getType().equals("6")) {
+                                if (!TextUtils.isEmpty(databeans_hot.get(position).getItem_id())) {
+
+                                    Intent intent = new Intent(getActivity(), GoodsInfoActivity.class);
+                                    intent.putExtra("goods_id", databeans_hot.get(position).getItem_id());
+                                    startActivity(intent);
+                                }
+                            } else if (databeans_hot.get(position).getType().equals("0")) {
+                                Intent intent = new Intent(getActivity(), WebActivity.class);
+                                intent.putExtra("title", databeans_hot.get(position).getTitle());
+                                intent.putExtra("url", databeans_hot.get(position).getLink_url());
+                                startActivity(intent);
+                            }
+                        } catch (Exception e) {
 
                         }
                     }
@@ -246,13 +303,13 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     @Override
     public void getTimeSuccreed(LimitedFavourBean beass) {
-        LimitedFavourBean.DataBean beas =  beass.getData();
-        Glide.with(getActivity()).load(Constants.Base_URL +beas.getAct_img())
+        LimitedFavourBean.DataBean beas = beass.getData();
+        Glide.with(getActivity()).load(Constants.Base_URL + beas.getAct_img())
                 .error(R.mipmap.bg_img)
                 .placeholder(R.mipmap.bg_img)
                 .into(ivTime);
 
-        time = Long.parseLong(beas.getEnd_time())*1000- System.currentTimeMillis();
+        time = Long.parseLong(beas.getEnd_time()) * 1000 - System.currentTimeMillis();
         CountDownUtil cdu = new CountDownUtil(time, 1000 * 60 * 60,
                 tvTimeH, 1);
         cdu.start();
@@ -269,39 +326,41 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     public void getWholesaleSuccreed(OrderWholeSaleBean beass) {
         try {
 
-        Glide.with(getActivity()).load(Constants.Base_URL +beass.getData().get(0).getContent())
-                .error(R.mipmap.de_photo)
-                .thumbnail(0.1f)
-                .placeholder(R.mipmap.de_photo)
-                .into(ivWholesale);
-        }catch (Exception e){}
+            Glide.with(getActivity()).load(Constants.Base_URL + beass.getData().get(0).getContent())
+                    .error(R.mipmap.de_photo)
+                    .thumbnail(0.1f)
+                    .placeholder(R.mipmap.de_photo)
+                    .into(ivWholesale);
+        } catch (Exception e) {
+        }
     }
 
     @Override
     public void getAdvertisingSuccreed(AdvertisingBean beass) {
-     list = beass.getData();
-        HomeAdverAdapter adapter = new HomeAdverAdapter(getActivity(),list);
+        list = beass.getData();
+        HomeAdverAdapter adapter = new HomeAdverAdapter(getActivity(), list);
         myListView.setAdapter(adapter);
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 try {
 
-                if (list.get(position).getType().equals("5")){
-                    Intent intent  = new Intent(getActivity(), ShopInfoActivity.class);
-                    intent.putExtra("shop_id",list.get(position).getItem_id());
-                    startActivity(intent);
-                }else if (list.get(position).getType().equals("6")){
-                    Intent intent  = new Intent(getActivity(), GoodsInfoActivity.class);
-                    intent.putExtra("goods_id",list.get(position).getItem_id());
-                    startActivity(intent);
-                }else {
-                    Intent intent  = new Intent(getActivity(), WebActivity.class);
-                    intent.putExtra("title",list.get(position).getTitle());
-                    intent.putExtra("url",list.get(position).getLink_url());
-                    startActivity(intent);
+                    if (list.get(position).getType().equals("5")) {
+                        Intent intent = new Intent(getActivity(), ShopInfoActivity.class);
+                        intent.putExtra("shop_id", list.get(position).getItem_id());
+                        startActivity(intent);
+                    } else if (list.get(position).getType().equals("6")) {
+                        Intent intent = new Intent(getActivity(), GoodsInfoActivity.class);
+                        intent.putExtra("goods_id", list.get(position).getItem_id());
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(getActivity(), WebActivity.class);
+                        intent.putExtra("title", list.get(position).getTitle());
+                        intent.putExtra("url", list.get(position).getLink_url());
+                        startActivity(intent);
+                    }
+                } catch (Exception e) {
                 }
-                }catch (Exception e){}
             }
         });
 
@@ -313,7 +372,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
 
 
     public class ImageViewHolder implements Holder<String> {

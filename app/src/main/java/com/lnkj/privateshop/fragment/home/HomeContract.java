@@ -4,6 +4,7 @@ import com.lnkj.privateshop.BasePresenter;
 import com.lnkj.privateshop.BaseView;
 import com.lnkj.privateshop.entity.AdvertisingBean;
 import com.lnkj.privateshop.entity.BannerBean;
+import com.lnkj.privateshop.entity.HotBannerBean;
 import com.lnkj.privateshop.entity.LimitedFavourBean;
 import com.lnkj.privateshop.entity.OrderWholeSaleBean;
 
@@ -16,21 +17,34 @@ public class HomeContract {
     interface View extends BaseView {
 
         void initView();
+
         void getBannerSucceed(BannerBean beass);
+        void gethotBannerSucceed(HotBannerBean hotBannerBean);
+
         void okGoods();
+
         void getTimeSuccreed(LimitedFavourBean beass);
+
         void getWholesaleSuccreed(OrderWholeSaleBean beass);
+
         void getAdvertisingSuccreed(AdvertisingBean beass);
     }
 
     //业务处理逻辑
     interface Presenter extends BasePresenter<View> {
         void initView();
+
         void getToken(String token);
+
         void getBannerFromServer();
-        void  getAdvertising();
+
+        void getAdvertising();
+
         void getTime();
+
         void getWholesale();
+
+        void gethotActivityBanner();
 
     }
 }

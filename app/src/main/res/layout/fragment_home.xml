@@ -1,13 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--<android.support.v4.widget.SwipeRefreshLayout-->
-    <!---->
-    <!--android:id="@+id/layout_swipe_refresh"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
+<?xml version="1.0" encoding="utf-8"?><!--<android.support.v4.widget.SwipeRefreshLayout--><!----><!--android:id="@+id/layout_swipe_refresh"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent">-->
 
-<android.support.design.widget.CoordinatorLayout
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_scrollFlags="scroll">
-                <!--app:layout_scrollFlags="scroll|snap"-->
+            <!--app:layout_scrollFlags="scroll|snap"-->
             <com.bigkoo.convenientbanner.ConvenientBanner
                 android:id="@+id/mCb"
                 android:layout_width="match_parent"
@@ -34,7 +28,69 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="140dp">
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@mipmap/xianshitehuifont" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_more_limit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@mipmap/gengduofont" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=">>"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_limit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@mipmap/baokuantuijianfont" />
+
+
+            </LinearLayout>
+            <com.bigkoo.convenientbanner.ConvenientBanner
+                android:id="@+id/mCb_hot"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:canLoop="true" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:visibility="gone">
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -45,15 +101,14 @@
                         android:id="@+id/iv_time"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
-                        />
+                        android:scaleType="fitXY" />
 
-                        <!--android:background="#ffb7b6"-->
+                    <!--android:background="#ffb7b6"-->
                     <LinearLayout
-                        android:layout_marginTop="16dp"
-                        android:layout_marginLeft="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -62,7 +117,7 @@
                             android:layout_height="wrap_content"
                             android:src="@mipmap/home_icon_time_limited" />
 
-                            <!--android:background="#c7c9ff"-->
+                        <!--android:background="#c7c9ff"-->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -126,45 +181,45 @@
                         android:id="@+id/iv_wholesale"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
-                       />
+                        android:scaleType="fitXY" />
+
                     <LinearLayout
-                        android:layout_marginTop="16dp"
-                        android:layout_marginLeft="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
 
                         android:gravity="center"
                         android:orientation="vertical">
 
-                            <!--android:background="#ffb7b6"-->
+                        <!--android:background="#ffb7b6"-->
                         <ImageView
                             android:layout_width="92dp"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/home_icon_customized" />
 
                         <TextView
-                            android:layout_marginTop="4dp"
-                            android:textColor="@color/tx66"
-                            android:textSize="12sp"
-                            android:text="定制专属产品"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:background="#00000000"
                             android:gravity="center"
-                            />
+                            android:text="定制专属产品"
+                            android:textColor="@color/tx66"
+                            android:textSize="12sp" />
 
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>
+
             <com.lnkj.privateshop.view.MyListView
                 android:id="@+id/myListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:divider="@null"
-                android:scrollbars="none">
-            </com.lnkj.privateshop.view.MyListView>
+                android:scrollbars="none"></com.lnkj.privateshop.view.MyListView>
         </LinearLayout>
+
         <android.support.design.widget.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
@@ -180,5 +235,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v4.view.ViewPager>
-</android.support.design.widget.CoordinatorLayout>
-<!--</android.support.v4.widget.SwipeRefreshLayout>-->
+</android.support.design.widget.CoordinatorLayout><!--</android.support.v4.widget.SwipeRefreshLayout>-->
