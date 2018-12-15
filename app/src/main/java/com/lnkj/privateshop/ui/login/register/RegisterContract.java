@@ -23,6 +23,6 @@ public class RegisterContract {
     interface Presenter extends BasePresenter<View> {
         void initView();
 
-        void next(String phone, String code,String nick);
+        void next(String phone, String code);
     }
 }

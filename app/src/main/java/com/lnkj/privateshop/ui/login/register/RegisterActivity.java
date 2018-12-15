@@ -91,8 +91,8 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
             v_nick.setVisibility(View.GONE);
         } else {
             btnLogin.setText("注册");
-            edit_nick.setVisibility(View.VISIBLE);
-            v_nick.setVisibility(View.VISIBLE);
+           // edit_nick.setVisibility(View.VISIBLE);
+          //  v_nick.setVisibility(View.VISIBLE);
 
         }
     }
@@ -136,7 +136,8 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                 finish();
                 break;
             case R.id.btn_login:
-                Presenter.next(editAccount.getText().toString(), editPwd.getText().toString(), edit_nick.getText().toString());
+             //   Presenter.next(editAccount.getText().toString(), editPwd.getText().toString(), edit_nick.getText().toString());
+                Presenter.next(editAccount.getText().toString(), editPwd.getText().toString());
                 break;
         }
     }

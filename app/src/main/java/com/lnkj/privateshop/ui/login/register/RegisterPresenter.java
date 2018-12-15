@@ -52,7 +52,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
 
     @Override
-    public void next(String username ,String code,String nick) {
+    public void next(String username ,String code) {
         Map<String,Object> map = new HashMap<>();
 
         if (TextUtils.isEmpty(username)){
@@ -65,14 +65,14 @@ public class RegisterPresenter implements RegisterContract.Presenter {
             ToastUtil.showToast("两次密码不一致");
             return;
         }
-        if (!flag.equals(Constants.FINDPWD)){
+       /* if (!flag.equals(Constants.FINDPWD)){
             if (TextUtils.isEmpty(nick)){
                 ToastUtil.showToast("请输入昵称");
                 return;
             }else {
                 map.put("nickname", nick);
             }
-        }
+        }*/
             map.put("mobile", phone);
             map.put("password", code);
         mView.showLoading();

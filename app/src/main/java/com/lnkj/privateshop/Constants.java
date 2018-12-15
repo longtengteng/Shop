@@ -14,8 +14,8 @@ public class Constants  extends EaseConstant {
 //    public static final String Base_IMG_URL = "http://dingzhi.pro3.liuniukeji.net/";// 图片连接地址
 
 
-     public static final String Base_URL = "http://www.zuisifan.com/";
-     public static final String Base_IMG_URL = "http://www.zuisifan.com/";// 图片连接地址
+     public static final String Base_URL = "http://znshop.swzzkf.cn/";
+     public static final String Base_IMG_URL = "http://znshop.swzzkf.cn/";// 图片连接地址
 
 
 

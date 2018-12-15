@@ -12,8 +12,11 @@ public class LoginContract {
     interface View extends BaseView {
 
         void initView();
+
         void showLoading();//显示加载框
+
         void hideLoading();//隐藏加载框
+
         void toMain();//登陆成功前往主界面
 
         void setTitle(String s);
@@ -22,6 +25,7 @@ public class LoginContract {
 
     interface Presenter extends BasePresenter<View> {
         void initView();
+
         void login(String phone, String pwd);
     }
 }

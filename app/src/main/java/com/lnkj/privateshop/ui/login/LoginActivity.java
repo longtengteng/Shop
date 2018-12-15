@@ -64,13 +64,13 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void initUiAndListener() {
         ButterKnife.bind(this);
         loginPresenter.attachView(this);
-        imgBack.setVisibility(View.GONE);
+        imgBack.setVisibility(View.VISIBLE);
         type = getIntent().getStringExtra("type");
-        tv_left_blue.setVisibility(View.VISIBLE);
-        tv_left_blue.setText("取消");
-        tv_left_blue.setTextColor(Color.parseColor("#ff7722"));
+        // tv_left_blue.setVisibility(View.VISIBLE);
+        // tv_left_blue.setText("取消");
+        // tv_left_blue.setTextColor(Color.parseColor("#ff7722"));
         loginPresenter.initView();
-        tv_left_blue.setOnClickListener(new View.OnClickListener() {
+        imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (TextUtils.isEmpty(type)) {
@@ -98,7 +98,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     public void initView() {
-        imgBack.setVisibility(View.GONE);
     }
 
     @Override
