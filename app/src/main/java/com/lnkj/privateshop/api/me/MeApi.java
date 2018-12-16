@@ -368,9 +368,15 @@ public class MeApi {
     }
 
     //首页爆款推荐图
-    public Observable<String>gethotActivityBanner(Map<String, Object> map){
+    public Observable<String> gethotActivityBanner(Map<String, Object> map) {
         return meService.gethotActivityBanner(map).subscribeOn(Schedulers.io());
     }
+
+    //首页限时特惠
+    public Observable<String> getLimitFavour(Map<String, Object> map) {
+        return meService.getLimitFavourList(map).subscribeOn(Schedulers.io());
+    }
+
     // 首页商品列表
     public Observable<String> getHomeGoodsList(Map<String, Object> map) {
         return meService.getHomeGoodsList(map).subscribeOn(Schedulers.io());

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.alibaba.fastjson.JSON;
 import com.lnkj.privateshop.entity.AdvertisingBean;
 import com.lnkj.privateshop.entity.BannerBean;
+import com.lnkj.privateshop.entity.HomeLimitFavourBean;
 import com.lnkj.privateshop.entity.HotBannerBean;
 import com.lnkj.privateshop.entity.LimitedFavourBean;
 import com.lnkj.privateshop.entity.OrderWholeSaleBean;
@@ -203,6 +204,41 @@ public class HomePresenter implements HomeContract.Presenter {
                             if (status==1){
                                 HotBannerBean beass = JSON.parseObject(data,HotBannerBean.class);
                                 mView.gethotBannerSucceed(beass);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                        mView.hideLoading();
+                        LLog.d("数据错误", throwable.toString() + "");
+                    }
+                });
+
+    }
+
+    @Override
+    public void getLimitedFavourList() {
+        mView.showLoading();
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("token",token);
+        meApi.getLimitFavour(map)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String data) {
+                        mView.hideLoading();
+                        LLog.d("数据", data);
+                        try {
+                            JSONObject object = new JSONObject(data);
+                            int status = object.getInt("status");
+                            if (status==1){
+                                HomeLimitFavourBean beass = JSON.parseObject(data,HomeLimitFavourBean.class);
+                                mView.getLimitedFavourListSuccreed(beass);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -64,10 +64,61 @@
                 </LinearLayout>
             </LinearLayout>
 
+
+
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_limit"
+                android:id="@+id/list_limit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"></android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_lexiangzhuan"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/lexiangzhuan" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_mianfei"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/mianfeishiyong" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_pinxiang"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/pinxianggou" />
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -82,15 +133,18 @@
 
 
             </LinearLayout>
+
             <com.bigkoo.convenientbanner.ConvenientBanner
                 android:id="@+id/mCb_hot"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 app:canLoop="true" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:visibility="gone">
+                android:visibility="gone"
+                >
 
                 <RelativeLayout
                     android:layout_width="0dp"

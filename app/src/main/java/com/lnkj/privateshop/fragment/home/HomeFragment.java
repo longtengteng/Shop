@@ -9,6 +9,8 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,13 +22,16 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lnkj.privateshop.BaseFragment;
 import com.lnkj.privateshop.Constants;
 import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.adapter.HomeAdverAdapter;
+import com.lnkj.privateshop.adapter.HomeLimitAdapter;
 import com.lnkj.privateshop.adapter.OrderViewPagerAdapter;
 import com.lnkj.privateshop.entity.AdvertisingBean;
 import com.lnkj.privateshop.entity.BannerBean;
+import com.lnkj.privateshop.entity.HomeLimitFavourBean;
 import com.lnkj.privateshop.entity.HotBannerBean;
 import com.lnkj.privateshop.entity.LimitedFavourBean;
 import com.lnkj.privateshop.entity.OrderWholeSaleBean;
@@ -63,9 +68,10 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Bind(R.id.viewpager)
     ViewPager viewpager;
     GoodsLilstFragment mFragment;
-
     @Bind(R.id.myListView)
     MyListView myListView;
+    @Bind(R.id.list_limit)
+    RecyclerView list_limit;
     @Bind(R.id.iv_time)
     ImageView ivTime;
     @Bind(R.id.tv_time_h)
@@ -84,6 +90,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     private List<String> titeList;
     private OrderViewPagerAdapter adapter;
     private List<AdvertisingBean.DataBean> list;
+    private List<HomeLimitFavourBean.DataBean> limitlist = new ArrayList<>();
     private long time;
 
     @Override
@@ -122,6 +129,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
         mPresenter.getToken(token);
         mPresenter.getBannerFromServer();
+        mPresenter.gethotActivityBanner();//爆款推荐
+        mPresenter.getLimitedFavourList();//限时特惠
         mPresenter.getTime();
         mPresenter.getWholesale();
         mPresenter.getAdvertising();
@@ -325,7 +334,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @Override
     public void getWholesaleSuccreed(OrderWholeSaleBean beass) {
         try {
-
             Glide.with(getActivity()).load(Constants.Base_URL + beass.getData().get(0).getContent())
                     .error(R.mipmap.de_photo)
                     .thumbnail(0.1f)
@@ -361,6 +369,24 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                     }
                 } catch (Exception e) {
                 }
+            }
+        });
+
+    }
+
+    @Override
+    public void getLimitedFavourListSuccreed(HomeLimitFavourBean beass) {
+        limitlist = beass.getData();
+        HomeLimitAdapter adapter;
+        list_limit.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        adapter = new HomeLimitAdapter(limitlist);
+        adapter.bindToRecyclerView(list_limit);
+        adapter.setAutoLoadMoreSize(1);
+        adapter.disableLoadMoreIfNotFullPage(list_limit);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
             }
         });
 

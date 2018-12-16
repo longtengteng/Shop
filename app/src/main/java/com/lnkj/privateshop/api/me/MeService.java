@@ -409,6 +409,11 @@ public interface MeService {
     @POST("index.php/Api/IndexApi/hotActivityBanner")
     Observable<String> gethotActivityBanner(@FieldMap Map<String, Object> map);
 
+    //首页限时特惠
+    @FormUrlEncoded
+    @POST("index.php/Api/IndexApi/limitedFavourList")
+    Observable<String> getLimitFavourList(@FieldMap Map<String, Object> map);
+
 
     //首页商品列表
     @FormUrlEncoded
