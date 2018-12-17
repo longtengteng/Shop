@@ -25,16 +25,18 @@ import static com.lnkj.privateshop.utils.HttpUtil.meApi;
 public class TimeGoodsPresenter implements TimeGoodsContract.Presenter {
     TimeGoodsContract.View view;
     private String token;
+
     public TimeGoodsPresenter(TimeGoodsContract.View view) {
-        this.view=view;
+        this.view = view;
 
     }
+
     @Override
     public void getDataFromServer() {
-        Map<String,Object> map = new HashMap<String, Object>();
-       map.put("token",token);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
         view.showLoading();
-       meApi.getTimeGoods(map)
+        meApi.getTimeGoods(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
                     @Override
@@ -44,14 +46,14 @@ public class TimeGoodsPresenter implements TimeGoodsContract.Presenter {
                         JSONObject object = null;
                         try {
                             object = new JSONObject(data);
-                             int status = object.getInt("status");
-                            String info =object.getString("info");
-                            if (status==1){
-                                TimeGoodsBean bean = JSON.parseObject(data,TimeGoodsBean.class);
+                            int status = object.getInt("status");
+                            String info = object.getString("info");
+                            if (status == 1) {
+                                TimeGoodsBean bean = JSON.parseObject(data, TimeGoodsBean.class);
 
-                            view.getOrderData(bean.getData());
-                            }else {
-                            ToastUtil.showToast(info);
+                                view.getOrderData(bean.getData());
+                            } else {
+                                ToastUtil.showToast(info);
 
                             }
                         } catch (JSONException e) {
@@ -87,8 +89,6 @@ public class TimeGoodsPresenter implements TimeGoodsContract.Presenter {
     public void getToken(String token) {
         this.token = token;
     }
-
-
 
 
 }

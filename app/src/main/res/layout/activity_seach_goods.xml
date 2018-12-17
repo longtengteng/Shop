@@ -130,27 +130,27 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingTop="8dp" />
-            <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/ll_nodata"
-                android:paddingTop="100dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/me_null" />
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_nodata"
+            android:paddingTop="100dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/me_null" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="没有数据"
-                    android:textColor="@color/tx99"
-                    android:textSize="12sp" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="没有数据"
+                android:textColor="@color/tx99"
+                android:textSize="12sp" />
+        </LinearLayout>
 </LinearLayout>
 
 

@@ -39,6 +39,7 @@ import com.lnkj.privateshop.fragment.home.goodslist.FollowFragment;
 import com.lnkj.privateshop.fragment.home.goodslist.GoodsLilstFragment;
 import com.lnkj.privateshop.ui.WebActivity;
 import com.lnkj.privateshop.ui.goods.GoodsInfoActivity;
+import com.lnkj.privateshop.ui.limitsalelist.LimitSaleActivity;
 import com.lnkj.privateshop.ui.shop.shopInfo.ShopInfoActivity;
 import com.lnkj.privateshop.ui.timelinit.TimeGoodsActivity;
 import com.lnkj.privateshop.ui.wholesale.WholesaleActivity;
@@ -386,6 +387,9 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(getActivity(), LimitSaleActivity.class);
+                startActivity(intent);
+
 
             }
         });

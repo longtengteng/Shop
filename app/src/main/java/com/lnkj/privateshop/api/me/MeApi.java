@@ -662,6 +662,15 @@ public class MeApi {
         return meService.getTimeGoods(map).subscribeOn(Schedulers.io());
     }
 
+    //首页，产品分类
+    public Observable<String> getGoodsCategoryList(Map<String, Object> map) {
+        return meService.getGoodsCategoryList(map).subscribeOn(Schedulers.io());
+    }
+    //限时特惠的列表
+    public Observable<String> getLimitSaleList(Map<String, Object> map) {
+        return meService.getLimitSaleList(map).subscribeOn(Schedulers.io());
+    }
+
     //修改商品规格数量
     public Observable<String> alterGoodsCount(Map<String, Object> map) {
         return meService.alterGoodsCount(map).subscribeOn(Schedulers.io());

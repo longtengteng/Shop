@@ -93,15 +93,14 @@ public class MainActivity extends BaseActivity implements
     private GoodsClick mBroadcastReceiver;
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
         is_bogin = PreferencesUtils.getBoolean(this, "is_bogin");
         if (UnreadMsgCount > 0) {
             tv_count.setVisibility(View.VISIBLE);
-            tv_count.setText(UnreadMsgCount+ "");
-        }else {
+            tv_count.setText(UnreadMsgCount + "");
+        } else {
             tv_count.setVisibility(View.GONE);
         }
     }
@@ -163,6 +162,7 @@ public class MainActivity extends BaseActivity implements
         }
 
     }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -204,8 +204,6 @@ public class MainActivity extends BaseActivity implements
         ButterKnife.bind(this);
 
 
-
-
         mainPresenter.initView();
         imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,7 +228,7 @@ public class MainActivity extends BaseActivity implements
             @Override
             public void onClick(View view) {
 //                if (is_bogin) {
-                    startActivity(new Intent(MainActivity.this, SeachGOodsPublicActivity.class));
+                startActivity(new Intent(MainActivity.this, SeachGOodsPublicActivity.class));
 //                } else {
 //                    ToastUtil.showToast("您还没有登录，请去登录");
 //                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -332,9 +330,11 @@ public class MainActivity extends BaseActivity implements
         }
         fragmentTransaction.commit();
     }
-    final int REQUEST_WRITE=1;//申请权限的请求码
+
+    final int REQUEST_WRITE = 1;//申请权限的请求码
+
     //写数据
-    public void writeToSdCard(){
+    public void writeToSdCard() {
         PgyUpdateManager.setIsForced(false); //设置是否强制更新。true为强制更新；false为不强制更新（默认值）。
         PgyUpdateManager.register(MainActivity.this,
                 new UpdateManagerListener() {
@@ -359,7 +359,7 @@ public class MainActivity extends BaseActivity implements
                                                         MainActivity.this,
                                                         appBean.getDownloadURL());
                                             }
-                                        }).setPositiveButton("取消",null).
+                                        }).setPositiveButton("取消", null).
                                 show();
                     }
 
@@ -368,7 +368,8 @@ public class MainActivity extends BaseActivity implements
                     }
                 });
     }
-//    @Override
+
+    //    @Override
 //    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 //        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 //        if(requestCode==REQUEST_WRITE&&grantResults[0]== PackageManager.PERMISSION_GRANTED){
@@ -379,7 +380,7 @@ public class MainActivity extends BaseActivity implements
     public void initView() {
 //        PgyUpdateManager.setIsForced(true); //设置是否强制更新。true为强制更新；false为不强制更新（默认值）。
 //        PgyUpdateManager.register(this,"com.mydomain.fileprovider");
-        final int REQUEST_WRITE=1;//申请权限的请求码
+        final int REQUEST_WRITE = 1;//申请权限的请求码
 
 //        if(Build.VERSION.SDK_INT>=23){
 //            //判断是否有这个权限
@@ -393,13 +394,13 @@ public class MainActivity extends BaseActivity implements
 //            writeToSdCard();
 //        }
         writeToSdCard();
-        if (!DemoHelper.getInstance().isLoggedIn())  {
-        //登錄換新
-        String emchat_username=   PreferencesUtils.getString(MainActivity.this,"emchat_username");
-        String emchat_password = PreferencesUtils.getString(MainActivity.this,"emchat_password");
-        if (!TextUtils.isEmpty(emchat_username)&&!TextUtils.isEmpty(emchat_password)){
-         loginEmob(emchat_username,emchat_password);
-        }
+        if (!DemoHelper.getInstance().isLoggedIn()) {
+            //登錄換新
+            String emchat_username = PreferencesUtils.getString(MainActivity.this, "emchat_username");
+            String emchat_password = PreferencesUtils.getString(MainActivity.this, "emchat_password");
+            if (!TextUtils.isEmpty(emchat_username) && !TextUtils.isEmpty(emchat_password)) {
+                loginEmob(emchat_username, emchat_password);
+            }
         }
         //极光推送
         TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
@@ -537,43 +538,45 @@ public class MainActivity extends BaseActivity implements
     @Override
     protected void onDestroy() {
         super.onDestroy();
-            unregisterReceiver(mBroadcastReceiver);
+        unregisterReceiver(mBroadcastReceiver);
     }
 
-    public class GoodsClick extends BroadcastReceiver{
+    public class GoodsClick extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-           String goodId =  intent.getStringExtra("goodId");
-            if (!TextUtils.isEmpty(goodId)){
+            String goodId = intent.getStringExtra("goodId");
+            if (!TextUtils.isEmpty(goodId)) {
                 Intent i = new Intent(MainActivity.this, GoodsInfoActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.putExtra("goods_id",goodId);
+                i.putExtra("goods_id", goodId);
                 startActivity(i);
             }
 
         }
     }
-    protected  Handler mHandler = new Handler() {
+
+    protected Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-        try {
-            Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();
-            int UnreadMsgCount = 0;
+            try {
+                Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();
+                int UnreadMsgCount = 0;
                 for (String key : conversations.keySet()) {
                     EMConversation value = conversations.get(key);
-                    UnreadMsgCount = UnreadMsgCount+ value.getUnreadMsgCount();
+                    UnreadMsgCount = UnreadMsgCount + value.getUnreadMsgCount();
                 }
-                if (is_bogin){
-                if (UnreadMsgCount > 0) {
-                    MainActivity.this.tv_count.setVisibility(View.VISIBLE);
-                    tv_count.setText(UnreadMsgCount+ "");
-                }else {
+                if (is_bogin) {
+                    if (UnreadMsgCount > 0) {
+                        MainActivity.this.tv_count.setVisibility(View.VISIBLE);
+                        tv_count.setText(UnreadMsgCount + "");
+                    } else {
+                        tv_count.setVisibility(View.GONE);
+                    }
+                } else {
                     tv_count.setVisibility(View.GONE);
                 }
-                }else {
-                    tv_count.setVisibility(View.GONE);
-                }
-        }catch (Exception e){}
+            } catch (Exception e) {
+            }
 
         }
     };
@@ -581,14 +584,14 @@ public class MainActivity extends BaseActivity implements
     public void loginEmob(final String userName, String password) {
         DemoDBManager.getInstance().closeDB();
         DemoHelper.getInstance().setCurrentUserName(userName);
-        EMClient.getInstance().login(userName,password, new EMCallBack() {
+        EMClient.getInstance().login(userName, password, new EMCallBack() {
             @Override
             public void onSuccess() {
 
-                String userPic = PreferencesUtils.getString(MainActivity.this,"head_pic");
-                String NickName = PreferencesUtils.getString(MainActivity.this,"nickname");
+                String userPic = PreferencesUtils.getString(MainActivity.this, "head_pic");
+                String NickName = PreferencesUtils.getString(MainActivity.this, "nickname");
                 DemoHelper.getInstance().getUserProfileManager().updateCurrentUserNickName(NickName);
-                DemoHelper.getInstance().getUserProfileManager().setCurrentUserAvatar(Constants.Base_IMG_URL+userPic);
+                DemoHelper.getInstance().getUserProfileManager().setCurrentUserAvatar(Constants.Base_IMG_URL + userPic);
                 DemoHelper.getInstance().setCurrentUserName(userName); // 环信Id
 
                 EMClient.getInstance().groupManager().loadAllGroups();

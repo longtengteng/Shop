@@ -371,6 +371,7 @@
         <activity android:name=".ui.mybuy.sell.order.seach.SeachOrderActivity" />
         <activity android:name=".ui.mybuy.sttting.paypwd.ChagePayPwdActivity" />
         <activity android:name=".ui.mybuy.sttting.paypwd.edit.EditPayPwdActivity"></activity>
+        <activity android:name=".ui.limitsalelist.LimitSaleActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

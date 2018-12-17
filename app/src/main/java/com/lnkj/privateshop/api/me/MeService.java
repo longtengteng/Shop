@@ -29,6 +29,19 @@ public interface MeService {
     Observable<String> getGoodsCategory(@FieldMap Map<String, Object> map);
 
     /**
+     * 首页商品分类
+     */
+    @FormUrlEncoded
+    @POST("index.php/Api/IndexApi/getGoodsCategoryList")
+    Observable<String> getGoodsCategoryList(@FieldMap Map<String, Object> map);
+
+    /*首页限时特惠点击进入之后的列表*/
+    @FormUrlEncoded
+    @POST("index.php/Api/IndexUserApi/limitSaleList")
+    Observable<String> getLimitSaleList(@FieldMap Map<String, Object> map);
+
+
+    /**
      * 获取商品分类
      */
     @FormUrlEncoded

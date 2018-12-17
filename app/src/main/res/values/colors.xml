@@ -25,6 +25,7 @@
     <color name="text_default_letter">#ff3b30</color>
     <color name="transparence">#00000000</color>
     <color name="text_64">#646464</color>
+    <color name="color_a79b67">#a79b67</color>
 
     <color name="result_view">#b0000000</color>
     <color name="viewfinder_mask">#60000000</color>
