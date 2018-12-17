@@ -110,7 +110,7 @@ public class HomeGoodsListAdapter extends RecyclerView.Adapter{
                     .error(R.mipmap.bg_img)
                     .into(((ViewHolder) holder).imgGoods);
             ((ViewHolder) holder).tvGoodsName.setText(beans.get(position).getGoods_name());
-            ((ViewHolder) holder).tvGoodsPrice.setText("¥" + beans.get(position).getPack_price()+"—"+"¥" + beans.get(position).getShop_price());
+            ((ViewHolder) holder).tvGoodsPrice.setText("¥" + beans.get(position).getShop_price());
             ((ViewHolder) holder).mCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

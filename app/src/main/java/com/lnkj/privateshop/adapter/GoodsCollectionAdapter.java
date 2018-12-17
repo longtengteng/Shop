@@ -67,7 +67,7 @@ public class GoodsCollectionAdapter extends RecyclerView.Adapter<GoodsCollection
                 .error(R.mipmap.bg_img)
                 .into(holder.imgGoods);
         holder.tvGoodsName.setText(beas.get(position).getGoods_name());
-        holder.tvGoodsPrice.setText("¥" + beas.get(position).getPack_price() + "—" + "¥" + beas.get(position).getShop_price());
+        holder.tvGoodsPrice.setText("¥" + beas.get(position).getShop_price());
         if (index == 0) {
             holder.rlChoos.setVisibility(View.GONE);
             holder.mCheckBox.setChecked(beas.get(position).getIscheck());
