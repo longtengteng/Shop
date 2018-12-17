@@ -147,6 +147,7 @@
                     android:gravity="center_vertical"
                     android:textColor="@color/tx38"
                     android:textSize="12sp" />
+
                 <TextView
                     android:id="@+id/tv_collect"
                     android:layout_width="60dp"
@@ -258,22 +259,19 @@
                 <TextView
                     android:id="@+id/tv_update"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                   />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tv_looking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                   />
+                    android:layout_centerInParent="true" />
 
                 <TextView
                     android:id="@+id/tv_sell"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                   />
+                    android:layout_alignParentRight="true" />
             </RelativeLayout>
 
             <TextView
@@ -318,58 +316,60 @@
                     android:textColor="@color/tx99"
                     android:textSize="11sp" />
             </LinearLayout>
-<LinearLayout
-    android:id="@+id/ll_goodcoment"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="12dp"
-        android:paddingTop="12dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/img_head"
-            android:layout_width="33dp"
-            android:layout_height="33dp"
-            android:src="@mipmap/de_photo"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="2dp" />
+            <LinearLayout
+                android:id="@+id/ll_goodcoment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:layout_marginLeft="12dp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/tx66"
-            android:textSize="12sp" />
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="12dp">
 
-    <TextView
-        android:id="@+id/tv_context"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginRight="12dp"
-        android:gravity="center_horizontal"
-        android:textColor="@color/tx66"
-        android:textSize="12sp" />
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/img_head"
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:src="@mipmap/de_photo"
+                        app:civ_border_color="@color/white"
+                        app:civ_border_width="2dp" />
 
-    <TextView
-        android:id="@+id/tv_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:gravity="center_horizontal"
-        android:textColor="@color/tx99"
-        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="12dp"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/tx66"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
-</LinearLayout>
+                <TextView
+                    android:id="@+id/tv_context"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/tx66"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/tx99"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -409,11 +409,11 @@
                         android:textSize="14sp" />
 
                     <TextView
-                        android:layout_marginRight="12dp"
                         android:id="@+id/tv_shop_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
+                        android:layout_marginRight="12dp"
                         android:layout_marginTop="4dp"
                         android:drawableLeft="@mipmap/icon_location"
                         android:drawablePadding="4dp"
@@ -532,91 +532,100 @@
                 android:layout_height="6dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/F7" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp">
+
                 <TextView
-                    android:textColor="#8d8d8d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@+id/tv_miaos"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="──────"/>
+                    android:text="──────"
+                    android:textColor="#8d8d8d" />
+
                 <TextView
-                    android:textSize="12sp"
-                    android:textColor="#101010"
                     android:id="@+id/tv_miaos"
-                    android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="商品描述"/>
+                    android:layout_centerInParent="true"
+                    android:text="商品描述"
+                    android:textColor="#101010"
+                    android:textSize="12sp" />
+
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:textColor="#8d8d8d"
                     android:layout_marginRight="10dp"
                     android:layout_toRightOf="@+id/tv_miaos"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="──────"/>
+                    android:text="──────"
+                    android:textColor="#8d8d8d" />
             </RelativeLayout>
+
             <TextView
                 android:id="@+id/tv_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="6dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"/>
+                android:paddingTop="6dp" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp">
+
                 <TextView
-                    android:textColor="#8d8d8d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="10dp"
                     android:layout_toLeftOf="@+id/tv_miaoss"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="──────"/>
+                    android:text="──────"
+                    android:textColor="#8d8d8d" />
+
                 <TextView
-                    android:textSize="12sp"
-                    android:textColor="#101010"
                     android:id="@+id/tv_miaoss"
-                    android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="基本参数"/>
+                    android:layout_centerInParent="true"
+                    android:text="基本参数"
+                    android:textColor="#101010"
+                    android:textSize="12sp" />
+
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:textColor="#8d8d8d"
                     android:layout_marginRight="10dp"
                     android:layout_toRightOf="@+id/tv_miaoss"
-                    android:layout_centerVertical="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="──────"/>
+                    android:text="──────"
+                    android:textColor="#8d8d8d" />
             </RelativeLayout>
-         <com.lnkj.privateshop.view.MyListView
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:id="@+id/myListView"
-             android:divider="@null">
 
-         </com.lnkj.privateshop.view.MyListView>
+            <com.lnkj.privateshop.view.MyListView
+                android:id="@+id/myListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null">
 
+            </com.lnkj.privateshop.view.MyListView>
 
 
             <com.lnkj.privateshop.view.MyListView
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
                 android:id="@+id/mListView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="6dp"
                 android:divider="@null"
-                android:dividerHeight="2dp">
+                android:dividerHeight="2dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp">
 
             </com.lnkj.privateshop.view.MyListView>
         </LinearLayout>

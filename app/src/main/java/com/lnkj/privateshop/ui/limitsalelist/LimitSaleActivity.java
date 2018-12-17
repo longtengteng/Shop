@@ -1,5 +1,6 @@
 package com.lnkj.privateshop.ui.limitsalelist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import com.lnkj.privateshop.adapter.LimitSaleAdapter;
 import com.lnkj.privateshop.adapter.SeachGoodsAdapter;
 import com.lnkj.privateshop.entity.DynamicragBean;
 import com.lnkj.privateshop.entity.LimitSaleListBean;
+import com.lnkj.privateshop.ui.goods.GoodsInfoActivity;
 import com.lnkj.privateshop.ui.seachgoods.SeachGoodsPresenter;
 import com.lnkj.privateshop.utils.ToastUtil;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
@@ -60,6 +62,7 @@ public class LimitSaleActivity extends BaseActivity implements PullLoadMoreRecyc
     @Override
     public void initInjector() {
         ButterKnife.bind(this);
+        tvTitle.setText("限时特惠");
         //设置是否可以下拉刷新
         pullLoadMoreRecyclerView.setPullRefreshEnable(true);
         pullLoadMoreRecyclerView.setRefreshing(true);
@@ -76,6 +79,9 @@ public class LimitSaleActivity extends BaseActivity implements PullLoadMoreRecyc
         adapter.setmClickListener(new LimitSaleAdapter.OrderClickListener() {
             @Override
             public void oncollectShop(int position) {
+                Intent intent = new Intent(LimitSaleActivity.this, GoodsInfoActivity.class);
+                intent.putExtra("goods_id", lists.get(position).getGoods_id());
+                startActivity(intent);
                 ToastUtil.showToast("haha" + position);
             }
         });

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.alibaba.fastjson.JSON;
 import com.lnkj.privateshop.entity.AdvertisingBean;
 import com.lnkj.privateshop.entity.BannerBean;
+import com.lnkj.privateshop.entity.HomeGoodsCateBean;
 import com.lnkj.privateshop.entity.HomeLimitFavourBean;
 import com.lnkj.privateshop.entity.HotBannerBean;
 import com.lnkj.privateshop.entity.LimitedFavourBean;
@@ -254,6 +255,40 @@ public class HomePresenter implements HomeContract.Presenter {
                     }
                 });
 
+    }
+
+    @Override
+    public void getGoodsCategoryList() {
+        mView.showLoading();
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("token",token);
+        meApi.getGoodsCategoryList(map)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String data) {
+                        mView.hideLoading();
+                        LLog.d("数据", data);
+                        try {
+                            JSONObject object = new JSONObject(data);
+                            int status = object.getInt("status");
+                            if (status==1){
+                                HomeGoodsCateBean beass = JSON.parseObject(data,HomeGoodsCateBean.class);
+                                mView.getGoodsCategoryListSuccreed(beass);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                        mView.hideLoading();
+                        LLog.d("数据错误", throwable.toString() + "");
+                    }
+                });
     }
 
 

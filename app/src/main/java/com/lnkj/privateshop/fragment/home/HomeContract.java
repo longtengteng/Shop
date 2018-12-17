@@ -4,6 +4,7 @@ import com.lnkj.privateshop.BasePresenter;
 import com.lnkj.privateshop.BaseView;
 import com.lnkj.privateshop.entity.AdvertisingBean;
 import com.lnkj.privateshop.entity.BannerBean;
+import com.lnkj.privateshop.entity.HomeGoodsCateBean;
 import com.lnkj.privateshop.entity.HomeLimitFavourBean;
 import com.lnkj.privateshop.entity.HotBannerBean;
 import com.lnkj.privateshop.entity.LimitedFavourBean;
@@ -32,6 +33,9 @@ public class HomeContract {
         void getAdvertisingSuccreed(AdvertisingBean beass);
 
         void getLimitedFavourListSuccreed(HomeLimitFavourBean homeLimitFavourBean);
+
+        void getGoodsCategoryListSuccreed(HomeGoodsCateBean homeGoodsCateBean);
+
     }
 
     //业务处理逻辑
@@ -51,6 +55,8 @@ public class HomeContract {
         void gethotActivityBanner();//首页爆款推荐
 
         void getLimitedFavourList();//首页限时特惠
+
+        void getGoodsCategoryList();//首页获取产品分类接口
 
     }
 }

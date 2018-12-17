@@ -430,7 +430,7 @@ public interface MeService {
 
     //首页商品列表
     @FormUrlEncoded
-    @POST("index.php/Api/GoodsApi/goodsListByType")
+    @POST("index.php/Api/IndexApi/getGoodsByCatId")
     Observable<String> getHomeGoodsList(@FieldMap Map<String, Object> map);
 
     //首页关注商品

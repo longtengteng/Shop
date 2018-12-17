@@ -14,17 +14,23 @@ public class GoodsListContract {
     interface View extends BaseView {
 
         void initView();
+
         void getGoodsListSucceed(HomeGoodsListbean beass);
+
         void okGoods();
+
         void getAdvertisingSuccreed(AdvertisingBean beass);
     }
 
     //业务处理逻辑
     interface Presenter extends BasePresenter<View> {
         void initView();
+
         void getToken(String token);
-        void getDataFromServer(int p,int map_id);
-        void  getAdvertising();
+
+        void getDataFromServer(int p, String cat_id);
+
+        void getAdvertising();
 
     }
 }

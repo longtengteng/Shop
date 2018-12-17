@@ -34,7 +34,8 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
     RecyclerView mpullLoadMoreRecyclerView;
     LinearLayout layout_no_datas;
     HomeGoodsListAdapter adapter;
-//    private ScrollView mscrolloview;
+    //    private ScrollView mscrolloview;
+    String cat_id;
 
     public static GoodsLilstFragment newInstance() {
         GoodsLilstFragment fragment = new GoodsLilstFragment();
@@ -48,6 +49,7 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
 
     @Override
     protected void init(View view) {
+
 //        mscrolloview = (ScrollView) view.findViewById(R.id.mscrolloview);
         mpullLoadMoreRecyclerView = (RecyclerView) view.findViewById(R.id.pullLoadMoreRecyclerView);
         layout_no_datas = (LinearLayout) view.findViewById(R.id.layout_no_datas);
@@ -58,6 +60,7 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         index = getArguments().getInt("index");
+        cat_id = getArguments().getString("cat_id");
         mPresenter.getToken(token);
         GridLayoutManager gManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         gManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -73,32 +76,33 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
         mpullLoadMoreRecyclerView.setLayoutManager(gManager);
         adapter = new HomeGoodsListAdapter(getActivity());
         mpullLoadMoreRecyclerView.setAdapter(adapter);
-        mPresenter.getAdvertising();
-
+      //  mPresenter.getAdvertising();
+        mPresenter.getDataFromServer(p, cat_id);
         adapter.setOnItemClickListener(new HomeGoodsListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (beans.get(position).getType()==1){
-                Intent intent = new Intent(getActivity(), GoodsInfoActivity.class);
-                intent.putExtra("goods_id", beans.get(position).getGoods_id());
-                startActivity(intent);
-                }else {
+                if (beans.get(position).getType() == 1) {
+                    Intent intent = new Intent(getActivity(), GoodsInfoActivity.class);
+                    intent.putExtra("goods_id", beans.get(position).getGoods_id());
+                    startActivity(intent);
+                } else {
                     try {
-                    if (beans.get(position).getTypet().equals("5")){
-                        Intent intent  = new Intent(getActivity(), ShopInfoActivity.class);
-                        intent.putExtra("shop_id",beans.get(position).getItem_id());
-                        startActivity(intent);
-                    }else if (beans.get(position).getTypet().equals("6")){
-                        Intent intent  = new Intent(getActivity(), GoodsInfoActivity.class);
-                        intent.putExtra("goods_id",beans.get(position).getItem_id());
-                        startActivity(intent);
-                    }else {
-                        Intent intent  = new Intent(getActivity(), WebActivity.class);
-                        intent.putExtra("title",beans.get(position).getTitle());
-                        intent.putExtra("url", beans.get(position).getLink_url());
-                        startActivity(intent);
+                        if (beans.get(position).getTypet().equals("5")) {
+                            Intent intent = new Intent(getActivity(), ShopInfoActivity.class);
+                            intent.putExtra("shop_id", beans.get(position).getItem_id());
+                            startActivity(intent);
+                        } else if (beans.get(position).getTypet().equals("6")) {
+                            Intent intent = new Intent(getActivity(), GoodsInfoActivity.class);
+                            intent.putExtra("goods_id", beans.get(position).getItem_id());
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(getActivity(), WebActivity.class);
+                            intent.putExtra("title", beans.get(position).getTitle());
+                            intent.putExtra("url", beans.get(position).getLink_url());
+                            startActivity(intent);
+                        }
+                    } catch (Exception e) {
                     }
-                    }catch (Exception e){}
 
                 }
             }
@@ -113,7 +117,7 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
 
     private void loadMoreData() {
         p++;
-        mPresenter.getDataFromServer(p, index + 1);
+        mPresenter.getDataFromServer(p, cat_id);
     }
 
 
@@ -143,26 +147,27 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
 
     }
 
-//    List<HomeGoodsListbean.DataBean> lists = new ArrayList<>();
+    //    List<HomeGoodsListbean.DataBean> lists = new ArrayList<>();
     List<AdvertisingBean.DataBean> list = new ArrayList<>();
-    private List<GoodsToListBean>  beans = new ArrayList<>();
+    private List<GoodsToListBean> beans = new ArrayList<>();
     int n = 0;
+
     @Override
     public void getGoodsListSucceed(HomeGoodsListbean beass) {
         if (p == 1) {
             beans.clear();
-            n=0;
+            n = 0;
         }
-        for (int i = 1; i < beass.getData().size()+1; i++) {
+        for (int i = 1; i < beass.getData().size() + 1; i++) {
             GoodsToListBean bean = new GoodsToListBean();
-            bean.setShop_price(beass.getData().get(i-1).getShop_price());
-            bean.setGoods_id(beass.getData().get(i-1).getGoods_id());
-            bean.setGoods_img(beass.getData().get(i-1).getGoods_img());
-            bean.setGoods_name(beass.getData().get(i-1).getGoods_name());
-            bean.setPack_price(beass.getData().get(i-1).getPack_price());
+            bean.setShop_price(beass.getData().get(i - 1).getShop_price());
+            bean.setGoods_id(beass.getData().get(i - 1).getGoods_id());
+            bean.setGoods_img(beass.getData().get(i - 1).getGoods_img());
+            bean.setGoods_name(beass.getData().get(i - 1).getGoods_name());
+            bean.setPack_price(beass.getData().get(i - 1).getPack_price());
             bean.setType(1);
             beans.add(bean);
-            if (i!=0&&i%8==0) {
+            if (i != 0 && i % 8 == 0) {
                 GoodsToListBean bean2 = new GoodsToListBean();
                 bean2.setAd_id(list.get(n).getAd_id());
                 bean2.setPosition_id(list.get(n).getPosition_id());
@@ -196,13 +201,13 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
     public void getAdvertisingSuccreed(AdvertisingBean beass) {
 //        adapter.addAllDataList();
         list.addAll(beass.getData());
-        mPresenter.getDataFromServer(p, index + 1);
+      //  mPresenter.getDataFromServer(p, cat_id);
     }
 
-//    @Override
+    //    @Override
     public void onRefresh() {
         beans.clear();
-        mPresenter.getDataFromServer(1,index+1);
+        mPresenter.getDataFromServer(1, cat_id);
     }
 //
 //    @Override

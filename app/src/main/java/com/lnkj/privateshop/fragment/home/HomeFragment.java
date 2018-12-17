@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
@@ -31,6 +32,7 @@ import com.lnkj.privateshop.adapter.HomeLimitAdapter;
 import com.lnkj.privateshop.adapter.OrderViewPagerAdapter;
 import com.lnkj.privateshop.entity.AdvertisingBean;
 import com.lnkj.privateshop.entity.BannerBean;
+import com.lnkj.privateshop.entity.HomeGoodsCateBean;
 import com.lnkj.privateshop.entity.HomeLimitFavourBean;
 import com.lnkj.privateshop.entity.HotBannerBean;
 import com.lnkj.privateshop.entity.LimitedFavourBean;
@@ -77,6 +79,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     ImageView ivTime;
     @Bind(R.id.tv_time_h)
     TextView tvTimeH;
+    @Bind(R.id.ll_more_limit)
+    LinearLayout ll_more_limit;
     @Bind(R.id.tv_time_m)
     TextView tvTimeM;
     @Bind(R.id.tv_time_s)
@@ -92,6 +96,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     private OrderViewPagerAdapter adapter;
     private List<AdvertisingBean.DataBean> list;
     private List<HomeLimitFavourBean.DataBean> limitlist = new ArrayList<>();
+    private List<HomeGoodsCateBean.DataBean> catelist = new ArrayList<>();
     private long time;
 
     @Override
@@ -132,35 +137,22 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         mPresenter.getBannerFromServer();
         mPresenter.gethotActivityBanner();//爆款推荐
         mPresenter.getLimitedFavourList();//限时特惠
+        mPresenter.getGoodsCategoryList();//首页分类
         mPresenter.getTime();
         mPresenter.getWholesale();
         mPresenter.getAdvertising();
         titeList = new ArrayList<>();
         fragmentList = new ArrayList<>();
-        titeList.add("推荐产品");
-        titeList.add("上新产品");
-        titeList.add("一件代发");
-        titeList.add("定制产品");
 
-        for (int i = 0; i < titeList.size(); i++) {
-            mFragment = GoodsLilstFragment.newInstance();
-            Bundle bundle = new Bundle();
-            bundle.putInt("index", i);
-            mFragment.setArguments(bundle);
-            fragmentList.add(mFragment);
-        }
-        titeList.add("关注");
-        fragmentList.add(FollowFragment.newInstance());
-
-        adapter = new OrderViewPagerAdapter(getActivity().getSupportFragmentManager());
-        viewpager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewpager);
-        adapter.bind(fragmentList, titeList);
     }
 
-    @OnClick({R.id.iv_time, R.id.iv_wholesale})
+    @OnClick({R.id.ll_more_limit, R.id.iv_time, R.id.iv_wholesale})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.ll_more_limit:
+                Intent intent1 = new Intent(getActivity(), LimitSaleActivity.class);
+                startActivity(intent1);
+                break;
             case R.id.iv_time:
                 if (time < 1000) {
                     ToastUtil.showToast("暂无特惠商品");
@@ -393,6 +385,32 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
             }
         });
+
+    }
+
+    @Override
+    public void getGoodsCategoryListSuccreed(HomeGoodsCateBean homeGoodsCateBean) {
+
+        if (homeGoodsCateBean == null)
+            return;
+        for (int i = 0; i < homeGoodsCateBean.getData().size(); i++) {
+            titeList.add(homeGoodsCateBean.getData().get(i).getCat_name());
+        }
+        for (int i = 0; i < titeList.size(); i++) {
+            mFragment = GoodsLilstFragment.newInstance();
+            Bundle bundle = new Bundle();
+            bundle.putInt("index", i);
+            bundle.putString("cat_id", homeGoodsCateBean.getData().get(i).getCat_id());
+            mFragment.setArguments(bundle);
+            fragmentList.add(mFragment);
+        }
+        // titeList.add("关注");
+        // fragmentList.add(FollowFragment.newInstance());
+
+        adapter = new OrderViewPagerAdapter(getActivity().getSupportFragmentManager());
+        viewpager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewpager);
+        adapter.bind(fragmentList, titeList);
 
     }
 

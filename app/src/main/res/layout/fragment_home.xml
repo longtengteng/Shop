@@ -65,7 +65,6 @@
             </LinearLayout>
 
 
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_limit"
                 android:layout_width="match_parent"
@@ -143,8 +142,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:visibility="gone"
-                >
+                android:visibility="gone">
 
                 <RelativeLayout
                     android:layout_width="0dp"

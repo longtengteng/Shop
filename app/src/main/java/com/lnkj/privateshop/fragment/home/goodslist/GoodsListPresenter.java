@@ -50,12 +50,12 @@ public class GoodsListPresenter implements GoodsListContract.Presenter {
     }
 
     @Override
-    public void getDataFromServer(int p,int map_id) {
+    public void getDataFromServer(int p,String cat_id) {
         mView.showLoading();
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("token",token);
         map.put("p",p);
-        map.put("map_id",map_id);
+        map.put("cat_id",cat_id);
 //        System.out.println("p"+p);
 //        System.out.println("map_id"+map_id);
 //        System.out.println("token"+token);
