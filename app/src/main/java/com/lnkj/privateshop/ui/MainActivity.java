@@ -58,7 +58,6 @@ import static com.lnkj.privateshop.utils.TagAliasOperatorHelper.sequence;
 public class MainActivity extends BaseActivity implements
         RadioGroup.OnCheckedChangeListener, MainContract.View {
 
-
     @Inject
     public MainPresenter mainPresenter = new MainPresenter(MainActivity.this);
     @Bind(R.id.fragment_content)

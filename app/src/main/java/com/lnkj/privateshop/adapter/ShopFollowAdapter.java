@@ -61,13 +61,15 @@ public class ShopFollowAdapter extends RecyclerView.Adapter<ShopFollowAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.itemView.setTag(position);
+        if (beas.get(position).getShop_info() == null)
+            return;
         Glide
                 .with(mContext)
                 .load(Constants.Base_URL + beas.get(position).getShop_info().getShop_logo())
                 .error(R.mipmap.bg_img)
                 .into(holder.imgShop);
         holder.tvShopName.setText(beas.get(position).getShop_info().getShop_name());
-        holder.shopAddress.setText(beas.get(position).getShop_info().getProvince()+"·"+beas.get(position).getShop_info().getCity()+"·"+beas.get(position).getShop_info().getAddress());
+        holder.shopAddress.setText(beas.get(position).getShop_info().getProvince() + "·" + beas.get(position).getShop_info().getCity() + "·" + beas.get(position).getShop_info().getAddress());
         if (index == 0) {
             holder.cbCheck.setVisibility(View.GONE);
             holder.cbCheck.setChecked(beas.get(position).getIscheck());
@@ -85,7 +87,7 @@ public class ShopFollowAdapter extends RecyclerView.Adapter<ShopFollowAdapter.Vi
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, ShopInfoActivity.class);
-                intent.putExtra("shop_id",beas.get(position).getShop_info().getShop_id());
+                intent.putExtra("shop_id", beas.get(position).getShop_info().getShop_id());
                 mContext.startActivity(intent);
             }
         });
@@ -108,6 +110,7 @@ public class ShopFollowAdapter extends RecyclerView.Adapter<ShopFollowAdapter.Vi
         TextView shopAddress;
         @Bind(R.id.ll_prent)
         LinearLayout ll_prent;
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -118,12 +121,12 @@ public class ShopFollowAdapter extends RecyclerView.Adapter<ShopFollowAdapter.Vi
     public String getChaechData() {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < beas.size(); i++) {
-            if (beas.get(i).getIscheck()){
+            if (beas.get(i).getIscheck()) {
 
-            if (sb.length() != 0) {
-                sb.append(",");
-            }
-            sb.append(beas.get(i).getFav_id());
+                if (sb.length() != 0) {
+                    sb.append(",");
+                }
+                sb.append(beas.get(i).getFav_id());
             }
         }
 

@@ -77,7 +77,8 @@ public class AddShopPingCarActivity extends BaseActivity implements AddShopPingC
 
     @Override
     public void initUiAndListener() {
-        if (bean != null) {
+//1219
+  /*      if (bean != null) {
             Glide
                     .with(this)
                     .load(Constants.Base_URL + bean.getGoods_img())
@@ -91,7 +92,7 @@ public class AddShopPingCarActivity extends BaseActivity implements AddShopPingC
                 tvPrice1.setText("¥" + bean.getShop_price());
                 tvPrice2.setText("¥" + bean.getPack_price());
             }
-        }
+        }*/
     }
 
 
@@ -145,7 +146,8 @@ public class AddShopPingCarActivity extends BaseActivity implements AddShopPingC
 
     @Override
     public void getGoodsSucceed(GoodsSpecBean beans) {
-        lists.addAll(beans.getData());
+        //1219
+      /*  lists.addAll(beans.getData());
         adapter = new AddShopPingCarAdapter(this, lists);
         mListView.setAdapter(adapter);
         if (activity) {
@@ -204,7 +206,7 @@ public class AddShopPingCarActivity extends BaseActivity implements AddShopPingC
             }
             tv2.setText(total_count+"");
             tv_price.setText("¥"+total_price);
-        }catch (Exception e){}
+        }catch (Exception e){}*/
     }
 
     @Override

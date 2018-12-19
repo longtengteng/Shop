@@ -451,7 +451,7 @@ public interface MeService {
 
     //商品详情
     @FormUrlEncoded
-    @POST("index.php/Api/GoodsApi/goodsDetail")
+    @POST("index.php/Api/IndexApi/getGoodsDetail")
     Observable<String> getGoodsInfo(@FieldMap Map<String, Object> map);   //商品详情
 
     //商品详情

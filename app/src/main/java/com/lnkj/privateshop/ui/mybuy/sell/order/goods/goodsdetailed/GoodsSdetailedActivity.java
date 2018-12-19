@@ -172,7 +172,8 @@ public class GoodsSdetailedActivity extends BaseActivity implements GoodsDetaile
     private GoodsBean.DataBean.GoodsInfoBean bean;
     @Override
     public void getGoodssucceed(GoodsBean beass) {
-        imgurllist.clear();
+        //1219
+     /*   imgurllist.clear();
         for (int i = 0; i < beass.getData().getGoods_gallery().size(); i++) {
             imgurllist.add(Constants.Base_IMG_URL+beass.getData().getGoods_gallery().get(i).getImage_path());
         }
@@ -261,7 +262,7 @@ public class GoodsSdetailedActivity extends BaseActivity implements GoodsDetaile
             }
 
         }
-
+*/
     }
 
     @Override

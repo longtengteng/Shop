@@ -23,7 +23,6 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
-import com.bumptech.glide.Glide;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.model.ChatGoodBean;
 import com.lnkj.privateshop.BaseActivity;
@@ -41,15 +40,13 @@ import com.lnkj.privateshop.ui.addshoppingcart.AddShopPingCarActivity;
 import com.lnkj.privateshop.ui.ease.EaseConversationListActivity;
 import com.lnkj.privateshop.ui.login.LoginActivity;
 import com.lnkj.privateshop.ui.mybuy.feedback.BeedBackActivity;
-import com.lnkj.privateshop.ui.shop.ShopCommentActivity;
 import com.lnkj.privateshop.ui.shop.shopInfo.ShopInfoActivity;
-import com.lnkj.privateshop.ui.shop.shopclass.ShopClassActivity;
-import com.lnkj.privateshop.utils.CountDownUtil;
 import com.lnkj.privateshop.utils.PreferencesUtils;
 import com.lnkj.privateshop.utils.ToastUtil;
 import com.lnkj.privateshop.view.MyListView;
 import com.lnkj.privateshop.view.TranslucentScrollView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,12 +68,6 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     TextView tv_xianjia;
     @Bind(R.id.tv_yuanjia)
     TextView tv_yuanjia;
-    @Bind(R.id.tv_time_h)
-    TextView tvTime_H;
-    @Bind(R.id.tv_time_m)
-    TextView tvTime_M;
-    @Bind(R.id.tv_time_s)
-    TextView tvTime_S;
     @Bind(R.id.ll_time)
     LinearLayout ll_time;
     @Bind(R.id.rl_bar)
@@ -95,68 +86,64 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     TextView tvGoodsName;
     @Bind(tv_collect)
     TextView tvCollect;
-    @Bind(R.id.tv_count_1)
-    TextView tvCount1;
-    @Bind(R.id.tv_count_2)
-    TextView tvCount2;
-    @Bind(R.id.tv_price_1)
-    TextView tvPrice1;
-    @Bind(R.id.tv_price_2)
-    TextView tvPrice2;
-    @Bind(R.id.tv_update)
-    TextView tvUpdate;
-    @Bind(R.id.tv_looking)
-    TextView tvLooking;
-    @Bind(R.id.tv_sell)
-    TextView tvSell;
-    @Bind(R.id.tv_good)
-    TextView tvGood;
-    @Bind(R.id.tv_comment)
-    TextView tvComment;
     @Bind(R.id.img_shop_head)
     CircleImageView imgShopHead;
     @Bind(R.id.tv_shop_name)
     TextView tvShopName;
     @Bind(R.id.tv_shop_address)
     TextView tvShopAddress;
-    @Bind(R.id.tv_open_shop_date)
-    TextView tvOpenShopDate;
-    @Bind(R.id.tv_shop_sales)
-    TextView tvShopSales;
-    @Bind(R.id.tv_shop_update)
-    TextView tvShopUpdate;
     @Bind(R.id.tv_shop_supplement)
     TextView tvShopSupplement;
     @Bind(R.id.mScrollView)
     TranslucentScrollView mScrollView;
-    @Bind(R.id.img_fenlei)
-    TextView imgFenlei;
     @Bind(R.id.img_chat)
     TextView imgChat;
-    @Bind(R.id.img_shop)
-    TextView imgShop;
     @Bind(tv_add_cart)
     TextView tvAddCart;
     @Bind(R.id.ll_bottom)
     RelativeLayout llBottom;
-    @Bind(R.id.img_head)
-    CircleImageView imgHead;
-    @Bind(R.id.tv_name)
-    TextView tvName;
-    @Bind(R.id.tv_time)
-    TextView tvTime;
-    @Bind(R.id.tv_context)
-    TextView tvContext;
     ImageView ivMenu;
     @Bind(R.id.rl_bar_to)
     RelativeLayout rl_bar_to;
-    @Bind(R.id.ll_goodcoment)
-    LinearLayout ll_goodcoment;
     @Bind(R.id.tv_desc)
     TextView tv_desc;
     @Bind(R.id.myListView)
     MyListView myListView;
     GoodsAttrAdapter attrAdapter;
+    @Bind(R.id.tv_time_h)
+    TextView tvTimeH;
+    @Bind(R.id.tv_time_m)
+    TextView tvTimeM;
+    @Bind(R.id.tv_time_s)
+    TextView tvTimeS;
+    @Bind(R.id.tv_new_price)
+    TextView tvNewPrice;
+    @Bind(R.id.tv_time)
+    TextView tvTime;
+    @Bind(R.id.tv_volume)
+    TextView tvVolume;
+    @Bind(R.id.tv_address)
+    TextView tvAddress;
+    @Bind(R.id.ll_shop)
+    LinearLayout llShop;
+    @Bind(R.id.tv_describe)
+    TextView tvDescribe;
+    @Bind(R.id.tv_service)
+    TextView tvService;
+    @Bind(R.id.tv_logistics)
+    TextView tvLogistics;
+    @Bind(R.id.tv_miaos)
+    TextView tvMiaos;
+    @Bind(R.id.img_beak_to)
+    ImageView imgBeakTo;
+    @Bind(R.id.img_goods_car_to)
+    ImageView imgGoodsCarTo;
+    @Bind(R.id.img_menu_to)
+    ImageView imgMenuTo;
+    @Bind(R.id.img_collect)
+    TextView imgCollect;
+    @Bind(R.id.tv_self)
+    TextView tv_self;
     private GoodsInfoPresenter presenter = new GoodsInfoPresenter(this, this);
     private String goods_id = "";
     private String shop_id;
@@ -167,7 +154,6 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     @Override
     public int initContentView() {
         goods_id = getIntent().getStringExtra("goods_id");
-
         return R.layout.activity_goods_info;
     }
 
@@ -252,15 +238,18 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
+
 //                        ToastUtil.showToast("点击了" + position);
+
                     }
                 })
                 .setCanLoop(true);
+        /*图片详情*/
         List<GoodsBean.DataBean.GoodsDescBean> godsLists = beass.getData().getGoods_desc();
         dataBean = beass.getData();
-
+        /*属性*/
         List<GoodsAttrBean> attrlist = new ArrayList<>();
-        try {
+        /*try {
             GoodsAttrBean bean1 = new GoodsAttrBean();
             bean1.setName("颜色");
             bean1.setValue(dataBean.getGoods_spec().getColor());
@@ -277,69 +266,36 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
             }
         } catch (Exception e) {
 
-        }
-        myListView.setAdapter(new GoodsAttrAdapter(this, attrlist));
+        }*/
+        //  myListView.setAdapter(new GoodsAttrAdapter(this, attrlist));
         WindowManager wm = getWindowManager();
         int width = wm.getDefaultDisplay().getWidth();
+        /*商品详情图*/
         GoodsInfoGalleryAdapter adapter = new GoodsInfoGalleryAdapter(this, godsLists, width);
         mListView.setAdapter(adapter);
         bean = beass.getData().getGoods_info();
-        GoodsBean.DataBean.Activity activity = bean.getActivity();
-        if (activity != null) {
-            ll_time.setVisibility(View.VISIBLE);
-            tv_xianjia.setText("¥ " + activity.getActivity_price());
-            tv_yuanjia.setText("¥ " + activity.getShop_price());
-            tv_yuanjia.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //中划线
-            try {
-                long time = Long.parseLong(activity.getEnd_time()) * 1000 - System.currentTimeMillis();
-                CountDownUtil cdu = new CountDownUtil(time, 1000 * 60 * 60,
-                        tvTime_H, 1);
-                cdu.start();
-                CountDownUtil cdu2 = new CountDownUtil(time, 1000 * 60,
-                        tvTime_M, 2);
-                cdu2.start();
-                CountDownUtil cdu3 = new CountDownUtil(time, 1000,
-                        tvTime_S, 3);
-                cdu3.start();
+        tvTime.setText(bean.getDay_ago() + "天前发布");
+        tvVolume.setText("月销"+bean.getSale_num());
 
-            } catch (Exception e) {
-            }
-
-        }
-
-        bean.getIs_on_sale();
-        if (!TextUtils.isEmpty(bean.getIs_on_sale()) && bean.getIs_on_sale().equals("0")) {
-            tvAddCart.setText("商品已下架");
-            tvAddCart.setClickable(false);
-            tvAddCart.setBackgroundColor(Color.parseColor("#666666"));
-        }
         tvGoodsName.setText(bean.getGoods_name());
         tvCollect.setText(bean.getCollect_num());
-        int basic = Integer.parseInt(bean.getBasic_amount()) - 1;
-        tvCount1.setText(bean.getRetail_amount() + "—" + basic + "件");
-        tvCount2.setText(bean.getBasic_amount() + "件以上");
-        tvPrice1.setText("¥" + bean.getShop_price());
-        tvPrice2.setText("¥" + bean.getPack_price());
-        tvLooking.setText(bean.getClick_count() + "次浏览");
-        tv_desc.setText(bean.getGoods_description());
-        tvSell.setText("已售出" + bean.getSale_num() + "件");
         GoodsBean.DataBean.ShopInfoBean shopinfo = beass.getData().getShop_info();
         if (shopinfo != null) {
+            //是否是自营
+            if (shopinfo.getShop_id() != null && shopinfo.getShop_id().equals("0")) {
+                tv_self.setVisibility(View.VISIBLE);
+            } else {
+                tv_self.setVisibility(View.GONE);
+            }
+            tvAddress.setText(shopinfo.getProvince()+shopinfo.getCity()+shopinfo.getCountry());
             with(this)
                     .load(Constants.Base_URL + shopinfo.getShop_logo())
                     .error(R.mipmap.de_photo)
                     .into(imgShopHead);
             tvShopName.setText(shopinfo.getShop_name());
-            tvShopAddress.setText(shopinfo.getShop_addr());
-            tvOpenShopDate.setText(shopinfo.getOpen_time());
-            tvShopSales.setText(shopinfo.getMonth_sale_count() + "");
-            tvShopUpdate.setText(shopinfo.getMonth_goods_count() + "");
-            tvShopSupplement.setText(shopinfo.getSupplement() + "%");
             shop_id = shopinfo.getShop_id();
 
             tvCollect.setText(bean.getCollect_num());
-            tvUpdate.setText(bean.getAdd_time() + "发布更新");
-            tvLooking.setText(bean.getClick_count() + "次浏览");
 
             if (bean.getIs_favorite() == 0) {
                 Drawable nav_up = getResources().getDrawable(R.mipmap.my_icon_collection);
@@ -370,44 +326,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
             });
 
         }
-        GoodsBean.DataBean.Shop_comment comment = beass.getData().getShop_comment();
-        if (comment != null) {
-            tvGood.setText(comment.getRavorableRate() + "%");
-            tvComment.setText(comment.getCommentCount() + "条评论");
-            List<GoodsBean.DataBean.Shop_comment.NewCommentBean> commentBeen = comment.getNewComment();
-            if (commentBeen == null) {
-                ll_goodcoment.setVisibility(View.GONE);
-            } else {
-                if (commentBeen.size() != 0) {
-                    ll_goodcoment.setVisibility(View.VISIBLE);
-                    if (TextUtils.isEmpty(commentBeen.get(0).getContent())) {
-                        ll_goodcoment.setVisibility(View.GONE);
-                    } else {
-                        Glide
-                                .with(this)
-                                .load(Constants.Base_URL + commentBeen.get(0).getHead_pic())
-                                .error(R.mipmap.de_photo)
-                                .into(imgHead);
-                        tvName.setText(commentBeen.get(0).getUser_name());
-                        tvTime.setText(commentBeen.get(0).getAdd_time());
-                        tvContext.setText(commentBeen.get(0).getContent());
-                    }
-                } else {
-                    ll_goodcoment.setVisibility(View.GONE);
-
-                    Glide
-                            .with(this)
-                            .load(Constants.Base_URL + commentBeen.get(0).getHead_pic())
-                            .error(R.mipmap.de_photo)
-                            .into(imgHead);
-                    tvName.setText(commentBeen.get(0).getUser_name());
-                    tvTime.setText(commentBeen.get(0).getAdd_time());
-                    tvContext.setText(commentBeen.get(0).getContent());
-                }
-            }
-
-        }
-        try {
+        /*try {
 
             GoodsBean.DataBean.Emchat emchat = beass.getData().getEmchat();
             if (emchat != null) {
@@ -417,7 +336,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                 DemoHelper.getInstance().saveContact(easeUser);
             }
         } catch (Exception e) {
-        }
+        }*/
 
     }
 
@@ -440,7 +359,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     }
 
 
-    @OnClick({R.id.img_beak, R.id.img_fenlei, R.id.img_chat, R.id.img_shop, tv_add_cart, R.id.tv_comment, R.id.img_goods_car,
+    @OnClick({R.id.img_beak, R.id.img_chat, tv_add_cart, R.id.img_goods_car,
             R.id.img_beak_to, R.id.img_goods_car_to, R.id.img_menu_to, R.id.img_menu, R.id.ll_shop})
     public void onViewClicked(View view) {
         Intent intent;
@@ -488,66 +407,15 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
             case R.id.img_menu:
                 showPopupWindow();
                 break;
-            case R.id.img_fenlei:
-//                intent = new Intent(this, MainActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | FLAG_ACTIVITY_CLEAR_TOP);
-//                intent.putExtra("type", "goods_class");
-//                startActivity(intent);
-
-                intent = new Intent(this, ShopClassActivity.class);
-                intent.putExtra("shop_id", shop_id);
-                startActivity(intent);
-                break;
             case R.id.img_chat:
-                try {
-                    if (TextUtils.isEmpty(dataBean.getEmchat().getEmchat_username())) {
-                        ToastUtil.showToast("客服不在线");
-                        return;
-                    }
-                    Boolean is_bogin = PreferencesUtils.getBoolean(this, "is_bogin");
-                    if (!is_bogin) {
-                        ToastUtil.showToast("您还没有登录，请去登录");
-                        Intent i = new Intent(this, LoginActivity.class);
-//            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(i);
-                        return;
-                    }
-                    String emchat_username = PreferencesUtils.getString(this, "emchat_username");
-                    if (emchat_username.equals(dataBean.getEmchat().getEmchat_username())) {
-                        ToastUtil.showToast("不能跟自己聊天");
-                        return;
-                    }
 
-                    intent = new Intent(GoodsInfoActivity.this, ChatActivity.class);
-                    intent.putExtra("userId", dataBean.getEmchat().getEmchat_username());
-                    ChatGoodBean chatGoodBean = new ChatGoodBean();
-                    chatGoodBean.setCommodityName(dataBean.getGoods_info().getGoods_name());
-                    chatGoodBean.setCommodityID(dataBean.getGoods_info().getGoods_id() + "");
-                    if (dataBean.getGoods_gallery() != null && dataBean.getGoods_gallery().size() != 0) {
-                        chatGoodBean.setCommodityImage(Constants.Base_IMG_URL + dataBean.getGoods_gallery().get(0).getImage_path());
-                    }
-                    chatGoodBean.setCommodityPrice("¥" + dataBean.getGoods_info().getShop_price());
-                    chatGoodBean.setContent(dataBean.getGoods_info().getGoods_name());
-                    chatGoodBean.setShareUrl("");
-                    intent.putExtra("chat_good", chatGoodBean);
-                    startActivity(intent);
-                } catch (Exception e) {
-                }
                 break;
-            case R.id.img_shop:
-                try {
-                    intent = new Intent(this, ShopInfoActivity.class);
-                    intent.putExtra("shop_id", shop_id);
-                    startActivity(intent);
-                } catch (Exception e) {
-                }
-                break;
+
             case tv_add_cart:
-
                 if (is_bogin) {
                     intent = new Intent(this, AddShopPingCarActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("lists", bean);
+                    bundle.putSerializable("lists", (Serializable) bean);
                     bundle.putString("goods_id", goods_id);
                     if (ll_time.getVisibility() == View.VISIBLE) {
                         bundle.putBoolean("activity", true);
@@ -563,17 +431,10 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
 
 
                 break;
-            case R.id.tv_comment:
-                try {
-                    intent = new Intent(this, ShopCommentActivity.class);
-                    intent.putExtra("shop_id", shop_id);
-                    startActivity(intent);
-                } catch (Exception e) {
-                }
-                break;
 
         }
     }
+
 
     public class ImageViewHolder implements Holder<String> {
         private ImageView imageView;
