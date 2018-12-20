@@ -38,6 +38,7 @@ import com.lnkj.privateshop.entity.ShopEmchatBean;
 import com.lnkj.privateshop.ui.MainActivity;
 import com.lnkj.privateshop.ui.addshoppingcart.AddShopPingCarActivity;
 import com.lnkj.privateshop.ui.ease.EaseConversationListActivity;
+import com.lnkj.privateshop.ui.goods.spec.SpecActivity;
 import com.lnkj.privateshop.ui.login.LoginActivity;
 import com.lnkj.privateshop.ui.mybuy.feedback.BeedBackActivity;
 import com.lnkj.privateshop.ui.shop.shopInfo.ShopInfoActivity;
@@ -144,6 +145,8 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     TextView imgCollect;
     @Bind(R.id.tv_self)
     TextView tv_self;
+    @Bind(R.id.ll_spec)
+    LinearLayout ll_spec;
     private GoodsInfoPresenter presenter = new GoodsInfoPresenter(this, this);
     private String goods_id = "";
     private String shop_id;
@@ -249,24 +252,6 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
         dataBean = beass.getData();
         /*属性*/
         List<GoodsAttrBean> attrlist = new ArrayList<>();
-        /*try {
-            GoodsAttrBean bean1 = new GoodsAttrBean();
-            bean1.setName("颜色");
-            bean1.setValue(dataBean.getGoods_spec().getColor());
-            attrlist.add(bean1);
-            GoodsAttrBean bean0 = new GoodsAttrBean();
-            bean0.setName("尺码");
-            bean0.setValue(dataBean.getGoods_spec().getSize());
-            attrlist.add(bean0);
-            for (int i = 0; i < dataBean.getGoods_attr().size(); i++) {
-                GoodsAttrBean bean2 = new GoodsAttrBean();
-                bean2.setName(dataBean.getGoods_attr().get(i).getAttr_name());
-                bean2.setValue(dataBean.getGoods_attr().get(i).getAttr_value());
-                attrlist.add(bean2);
-            }
-        } catch (Exception e) {
-
-        }*/
         //  myListView.setAdapter(new GoodsAttrAdapter(this, attrlist));
         WindowManager wm = getWindowManager();
         int width = wm.getDefaultDisplay().getWidth();
@@ -275,7 +260,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
         mListView.setAdapter(adapter);
         bean = beass.getData().getGoods_info();
         tvTime.setText(bean.getDay_ago() + "天前发布");
-        tvVolume.setText("月销"+bean.getSale_num());
+        tvVolume.setText("月销" + bean.getSale_num());
 
         tvGoodsName.setText(bean.getGoods_name());
         tvCollect.setText(bean.getCollect_num());
@@ -287,12 +272,19 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
             } else {
                 tv_self.setVisibility(View.GONE);
             }
-            tvAddress.setText(shopinfo.getProvince()+shopinfo.getCity()+shopinfo.getCountry());
+            tvAddress.setText(shopinfo.getProvince() + shopinfo.getCity() + shopinfo.getCountry());
+            /*店铺信息*/
             with(this)
                     .load(Constants.Base_URL + shopinfo.getShop_logo())
                     .error(R.mipmap.de_photo)
                     .into(imgShopHead);
+            tvDescribe.setText(shopinfo.getRank() + "");
+            tvService.setText(shopinfo.getService_rank() + "");
+            tvLogistics.setText(shopinfo.getExpress_rank() + "");
+
+
             tvShopName.setText(shopinfo.getShop_name());
+            tvShopAddress.setText(shopinfo.getProvince() + shopinfo.getCity() + shopinfo.getCountry());
             shop_id = shopinfo.getShop_id();
 
             tvCollect.setText(bean.getCollect_num());
@@ -359,7 +351,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     }
 
 
-    @OnClick({R.id.img_beak, R.id.img_chat, tv_add_cart, R.id.img_goods_car,
+    @OnClick({R.id.ll_spec, R.id.ll_attr, R.id.img_beak, R.id.img_chat, tv_add_cart, R.id.img_goods_car,
             R.id.img_beak_to, R.id.img_goods_car_to, R.id.img_menu_to, R.id.img_menu, R.id.ll_shop})
     public void onViewClicked(View view) {
         Intent intent;
@@ -374,6 +366,15 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
 //            }
 
         switch (view.getId()) {
+            case R.id.ll_spec:
+                /*商品规格选择*/
+                intent = new Intent(this, SpecActivity.class);
+                intent.putExtra("speclist", (Serializable) dataBean.getGoods_spec());
+                intent.putExtra("img", dataBean.getGoods_info().getGoods_img());
+                intent.putExtra("price", dataBean.getGoods_info().getShop_price());
+                intent.putExtra("storage", dataBean.getGoods_info().getStorage());
+                startActivity(intent);
+                break;
             case R.id.ll_shop:
                 try {
                     intent = new Intent(this, ShopInfoActivity.class);
@@ -388,6 +389,12 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                 intent.putExtra("type", "addshop");
                 startActivity(intent);
 
+                break;
+            case R.id.ll_attr:
+                /*商品属性显示*/
+                intent = new Intent(this, AttrActivity.class);
+                intent.putExtra("attrlist", (Serializable) dataBean.getGoods_attr());
+                startActivity(intent);
                 break;
             case R.id.img_goods_car_to:
                 intent = new Intent(this, MainActivity.class);

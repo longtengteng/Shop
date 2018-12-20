@@ -228,6 +228,75 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/F7" />
 
+            <LinearLayout
+                android:id="@+id/ll_spec"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="15dp"
+                    android:text="规格"
+                    android:textColor="@color/tx66"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_spec"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="选择颜色 语音"
+                    android:textColor="@color/tx33"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/my_icon_more" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_attr"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="15dp"
+                    android:text="属性"
+                    android:textColor="@color/tx66"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_attr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/tx33"
+                    android:textSize="14sp"
+                    tools:text="属性" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+
+                    android:src="@mipmap/my_icon_more" />
+
+
+            </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="6dp"
@@ -275,7 +344,6 @@
                         android:drawableLeft="@mipmap/icon_location"
                         android:drawablePadding="4dp"
                         android:gravity="center_vertical"
-
                         android:textColor="@color/tx66"
                         android:textSize="11sp" />
                 </LinearLayout>

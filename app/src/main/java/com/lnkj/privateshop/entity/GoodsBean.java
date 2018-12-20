@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Administrator on 2017/8/22 0022.
  */
 
-public class GoodsBean implements Serializable{
+public class GoodsBean implements Serializable {
 
 
     /**
@@ -152,6 +152,11 @@ public class GoodsBean implements Serializable{
             private String shop_id;
             private int is_favorite;
             private int day_ago;
+            /**
+             * storage : 200
+             */
+
+            private String storage;
 
             public String getGoods_id() {
                 return goods_id;
@@ -304,6 +309,14 @@ public class GoodsBean implements Serializable{
             public void setDay_ago(int day_ago) {
                 this.day_ago = day_ago;
             }
+
+            public String getStorage() {
+                return storage;
+            }
+
+            public void setStorage(String storage) {
+                this.storage = storage;
+            }
         }
 
         public static class ShopInfoBean {
@@ -448,7 +461,7 @@ public class GoodsBean implements Serializable{
             }
         }
 
-        public static class GoodsAttrBean {
+        public static class GoodsAttrBean implements Serializable {
             /**
              * attr_id : 3
              * attr_name : 材质
@@ -530,7 +543,7 @@ public class GoodsBean implements Serializable{
             }
         }
 
-        public static class GoodsSpecBean {
+        public static class GoodsSpecBean implements Serializable{
             /**
              * spec_id : 1
              * spec_name : 尺寸
@@ -595,7 +608,7 @@ public class GoodsBean implements Serializable{
                 this.item_array = item_array;
             }
 
-            public static class ItemArrayBean {
+            public static class ItemArrayBean implements Serializable{
                 /**
                  * spec_item_id : 1
                  * spec_item_name : 40
