@@ -11,11 +11,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lnkj.privateshop.BaseActivity;
 import com.lnkj.privateshop.Constants;
 import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.entity.GoodsBean;
 import com.lnkj.privateshop.ui.goods.AttrAdapter;
+import com.lnkj.privateshop.utils.ToastUtil;
 import com.lzy.imagepicker.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -59,6 +61,8 @@ public class SpecActivity extends BaseActivity {
     SpecAdapter adapter;
     int tv_number;
 
+    List<String> spec = new ArrayList<>();
+
     @Override
     public int initContentView() {
         return R.layout.activity_detail_spec;
@@ -91,11 +95,22 @@ public class SpecActivity extends BaseActivity {
                 .load(Constants.Base_URL + getIntent().getStringExtra("img"))
                 .error(R.mipmap.de_photo)
                 .into(ivGoods);
+
+        for (int i = 0; i < specBeanList.size(); i++) {
+            spec.add(" ");
+        }
+        ToastUtil.showToast(spec + "" + spec.size());
     }
 
     @Override
     public void initUiAndListener() {
-
+        adapter.setM(new SpecAdapter.CheckClick() {
+            @Override
+            public void checkSpec(GoodsBean.DataBean.GoodsSpecBean.ItemArrayBean itemArrayBean, int list_position) {
+                spec.set(list_position, itemArrayBean.getSpec_item_id());
+                ToastUtil.showToast(spec + "");
+            }
+        });
     }
 
 
@@ -117,8 +132,11 @@ public class SpecActivity extends BaseActivity {
                 tvItemNumber.setText(tv_number + "");
                 break;
             case R.id.tv_cart:
+
                 break;
             case R.id.tv_buynow:
+
+
                 break;
         }
     }

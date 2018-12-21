@@ -543,7 +543,7 @@ public class GoodsBean implements Serializable {
             }
         }
 
-        public static class GoodsSpecBean implements Serializable{
+        public static class GoodsSpecBean implements Serializable {
             /**
              * spec_id : 1
              * spec_name : 尺寸
@@ -608,11 +608,20 @@ public class GoodsBean implements Serializable {
                 this.item_array = item_array;
             }
 
-            public static class ItemArrayBean implements Serializable{
+            public static class ItemArrayBean implements Serializable {
                 /**
                  * spec_item_id : 1
                  * spec_item_name : 40
                  */
+                private boolean check;
+
+                public boolean isCheck() {
+                    return check;
+                }
+
+                public void setCheck(boolean check) {
+                    this.check = check;
+                }
 
                 private String spec_item_id;
                 private String spec_item_name;
