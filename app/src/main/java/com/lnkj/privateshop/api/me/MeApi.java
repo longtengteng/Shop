@@ -391,6 +391,18 @@ public class MeApi {
         return meService.getGoodsInfo(map).subscribeOn(Schedulers.io());
     }
 
+    // 获取商品详情--规格--根据参数获取信息
+    public Observable<String> getPriceAndStoreBySpce(Map<String, Object> map) {
+        return meService.getPriceAndStoreBySpce(map).subscribeOn(Schedulers.io());
+    }
+    // 立即购买或者结算购物车进入订单确认页
+    public Observable<String> getcartConfirm(Map<String, Object> map) {
+        return meService.getcartConfirm(map).subscribeOn(Schedulers.io());
+    }
+    // 加入购物车的操作
+    public Observable<String> getaddCart(Map<String, Object> map) {
+        return meService.getcartConfirm(map).subscribeOn(Schedulers.io());
+    }
     // 获取商品详情
     public Observable<String> getShopEmchat(Map<String, Object> map) {
         return meService.getShopEmchat(map).subscribeOn(Schedulers.io());
@@ -666,6 +678,7 @@ public class MeApi {
     public Observable<String> getGoodsCategoryList(Map<String, Object> map) {
         return meService.getGoodsCategoryList(map).subscribeOn(Schedulers.io());
     }
+
     //限时特惠的列表
     public Observable<String> getLimitSaleList(Map<String, Object> map) {
         return meService.getLimitSaleList(map).subscribeOn(Schedulers.io());

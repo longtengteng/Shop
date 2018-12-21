@@ -40,6 +40,20 @@ public interface MeService {
     @POST("index.php/Api/IndexUserApi/limitSaleList")
     Observable<String> getLimitSaleList(@FieldMap Map<String, Object> map);
 
+    /*商品详情根据规格获取参数*/
+    @FormUrlEncoded
+    @POST("index.php/Api/CartApi/getPriceAndStoreBySpce")
+    Observable<String> getPriceAndStoreBySpce(@FieldMap Map<String, Object> map);
+
+    /*立即购买或者结算购物车进入订单确认页*/
+    @FormUrlEncoded
+    @POST("index.php/Api/CartApi/cartConfirm")
+    Observable<String> getcartConfirm(@FieldMap Map<String, Object> map);
+
+    /*加入购物车的操作*/
+    @FormUrlEncoded
+    @POST("index.php/Api/CartApi/addCart")
+    Observable<String> getaddCart(@FieldMap Map<String, Object> map);
 
     /**
      * 获取商品分类
