@@ -110,7 +110,7 @@ public class GoodsBean implements Serializable {
             this.goods_spec = goods_spec;
         }
 
-        public static class GoodsInfoBean {
+        public static class GoodsInfoBean implements Serializable {
             /**
              * goods_id : 8
              * goods_sn : AR181217055215

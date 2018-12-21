@@ -110,6 +110,7 @@ public class SpecPresenter implements SpecContract.Presenter {
                             String info = object.getString("info");
                             if (status == 1) {
                                 //     SpecBean beass = JSON.parseObject(data, SpecBean.class);
+                                ToastUtil.showToast(info);
                                 mView.addCart();
                             } else {
                                 ToastUtil.showToast(info);

@@ -62,6 +62,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
     LinearLayout layout_no_datas;
     @Bind(R.id.btn)
     Button btn;
+
     @Override
     protected int getContentResid() {
         return R.layout.fragment_goods;
@@ -72,7 +73,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
 
         super.init(view);
         ButterKnife.bind(this, view);
-        tvTitle.setText("进货车");
+        tvTitle.setText("购物车");
         imgBack.setVisibility(View.GONE);
         tvRightBlue.setText("编辑");
         tvRightBlue.setVisibility(View.VISIBLE);
@@ -95,7 +96,6 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
                 computationsPrice();
             }
         });
-
 
 
     }
@@ -139,11 +139,11 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
     public void getShopCommentSucceed(GoodsCraListBean beans) {
         lists.clear();
         lists.addAll(beans.getData());
-        if (lists.size()==0){
+        if (lists.size() == 0) {
             layout_no_datas.setVisibility(View.VISIBLE);
             tvRightBlue.setVisibility(View.GONE);
             pullLoadMoreRecyclerView.setVisibility(View.GONE);
-        }else {
+        } else {
             tvRightBlue.setVisibility(View.VISIBLE);
             layout_no_datas.setVisibility(View.GONE);
             pullLoadMoreRecyclerView.setVisibility(View.VISIBLE);
@@ -155,26 +155,26 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
                 }
             }
 
-        cbCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    adapter.addIndex(1);
-                    for (int i = 0; i < lists.size(); i++) {
-                        for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
-                           lists.get(i).getGoods().get(j).setIs_selected("1");
+            cbCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    if (b) {
+                        adapter.addIndex(1);
+                        for (int i = 0; i < lists.size(); i++) {
+                            for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
+                                lists.get(i).getGoods().get(j).setIs_selected("1");
+                            }
+                        }
+                    } else {
+                        adapter.addIndex(0);
+                        for (int i = 0; i < lists.size(); i++) {
+                            for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
+                                lists.get(i).getGoods().get(j).setIs_selected("0");
+                            }
                         }
                     }
-                } else {
-                    adapter.addIndex(0);
-                    for (int i = 0; i < lists.size(); i++) {
-                        for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
-                            lists.get(i).getGoods().get(j).setIs_selected("0");
-                        }
-                    }
+                    computationsPrice();
                 }
-                computationsPrice();
-            }
             });
         }
         cbCheck.setChecked(false);
@@ -194,7 +194,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
         for (int i = 0; i < lists.size(); i++) {
             for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
                 if (lists.get(i).getGoods().get(j).getIs_selected().equals("1")) {
-                    if (sb.length()!=0){
+                    if (sb.length() != 0) {
                         sb.append(",");
                     }
                     sb.append(lists.get(i).getGoods().get(j).getGoods_id());
@@ -202,7 +202,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
             }
         }
         Intent intent = new Intent(getActivity(), ClearingActivity.class);
-        intent.putExtra("goods_ids",sb.toString());
+        intent.putExtra("goods_ids", sb.toString());
         startActivity(intent);
     }
 
@@ -218,7 +218,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.tv_right_blue, tv_add_cart, R.id.tv_left_blue,R.id.btn})
+    @OnClick({R.id.tv_right_blue, tv_add_cart, R.id.tv_left_blue, R.id.btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_right_blue:
@@ -241,7 +241,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
                 for (int i = 0; i < lists.size(); i++) {
                     for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
                         if (lists.get(i).getGoods().get(j).getIs_selected().equals("1")) {
-                            if (sb.length()!=0){
+                            if (sb.length() != 0) {
                                 sb.append(",");
                             }
                             sb.append(lists.get(i).getGoods().get(j).getGoods_id());
@@ -250,24 +250,25 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
                 }
 
                 if (state == 0) {
-                    if (price==0){
+                    if (price == 0) {
                         ToastUtil.showToast("请选择商品");
-                    }else {
+                    } else {
                         mPresenter.getGoodsInfo(sb.toString());
                     }
                 } else {
-                    if (TextUtils.isEmpty(sb.toString())){
+                    if (TextUtils.isEmpty(sb.toString())) {
                         ToastUtil.showToast("请选择商品");
                         return;
                     }
                     CenterTiteActionDialog dialog = new CenterTiteActionDialog(getActivity());
-                    dialog.setActionString("确定从进货车中删除所有选中的商品吗？","确定","取消","删除商品");
+                    dialog.setActionString("确定从进货车中删除所有选中的商品吗？", "确定", "取消", "删除商品");
                     dialog.setActionListener(new CenterTiteActionDialog.ActionLisenter() {
                         @Override
-                        public void sureAction(){
+                        public void sureAction() {
                             //确定
                             mPresenter.deleteGoodsCar(sb.toString());
                         }
+
                         @Override
                         public void cancelAction() {
 
@@ -291,31 +292,31 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
         }
     }
 
-public void computationsPrice(){
-    try {
-        price=0.00;
-    for (int i = 0; i < lists.size(); i++) {
-        for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
-            if (lists.get(i).getGoods().get(j).getIs_selected().equals("1")) {
-                price = price + Double.parseDouble(lists.get(i).getGoods().get(j).getPrice()) *
-                        Integer.parseInt(lists.get(i).getGoods().get(j).getBuy_total_number());
+    public void computationsPrice() {
+        try {
+            price = 0.00;
+            for (int i = 0; i < lists.size(); i++) {
+                for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
+                    if (lists.get(i).getGoods().get(j).getIs_selected().equals("1")) {
+                        price = price + Double.parseDouble(lists.get(i).getGoods().get(j).getPrice()) *
+                                Integer.parseInt(lists.get(i).getGoods().get(j).getBuy_total_number());
+                    }
+                }
             }
-        }
-    }
-    if (price==null){
-            tv_price.setText("¥" + 0.00);
-    }else {
+            if (price == null) {
+                tv_price.setText("¥" + 0.00);
+            } else {
 
-        BigDecimal bg = new BigDecimal(price);
+                BigDecimal bg = new BigDecimal(price);
 //        double f1 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 //        System.out.println(f1);
-        tv_price.setText("¥" + bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
-    }
+                tv_price.setText("¥" + bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+            }
 
-    }catch (Exception e){
+        } catch (Exception e) {
 
+        }
     }
-}
 
     @Override
     public void onResume() {

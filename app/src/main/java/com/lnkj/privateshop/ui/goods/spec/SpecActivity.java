@@ -105,6 +105,8 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
         //   ToastUtil.showToast(spec + "" + spec.size());
     }
 
+    String spec_content3;
+
     @Override
     public void initUiAndListener() {
         adapter.setM(new SpecAdapter.CheckClick() {
@@ -119,7 +121,8 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
                 } else {
                     spec_content2 = spec_content1.replace(",", "_");
                 }
-                presenter.getPriceAndStoreBySpce(spec_content2.replace(" ", ""), goods_id);
+                spec_content3 = spec_content2.replace(" ", "");
+                presenter.getPriceAndStoreBySpce(spec_content3, goods_id);
                 //   ToastUtil.showToast(spec + "");
             }
         });
@@ -143,7 +146,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
                 tvItemNumber.setText(tv_number + "");
                 break;
             case R.id.tv_cart:
-                //presenter.addCart();
+                presenter.addCart(spec_content3, goods_id, tvItemNumber.getText().toString().trim(), "", "0");
                 break;
             case R.id.tv_buynow:
 
@@ -191,7 +194,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
 
     @Override
     public void addCart() {
-
+        finish();
     }
 
     @Override
