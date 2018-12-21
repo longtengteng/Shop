@@ -373,6 +373,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                 intent.putExtra("img", dataBean.getGoods_info().getGoods_img());
                 intent.putExtra("price", dataBean.getGoods_info().getShop_price());
                 intent.putExtra("storage", dataBean.getGoods_info().getStorage());
+                intent.putExtra("goods_id", dataBean.getGoods_info().getGoods_id());
                 startActivity(intent);
                 break;
             case R.id.ll_shop:

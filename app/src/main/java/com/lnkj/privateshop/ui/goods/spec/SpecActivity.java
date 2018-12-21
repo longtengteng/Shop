@@ -17,6 +17,7 @@ import com.lnkj.privateshop.Constants;
 import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.entity.GoodsBean;
 import com.lnkj.privateshop.ui.goods.AttrAdapter;
+import com.lnkj.privateshop.ui.goods.GoodsInfoPresenter;
 import com.lnkj.privateshop.utils.ToastUtil;
 import com.lzy.imagepicker.loader.ImageLoader;
 
@@ -30,7 +31,7 @@ import butterknife.OnClick;
 import static com.bumptech.glide.Glide.with;
 
 /*商品详情页面，商品规格选择*/
-public class SpecActivity extends BaseActivity {
+public class SpecActivity extends BaseActivity implements SpecContract.View {
     @Bind(R.id.iv_goods)
     ImageView ivGoods;
     @Bind(R.id.tv_price)
@@ -55,12 +56,12 @@ public class SpecActivity extends BaseActivity {
     TextView tvBuynow;
     @Bind(R.id.dialog)
     LinearLayout dialog;
-
+    private SpecPresenter presenter = new SpecPresenter(this, this);
     String img, price, storage;
     List<GoodsBean.DataBean.GoodsSpecBean> specBeanList = new ArrayList<>();
     SpecAdapter adapter;
     int tv_number;
-
+    String goods_id;
     List<String> spec = new ArrayList<>();
 
     @Override
@@ -71,7 +72,9 @@ public class SpecActivity extends BaseActivity {
     @Override
     public void initInjector() {
         ButterKnife.bind(this);
+        presenter.setToken(token);
         specBeanList = (List<GoodsBean.DataBean.GoodsSpecBean>) getIntent().getSerializableExtra("speclist");
+        goods_id = getIntent().getStringExtra("goods_id");
         rvSpec.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SpecAdapter(specBeanList);
         adapter.bindToRecyclerView(rvSpec);
@@ -97,9 +100,9 @@ public class SpecActivity extends BaseActivity {
                 .into(ivGoods);
 
         for (int i = 0; i < specBeanList.size(); i++) {
-            spec.add(" ");
+            spec.add("");
         }
-        ToastUtil.showToast(spec + "" + spec.size());
+        //   ToastUtil.showToast(spec + "" + spec.size());
     }
 
     @Override
@@ -108,7 +111,16 @@ public class SpecActivity extends BaseActivity {
             @Override
             public void checkSpec(GoodsBean.DataBean.GoodsSpecBean.ItemArrayBean itemArrayBean, int list_position) {
                 spec.set(list_position, itemArrayBean.getSpec_item_id());
-                ToastUtil.showToast(spec + "");
+                String spec_content = spec + "";
+                String spec_content1 = spec_content.substring(1, spec_content.length() - 1);
+                String spec_content2;
+                if (spec_content1.length() == 3) {
+                    spec_content2 = spec_content1.replace(",", "");
+                } else {
+                    spec_content2 = spec_content1.replace(",", "_");
+                }
+                presenter.getPriceAndStoreBySpce(spec_content2.replace(" ", ""), goods_id);
+                //   ToastUtil.showToast(spec + "");
             }
         });
     }
@@ -125,19 +137,65 @@ public class SpecActivity extends BaseActivity {
                     tv_number--;
                     tvItemNumber.setText(tv_number + "");
                 }
-
                 break;
             case R.id.iv_add:
                 tv_number++;
                 tvItemNumber.setText(tv_number + "");
                 break;
             case R.id.tv_cart:
-
+                //presenter.addCart();
                 break;
             case R.id.tv_buynow:
 
-
                 break;
         }
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void onEmpty() {
+
+    }
+
+    @Override
+    public void onNetError() {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void finsh() {
+
+    }
+
+    @Override
+    public void getPriceAndStoreBySpceSucceed(SpecBean specBean) {
+
+        tvNumber.setText("库存" + specBean.getData().getStore_count() + "件");
+        tvPrice.setText("¥" + specBean.getData().getPrice());
+
+    }
+
+    @Override
+    public void addCart() {
+
+    }
+
+    @Override
+    public void cartConfirm(BugNowBean bugNowBean) {
+
     }
 }

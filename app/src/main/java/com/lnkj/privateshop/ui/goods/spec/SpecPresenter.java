@@ -38,7 +38,7 @@ public class SpecPresenter implements SpecContract.Presenter {
 
     @Override
     public void setToken(String token) {
-
+        this.token = token;
     }
 
     @Override

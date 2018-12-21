@@ -1,6 +1,10 @@
 package com.lnkj.privateshop.ui.goods.spec;
 
-public class SpecBean {
+import com.lnkj.privateshop.entity.GoodsBean;
+
+import java.io.Serializable;
+
+public class SpecBean implements Serializable{
 
     /**
      * id : 89
@@ -10,59 +14,89 @@ public class SpecBean {
      * price : 111.00
      * store_count : 11
      */
+    private int status;
+    private String info;
+    private SpecBean.DataBean data;
 
-    private String id;
-    private String goods_id;
-    private String key;
-    private String key_name;
-    private String price;
-    private String store_count;
-
-    public String getId() {
-        return id;
+    public int getStatus() {
+        return status;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public String getGoods_id() {
-        return goods_id;
+    public String getInfo() {
+        return info;
     }
 
-    public void setGoods_id(String goods_id) {
-        this.goods_id = goods_id;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public String getKey() {
-        return key;
+    public SpecBean.DataBean getData() {
+        return data;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setData(SpecBean.DataBean data) {
+        this.data = data;
     }
 
-    public String getKey_name() {
-        return key_name;
+    public static class DataBean {
+        private String id;
+        private String goods_id;
+        private String key;
+        private String key_name;
+        private String price;
+        private String store_count;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getGoods_id() {
+            return goods_id;
+        }
+
+        public void setGoods_id(String goods_id) {
+            this.goods_id = goods_id;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public void setKey(String key) {
+            this.key = key;
+        }
+
+        public String getKey_name() {
+            return key_name;
+        }
+
+        public void setKey_name(String key_name) {
+            this.key_name = key_name;
+        }
+
+        public String getPrice() {
+            return price;
+        }
+
+        public void setPrice(String price) {
+            this.price = price;
+        }
+
+        public String getStore_count() {
+            return store_count;
+        }
+
+        public void setStore_count(String store_count) {
+            this.store_count = store_count;
+        }
     }
 
-    public void setKey_name(String key_name) {
-        this.key_name = key_name;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getStore_count() {
-        return store_count;
-    }
-
-    public void setStore_count(String store_count) {
-        this.store_count = store_count;
-    }
 }
