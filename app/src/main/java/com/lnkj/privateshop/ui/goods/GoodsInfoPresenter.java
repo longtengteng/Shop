@@ -159,4 +159,54 @@ public class GoodsInfoPresenter implements GoodsInfoContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type) {
+        mView.showLoading();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("goods_spec_key", goods_spec_key);
+        map.put("goods_id", goods_id);
+        map.put("buy_number", buy_number);
+        map.put("act_id", act_id);
+        map.put("act_type", act_type);
+//            map.put("goods_id",259+"");
+        meApi.getaddCart(map)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String data) {
+                        mView.hideLoading();
+                        LLog.d("数据111", data);
+                        try {
+                            JSONObject object = new JSONObject(data);
+                            int status = object.getInt("status");
+                            String info = object.getString("info");
+                            if (status == 1) {
+                                //     SpecBean beass = JSON.parseObject(data, SpecBean.class);
+                                ToastUtil.showToast(info);
+                                mView.addCart();
+                            } else {
+                                ToastUtil.showToast(info);
+                                mView.finsh();
+                            }
+                        } catch (JSONException e) {
+                            ToastUtil.showToast("数据异常");
+                            mView.finsh();
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                        mView.hideLoading();
+                        ToastUtil.showToast("数据异常");
+                        mView.finsh();
+                        LLog.d("数据错误", throwable.toString() + "");
+                    }
+                });
+
+    }
 }

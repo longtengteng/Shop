@@ -1,5 +1,6 @@
 package com.lnkj.privateshop.ui.goods.spec;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,6 +64,8 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
     int tv_number;
     String goods_id;
     List<String> spec = new ArrayList<>();
+    List<String> spec_name_list = new ArrayList<>();
+    String spec_name2;
 
     @Override
     public int initContentView() {
@@ -101,6 +104,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
 
         for (int i = 0; i < specBeanList.size(); i++) {
             spec.add("");
+            spec_name_list.add("");
         }
         //   ToastUtil.showToast(spec + "" + spec.size());
     }
@@ -113,6 +117,8 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
             @Override
             public void checkSpec(GoodsBean.DataBean.GoodsSpecBean.ItemArrayBean itemArrayBean, int list_position) {
                 spec.set(list_position, itemArrayBean.getSpec_item_id());
+                spec_name_list.set(list_position, itemArrayBean.getSpec_item_name());
+
                 String spec_content = spec + "";
                 String spec_content1 = spec_content.substring(1, spec_content.length() - 1);
                 String spec_content2;
@@ -122,17 +128,41 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
                     spec_content2 = spec_content1.replace(",", "_");
                 }
                 spec_content3 = spec_content2.replace(" ", "");
+
+                String spec_name = spec_name_list + "";
+                String spec_name1 = spec_content.substring(1, spec_name.length() - 1);
+
+                if (spec_name1.length() == 3) {
+                    spec_name2 = spec_name1.replace(",", "");
+                } else {
+                    spec_name2 = spec_name1.replace(",", " ");
+                }
+
+
                 presenter.getPriceAndStoreBySpce(spec_content3, goods_id);
                 //   ToastUtil.showToast(spec + "");
             }
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = getIntent();
+        intent.putExtra("spec_content3", spec_content3);
+        intent.putExtra("spec_name", spec_name2);
+        setResult(RESULT_OK, intent);
+        super.onBackPressed();
+    }
 
     @OnClick({R.id.iv_finish, R.id.iv_subtract, R.id.iv_add, R.id.tv_cart, R.id.tv_buynow})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
+
+                Intent intent = getIntent();
+                intent.putExtra("spec_content3", spec_content3);
+                intent.putExtra("spec_name", spec_name2);
+                setResult(RESULT_OK, intent);
                 finish();
                 break;
             case R.id.iv_subtract:

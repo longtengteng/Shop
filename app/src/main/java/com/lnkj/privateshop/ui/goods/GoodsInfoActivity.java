@@ -147,6 +147,8 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     TextView tv_self;
     @Bind(R.id.ll_spec)
     LinearLayout ll_spec;
+    @Bind(R.id.tv_spec)
+    TextView tv_spec;
     private GoodsInfoPresenter presenter = new GoodsInfoPresenter(this, this);
     private String goods_id = "";
     private String shop_id;
@@ -374,7 +376,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                 intent.putExtra("price", dataBean.getGoods_info().getShop_price());
                 intent.putExtra("storage", dataBean.getGoods_info().getStorage());
                 intent.putExtra("goods_id", dataBean.getGoods_info().getGoods_id());
-                startActivity(intent);
+                startActivityForResult(intent, 69);
                 break;
             case R.id.ll_shop:
                 try {
@@ -416,20 +418,11 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                 showPopupWindow();
                 break;
             case R.id.img_chat:
-
                 break;
 
             case tv_add_cart:
                 if (is_bogin) {
-                    intent = new Intent(this, AddShopPingCarActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("lists", (Serializable) bean);
-                    bundle.putString("goods_id", goods_id);
-                    if (ll_time.getVisibility() == View.VISIBLE) {
-                        bundle.putBoolean("activity", true);
-                    }
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    presenter.addCart(spec_content3, goods_id, "1", "", "0");
                 } else {
                     ToastUtil.showToast("您还没有登录，请去登录");
                     intent = new Intent(this, LoginActivity.class);
@@ -462,6 +455,18 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                     .into(imageView);
         }
 
+    }
+
+    String spec_content3, spec_name;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 69 && resultCode == RESULT_OK) {
+            spec_content3 = getIntent().getStringExtra("spec_content3");
+            spec_name = getIntent().getStringExtra("spec_name");
+            tv_spec.setText(spec_name);
+        }
     }
 
     private PopupWindow mPopWindow;
@@ -524,6 +529,11 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
 
     @Override
     public void getShopEmchat(final ShopEmchatBean bean) {
+
+    }
+
+    @Override
+    public void addCart() {
 
     }
 }
