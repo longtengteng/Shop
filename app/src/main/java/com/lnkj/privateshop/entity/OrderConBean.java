@@ -1,12 +1,13 @@
 package com.lnkj.privateshop.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/9/1 0001.
  */
 
-public class OrderConBean {
+public class OrderConBean implements Serializable {
 
     /**
      * status : 1
@@ -42,188 +43,154 @@ public class OrderConBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
+
         /**
-         * addr_info : {"address_id":"72","consignee":"赵林","address":"合肥路12222","province":"山东省","city":"临沂市","district":"兰山区","mobile":"15562909154","zipcode":"","is_default":"1"}
-         * goods_list : [{"shop_id":"1","shop_name":"","goods":[{"goods_id":"250","goods_name":"休闲男装 2017秋季新款男士大衣 韩版潮翻领中长","goods_img":"/Uploads/Picture/Goods/2017-08-30/59a5ffdd0f6c9.jpg","price":"120.00","weight":"900","is_selected":"1","is_valid":"1","spec":[{"color":"卡其色","size":[{"size_name":"5XL","storage":"999","buy_number":"1","goods_spec_key":"21_28"}]}]},{"goods_id":"254","goods_name":"朵咪家。实拍笑脸印花宽松长袖卫衣","goods_img":"/Uploads/Picture/Goods/2017-08-31/59a7a3942d361.jpg","price":"39.00","weight":"100","is_selected":"1","is_valid":"1","spec":[{"color":"如图","size":[{"size_name":"XL","storage":"111","buy_number":"1","goods_spec_key":"31_14"}]},{"color":"白色","size":[{"size_name":"2XL","storage":"111","buy_number":"4","goods_spec_key":"15_25"}]}]}],"shop_express":"200.00"}]
-         * total_goods_num : 6
-         * total_goods_amount : 315.00
-         * total_express : 200.00
-         * total_amount : 515.00
+         * address_id : 63
+         * province : 山东省
+         * city : 临沂市
+         * district : 罗庄区
+         * consignee : 66666
+         * mobile : 13355555555
+         * address : 付庄办事处
+         * zipcode : 269000
+         * order_price : 357.00
+         * order_buy_counts : 5
+         * order_express_price : 1000.00
+         * final_price : 1357.00
+         * list : [{"shop_id":"4","shop_name":"4号店","shop_express_price":"0.00","goods_list":[{"cart_id":"876","user_id":"64","goods_id":"2","goods_name":"阿尔法机器人","buy_number":"1","price":"111.00","weight":"500","goods_img":"/Uploads/Picture/Goods/2018-12-16/5c160d8f51a84.png","goods_spec_key":"1_3","shop_id":"4","shop_name":"4号店","act_id":"0","act_type":"0","spec_name":"尺寸:40 颜色:白"}]},{"shop_id":"0","shop_name":"自营店","shop_express_price":"1000.00","goods_list":[{"cart_id":"877","user_id":"64","goods_id":"2","goods_name":"阿尔法机器人","buy_number":"2","price":"111.00","weight":"500","goods_img":"/Uploads/Picture/Goods/2018-12-16/5c160d8f51a84.png","goods_spec_key":"1_3","shop_id":"0","shop_name":"自营店","act_id":"0","act_type":"0","spec_name":"尺寸:40 颜色:白"},{"cart_id":"878","user_id":"64","goods_id":"7","goods_name":"智能温度仪","buy_number":"2","price":"12.00","weight":"0","goods_img":"/Uploads/Picture/Goods/2018-12-17/5c175f5a68b78.jpg","goods_spec_key":"11_12","shop_id":"0","shop_name":"自营店","act_id":"0","act_type":"0","spec_name":"长度:20cm 灵敏度:A"}]}]
          */
 
-        private AddrInfoBean addr_info;
-        private int total_goods_num;
-        private String total_goods_amount;
-        private String total_express;
-        private String total_amount;
-        private List<GoodsListBean> goods_list;
+        private String address_id;
+        private String province;
+        private String city;
+        private String district;
+        private String consignee;
+        private String mobile;
+        private String address;
+        private String zipcode;
+        private String order_price;
+        private int order_buy_counts;
+        private String order_express_price;
+        private String final_price;
+        private List<ListBean> list;
 
-        public AddrInfoBean getAddr_info() {
-            return addr_info;
+        public String getAddress_id() {
+            return address_id;
         }
 
-        public void setAddr_info(AddrInfoBean addr_info) {
-            this.addr_info = addr_info;
+        public void setAddress_id(String address_id) {
+            this.address_id = address_id;
         }
 
-        public int getTotal_goods_num() {
-            return total_goods_num;
+        public String getProvince() {
+            return province;
         }
 
-        public void setTotal_goods_num(int total_goods_num) {
-            this.total_goods_num = total_goods_num;
+        public void setProvince(String province) {
+            this.province = province;
         }
 
-        public String getTotal_goods_amount() {
-            return total_goods_amount;
+        public String getCity() {
+            return city;
         }
 
-        public void setTotal_goods_amount(String total_goods_amount) {
-            this.total_goods_amount = total_goods_amount;
+        public void setCity(String city) {
+            this.city = city;
         }
 
-        public String getTotal_express() {
-            return total_express;
+        public String getDistrict() {
+            return district;
         }
 
-        public void setTotal_express(String total_express) {
-            this.total_express = total_express;
+        public void setDistrict(String district) {
+            this.district = district;
         }
 
-        public String getTotal_amount() {
-            return total_amount;
+        public String getConsignee() {
+            return consignee;
         }
 
-        public void setTotal_amount(String total_amount) {
-            this.total_amount = total_amount;
+        public void setConsignee(String consignee) {
+            this.consignee = consignee;
         }
 
-        public List<GoodsListBean> getGoods_list() {
-            return goods_list;
+        public String getMobile() {
+            return mobile;
         }
 
-        public void setGoods_list(List<GoodsListBean> goods_list) {
-            this.goods_list = goods_list;
+        public void setMobile(String mobile) {
+            this.mobile = mobile;
         }
 
-        public static class AddrInfoBean {
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getZipcode() {
+            return zipcode;
+        }
+
+        public void setZipcode(String zipcode) {
+            this.zipcode = zipcode;
+        }
+
+        public String getOrder_price() {
+            return order_price;
+        }
+
+        public void setOrder_price(String order_price) {
+            this.order_price = order_price;
+        }
+
+        public int getOrder_buy_counts() {
+            return order_buy_counts;
+        }
+
+        public void setOrder_buy_counts(int order_buy_counts) {
+            this.order_buy_counts = order_buy_counts;
+        }
+
+        public String getOrder_express_price() {
+            return order_express_price;
+        }
+
+        public void setOrder_express_price(String order_express_price) {
+            this.order_express_price = order_express_price;
+        }
+
+        public String getFinal_price() {
+            return final_price;
+        }
+
+        public void setFinal_price(String final_price) {
+            this.final_price = final_price;
+        }
+
+        public List<ListBean> getList() {
+            return list;
+        }
+
+        public void setList(List<ListBean> list) {
+            this.list = list;
+        }
+
+        public static class ListBean implements Serializable{
             /**
-             * address_id : 72
-             * consignee : 赵林
-             * address : 合肥路12222
-             * province : 山东省
-             * city : 临沂市
-             * district : 兰山区
-             * mobile : 15562909154
-             * zipcode :
-             * is_default : 1
-             */
-
-            private String address_id;
-            private String consignee;
-            private String address;
-            private String province;
-            private String city;
-            private String district;
-            private String mobile;
-            private String zipcode;
-            private String is_default;
-
-            public String getAddress_id() {
-                return address_id;
-            }
-
-            public void setAddress_id(String address_id) {
-                this.address_id = address_id;
-            }
-
-            public String getConsignee() {
-                return consignee;
-            }
-
-            public void setConsignee(String consignee) {
-                this.consignee = consignee;
-            }
-
-            public String getAddress() {
-                return address;
-            }
-
-            public void setAddress(String address) {
-                this.address = address;
-            }
-
-            public String getProvince() {
-                return province;
-            }
-
-            public void setProvince(String province) {
-                this.province = province;
-            }
-
-            public String getCity() {
-                return city;
-            }
-
-            public void setCity(String city) {
-                this.city = city;
-            }
-
-            public String getDistrict() {
-                return district;
-            }
-
-            public void setDistrict(String district) {
-                this.district = district;
-            }
-
-            public String getMobile() {
-                return mobile;
-            }
-
-            public void setMobile(String mobile) {
-                this.mobile = mobile;
-            }
-
-            public String getZipcode() {
-                return zipcode;
-            }
-
-            public void setZipcode(String zipcode) {
-                this.zipcode = zipcode;
-            }
-
-            public String getIs_default() {
-                return is_default;
-            }
-
-            public void setIs_default(String is_default) {
-                this.is_default = is_default;
-            }
-        }
-
-        public static class GoodsListBean {
-            /**
-             * shop_id : 1
-             * shop_name :
-             * goods : [{"goods_id":"250","goods_name":"休闲男装 2017秋季新款男士大衣 韩版潮翻领中长","goods_img":"/Uploads/Picture/Goods/2017-08-30/59a5ffdd0f6c9.jpg","price":"120.00","weight":"900","is_selected":"1","is_valid":"1","spec":[{"color":"卡其色","size":[{"size_name":"5XL","storage":"999","buy_number":"1","goods_spec_key":"21_28"}]}]},{"goods_id":"254","goods_name":"朵咪家。实拍笑脸印花宽松长袖卫衣","goods_img":"/Uploads/Picture/Goods/2017-08-31/59a7a3942d361.jpg","price":"39.00","weight":"100","is_selected":"1","is_valid":"1","spec":[{"color":"如图","size":[{"size_name":"XL","storage":"111","buy_number":"1","goods_spec_key":"31_14"}]},{"color":"白色","size":[{"size_name":"2XL","storage":"111","buy_number":"4","goods_spec_key":"15_25"}]}]}]
-             * shop_express : 200.00
+             * shop_id : 4
+             * shop_name : 4号店
+             * shop_express_price : 0.00
+             * goods_list : [{"cart_id":"876","user_id":"64","goods_id":"2","goods_name":"阿尔法机器人","buy_number":"1","price":"111.00","weight":"500","goods_img":"/Uploads/Picture/Goods/2018-12-16/5c160d8f51a84.png","goods_spec_key":"1_3","shop_id":"4","shop_name":"4号店","act_id":"0","act_type":"0","spec_name":"尺寸:40 颜色:白"}]
              */
 
             private String shop_id;
             private String shop_name;
-            private String shop_express;
-            private List<GoodsBean> goods;
-            private String speack;
-
-            public String getSpeack() {
-                return speack;
-            }
-
-            public void setSpeack(String speack) {
-                this.speack = speack;
-            }
+            private String shop_express_price;
+            private List<GoodsListBean> goods_list;
 
             public String getShop_id() {
                 return shop_id;
@@ -241,42 +208,70 @@ public class OrderConBean {
                 this.shop_name = shop_name;
             }
 
-            public String getShop_express() {
-                return shop_express;
+            public String getShop_express_price() {
+                return shop_express_price;
             }
 
-            public void setShop_express(String shop_express) {
-                this.shop_express = shop_express;
+            public void setShop_express_price(String shop_express_price) {
+                this.shop_express_price = shop_express_price;
             }
 
-            public List<GoodsBean> getGoods() {
-                return goods;
+            public List<GoodsListBean> getGoods_list() {
+                return goods_list;
             }
 
-            public void setGoods(List<GoodsBean> goods) {
-                this.goods = goods;
+            public void setGoods_list(List<GoodsListBean> goods_list) {
+                this.goods_list = goods_list;
             }
 
-            public static class GoodsBean {
+            public static class GoodsListBean implements Serializable {
                 /**
-                 * goods_id : 250
-                 * goods_name : 休闲男装 2017秋季新款男士大衣 韩版潮翻领中长
-                 * goods_img : /Uploads/Picture/Goods/2017-08-30/59a5ffdd0f6c9.jpg
-                 * price : 120.00
-                 * weight : 900
-                 * is_selected : 1
-                 * is_valid : 1
-                 * spec : [{"color":"卡其色","size":[{"size_name":"5XL","storage":"999","buy_number":"1","goods_spec_key":"21_28"}]}]
+                 * cart_id : 876
+                 * user_id : 64
+                 * goods_id : 2
+                 * goods_name : 阿尔法机器人
+                 * buy_number : 1
+                 * price : 111.00
+                 * weight : 500
+                 * goods_img : /Uploads/Picture/Goods/2018-12-16/5c160d8f51a84.png
+                 * goods_spec_key : 1_3
+                 * shop_id : 4
+                 * shop_name : 4号店
+                 * act_id : 0
+                 * act_type : 0
+                 * spec_name : 尺寸:40 颜色:白
                  */
 
+                private String cart_id;
+                private String user_id;
                 private String goods_id;
                 private String goods_name;
-                private String goods_img;
+                private String buy_number;
                 private String price;
                 private String weight;
-                private String is_selected;
-                private String is_valid;
-                private List<SpecBean> spec;
+                private String goods_img;
+                private String goods_spec_key;
+                private String shop_id;
+                private String shop_name;
+                private String act_id;
+                private String act_type;
+                private String spec_name;
+
+                public String getCart_id() {
+                    return cart_id;
+                }
+
+                public void setCart_id(String cart_id) {
+                    this.cart_id = cart_id;
+                }
+
+                public String getUser_id() {
+                    return user_id;
+                }
+
+                public void setUser_id(String user_id) {
+                    this.user_id = user_id;
+                }
 
                 public String getGoods_id() {
                     return goods_id;
@@ -294,12 +289,12 @@ public class OrderConBean {
                     this.goods_name = goods_name;
                 }
 
-                public String getGoods_img() {
-                    return goods_img;
+                public String getBuy_number() {
+                    return buy_number;
                 }
 
-                public void setGoods_img(String goods_img) {
-                    this.goods_img = goods_img;
+                public void setBuy_number(String buy_number) {
+                    this.buy_number = buy_number;
                 }
 
                 public String getPrice() {
@@ -318,100 +313,60 @@ public class OrderConBean {
                     this.weight = weight;
                 }
 
-                public String getIs_selected() {
-                    return is_selected;
+                public String getGoods_img() {
+                    return goods_img;
                 }
 
-                public void setIs_selected(String is_selected) {
-                    this.is_selected = is_selected;
+                public void setGoods_img(String goods_img) {
+                    this.goods_img = goods_img;
                 }
 
-                public String getIs_valid() {
-                    return is_valid;
+                public String getGoods_spec_key() {
+                    return goods_spec_key;
                 }
 
-                public void setIs_valid(String is_valid) {
-                    this.is_valid = is_valid;
+                public void setGoods_spec_key(String goods_spec_key) {
+                    this.goods_spec_key = goods_spec_key;
                 }
 
-                public List<SpecBean> getSpec() {
-                    return spec;
+                public String getShop_id() {
+                    return shop_id;
                 }
 
-                public void setSpec(List<SpecBean> spec) {
-                    this.spec = spec;
+                public void setShop_id(String shop_id) {
+                    this.shop_id = shop_id;
                 }
 
-                public static class SpecBean {
-                    /**
-                     * color : 卡其色
-                     * size : [{"size_name":"5XL","storage":"999","buy_number":"1","goods_spec_key":"21_28"}]
-                     */
+                public String getShop_name() {
+                    return shop_name;
+                }
 
-                    private String color;
-                    private List<SizeBean> size;
+                public void setShop_name(String shop_name) {
+                    this.shop_name = shop_name;
+                }
 
-                    public String getColor() {
-                        return color;
-                    }
+                public String getAct_id() {
+                    return act_id;
+                }
 
-                    public void setColor(String color) {
-                        this.color = color;
-                    }
+                public void setAct_id(String act_id) {
+                    this.act_id = act_id;
+                }
 
-                    public List<SizeBean> getSize() {
-                        return size;
-                    }
+                public String getAct_type() {
+                    return act_type;
+                }
 
-                    public void setSize(List<SizeBean> size) {
-                        this.size = size;
-                    }
+                public void setAct_type(String act_type) {
+                    this.act_type = act_type;
+                }
 
-                    public static class SizeBean {
-                        /**
-                         * size_name : 5XL
-                         * storage : 999
-                         * buy_number : 1
-                         * goods_spec_key : 21_28
-                         */
+                public String getSpec_name() {
+                    return spec_name;
+                }
 
-                        private String size_name;
-                        private String storage;
-                        private String buy_number;
-                        private String goods_spec_key;
-
-                        public String getSize_name() {
-                            return size_name;
-                        }
-
-                        public void setSize_name(String size_name) {
-                            this.size_name = size_name;
-                        }
-
-                        public String getStorage() {
-                            return storage;
-                        }
-
-                        public void setStorage(String storage) {
-                            this.storage = storage;
-                        }
-
-                        public String getBuy_number() {
-                            return buy_number;
-                        }
-
-                        public void setBuy_number(String buy_number) {
-                            this.buy_number = buy_number;
-                        }
-
-                        public String getGoods_spec_key() {
-                            return goods_spec_key;
-                        }
-
-                        public void setGoods_spec_key(String goods_spec_key) {
-                            this.goods_spec_key = goods_spec_key;
-                        }
-                    }
+                public void setSpec_name(String spec_name) {
+                    this.spec_name = spec_name;
                 }
             }
         }

@@ -14,6 +14,7 @@ import com.lnkj.privateshop.BaseFragment;
 import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.adapter.GoodsListCarAdapter;
 import com.lnkj.privateshop.entity.GoodsCraListBean;
+import com.lnkj.privateshop.entity.OrderConBean;
 import com.lnkj.privateshop.ui.goodscar.ClearingActivity;
 import com.lnkj.privateshop.utils.ToastUtil;
 import com.lnkj.privateshop.view.CenterTiteActionDialog;
@@ -187,7 +188,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
     }
 
     @Override
-    public void getGoodsInfoSucceed() {
+    public void getGoodsInfoSucceed(OrderConBean orderConBean) {
         final StringBuffer sb = new StringBuffer();
         for (int i = 0; i < lists.size(); i++) {
             for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
@@ -200,7 +201,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
             }
         }
         Intent intent = new Intent(getActivity(), ClearingActivity.class);
-        intent.putExtra("goods_ids", sb.toString());
+        intent.putExtra("orderConBean", orderConBean.getData());
         startActivity(intent);
     }
 
@@ -238,6 +239,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
                 }
                 break;
             case tv_add_cart:
+                /*购物车cart_id*/
                 final StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < lists.size(); i++) {
                     for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
@@ -245,7 +247,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
                             if (sb.length() != 0) {
                                 sb.append(",");
                             }
-                            sb.append(lists.get(i).getGoods().get(j).getGoods_id());
+                            sb.append(lists.get(i).getGoods().get(j).getCart_id());
                         }
                     }
                 }

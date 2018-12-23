@@ -4,6 +4,7 @@ package com.lnkj.privateshop.fragment.goodscar;
 import com.lnkj.privateshop.BasePresenter;
 import com.lnkj.privateshop.BaseView;
 import com.lnkj.privateshop.entity.GoodsCraListBean;
+import com.lnkj.privateshop.entity.OrderConBean;
 
 /**
  * Created by WRJ on 2016/8/30.
@@ -17,7 +18,7 @@ public class GoodsCraContract {
         void hideLoading();//隐藏加载框
         void getShopCommentSucceed(GoodsCraListBean beans);
         void deleteGoodsCarSuccreed();
-        void getGoodsInfoSucceed();
+        void getGoodsInfoSucceed(OrderConBean orderConBean);
         void btnClickable(boolean clickable);
 
     }

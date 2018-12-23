@@ -29,26 +29,12 @@ import butterknife.ButterKnife;
 
 public class CarGoodslistAdaptre extends BaseAdapter {
     private Context mContext;
-    List<OrderConBean.DataBean.GoodsListBean.GoodsBean> goodslist;
+    List<OrderConBean.DataBean.ListBean.GoodsListBean> goodslist;
 
     //public int index;
-    public CarGoodslistAdaptre(Context mContext, List<OrderConBean.DataBean.GoodsListBean.GoodsBean> goodslist) {
+    public CarGoodslistAdaptre(Context mContext, List<OrderConBean.DataBean.ListBean.GoodsListBean> goodslist) {
         this.mContext = mContext;
         this.goodslist = goodslist;
-    }
-
-    public void addIntex(int index) {
-//        this.index=index;
-        if (index == 1) {
-            for (int j = 0; j < getCount(); j++) {
-                goodslist.get(j).setIs_selected("1");
-            }
-        } else {
-            for (int j = 0; j < getCount(); j++) {
-                goodslist.get(j).setIs_selected("0");
-            }
-        }
-        notifyDataSetChanged();
     }
 
     @Override
@@ -82,26 +68,6 @@ public class CarGoodslistAdaptre extends BaseAdapter {
                 .error(R.mipmap.bg_img)
                 .placeholder(R.mipmap.bg_img)
                 .into(holder.ivGoodsImg);
-
-
-        if (goodslist.get(i).getIs_selected().equals("1")) {
-            holder.cbCheckGoods.setChecked(true);
-        } else {
-            holder.cbCheckGoods.setChecked(false);
-        }
-        List<OrderConBean.DataBean.GoodsListBean.GoodsBean.SpecBean> spec = goodslist.get(i).getSpec();
-        int w = 0;
-        List<String> strList = new ArrayList<>();
-        for (int j = 0; j < spec.size(); j++) {
-            for (int k = 0; k < spec.get(j).getSize().size(); k++) {
-                w = w + Integer.parseInt(spec.get(j).getSize().get(k).getBuy_number());
-                try {
-                    strList.add(spec.get(j).getColor() + spec.get(j).getSize().get(k).getSize_name() + " x" + spec.get(j).getSize().get(k).getBuy_number());
-
-                } catch (Exception e) {
-                }
-            }
-        }
         holder.tvBtnAlter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,9 +76,6 @@ public class CarGoodslistAdaptre extends BaseAdapter {
                 mContext.startActivity(intent);
             }
         });
-        holder.tvCount.setText("x" + w);
-        GoodsListGridAdapter adapter = new GoodsListGridAdapter(mContext, strList);
-        holder.mGridView.setAdapter(adapter);
         holder.ll_check.setVisibility(View.GONE);
         holder.tvBtnAlter.setVisibility(View.VISIBLE);
         return view;

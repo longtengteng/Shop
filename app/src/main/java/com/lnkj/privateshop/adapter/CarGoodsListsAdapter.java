@@ -23,13 +23,13 @@ import butterknife.ButterKnife;
 
 public class CarGoodsListsAdapter extends BaseAdapter {
     private Context mContext;
-    private List<OrderConBean.DataBean.GoodsListBean> goodslist;
+    private List<OrderConBean.DataBean.ListBean> goodslist;
 
     public CarGoodsListsAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void addData(List<OrderConBean.DataBean.GoodsListBean> goodslist) {
+    public void addData(List<OrderConBean.DataBean.ListBean> goodslist) {
         this.goodslist = goodslist;
         notifyDataSetChanged();
     }
@@ -60,9 +60,9 @@ public class CarGoodsListsAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         holder.tvShopName.setText(goodslist.get(i).getShop_name());
-        holder.tv_price_freight.setText("¥" +goodslist.get(i).getShop_express());
-        holder.tv_speak.setText(goodslist.get(i).getSpeack());
-        final List<OrderConBean.DataBean.GoodsListBean.GoodsBean> goodslists = goodslist.get(i).getGoods();
+        holder.tv_price_freight.setText("¥" +goodslist.get(i).getShop_express_price());
+        holder.tv_speak.setText(goodslist.get(i).getShop_name());
+        final List<OrderConBean.DataBean.ListBean.GoodsListBean> goodslists = goodslist.get(i).getGoods_list();
         final CarGoodslistAdaptre adapter = new CarGoodslistAdaptre(mContext, goodslists);
         holder.mListView.setAdapter(adapter);
          holder.llChb.setVisibility(View.GONE);

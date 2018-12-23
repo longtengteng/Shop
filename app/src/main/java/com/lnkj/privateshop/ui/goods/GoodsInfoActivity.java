@@ -36,7 +36,6 @@ import com.lnkj.privateshop.entity.GoodsAttrBean;
 import com.lnkj.privateshop.entity.GoodsBean;
 import com.lnkj.privateshop.entity.ShopEmchatBean;
 import com.lnkj.privateshop.ui.MainActivity;
-import com.lnkj.privateshop.ui.addshoppingcart.AddShopPingCarActivity;
 import com.lnkj.privateshop.ui.ease.EaseConversationListActivity;
 import com.lnkj.privateshop.ui.goods.spec.SpecActivity;
 import com.lnkj.privateshop.ui.login.LoginActivity;
@@ -171,7 +170,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
         is_bogin = PreferencesUtils.getBoolean(this, "is_bogin");
         presenter.setToken(token);
         if (act_id != null) {
-            presenter.getGoodsDetailFromLimit(goods_id,act_id);
+            presenter.getGoodsDetailFromLimit(goods_id, act_id);
         } else {
             presenter.getGoodsInfo(goods_id);
         }

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.alibaba.fastjson.JSON;
 import com.lnkj.privateshop.entity.GoodsCraListBean;
+import com.lnkj.privateshop.entity.OrderConBean;
 import com.lnkj.privateshop.utils.LLog;
 import com.lnkj.privateshop.utils.ToastUtil;
 
@@ -90,11 +91,11 @@ public class GoodsCarPresenter implements GoodsCraContract.Presenter {
     }
 
     @Override
-    public void deleteGoodsCar(String goods_id) {
+    public void deleteGoodsCar(String cart_id) {
         mView.showLoading();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
-        map.put("goods_id", goods_id);
+        map.put("cart_id", cart_id);
         meApi.deleteCarGoods(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -127,12 +128,14 @@ public class GoodsCarPresenter implements GoodsCraContract.Presenter {
     }
 
     @Override
-    public void getGoodsInfo(String goodsid) {
+    public void getGoodsInfo(String cart_id) {
         mView.showLoading();
         mView.btnClickable(false);
         Map<String, Object> map = new HashMap<String, Object>();
+
         map.put("token", token);
-        map.put("goods_id", goodsid);
+        map.put("cart_id", cart_id);
+        map.put("is_from_cart", "1");
         meApi.orderConfirm(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -146,7 +149,8 @@ public class GoodsCarPresenter implements GoodsCraContract.Presenter {
                             int status = object.getInt("status");
                             String info = object.getString("info");
                             if (status == 1) {
-                                mView.getGoodsInfoSucceed();
+                                OrderConBean beass = JSON.parseObject(data, OrderConBean.class);
+                                mView.getGoodsInfoSucceed(beass);
                             } else {
                                 ToastUtil.showToast(info);
                             }

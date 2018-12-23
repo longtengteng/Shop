@@ -25,6 +25,7 @@ import butterknife.OnClick;
 
 import static com.lnkj.privateshop.R.id.tv_price_total;
 
+/*填写订单*/
 public class ClearingActivity extends BaseActivity implements ClearingContract.View {
     ClearingPresenter mPresenter = new ClearingPresenter(this);
     @Bind(R.id.img_back)
@@ -39,8 +40,6 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
     TextView tvAddress;
     @Bind(R.id.mListView)
     MyListView mListView;
-
-
     @Bind(R.id.tv_goods_count)
     TextView tvGoodsCount;
     @Bind(R.id.tv_price)
@@ -54,33 +53,61 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
     @Bind(R.id.tv_add_order)
     TextView tvAddOrder;
     CarGoodsListsAdapter adapter;
-    private String goods_ids;
     private OrderConBean.DataBean bean;
-    private List<OrderConBean.DataBean.GoodsListBean> goodslist;
+    private List<OrderConBean.DataBean.ListBean> goodslist;
 
     @Override
     public int initContentView() {
         return R.layout.activity_clearing;
     }
+
     @Override
     public void initInjector() {
         mPresenter.setToken(token);
         ButterKnife.bind(this);
         tvTitle.setText("填写订单");
-        goods_ids = getIntent().getStringExtra("goods_ids");
-
+        bean = (OrderConBean.DataBean) getIntent().getSerializableExtra("orderConBean");
         adapter = new CarGoodsListsAdapter(this);
         mListView.setAdapter(adapter);
-        mPresenter.getGoodsInfo(goods_ids);
+
+        try {
+            tvGoodsCount.setText("共" + bean.getOrder_buy_counts() + "件");
+            tvPrice.setText("¥" + bean.getOrder_price());
+            tvPriceTotal.setText("¥" + bean.getFinal_price());
+            tvPriceFreightTo.setText("¥" + bean.getOrder_express_price());
+
+            address_id = bean.getAddress_id();
+            if (TextUtils.isEmpty(address_id)) {
+                tvName.setText("未设置收货地址");
+            } else {
+                tvName.setText(bean.getConsignee());
+            }
+            tvAddress.setText(bean.getProvince() + bean.getCity() + bean.getDistrict());
+
+
+            tvPhone.setText(bean.getMobile());
+            goodslist = bean.getList();
+
+
+            if (goodslist != null) {
+                adapter.addData(goodslist);
+            }
+
+        } catch (Exception e) {
+        }
+
+
     }
-int pos;
+
+    int pos;
+
     @Override
     public void initUiAndListener() {
         adapter.setAddressClickListener(new CarGoodsListsAdapter.AddressClickListener() {
             @Override
             public void onEditCilck(int position) {
                 pos = position;
-                Intent  intent = new Intent(ClearingActivity.this, SpeakActivity.class);
+                Intent intent = new Intent(ClearingActivity.this, SpeakActivity.class);
                 startActivityForResult(intent, 20);
             }
         });
@@ -115,32 +142,6 @@ int pos;
     @Override
     public void getGoodsInfoSucceed(OrderConBean beass) {
         bean = beass.getData();
-        try {
-        tvGoodsCount.setText("共" + bean.getTotal_goods_num() + "件");
-        tvPrice.setText("¥" + bean.getTotal_goods_amount());
-        tvPriceTotal.setText("¥" + bean.getTotal_amount());
-        tvPriceFreightTo.setText("¥" + bean.getTotal_express());
-        OrderConBean.DataBean.AddrInfoBean addinfo = bean.getAddr_info();
-        if (addinfo != null) {
-             address_id=bean.getAddr_info().getAddress_id();
-            if (TextUtils.isEmpty(addinfo.getConsignee())){
-                tvName.setText("未设置收货地址");
-            }else {
-
-            tvName.setText(addinfo.getConsignee());
-            }
-            tvAddress.setText(addinfo.getAddress());
-            tvPhone.setText(addinfo.getMobile());
-        }
-        goodslist = bean.getGoods_list();
-
-
-        if (goodslist != null) {
-            adapter.addData(goodslist);
-        }
-
-        }catch (Exception e){}
-
     }
 
     @Override
@@ -152,10 +153,10 @@ int pos;
     public void addPayOredeSuccreed(String order_sn) {
         Intent intent = new Intent(this, GoPayOrderActivity.class);
         intent.putExtra("order_sn", order_sn);
-        intent.putExtra("total_goods_num", bean.getTotal_goods_num()+"");
-        intent.putExtra("express", bean.getTotal_express());
-        intent.putExtra("total_goods_amount", bean.getTotal_goods_amount());
-        intent.putExtra("total_amount", bean.getTotal_amount());
+        intent.putExtra("total_goods_num", bean.getOrder_buy_counts() + "");
+        intent.putExtra("express", bean.getOrder_express_price());
+        intent.putExtra("total_goods_amount", bean.getOrder_price());
+        intent.putExtra("total_amount", bean.getFinal_price());
 
         finish();
         startActivityForResult(intent, 20);
@@ -185,7 +186,7 @@ int pos;
                             sb2.append(",");
                         }
                         sb.append(goodslist.get(i).getShop_id());
-                        sb2.append(goodslist.get(i).getSpeack());
+                        sb2.append(goodslist.get(i).getShop_name());
                     }
                 }
                 try {
@@ -196,52 +197,53 @@ int pos;
                 break;
             case R.id.ll_adress:
                 intent = new Intent(this, AddressActivity.class);
-                intent.putExtra("addorder","address");
+                intent.putExtra("addorder", "address");
                 startActivityForResult(intent, 20);
                 break;
 
         }
     }
 
-    String speak="";
+    String speak = "";
     String address_id;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 20) {
             if (resultCode == 30) {
-                address_id =  data.getStringExtra("id");
-                if (address_id!=null){
-                    if (!TextUtils.isEmpty(address_id)){
+                address_id = data.getStringExtra("id");
+                if (address_id != null) {
+                    if (!TextUtils.isEmpty(address_id)) {
 //                tvName.setText(data.getStringExtra("name"));
 //                tvAddress.setText(data.getStringExtra("Address"));
 //                tvPhone.setText(data.getStringExtra("Mobile"));
-                StringBuffer sb = new StringBuffer();
-                if (goodslist != null) {
-                    for (int i = 0; i < goodslist.size(); i++) {
-                        for (int j = 0; j < goodslist.get(i).getGoods().size(); j++) {
+                        StringBuffer sb = new StringBuffer();
+                        if (goodslist != null) {
+                            for (int i = 0; i < goodslist.size(); i++) {
+                                for (int j = 0; j < goodslist.get(i).getGoods_list().size(); j++) {
 
-                        if (sb.length() != 0) {
-                            sb.append(",");
+                                    if (sb.length() != 0) {
+                                        sb.append(",");
+                                    }
+                                    sb.append(goodslist.get(i).getGoods_list().get(j).getGoods_id());
+                                }
+                            }
                         }
-                        sb.append(goodslist.get(i).getGoods().get(j).getGoods_id());
-                        }
-                    }
-                }
-                 mPresenter.getAddressPrice(sb.toString(),address_id);
+                        mPresenter.getAddressPrice(sb.toString(), address_id);
                     }
                 }
             }
             if (resultCode == 40) {
-                    if (data != null) {
-                        speak = data.getStringExtra("speak");
-                        if (!TextUtils.isEmpty(speak)){
-                            goodslist.get(pos).setSpeack(speak);
-                        }
-                        adapter.notifyDataSetChanged();
+                if (data != null) {
+                    speak = data.getStringExtra("speak");
+                    if (!TextUtils.isEmpty(speak)) {
+                        goodslist.get(pos).setShop_name(speak);
                     }
-            }else if (resultCode!=30){
-                mPresenter.getGoodsInfo(goods_ids);
+                    adapter.notifyDataSetChanged();
+                }
+            } else if (resultCode != 30) {
+                // mPresenter.getGoodsInfo(goods_ids);
             }
         }
     }

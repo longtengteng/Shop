@@ -733,12 +733,12 @@ public interface MeService {
     @POST("index.php/Api/CartApi/cartConfirm ")
     Observable<String> cartConfirm(@FieldMap Map<String, Object> map);
 
-    //确认订单
+    //确认订单Api/OrderApi/addToOrder
     @FormUrlEncoded
     @POST("index.php/Api/OrderApi/addToOrder")
     Observable<String> createOrder(@FieldMap Map<String, Object> map);
 
-    //删除购物车商品
+    //删除购物车商品Api/CartApi/delCartGoods
     @FormUrlEncoded
     @POST("index.php/Api/CartApi/delCartGoods")
     Observable<String> deleteCarGoods(@FieldMap Map<String, Object> map);
