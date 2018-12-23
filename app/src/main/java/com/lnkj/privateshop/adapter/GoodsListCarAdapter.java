@@ -26,14 +26,14 @@ public class GoodsListCarAdapter extends RecyclerView.Adapter<GoodsListCarAdapte
 
 
     private Context mContext;
-    private List<GoodsCraListBean.DataBean> beas;
+    private GoodsCraListBean.DataBean.ListBean beas;
     private int index;
 
     public GoodsListCarAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void addAllData(List<GoodsCraListBean.DataBean> beas) {
+    public void addAllData(GoodsCraListBean.DataBean.ListBean beas) {
         this.beas = beas;
 //        this.index = index;
 
@@ -44,11 +44,11 @@ public class GoodsListCarAdapter extends RecyclerView.Adapter<GoodsListCarAdapte
         this.index = index;
         if (index == 1) {
             for (int j = 0; j < getItemCount(); j++) {
-                beas.get(j).setIscheck(true);
+                beas.getGoods().get(j).setIs_selected("1");
             }
         } else {
             for (int j = 0; j < getItemCount(); j++) {
-                beas.get(j).setIscheck(false);
+                beas.getGoods().get(j).setIs_selected("0");
             }
         }
         notifyDataSetChanged();
@@ -68,8 +68,8 @@ public class GoodsListCarAdapter extends RecyclerView.Adapter<GoodsListCarAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.itemView.setTag(position);
-        holder.tvShopName.setText(beas.get(position).getShop_name());
-        final List<GoodsCraListBean.DataBean.GoodsBean> goodslist = beas.get(position).getGoods();
+        holder.tvShopName.setText(beas.getGoods().get(position).getShop_name());
+        List<GoodsCraListBean.DataBean.ListBean.GoodsBean> goodslist = beas.getGoods();
         final GoodslistAdaptre adapter = new GoodslistAdaptre(mContext, goodslist);
         holder.mListView.setAdapter(adapter);
 
@@ -87,7 +87,7 @@ public class GoodsListCarAdapter extends RecyclerView.Adapter<GoodsListCarAdapte
             }
         });
 
-        if (beas.get(position).getIscheck()) {
+        if (beas.getGoods().get(position).getIs_selected().equals("1")) {
             holder.cbCheckShop.setChecked(true);
             adapter.addIntex(1);
         } else {
@@ -98,11 +98,11 @@ public class GoodsListCarAdapter extends RecyclerView.Adapter<GoodsListCarAdapte
         holder.ll_chb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (beas.get(position).getIscheck()) {
-                    beas.get(position).setIscheck(false);
+                if (beas.getGoods().get(position).getIs_selected().equals("1")) {
+                    beas.getGoods().get(position).setIs_selected("0");
                     adapter.addIntex(0);
                 } else {
-                    beas.get(position).setIscheck(true);
+                    beas.getGoods().get(position).setIs_selected("1");
                     adapter.addIntex(1);
                 }
                 notifyDataSetChanged();
@@ -112,7 +112,7 @@ public class GoodsListCarAdapter extends RecyclerView.Adapter<GoodsListCarAdapte
 
     @Override
     public int getItemCount() {
-        return beas == null ? 0 : beas.size();
+        return beas == null ? 0 : beas.getGoods().size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -133,10 +133,12 @@ public class GoodsListCarAdapter extends RecyclerView.Adapter<GoodsListCarAdapte
     }
 
     public onCheckListener onCheck;
-    public void setCheckListener(onCheckListener onCheck){
-        this.onCheck=onCheck;
+
+    public void setCheckListener(onCheckListener onCheck) {
+        this.onCheck = onCheck;
     }
-    public interface onCheckListener{
+
+    public interface onCheckListener {
         void check();
     }
 

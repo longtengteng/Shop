@@ -422,6 +422,10 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
 
             case tv_add_cart:
                 if (is_bogin) {
+                    if (TextUtils.isEmpty(spec_content3)) {
+                        ToastUtil.showToast("请选择规格");
+                        return;
+                    }
                     presenter.addCart(spec_content3, goods_id, "1", "", "0");
                 } else {
                     ToastUtil.showToast("您还没有登录，请去登录");
@@ -463,8 +467,8 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 69 && resultCode == RESULT_OK) {
-            spec_content3 = getIntent().getStringExtra("spec_content3");
-            spec_name = getIntent().getStringExtra("spec_name");
+            spec_content3 =data.getStringExtra("spec_content3");
+            spec_name = data.getStringExtra("spec_name");
             tv_spec.setText(spec_name);
         }
     }

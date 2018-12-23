@@ -32,9 +32,9 @@ import butterknife.ButterKnife;
 
 public class GoodslistAdaptre extends BaseAdapter {
     private Context mContext;
-    List<GoodsCraListBean.DataBean.GoodsBean> goodslist;
+    List<GoodsCraListBean.DataBean.ListBean.GoodsBean> goodslist;
 //public int index;
-    public GoodslistAdaptre(Context mContext, List<GoodsCraListBean.DataBean.GoodsBean> goodslist) {
+    public GoodslistAdaptre(Context mContext, List<GoodsCraListBean.DataBean.ListBean.GoodsBean> goodslist) {
         this.mContext = mContext;
         this.goodslist = goodslist;
     }
@@ -93,25 +93,6 @@ public class GoodslistAdaptre extends BaseAdapter {
         } else {
             holder.cbCheckGoods.setChecked(false);
         }
-        List<GoodsCraListBean.DataBean.GoodsBean.SpecBean>  spec =   goodslist.get(i).getSpec();
-        int w = 0;
-        List<String> strList = new ArrayList<>();
-        for (int j = 0; j < spec.size(); j++) {
-            for (int k = 0; k < spec.get(j).getSize().size(); k++) {
-                w = w+Integer.parseInt( spec.get(j).getSize().get(k).getBuy_number());
-                try {
-                strList.add(spec.get(j).getColor()+spec.get(j).getSize().get(k).getSize_name()+" x"+spec.get(j).getSize().get(k).getBuy_number());
-
-                }catch (Exception e){}
-            }
-        }
-        holder.tvCount.setText("x"+w);
-
-
-        GoodsListGridAdapter adapter = new GoodsListGridAdapter(mContext,strList);
-        holder.mGridView.setAdapter(adapter);
-
-
           holder.ll_check.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {

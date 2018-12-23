@@ -30,7 +30,7 @@ import butterknife.OnClick;
 import static com.lnkj.privateshop.R.id.tv_add_cart;
 
 /**
- * Created by Administrator on 2017/7/28 0028.
+ * 购物车
  */
 
 public class GoodsFragment extends BaseFragment implements GoodsCraContract.View {
@@ -132,13 +132,13 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
 
     }
 
-    List<GoodsCraListBean.DataBean> lists = new ArrayList<>();
+    List<GoodsCraListBean.DataBean.ListBean> lists = new ArrayList<>();
     Double price;
 
     @Override
     public void getShopCommentSucceed(GoodsCraListBean beans) {
         lists.clear();
-        lists.addAll(beans.getData());
+        lists.addAll(beans.getData().getList());
         if (lists.size() == 0) {
             layout_no_datas.setVisibility(View.VISIBLE);
             tvRightBlue.setVisibility(View.GONE);
@@ -147,7 +147,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
             tvRightBlue.setVisibility(View.VISIBLE);
             layout_no_datas.setVisibility(View.GONE);
             pullLoadMoreRecyclerView.setVisibility(View.VISIBLE);
-            adapter.addAllData(lists);
+            adapter.addAllData((GoodsCraListBean.DataBean.ListBean) lists);
             adapter.addIndex(1);
             for (int i = 0; i < lists.size(); i++) {
                 for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
@@ -261,7 +261,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
                         return;
                     }
                     CenterTiteActionDialog dialog = new CenterTiteActionDialog(getActivity());
-                    dialog.setActionString("确定从进货车中删除所有选中的商品吗？", "确定", "取消", "删除商品");
+                    dialog.setActionString("确定从购物车中删除所有选中的商品吗？", "确定", "取消", "删除商品");
                     dialog.setActionListener(new CenterTiteActionDialog.ActionLisenter() {
                         @Override
                         public void sureAction() {
@@ -299,7 +299,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
                 for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
                     if (lists.get(i).getGoods().get(j).getIs_selected().equals("1")) {
                         price = price + Double.parseDouble(lists.get(i).getGoods().get(j).getPrice()) *
-                                Integer.parseInt(lists.get(i).getGoods().get(j).getBuy_total_number());
+                                Integer.parseInt(lists.get(i).getGoods().get(j).getBuy_number());
                     }
                 }
             }

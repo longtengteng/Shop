@@ -32,7 +32,7 @@
     <style name="custom_dialog" parent="@style/Theme.AppCompat.Dialog">
         <item name="android:windowFrame">@null</item><!--边框-->
         <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
-        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowIsTranslucent">true</item><!--半透明-->
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:scrollHorizontally">true</item>

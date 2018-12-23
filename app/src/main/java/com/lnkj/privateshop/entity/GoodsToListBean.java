@@ -4,7 +4,7 @@ package com.lnkj.privateshop.entity;
  * Created by Administrator on 2017/9/4 0004.
  */
 
-public class GoodsToListBean  {
+public class GoodsToListBean {
     private String goods_id;
     private String goods_name;
     private String goods_img;
@@ -15,7 +15,7 @@ public class GoodsToListBean  {
     private String link_url;
     private String content;
     private String position_id;
-    private int type ;
+    private int type;
     private String typet;
     private String item_id;
 

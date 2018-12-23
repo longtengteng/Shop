@@ -130,7 +130,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
                 spec_content3 = spec_content2.replace(" ", "");
 
                 String spec_name = spec_name_list + "";
-                String spec_name1 = spec_content.substring(1, spec_name.length() - 1);
+                String spec_name1 = spec_name.substring(1, spec_name.length() - 1);
 
                 if (spec_name1.length() == 3) {
                     spec_name2 = spec_name1.replace(",", "");
@@ -147,7 +147,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
 
     @Override
     public void onBackPressed() {
-        Intent intent = getIntent();
+        Intent intent = new Intent();
         intent.putExtra("spec_content3", spec_content3);
         intent.putExtra("spec_name", spec_name2);
         setResult(RESULT_OK, intent);
@@ -158,8 +158,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_finish:
-
-                Intent intent = getIntent();
+                Intent intent = new Intent();
                 intent.putExtra("spec_content3", spec_content3);
                 intent.putExtra("spec_name", spec_name2);
                 setResult(RESULT_OK, intent);
