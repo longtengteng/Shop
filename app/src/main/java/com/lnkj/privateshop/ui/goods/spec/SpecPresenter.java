@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.alibaba.fastjson.JSON;
 import com.lnkj.privateshop.entity.GoodsBean;
+import com.lnkj.privateshop.entity.OrderConBean;
 import com.lnkj.privateshop.ui.goods.GoodsInfoContract;
 import com.lnkj.privateshop.utils.LLog;
 import com.lnkj.privateshop.utils.ToastUtil;
@@ -136,37 +137,33 @@ public class SpecPresenter implements SpecContract.Presenter {
     }
 
     @Override
-    public void cartConfirm(String is_from_cart, String address_id, String goods_id, String buy_number, String goods_spec_key, String cart_id) {
+    public void cartConfirm(String goods_id,String buy_number,String goods_spec_key) {
         mView.showLoading();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
-        map.put("is_from_cart", is_from_cart);
-        map.put("address_id", address_id);
+        map.put("is_from_cart", "0");
         map.put("goods_id", goods_id);
         map.put("buy_number", buy_number);
         map.put("goods_spec_key", goods_spec_key);
-        map.put("cart_id", cart_id);
-        meApi.getcartConfirm(map)
+        meApi.orderConfirm(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String data) {
                         mView.hideLoading();
+                        mView.btnClickable(true);
                         LLog.d("数据111", data);
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
                             String info = object.getString("info");
                             if (status == 1) {
-                                BugNowBean beass = JSON.parseObject(data, BugNowBean.class);
-                                mView.cartConfirm(beass);
+                                OrderConBean beass = JSON.parseObject(data, OrderConBean.class);
+                                mView.getGoodsInfoSucceed(beass);
                             } else {
                                 ToastUtil.showToast(info);
-                                mView.finsh();
                             }
                         } catch (JSONException e) {
-                            ToastUtil.showToast("数据异常");
-                            mView.finsh();
                             e.printStackTrace();
                         }
 
@@ -176,8 +173,7 @@ public class SpecPresenter implements SpecContract.Presenter {
                     public void call(Throwable throwable) {
                         throwable.printStackTrace();
                         mView.hideLoading();
-                        ToastUtil.showToast("数据异常");
-                        mView.finsh();
+                        mView.btnClickable(true);
                         LLog.d("数据错误", throwable.toString() + "");
                     }
                 });

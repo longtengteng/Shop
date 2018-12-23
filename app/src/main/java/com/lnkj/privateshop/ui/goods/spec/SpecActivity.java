@@ -17,8 +17,10 @@ import com.lnkj.privateshop.BaseActivity;
 import com.lnkj.privateshop.Constants;
 import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.entity.GoodsBean;
+import com.lnkj.privateshop.entity.OrderConBean;
 import com.lnkj.privateshop.ui.goods.AttrAdapter;
 import com.lnkj.privateshop.ui.goods.GoodsInfoPresenter;
+import com.lnkj.privateshop.ui.goodscar.ClearingActivity;
 import com.lnkj.privateshop.utils.ToastUtil;
 import com.lzy.imagepicker.loader.ImageLoader;
 
@@ -178,7 +180,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
                 presenter.addCart(spec_content3, goods_id, tvItemNumber.getText().toString().trim(), "", "0");
                 break;
             case R.id.tv_buynow:
-
+                presenter.cartConfirm(goods_id, tvItemNumber.getText().toString().trim(), spec_content3);
                 break;
         }
     }
@@ -229,5 +231,17 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
     @Override
     public void cartConfirm(BugNowBean bugNowBean) {
 
+    }
+
+    @Override
+    public void getGoodsInfoSucceed(OrderConBean orderConBean) {
+        Intent intent = new Intent(this, ClearingActivity.class);
+        intent.putExtra("orderConBean", orderConBean.getData());
+        startActivity(intent);
+    }
+
+    @Override
+    public void btnClickable(boolean clickable) {
+        tvBuynow.setClickable(clickable);
     }
 }

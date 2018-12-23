@@ -3,6 +3,7 @@ package com.lnkj.privateshop.ui.goods.spec;
 import com.lnkj.privateshop.BasePresenter;
 import com.lnkj.privateshop.BaseView;
 import com.lnkj.privateshop.entity.GoodsBean;
+import com.lnkj.privateshop.entity.OrderConBean;
 import com.lnkj.privateshop.entity.ShopEmchatBean;
 import com.lnkj.privateshop.ui.goods.GoodsInfoContract;
 
@@ -22,6 +23,9 @@ public class SpecContract {
         void addCart();
 
         void cartConfirm(BugNowBean bugNowBean);
+        void getGoodsInfoSucceed(OrderConBean orderConBean);
+        void btnClickable(boolean clickable);
+
     }
 
 
@@ -34,6 +38,6 @@ public class SpecContract {
 
         void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type);
 
-        void cartConfirm(String is_from_cart, String address_id, String goods_id, String buy_number, String goods_spec_key, String cart_id);
+        void cartConfirm(String goods_id,String buy_number,String goods_spec_key);
     }
 }
