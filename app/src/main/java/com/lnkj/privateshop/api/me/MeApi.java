@@ -390,7 +390,10 @@ public class MeApi {
     public Observable<String> getGoodsInfo(Map<String, Object> map) {
         return meService.getGoodsInfo(map).subscribeOn(Schedulers.io());
     }
-
+    // 获取限时特惠商品详情
+    public Observable<String> getGoodsDetailFromLimit(Map<String, Object> map) {
+        return meService.getGoodsDetailFromLimit(map).subscribeOn(Schedulers.io());
+    }
     // 获取商品详情--规格--根据参数获取信息
     public Observable<String> getPriceAndStoreBySpce(Map<String, Object> map) {
         return meService.getPriceAndStoreBySpce(map).subscribeOn(Schedulers.io());

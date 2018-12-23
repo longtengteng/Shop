@@ -80,9 +80,10 @@ public class LimitSaleActivity extends BaseActivity implements PullLoadMoreRecyc
             @Override
             public void oncollectShop(int position) {
                 Intent intent = new Intent(LimitSaleActivity.this, GoodsInfoActivity.class);
+                intent.putExtra("act_id", lists.get(position).getAct_id());
                 intent.putExtra("goods_id", lists.get(position).getGoods_id());
                 startActivity(intent);
-                ToastUtil.showToast("haha" + position);
+                // ToastUtil.showToast("haha" + position);
             }
         });
 

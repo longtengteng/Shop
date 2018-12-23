@@ -170,7 +170,12 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
         ivMenu = (ImageView) findViewById(R.id.img_menu);
         is_bogin = PreferencesUtils.getBoolean(this, "is_bogin");
         presenter.setToken(token);
-        presenter.getGoodsInfo(goods_id);
+        if (act_id != null) {
+            presenter.getGoodsDetailFromLimit(goods_id,act_id);
+        } else {
+            presenter.getGoodsInfo(goods_id);
+        }
+
 //        presenter.getShopEmchat(goods_id + "");
         rl_bar.setAlpha(0);
         mScrollView.setOnTranslucent(new TranslucentScrollView.TranslucentListener() {
@@ -540,6 +545,11 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
 
     @Override
     public void addCart() {
+
+    }
+
+    @Override
+    public void getGoodsDetailFromLimitSucceed(GoodsBean beass) {
 
     }
 }

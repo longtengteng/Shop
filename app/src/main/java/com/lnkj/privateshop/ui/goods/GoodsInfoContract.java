@@ -28,6 +28,9 @@ public class GoodsInfoContract {
         void getShopEmchat(ShopEmchatBean bean);
 
         void addCart();//加入购物车
+
+        void getGoodsDetailFromLimitSucceed(GoodsBean beass);
+
     }
 
 
@@ -39,6 +42,8 @@ public class GoodsInfoContract {
         void setToken(String token);
 
         void getGoodsInfo(String goodsid);
+
+        void getGoodsDetailFromLimit(String goods_id,String act_id);
 
         void CollectGoods(String goods_id);
 

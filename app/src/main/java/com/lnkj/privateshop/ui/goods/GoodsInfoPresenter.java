@@ -80,8 +80,52 @@ public class GoodsInfoPresenter implements GoodsInfoContract.Presenter {
                             if (status == 1) {
                                 GoodsBean beass = JSON.parseObject(data, GoodsBean.class);
                                 mView.getGoodsInfoSucceed(beass);
-                            }else {
-                            ToastUtil.showToast(info);
+                            } else {
+                                ToastUtil.showToast(info);
+                                mView.finsh();
+                            }
+                        } catch (JSONException e) {
+                            ToastUtil.showToast("数据异常");
+                            mView.finsh();
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                        mView.hideLoading();
+                        ToastUtil.showToast("数据异常");
+                        mView.finsh();
+                        LLog.d("数据错误", throwable.toString() + "");
+                    }
+                });
+    }
+
+    @Override
+    public void getGoodsDetailFromLimit(String goods_id, String act_id) {
+        mView.showLoading();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("goods_id", goods_id);
+        map.put("act_id", act_id);
+        meApi.getGoodsDetailFromLimit(map)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String data) {
+                        mView.hideLoading();
+                        LLog.d("数据111", data);
+                        try {
+                            JSONObject object = new JSONObject(data);
+                            int status = object.getInt("status");
+                            String info = object.getString("info");
+                            if (status == 1) {
+                                GoodsBean beass = JSON.parseObject(data, GoodsBean.class);
+                                mView.getGoodsInfoSucceed(beass);
+                            } else {
+                                ToastUtil.showToast(info);
                                 mView.finsh();
                             }
                         } catch (JSONException e) {

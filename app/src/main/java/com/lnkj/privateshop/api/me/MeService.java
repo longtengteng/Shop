@@ -468,6 +468,12 @@ public interface MeService {
     @POST("index.php/Api/IndexApi/getGoodsDetail")
     Observable<String> getGoodsInfo(@FieldMap Map<String, Object> map);   //商品详情
 
+    //限时特惠进入的商品详情
+    @FormUrlEncoded
+    @POST("index.php/Api/IndexUserApi/goodsDetailFromLimit")
+    Observable<String> getGoodsDetailFromLimit(@FieldMap Map<String, Object> map);
+
+
     //商品详情
     @FormUrlEncoded
     @POST("index.php/Api/ShopApi/getShopEmchat")
