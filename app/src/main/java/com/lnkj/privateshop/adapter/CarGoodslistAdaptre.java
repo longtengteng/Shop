@@ -30,24 +30,27 @@ import butterknife.ButterKnife;
 public class CarGoodslistAdaptre extends BaseAdapter {
     private Context mContext;
     List<OrderConBean.DataBean.GoodsListBean.GoodsBean> goodslist;
-//public int index;
+
+    //public int index;
     public CarGoodslistAdaptre(Context mContext, List<OrderConBean.DataBean.GoodsListBean.GoodsBean> goodslist) {
         this.mContext = mContext;
         this.goodslist = goodslist;
     }
-    public void addIntex(int index){
+
+    public void addIntex(int index) {
 //        this.index=index;
-        if (index==1){
+        if (index == 1) {
             for (int j = 0; j < getCount(); j++) {
                 goodslist.get(j).setIs_selected("1");
             }
-        }else {
+        } else {
             for (int j = 0; j < getCount(); j++) {
                 goodslist.get(j).setIs_selected("0");
             }
         }
         notifyDataSetChanged();
     }
+
     @Override
     public int getCount() {
         return goodslist == null ? 0 : goodslist.size();
@@ -86,28 +89,29 @@ public class CarGoodslistAdaptre extends BaseAdapter {
         } else {
             holder.cbCheckGoods.setChecked(false);
         }
-        List<OrderConBean.DataBean.GoodsListBean.GoodsBean.SpecBean>  spec =   goodslist.get(i).getSpec();
+        List<OrderConBean.DataBean.GoodsListBean.GoodsBean.SpecBean> spec = goodslist.get(i).getSpec();
         int w = 0;
         List<String> strList = new ArrayList<>();
         for (int j = 0; j < spec.size(); j++) {
             for (int k = 0; k < spec.get(j).getSize().size(); k++) {
-                w = w+Integer.parseInt( spec.get(j).getSize().get(k).getBuy_number());
+                w = w + Integer.parseInt(spec.get(j).getSize().get(k).getBuy_number());
                 try {
-                strList.add(spec.get(j).getColor()+spec.get(j).getSize().get(k).getSize_name()+" x"+spec.get(j).getSize().get(k).getBuy_number());
+                    strList.add(spec.get(j).getColor() + spec.get(j).getSize().get(k).getSize_name() + " x" + spec.get(j).getSize().get(k).getBuy_number());
 
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
             }
         }
         holder.tvBtnAlter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, AlterGoodsCarActivity.class);
-                intent.putExtra("goods_id",goodslist.get(i).getGoods_id());
+                intent.putExtra("goods_id", goodslist.get(i).getGoods_id());
                 mContext.startActivity(intent);
             }
         });
-        holder.tvCount.setText("x"+w);
-        GoodsListGridAdapter adapter = new GoodsListGridAdapter(mContext,strList);
+        holder.tvCount.setText("x" + w);
+        GoodsListGridAdapter adapter = new GoodsListGridAdapter(mContext, strList);
         holder.mGridView.setAdapter(adapter);
         holder.ll_check.setVisibility(View.GONE);
         holder.tvBtnAlter.setVisibility(View.VISIBLE);
@@ -131,11 +135,11 @@ public class CarGoodslistAdaptre extends BaseAdapter {
         MyGridView mGridView;
         @Bind(R.id.ll_check)
         LinearLayout ll_check;
+
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
     }
-
 
 
 }

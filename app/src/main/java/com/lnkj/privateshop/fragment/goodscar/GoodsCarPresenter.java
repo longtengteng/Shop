@@ -24,9 +24,10 @@ import static com.lnkj.privateshop.utils.HttpUtil.meApi;
  */
 
 public class GoodsCarPresenter implements GoodsCraContract.Presenter {
-   private  GoodsCraContract.View mView ;
+    private GoodsCraContract.View mView;
     private Context mContext;
- private String token;
+    private String token;
+
     public GoodsCarPresenter(GoodsCraContract.View mView, Context mContext) {
         this.mView = mView;
         this.mContext = mContext;
@@ -48,17 +49,16 @@ public class GoodsCarPresenter implements GoodsCraContract.Presenter {
     }
 
 
-
- @Override
- public void setToken(String token) {
-  this.token = token;
- }
+    @Override
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     @Override
     public void getGoodsCar() {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
         meApi.addGoodsCar(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -69,8 +69,8 @@ public class GoodsCarPresenter implements GoodsCraContract.Presenter {
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            if (status==1){
-                                GoodsCraListBean beass = JSON.parseObject(data,GoodsCraListBean.class);
+                            if (status == 1) {
+                                GoodsCraListBean beass = JSON.parseObject(data, GoodsCraListBean.class);
                                 mView.getShopCommentSucceed(beass);
                             }
                         } catch (JSONException e) {
@@ -92,9 +92,9 @@ public class GoodsCarPresenter implements GoodsCraContract.Presenter {
     @Override
     public void deleteGoodsCar(String goods_id) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("goods_id",goods_id);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("goods_id", goods_id);
         meApi.deleteCarGoods(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -106,7 +106,7 @@ public class GoodsCarPresenter implements GoodsCraContract.Presenter {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
                             String info = object.getString("info");
-                            if (status==1){
+                            if (status == 1) {
                                 mView.deleteGoodsCarSuccreed();
                             }
                             ToastUtil.showToast(info);
@@ -130,9 +130,9 @@ public class GoodsCarPresenter implements GoodsCraContract.Presenter {
     public void getGoodsInfo(String goodsid) {
         mView.showLoading();
         mView.btnClickable(false);
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("goods_id",goodsid);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("goods_id", goodsid);
         meApi.orderConfirm(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -145,9 +145,9 @@ public class GoodsCarPresenter implements GoodsCraContract.Presenter {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
                             String info = object.getString("info");
-                            if (status==1){
+                            if (status == 1) {
                                 mView.getGoodsInfoSucceed();
-                            }else {
+                            } else {
                                 ToastUtil.showToast(info);
                             }
                         } catch (JSONException e) {

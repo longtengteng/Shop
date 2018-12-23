@@ -401,7 +401,7 @@ public class MeApi {
     }
     // 加入购物车的操作
     public Observable<String> getaddCart(Map<String, Object> map) {
-        return meService.getcartConfirm(map).subscribeOn(Schedulers.io());
+        return meService.getaddCart(map).subscribeOn(Schedulers.io());
     }
     // 获取商品详情
     public Observable<String> getShopEmchat(Map<String, Object> map) {

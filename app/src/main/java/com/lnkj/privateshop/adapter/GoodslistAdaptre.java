@@ -33,24 +33,27 @@ import butterknife.ButterKnife;
 public class GoodslistAdaptre extends BaseAdapter {
     private Context mContext;
     List<GoodsCraListBean.DataBean.ListBean.GoodsBean> goodslist;
-//public int index;
+
+    //public int index;
     public GoodslistAdaptre(Context mContext, List<GoodsCraListBean.DataBean.ListBean.GoodsBean> goodslist) {
         this.mContext = mContext;
         this.goodslist = goodslist;
     }
-    public void addIntex(int index){
+
+    public void addIntex(int index) {
 //        this.index=index;
-        if (index==1){
+        if (index == 1) {
             for (int j = 0; j < getCount(); j++) {
                 goodslist.get(j).setIs_selected("1");
             }
-        }else {
+        } else {
             for (int j = 0; j < getCount(); j++) {
                 goodslist.get(j).setIs_selected("0");
             }
         }
         notifyDataSetChanged();
     }
+
     @Override
     public int getCount() {
         return goodslist == null ? 0 : goodslist.size();
@@ -82,49 +85,50 @@ public class GoodslistAdaptre extends BaseAdapter {
                 .error(R.mipmap.bg_img)
                 .placeholder(R.mipmap.bg_img)
                 .into(holder.ivGoodsImg);
-    if (goodslist.get(i).getIs_valid().equals("1")){
-        holder.tv_valid.setVisibility(View.GONE);
-    }else {
-        holder.tv_valid.setVisibility(View.VISIBLE);
-    }
+        if (goodslist.get(i).getIs_valid().equals("1")) {
+            holder.tv_valid.setVisibility(View.GONE);
+        } else {
+            holder.tv_valid.setVisibility(View.VISIBLE);
+        }
 
         if (goodslist.get(i).getIs_selected().equals("1")) {
             holder.cbCheckGoods.setChecked(true);
         } else {
             holder.cbCheckGoods.setChecked(false);
         }
-          holder.ll_check.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            if (holder.cbCheckGoods.isChecked()){
-                goodslist.get(i).setIs_selected("0");
-                holder.cbCheckGoods.setChecked(false);
-            }else {
-                goodslist.get(i).setIs_selected("1");
-                holder.cbCheckGoods.setChecked(true);
-            }
+        holder.ll_check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.cbCheckGoods.isChecked()) {
+                    goodslist.get(i).setIs_selected("0");
+                    holder.cbCheckGoods.setChecked(false);
+                } else {
+                    goodslist.get(i).setIs_selected("1");
+                    holder.cbCheckGoods.setChecked(true);
+                }
 
-        }
-    });
+            }
+        });
         holder.cbCheckGoods.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 onCheck.check();
             }
         });
-        holder.tv_btn_alter.setOnClickListener(new View.OnClickListener() {
+        holder.tv_btn_alter.setText(goodslist.get(i).getSpec_name());
+    /*    holder.tv_btn_alter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, AlterGoodsCarActivity.class);
-                intent.putExtra("goods_id",goodslist.get(i).getGoods_id());
+                intent.putExtra("goods_id", goodslist.get(i).getGoods_id());
                 mContext.startActivity(intent);
             }
-        });
+        });*/
         holder.rl_goods.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, GoodsInfoActivity.class);
-                intent.putExtra("goods_id",goodslist.get(i).getGoods_id());
+                intent.putExtra("goods_id", goodslist.get(i).getGoods_id());
                 mContext.startActivity(intent);
             }
         });
@@ -149,19 +153,22 @@ public class GoodslistAdaptre extends BaseAdapter {
         @Bind(R.id.tv_btn_alter)
         TextView tv_btn_alter;
         @Bind(R.id.tv_valid)
-                TextView tv_valid;
+        TextView tv_valid;
         @Bind(R.id.rl_goods)
         RelativeLayout rl_goods;
+
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
     }
 
     public onCheckListener onCheck;
-    public void setCheckListener(onCheckListener onCheck){
-        this.onCheck=onCheck;
+
+    public void setCheckListener(onCheckListener onCheck) {
+        this.onCheck = onCheck;
     }
-    public interface onCheckListener{
+
+    public interface onCheckListener {
         void check();
 
     }

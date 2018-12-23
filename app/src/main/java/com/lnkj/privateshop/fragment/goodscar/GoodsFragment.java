@@ -96,8 +96,6 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
                 computationsPrice();
             }
         });
-
-
     }
 
     @Override
@@ -147,7 +145,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
             tvRightBlue.setVisibility(View.VISIBLE);
             layout_no_datas.setVisibility(View.GONE);
             pullLoadMoreRecyclerView.setVisibility(View.VISIBLE);
-            adapter.addAllData((GoodsCraListBean.DataBean.ListBean) lists);
+            adapter.addAllData(lists);
             adapter.addIndex(1);
             for (int i = 0; i < lists.size(); i++) {
                 for (int j = 0; j < lists.get(i).getGoods().size(); j++) {
@@ -218,9 +216,12 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.tv_right_blue, tv_add_cart, R.id.tv_left_blue, R.id.btn})
+    @OnClick({R.id.tv_null, R.id.tv_right_blue, tv_add_cart, R.id.tv_left_blue, R.id.btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.tv_null:
+                mPresenter.getGoodsCar();
+                break;
             case R.id.tv_right_blue:
                 if (state == 0) {
                     tvRightBlue.setText("完成");

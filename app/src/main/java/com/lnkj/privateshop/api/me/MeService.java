@@ -518,7 +518,6 @@ public interface MeService {
     @POST("index.php/Api/CartApi/addCart")
     Observable<String> addShopCar(@FieldMap Map<String, Object> map);
 
-    /*购物车列表*/
     @FormUrlEncoded
     @POST("index.php/Api/CartApi/getCartList")
     Observable<String> addGoodsCar(@FieldMap Map<String, Object> map);

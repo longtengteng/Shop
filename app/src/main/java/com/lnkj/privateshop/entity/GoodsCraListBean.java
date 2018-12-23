@@ -75,6 +75,15 @@ public class GoodsCraListBean {
              * shop_name : 自营店
              * goods : [{"cart_id":"873","user_id":"64","goods_id":"2","goods_name":"阿尔法机器人","buy_number":"2","price":"111.00","weight":"500","goods_img":"/Uploads/Picture/Goods/2018-12-16/5c160d8f51a84.png","goods_spec_key":"1_3","add_time":"1545220887","shop_id":"0","shop_name":"自营店","is_selected":"1","is_valid":"1","act_id":"0","act_type":"0","spec_name":"尺寸:40 颜色:白"}]
              */
+            private String is_selected;
+
+            public String getIs_selected() {
+                return is_selected;
+            }
+
+            public void setIs_selected(String is_selected) {
+                this.is_selected = is_selected;
+            }
 
             private String shop_id;
             private String shop_name;

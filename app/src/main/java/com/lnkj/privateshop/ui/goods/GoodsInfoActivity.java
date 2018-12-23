@@ -155,10 +155,12 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     GoodsBean.DataBean dataBean;
     private GoodsBean.DataBean.GoodsInfoBean bean;
     private Boolean is_bogin;
+    private String act_id;
 
     @Override
     public int initContentView() {
         goods_id = getIntent().getStringExtra("goods_id");
+        act_id = getIntent().getStringExtra("act_id");
         return R.layout.activity_goods_info;
     }
 
@@ -467,7 +469,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 69 && resultCode == RESULT_OK) {
-            spec_content3 =data.getStringExtra("spec_content3");
+            spec_content3 = data.getStringExtra("spec_content3");
             spec_name = data.getStringExtra("spec_name");
             tv_spec.setText(spec_name);
         }

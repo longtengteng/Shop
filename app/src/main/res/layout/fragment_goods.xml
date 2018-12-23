@@ -5,13 +5,15 @@
     android:layout_height="match_parent"
     android:background="@color/F7"
     android:orientation="vertical">
-    <include layout="@layout/title_bar"/>
 
+    <include layout="@layout/title_bar" />
 
     <TextView
         android:id="@+id/tv_lin"
-        style="@style/divider_line"
-        android:layout_below="@+id/title_bar" />
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_below="@+id/title_bar"
+        android:background="@color/F7" />
 
 
     <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
@@ -44,7 +46,6 @@
             android:textSize="14sp" />
 
         <LinearLayout
-            android:gravity="right"
             android:id="@+id/ll_total"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,6 +53,7 @@
             android:layout_marginRight="6dp"
             android:layout_toLeftOf="@+id/tv_add_cart"
             android:layout_toStartOf="@+id/tv_add_cart"
+            android:gravity="right"
             android:orientation="vertical">
 
             <LinearLayout
@@ -100,32 +102,37 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
     </RelativeLayout>
+
     <LinearLayout
-        android:layout_below="@+id/title_bar"
-        android:visibility="gone"
-        android:background="@color/white"
         android:id="@+id/ll_no_data"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_below="@+id/title_bar"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/cart"/>
+            android:src="@mipmap/cart" />
+
         <TextView
+            android:id="@+id/tv_null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="购物车空空如也"
-            android:textSize="16sp"
-            android:textColor="@color/tx99"/>
+            android:textColor="@color/tx99"
+            android:textSize="16sp" />
+
         <Button
             android:id="@+id/btn"
+            style="@style/Button_default"
             android:layout_width="100dp"
             android:layout_height="32dp"
             android:layout_marginTop="20dp"
-            android:text="随便逛逛"
-            style="@style/Button_default"/>
+            android:text="随便逛逛" />
     </LinearLayout>
 
 </RelativeLayout>

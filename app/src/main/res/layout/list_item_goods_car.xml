@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
-        android:paddingLeft="12dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingBottom="4dp"
+        android:paddingLeft="12dp"
         android:paddingTop="4dp">
 
         <LinearLayout
             android:id="@+id/ll_chb"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
+            android:layout_height="wrap_content">
 
             <CheckBox
                 android:id="@+id/cb_check_shop"
@@ -42,93 +42,103 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/tx66"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:text="66666666666666" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/F7" />
+
     <LinearLayout
-        android:paddingBottom="5dp"
-        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        android:paddingBottom="5dp">
 
         <com.lnkj.privateshop.view.MyListView
-            android:divider="@null"
             android:id="@+id/mListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
-        </com.lnkj.privateshop.view.MyListView>
-<LinearLayout
-    android:visibility="gone"
-    android:id="@+id/ll_1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <LinearLayout
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
+            android:background="@color/white"
+            android:divider="@null"></com.lnkj.privateshop.view.MyListView>
 
-        <TextView
-            android:textColor="@color/tx33"
-            android:textSize="14sp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="运费"/>
-        <TextView
-            android:textColor="@color/tx99"
-            android:textSize="14sp"
-            android:gravity="right|center_vertical"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="运费 "/>
+        <LinearLayout
+            android:id="@+id/ll_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <TextView
-            android:id="@+id/tv_price_freight"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@color/btn_bj"
-            android:textSize="14sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="运费"
+                    android:textColor="@color/tx33"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="运费 "
+                    android:textColor="@color/tx99"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_price_freight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/btn_bj"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView style="@style/divider_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="给卖家留言"
+                    android:textColor="@color/tx33"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_speak"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableRight="@mipmap/my_icon_more"
+                    android:ellipsize="end"
+                    android:gravity="right|center_vertical"
+                    android:maxLines="1"
+                    android:text="给卖家留言"
+                    android:textColor="@color/tx99"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <TextView style="@style/divider_line" />
+        </LinearLayout>
+
     </LinearLayout>
-    <TextView
-        style="@style/divider_line"/>
-    <LinearLayout
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
-        <TextView
-            android:textColor="@color/tx33"
-            android:textSize="14sp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="给卖家留言"/>
-        <TextView
-            android:id="@+id/tv_speak"
-            android:drawableRight="@mipmap/my_icon_more"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textColor="@color/tx99"
-            android:textSize="14sp"
-            android:gravity="right|center_vertical"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="给卖家留言"/>
-
-    </LinearLayout>
-    <TextView
-        style="@style/divider_line"/>
-</LinearLayout>
-
-    </LinearLayout>
-
 
 
 </LinearLayout>
