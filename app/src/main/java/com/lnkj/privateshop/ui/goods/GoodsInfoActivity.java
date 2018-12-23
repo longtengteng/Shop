@@ -34,10 +34,12 @@ import com.lnkj.privateshop.chat.ChatActivity;
 import com.lnkj.privateshop.ease.DemoHelper;
 import com.lnkj.privateshop.entity.GoodsAttrBean;
 import com.lnkj.privateshop.entity.GoodsBean;
+import com.lnkj.privateshop.entity.OrderConBean;
 import com.lnkj.privateshop.entity.ShopEmchatBean;
 import com.lnkj.privateshop.ui.MainActivity;
 import com.lnkj.privateshop.ui.ease.EaseConversationListActivity;
 import com.lnkj.privateshop.ui.goods.spec.SpecActivity;
+import com.lnkj.privateshop.ui.goodscar.ClearingActivity;
 import com.lnkj.privateshop.ui.login.LoginActivity;
 import com.lnkj.privateshop.ui.mybuy.feedback.BeedBackActivity;
 import com.lnkj.privateshop.ui.shop.shopInfo.ShopInfoActivity;
@@ -148,6 +150,8 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     LinearLayout ll_spec;
     @Bind(R.id.tv_spec)
     TextView tv_spec;
+    @Bind(R.id.tv_buynow)
+    TextView tv_buynow;
     private GoodsInfoPresenter presenter = new GoodsInfoPresenter(this, this);
     private String goods_id = "";
     private String shop_id;
@@ -359,7 +363,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     }
 
 
-    @OnClick({R.id.ll_spec, R.id.ll_attr, R.id.img_beak, R.id.img_chat, tv_add_cart, R.id.img_goods_car,
+    @OnClick({R.id.tv_buynow, R.id.ll_spec, R.id.ll_attr, R.id.img_beak, R.id.img_chat, tv_add_cart, R.id.img_goods_car,
             R.id.img_beak_to, R.id.img_goods_car_to, R.id.img_menu_to, R.id.img_menu, R.id.ll_shop})
     public void onViewClicked(View view) {
         Intent intent;
@@ -374,6 +378,22 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
 //            }
 
         switch (view.getId()) {
+            case R.id.tv_buynow:
+                if (is_bogin) {
+                    if (TextUtils.isEmpty(spec_content3)) {
+                        ToastUtil.showToast("请选择规格");
+                        return;
+                    }
+                    presenter.cartConfirm(goods_id, "1", spec_content3);
+                } else {
+                    ToastUtil.showToast("您还没有登录，请去登录");
+                    intent = new Intent(this, LoginActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+
+
+                break;
             case R.id.ll_spec:
                 /*商品规格选择*/
                 intent = new Intent(this, SpecActivity.class);
@@ -550,5 +570,17 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     @Override
     public void getGoodsDetailFromLimitSucceed(GoodsBean beass) {
 
+    }
+
+    @Override
+    public void getGoodsInfoSucceed(OrderConBean orderConBean) {
+        Intent intent = new Intent(this, ClearingActivity.class);
+        intent.putExtra("orderConBean", orderConBean.getData());
+        startActivity(intent);
+    }
+
+    @Override
+    public void btnClickable(boolean clickable) {
+        tv_buynow.setClickable(clickable);
     }
 }

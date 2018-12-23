@@ -4,6 +4,7 @@ package com.lnkj.privateshop.ui.goods;
 import com.lnkj.privateshop.BasePresenter;
 import com.lnkj.privateshop.BaseView;
 import com.lnkj.privateshop.entity.GoodsBean;
+import com.lnkj.privateshop.entity.OrderConBean;
 import com.lnkj.privateshop.entity.ShopEmchatBean;
 
 /**
@@ -31,6 +32,8 @@ public class GoodsInfoContract {
 
         void getGoodsDetailFromLimitSucceed(GoodsBean beass);
 
+        void getGoodsInfoSucceed(OrderConBean orderConBean);
+        void btnClickable(boolean clickable);
     }
 
 
@@ -43,13 +46,15 @@ public class GoodsInfoContract {
 
         void getGoodsInfo(String goodsid);
 
-        void getGoodsDetailFromLimit(String goods_id,String act_id);
+        void getGoodsDetailFromLimit(String goods_id, String act_id);
 
         void CollectGoods(String goods_id);
 
         void getShopEmchat(String shop_id);
 
         void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type);//加入购物车
+
+        void cartConfirm(String goods_id,String buy_number,String goods_spec_key);
 
     }
 }
