@@ -23,9 +23,10 @@ import static com.lnkj.privateshop.utils.HttpUtil.meApi;
  */
 
 public class ClearingPresenter implements ClearingContract.Presenter {
-   private  ClearingContract.View mView ;
+    private ClearingContract.View mView;
 
- private String token;
+    private String token;
+
     public ClearingPresenter(ClearingContract.View mView) {
         this.mView = mView;
 
@@ -51,60 +52,59 @@ public class ClearingPresenter implements ClearingContract.Presenter {
 
     }
 
- @Override
- public void setToken(String token) {
-  this.token = token;
- }
+    @Override
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     @Override
     public void getGoodsInfo(String goodsid) {
         mView.showLoading();
-            Map<String,Object> map = new HashMap<String, Object>();
-            map.put("token",token);
-            map.put("goods_id",goodsid);
-            meApi.orderConfirm(map)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Action1<String>() {
-                        @Override
-                        public void call(String data) {
-                            mView.hideLoading();
-                            LLog.d("数据111", data);
-                            try {
-                                JSONObject object = new JSONObject(data);
-                                int status = object.getInt("status");
-                                if (status==1){
-                                    OrderConBean beass = JSON.parseObject(data,OrderConBean.class);
-                                    mView.getGoodsInfoSucceed(beass);
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("goods_id", goodsid);
+        meApi.orderConfirm(map)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String data) {
+                        mView.hideLoading();
+                        LLog.d("数据111", data);
+                        try {
+                            JSONObject object = new JSONObject(data);
+                            int status = object.getInt("status");
+                            if (status == 1) {
+                                OrderConBean beass = JSON.parseObject(data, OrderConBean.class);
+                                mView.getGoodsInfoSucceed(beass);
                             }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                        }
-                    }, new Action1<Throwable>() {
-                        @Override
-                        public void call(Throwable throwable) {
-                            throwable.printStackTrace();
-                            mView.hideLoading();
-                            LLog.d("数据错误", throwable.toString() + "");
-                        }
-                    });
-        }
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                        mView.hideLoading();
+                        LLog.d("数据错误", throwable.toString() + "");
+                    }
+                });
+    }
 
     @Override
-    public void addPayOrder(String addressid, String shopid, String remark) {
+    public void addPayOrder(int is_from_cart, String address_id, String shop_id, String remark, String goods_id, String buy_number, String act_id, String goods_spec_key) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("address_id",addressid+"");
-        map.put("shop_id",shopid+"");
-        map.put("remark",remark+"");
-
-//        System.out.println("token"+token);
-//        System.out.println("address_id"+addressid);
-//        System.out.println("shop_id"+shopid);
-//        System.out.println("remark"+remark);
-
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("is_from_cart", is_from_cart);
+        map.put("address_id", address_id + "");
+        map.put("shop_id", shop_id + "");
+        map.put("remark", remark + "");
+        map.put("goods_id", goods_id);
+        map.put("buy_number", buy_number);
+        map.put("act_id", act_id);
+        map.put("goods_spec_key", goods_spec_key);
         meApi.createOrder(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -116,10 +116,10 @@ public class ClearingPresenter implements ClearingContract.Presenter {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
                             String info = object.getString("info");
-                            if (status==1){
+                            if (status == 1) {
                                 String objectdata = object.getString("data");
                                 mView.addPayOredeSuccreed(objectdata);
-                            }else {
+                            } else {
                                 ToastUtil.showToast(info);
                             }
                         } catch (JSONException e) {
@@ -141,10 +141,10 @@ public class ClearingPresenter implements ClearingContract.Presenter {
     @Override
     public void getAddressPrice(String goods_id, String address_id) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("address_id",address_id);
-        map.put("goods_id",goods_id);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("address_id", address_id);
+        map.put("goods_id", goods_id);
 
 //        System.out.println("token:"+token);
 //        System.out.println("address_id:"+address_id);
@@ -160,8 +160,8 @@ public class ClearingPresenter implements ClearingContract.Presenter {
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            if (status==1){
-                                OrderConBean beass = JSON.parseObject(data,OrderConBean.class);
+                            if (status == 1) {
+                                OrderConBean beass = JSON.parseObject(data, OrderConBean.class);
                                 mView.getGoodsInfoSucceed(beass);
                             }
                         } catch (JSONException e) {

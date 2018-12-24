@@ -200,8 +200,20 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
                 }
             }
         }
+        /*shop_id*/
+        final StringBuffer shop = new StringBuffer();
+        for (int i = 0; i < lists.size(); i++) {
+            if (!TextUtils.isEmpty(lists.get(i).getShop_id())) {
+                if (shop.length() != 0) {
+                    shop.append(",");
+                }
+                shop.append(lists.get(i).getShop_id());
+            }
+        }
+
         Intent intent = new Intent(getActivity(), ClearingActivity.class);
         intent.putExtra("orderConBean", orderConBean.getData());
+        intent.putExtra("shop_id", shop + "");
         startActivity(intent);
     }
 
@@ -251,6 +263,7 @@ public class GoodsFragment extends BaseFragment implements GoodsCraContract.View
                         }
                     }
                 }
+
 
                 if (state == 0) {
                     if (price == 0) {

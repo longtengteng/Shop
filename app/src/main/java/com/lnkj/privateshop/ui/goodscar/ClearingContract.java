@@ -13,20 +13,29 @@ public class ClearingContract {
     interface View extends BaseView {
 
         void initView();
+
         void getGoodsInfoSucceed(OrderConBean beass);
+
         void CollectGoodsSucceed();
+
         void addPayOredeSuccreed(String order_sn);
+
         void getAddressPriceSucceed();
     }
 
 
     interface Presenter extends BasePresenter<View> {
         void initView();
+
         void login(String phone, String pwd);
+
         void setToken(String token);
+
         void getGoodsInfo(String goodsid);
-        void addPayOrder(String addressid,String shopid,String remark);
-        void getAddressPrice(String goods_id,String address_id);
+
+        void addPayOrder(int is_from_cart, String address_id, String shop_id, String remark, String goods_id, String buy_number, String act_id, String goods_spec_key);
+
+        void getAddressPrice(String goods_id, String address_id);
 
     }
 }

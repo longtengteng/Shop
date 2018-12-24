@@ -55,6 +55,13 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
     CarGoodsListsAdapter adapter;
     private OrderConBean.DataBean bean;
     private List<OrderConBean.DataBean.ListBean> goodslist;
+    String from_info;
+    String shop_id;
+    String remark;//店铺的留言
+    String goods_id;
+    String buy_number;
+    String act_id;//限时特惠传递的参数
+    String goods_spec_key;
 
     @Override
     public int initContentView() {
@@ -66,12 +73,18 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
         mPresenter.setToken(token);
         ButterKnife.bind(this);
         tvTitle.setText("填写订单");
+        act_id = getIntent().getStringExtra("act_id");
+        from_info = getIntent().getStringExtra("from_info");
+        shop_id = getIntent().getStringExtra("shop_id");
+        goods_id = getIntent().getStringExtra("goods_id");
+        goods_spec_key = getIntent().getStringExtra("goods_spec_key");
         bean = (OrderConBean.DataBean) getIntent().getSerializableExtra("orderConBean");
         adapter = new CarGoodsListsAdapter(this);
         mListView.setAdapter(adapter);
 
         try {
             tvGoodsCount.setText("共" + bean.getOrder_buy_counts() + "件");
+            buy_number = bean.getOrder_buy_counts() + "";
             tvPrice.setText("¥" + bean.getOrder_price());
             tvPriceTotal.setText("¥" + bean.getFinal_price());
             tvPriceFreightTo.setText("¥" + bean.getOrder_express_price());
@@ -189,8 +202,27 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
                         sb2.append(goodslist.get(i).getShop_name());
                     }
                 }
+
                 try {
-                    mPresenter.addPayOrder(address_id, sb.toString(), sb2.toString());
+                    int is_from_cart = 0;
+                    if (from_info != null) {
+                        is_from_cart = 0;
+                    } else {
+                        is_from_cart = 1;
+                    }
+                    /*remark*/
+                    final StringBuffer remark_all = new StringBuffer();
+                    for (int i = 0; i < goodslist.size(); i++) {
+                        if (!TextUtils.isEmpty(goodslist.get(i).getRemark())) {
+                            if (remark_all.length() != 0) {
+                                remark_all.append("@$");
+                            }
+                            remark_all.append(goodslist.get(i).getRemark());
+                        } else {
+                            remark_all.append("@$");
+                        }
+                    }
+                    mPresenter.addPayOrder(is_from_cart, address_id, shop_id, remark_all + "", goods_id, buy_number, act_id, goods_spec_key);
                 } catch (Exception e) {
                     ToastUtil.showToast("请填写收获地址");
                 }
@@ -238,12 +270,12 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
                 if (data != null) {
                     speak = data.getStringExtra("speak");
                     if (!TextUtils.isEmpty(speak)) {
-                        goodslist.get(pos).setShop_name(speak);
+                        goodslist.get(pos).setRemark(speak);
                     }
                     adapter.notifyDataSetChanged();
                 }
             } else if (resultCode != 30) {
-                // mPresenter.getGoodsInfo(goods_ids);
+                //mPresenter.getGoodsInfo(goods_ids);
             }
         }
     }

@@ -576,6 +576,10 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     public void getGoodsInfoSucceed(OrderConBean orderConBean) {
         Intent intent = new Intent(this, ClearingActivity.class);
         intent.putExtra("orderConBean", orderConBean.getData());
+        intent.putExtra("from_info", "info");
+        intent.putExtra("goods_id", goods_id);
+        intent.putExtra("act_id", act_id);
+        intent.putExtra("goods_spec_key", spec_content3);
         startActivity(intent);
     }
 

@@ -66,17 +66,18 @@ public class TimeGoodsActivity extends BaseActivity implements TimeGoodsContract
 
     @Override
     public void initUiAndListener() {
-            adapter.setOnItemClickListener(new TimeGoodsListAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(int position) {
-                    if (lists!=null){
+        adapter.setOnItemClickListener(new TimeGoodsListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                if (lists != null) {
                     Intent intent = new Intent(TimeGoodsActivity.this, GoodsInfoActivity.class);
-                    intent.putExtra("goods_id",lists.get(position).getGoods_id());
+                    intent.putExtra("goods_id", lists.get(position).getGoods_id());
+                    intent.putExtra("act_id", lists.get(position).getAct_id());
                     startActivity(intent);
 
-                    }
                 }
-            });
+            }
+        });
     }
 
     @Override
@@ -103,7 +104,9 @@ public class TimeGoodsActivity extends BaseActivity implements TimeGoodsContract
     @Override
     public void initView() {
     }
-    List<TimeGoodsBean.DataBean.ListBean> lists ;
+
+    List<TimeGoodsBean.DataBean.ListBean> lists;
+
     @Override
     public void getOrderData(TimeGoodsBean.DataBean beans) {
         if (beans == null) {
@@ -113,14 +116,14 @@ public class TimeGoodsActivity extends BaseActivity implements TimeGoodsContract
             pullLoadMoreRecyclerView.setVisibility(View.VISIBLE);
             layoutNoDatas.setVisibility(View.GONE);
 
-         long time = Long.parseLong(beans.getInfo().getEnd_time())*1000- System.currentTimeMillis();
-            CountDownUtil cdu = new CountDownUtil(time , 1000 * 60 * 60,
+            long time = Long.parseLong(beans.getInfo().getEnd_time()) * 1000 - System.currentTimeMillis();
+            CountDownUtil cdu = new CountDownUtil(time, 1000 * 60 * 60,
                     tvTime_H, 1);
             cdu.start();
-            CountDownUtil cdu2 = new CountDownUtil(time , 1000 * 60,
+            CountDownUtil cdu2 = new CountDownUtil(time, 1000 * 60,
                     tvTime_M, 2);
             cdu2.start();
-            CountDownUtil cdu3 = new CountDownUtil(time , 1000,
+            CountDownUtil cdu3 = new CountDownUtil(time, 1000,
                     tvTime_S, 3);
             cdu3.start();
             lists = beans.getList();

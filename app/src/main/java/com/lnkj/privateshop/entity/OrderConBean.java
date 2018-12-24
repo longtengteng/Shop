@@ -189,6 +189,16 @@ public class OrderConBean implements Serializable {
 
             private String shop_id;
             private String shop_name;
+            private String remark;
+
+            public String getRemark() {
+                return remark;
+            }
+
+            public void setRemark(String remark) {
+                this.remark = remark;
+            }
+
             private String shop_express_price;
             private List<GoodsListBean> goods_list;
 
