@@ -1,6 +1,7 @@
 package com.lnkj.privateshop.ui.goodscar;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.lnkj.privateshop.entity.OrderConBean;
@@ -98,13 +99,18 @@ public class ClearingPresenter implements ClearingContract.Presenter {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
         map.put("is_from_cart", is_from_cart);
+        if (is_from_cart == 0) {
+            map.put("goods_id", goods_id);
+            map.put("buy_number", buy_number);
+            map.put("goods_spec_key", goods_spec_key);
+            if (!TextUtils.isEmpty(act_id)) {
+                map.put("act_id", act_id);
+            }
+        } else {
+            map.put("shop_id", shop_id + "");
+            map.put("remark", remark + "");
+        }
         map.put("address_id", address_id + "");
-        map.put("shop_id", shop_id + "");
-        map.put("remark", remark + "");
-        map.put("goods_id", goods_id);
-        map.put("buy_number", buy_number);
-        map.put("act_id", act_id);
-        map.put("goods_spec_key", goods_spec_key);
         meApi.createOrder(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
