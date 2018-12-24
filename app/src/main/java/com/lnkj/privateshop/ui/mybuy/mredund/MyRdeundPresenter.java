@@ -19,19 +19,21 @@ import static com.lnkj.privateshop.utils.HttpUtil.meApi;
  * Created by Administrator on 2017/8/3 0003.
  */
 
-public class MyRdeundPresenter implements MyRedundContract.Presenter{
+public class MyRdeundPresenter implements MyRedundContract.Presenter {
     MyRedundContract.View view;
     private String token;
+
     public MyRdeundPresenter(MyRedundContract.View view) {
-        this.view=view;
+        this.view = view;
 
     }
+
     @Override
     public void getDataFromServer() {
         view.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-       meApi.getbalance(map)
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        meApi.getbalance(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
                     @Override
@@ -41,8 +43,8 @@ public class MyRdeundPresenter implements MyRedundContract.Presenter{
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                         JSONObject databean = object.getJSONObject("data");
-                            view.setData(databean.getString("available_money"),databean.getString("consume"),databean.getString("income"));
+                            JSONObject databean = object.getJSONObject("data");
+                            view.setData(databean.getString("available_money"), databean.getString("consume"), databean.getString("income"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -58,10 +60,12 @@ public class MyRdeundPresenter implements MyRedundContract.Presenter{
                 });
 
     }
+
     @Override
     public void attachView(@NonNull MyRedundContract.View view) {
 
     }
+
     @Override
     public void detachView() {
 

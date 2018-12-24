@@ -146,7 +146,7 @@ public interface MeService {
     Observable<String> getGoodsCollection(@FieldMap Map<String, Object> map);
 
     /**
-     * 获取收藏商品
+     * 批量取消商品收藏接口
      */
     @FormUrlEncoded
     @POST("index.php/Api/UserCenterApi/cancelGoodsFavorite")
