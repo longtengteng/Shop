@@ -2,8 +2,9 @@ apply plugin: 'com.android.application'
 //apply plugin: 'android-apt'
 //apply plugin: 'com.droidtitan.lintcleaner'
 apply plugin: 'org.greenrobot.greendao' // apply plugin
-apply plugin: 'com.mob.sdk'
-MobSDK {
+//apply plugin: 'com.mob.sdk'
+
+/*MobSDK {
     appKey "2747faab13f56"
     appSecret "e7348bfd9b8ea8a4b6fe23487c536e17"
 
@@ -42,7 +43,7 @@ MobSDK {
         }
     }
 
-}
+}*/
 android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
@@ -164,7 +165,7 @@ android {
         compile 'io.reactivex:rxjava:1.1.5'
         compile 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
         compile 'com.github.clans:fab:1.6.2'
-        compile 'com.umeng.analytics:analytics:latest.integration'
+        //       compile 'com.umeng.analytics:analytics:latest.integration'
         compile 'com.github.castorflex.smoothprogressbar:library:1.1.0'
         compile 'com.yalantis:phoenix:1.2.3'
         compile 'com.demievil.library:refreshlayout:1.0.0@aar'
@@ -195,6 +196,12 @@ android {
         implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
         //倒计时
         compile 'com.github.iwgang:countdownview:2.1.6'
-
+//高德地图
+        //3D地图so及jar
+        implementation 'com.amap.api:3dmap:latest.integration'
+        //定位功能
+        implementation 'com.amap.api:location:latest.integration'
+        //搜索功能
+        implementation 'com.amap.api:search:latest.integration'
     }
 }

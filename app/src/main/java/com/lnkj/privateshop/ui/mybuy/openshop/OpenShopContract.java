@@ -29,7 +29,7 @@ public interface OpenShopContract {
         void exist();//退出
         void getDataFromServer();
         void getShopInfo();
-        void openShop(String path_head,String path,String shop_name,String people,String phone,String province,String city,String address,String  Cat_id,String mount,String pack_mount,boolean is_chane);
+        void openShop(String shop_type,String path_head,String path,String shop_name,String people,String phone,String province,String city,String address,String  Cat_id,String mount,String pack_mount,boolean is_chane);
         void openFactoryShop(String path_head,String path,String shop_name,String people,String phone,String province,String city,String address,String  Cat_id,String mount,String pack_mount,boolean is_chane);
         void openRealityShop(String path_head,String path,String shop_name,String people,String phone,String province,String city,String address,String  Cat_id,String mount,String pack_mount,boolean is_chane,String floor,String munnber);
     }

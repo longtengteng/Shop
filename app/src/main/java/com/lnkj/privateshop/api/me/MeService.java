@@ -352,7 +352,7 @@ public interface MeService {
     @POST("index.php/Api/ShopCenterApi/verifyIdCard")
     Observable<String> verifyIdCard(@Part List<MultipartBody.Part> file);
 
-    //添加新店铺
+    //添加新店铺Api/ShopEditApi/addShopStep1
     @Multipart
     @POST("index.php/Api/ShopEditApi/addShopStep1")
     Observable<String> openShop(@Part List<MultipartBody.Part> file);
@@ -507,6 +507,11 @@ public interface MeService {
     @FormUrlEncoded
     @POST("index.php/Api/ShopApi/shop_goods")
     Observable<String> getShopmerchandiseList(@FieldMap Map<String, Object> map);
+
+    @FormUrlEncoded
+    @POST("index.php/Api/ShopEditApi/apply_start_shop")
+    Observable<String> apply_start_shop(@FieldMap Map<String, Object> map);
+
 
     @FormUrlEncoded
     @POST("index.php/Api/ShopApi/userVipPrice/p/1")

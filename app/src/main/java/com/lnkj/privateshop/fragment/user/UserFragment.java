@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +20,12 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lnkj.privateshop.BaseFragment;
 import com.lnkj.privateshop.Constants;
 import com.lnkj.privateshop.R;
+import com.lnkj.privateshop.entity.StartShopBean;
+import com.lnkj.privateshop.fragment.shop.ShopCommentPresenter;
 import com.lnkj.privateshop.fragment.user.sell.selluserFragment;
 import com.lnkj.privateshop.ui.ease.EaseConversationListActivity;
 import com.lnkj.privateshop.ui.login.LoginActivity;
@@ -30,6 +35,9 @@ import com.lnkj.privateshop.ui.mybuy.openshop.OpenShopRealityActivity;
 import com.lnkj.privateshop.ui.mybuy.sttting.SettingActivity;
 import com.lnkj.privateshop.utils.PreferencesUtils;
 import com.lnkj.privateshop.utils.ToastUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -41,7 +49,7 @@ import static com.lnkj.privateshop.R.id.tv_switch;
  * Created by Administrator on 2017/8/9 0009.
  */
 
-public class UserFragment extends BaseFragment {
+public class UserFragment extends BaseFragment implements UserContract.View {
     MyFragment myFragment;// 我的
     selluserFragment sellFragment;
     @Bind(R.id.rl_bj)
@@ -60,6 +68,9 @@ public class UserFragment extends BaseFragment {
     private int is_shop;
     @Bind(R.id.tv_count)
     TextView tv_count;
+
+    private UserPresenter mPresenter = new UserPresenter(this);
+
     @Override
     protected int getContentResid() {
         return R.layout.fragment_user;
@@ -70,6 +81,8 @@ public class UserFragment extends BaseFragment {
         super.init(view);
         prentview = view;
         ButterKnife.bind(this, view);
+        mPresenter.setToken(token);
+
     }
 
     @Override
@@ -77,8 +90,8 @@ public class UserFragment extends BaseFragment {
         super.onResume();
         if (UnreadMsgCount > 0) {
             tv_count.setVisibility(View.VISIBLE);
-            tv_count.setText(UnreadMsgCount+ "");
-        }else {
+            tv_count.setText(UnreadMsgCount + "");
+        } else {
             tv_count.setVisibility(View.GONE);
         }
     }
@@ -96,20 +109,20 @@ public class UserFragment extends BaseFragment {
             fragmentTransaction.hide(sellFragment);
             fragmentTransaction.show(myFragment);
             rlBj.setBackgroundColor(Color.parseColor("#FF7722"));
-        }else {
-        int state = PreferencesUtils.getInt(getActivity(), "state", Constants.STATE_BUY);
+        } else {
+            int state = PreferencesUtils.getInt(getActivity(), "state", Constants.STATE_BUY);
             if (state == Constants.STATE_BUY) {
-                    fragmentTransaction.hide(sellFragment);
-                    fragmentTransaction.show(myFragment);
-                    rlBj.setBackgroundColor(Color.parseColor("#FF7722"));
-                    tvSwitch.setText("切换为卖家");
-                    index = 1;
+                fragmentTransaction.hide(sellFragment);
+                fragmentTransaction.show(myFragment);
+                rlBj.setBackgroundColor(Color.parseColor("#FF7722"));
+                tvSwitch.setText("切换为卖家");
+                index = 1;
             } else {
-                    index = 0;
-                    fragmentTransaction.hide(myFragment);
-                    fragmentTransaction.show(sellFragment);
-                    rlBj.setBackgroundColor(Color.parseColor("#27a2f8"));
-                    tvSwitch.setText("切换为买家");
+                index = 0;
+                fragmentTransaction.hide(myFragment);
+                fragmentTransaction.show(sellFragment);
+                rlBj.setBackgroundColor(Color.parseColor("#27a2f8"));
+                tvSwitch.setText("切换为买家");
             }
         }
         fragmentTransaction.commit();
@@ -194,7 +207,7 @@ public class UserFragment extends BaseFragment {
                     PreferencesUtils.putInt(getActivity(), "state", Constants.STATE_BUY);
                     fragmentTransaction.commit();
                 } else {
-                    popunWin = new PopupWindows(getActivity(), prentview);
+                    mPresenter.apply_start_shop();
                 }
                 break;
             case R.id.img_set_up:
@@ -204,6 +217,40 @@ public class UserFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), EaseConversationListActivity.class));
                 break;
         }
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    List<StartShopBean.DataBean> startBeanList = new ArrayList<>();
+
+    @Override
+    public void apply_start_shop(StartShopBean startShopBean) {
+        startBeanList.clear();
+        startBeanList.addAll(startShopBean.getData());
+        popunWin = new PopupWindows(getActivity(), prentview);
+    }
+
+    @Override
+    public void onEmpty() {
+
+    }
+
+    @Override
+    public void onNetError() {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
     }
 
     public class PopupWindows extends PopupWindow {
@@ -226,14 +273,20 @@ public class UserFragment extends BaseFragment {
             setContentView(view);
             showAtLocation(parent, Gravity.BOTTOM, 0, 0);
             update();
-
-            Button bt1 = (Button) view
-                    .findViewById(R.id.item_popupwindows_camera);
-            Button bt2 = (Button) view
-                    .findViewById(R.id.item_popupwindows_Photo);
+            StartShopAdapter adapter;
+            RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_start);
+            rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+            adapter = new StartShopAdapter(startBeanList);
+            adapter.bindToRecyclerView(rv);
+            adapter.setAutoLoadMoreSize(1);
+            adapter.disableLoadMoreIfNotFullPage(rv);
+         /*   Button bt1 = (Button) view
+                    .findViewById(R.id.item_popupwindows_camera);*/
+   /*         Button bt2 = (Button) view
+                    .findViewById(R.id.item_popupwindows_Photo);*/
             Button bt3 = (Button) view
                     .findViewById(R.id.item_popupwindows_cancel);
-            Button bt4 = (Button) view.findViewById(R.id.item_popupwindows_video);
+            //    Button bt4 = (Button) view.findViewById(R.id.item_popupwindows_video);
             TextView tv_dis = (TextView) view.findViewById(R.id.tv_dis);
             tv_dis.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -241,18 +294,10 @@ public class UserFragment extends BaseFragment {
                     dismiss();
                 }
             });
-
-            bt1.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    //网批发店铺
+            adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                     Intent intent = new Intent(getActivity(), OpenShopNetActivity.class);
-                    startActivity(intent);
-                    dismiss();
-                }
-            });
-            bt2.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), OpenShopRealityActivity.class);
                     startActivity(intent);
                     dismiss();
                 }
@@ -262,16 +307,7 @@ public class UserFragment extends BaseFragment {
                     dismiss();
                 }
             });
-            bt4.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //工厂
-                    Intent intent = new Intent(getActivity(), OpenShopFactory2Activity.class);
-                    startActivity(intent);
-                    dismiss();
 
-                }
-            });
         }
     }
 

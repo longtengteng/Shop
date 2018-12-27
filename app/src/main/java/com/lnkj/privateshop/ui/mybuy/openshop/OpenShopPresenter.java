@@ -29,11 +29,12 @@ import static com.lnkj.privateshop.utils.HttpUtil.meApi;
  * Created by Administrator on 2017/8/3 0003.
  */
 
-public class OpenShopPresenter implements OpenShopContract.Presenter{
+public class OpenShopPresenter implements OpenShopContract.Presenter {
     OpenShopContract.View view;
     private String token;
+
     public OpenShopPresenter(OpenShopContract.View view) {
-        this.view=view;
+        this.view = view;
 
     }
 
@@ -116,28 +117,28 @@ public class OpenShopPresenter implements OpenShopContract.Presenter{
 
     //开网店
     @Override
-    public void openShop(String path_head, String path, String shop_name, String people, String phone,
+    public void openShop(String shop_type, String path_head, String path, String shop_name, String people, String phone,
                          String province, String city, String address, String Cat_id, String mount, String pack_mount, boolean is_chane) {
-        if (TextUtils.isEmpty(path_head)){
+        if (TextUtils.isEmpty(path_head)) {
             ToastUtil.showToast("选择店铺头像");
-        }else if (TextUtils.isEmpty(path)){
+        } else if (TextUtils.isEmpty(path)) {
             ToastUtil.showToast("选择店铺招牌");
-        }else {
+        } else {
             view.showLoading();
             MultipartBody.Builder builder = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM);//表单类型
             builder.addFormDataPart("token", token);
-            builder.addFormDataPart("shop_type", String.valueOf(3)+"");
-            builder.addFormDataPart("shop_name", shop_name+"");
-            builder.addFormDataPart("contacts_name", people+"");
-            builder.addFormDataPart("user_mobile", phone+"");
-            builder.addFormDataPart("province", province+"");
-            builder.addFormDataPart("city", city+"");
-            builder.addFormDataPart("address", address+"");
-            builder.addFormDataPart("category_id", Cat_id+"");
-            builder.addFormDataPart("retail_amount", mount+"");
-            builder.addFormDataPart("basic_amount", pack_mount+"");
-            builder.addFormDataPart("allow_return", String.valueOf(is_chane ? 1 : 0)+"");
+            builder.addFormDataPart("shop_type", String.valueOf(3) + "");
+            builder.addFormDataPart("shop_name", shop_name + "");
+            builder.addFormDataPart("contacts_name", people + "");
+            builder.addFormDataPart("user_mobile", phone + "");
+            builder.addFormDataPart("province", province + "");
+            builder.addFormDataPart("city", city + "");
+            builder.addFormDataPart("address", address + "");
+            builder.addFormDataPart("category_id", Cat_id + "");
+            builder.addFormDataPart("retail_amount", mount + "");
+            builder.addFormDataPart("basic_amount", pack_mount + "");
+            builder.addFormDataPart("allow_return", String.valueOf(is_chane ? 1 : 0) + "");
             File file = new File(path);//filePath 图片地址
             RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
             builder.addFormDataPart("shop_real_pic", file.getName(), imageBody);//"imgfile"+i 后台接收图片流的参数名
@@ -180,72 +181,73 @@ public class OpenShopPresenter implements OpenShopContract.Presenter{
                     });
         }
     }
-//工厂店铺
+
+    //工厂店铺
     @Override
     public void openFactoryShop(String path_head, String path, String shop_name, String people, String phone, String province,
                                 String city, String address, String Cat_id, String mount, String pack_mount, boolean is_chane) {
 
-        if (TextUtils.isEmpty(path_head)){
+        if (TextUtils.isEmpty(path_head)) {
             ToastUtil.showToast("选择店铺头像");
-        }else if (TextUtils.isEmpty(path)){
+        } else if (TextUtils.isEmpty(path)) {
             ToastUtil.showToast("选择店铺招牌");
-        }else {
+        } else {
 
-        MultipartBody.Builder builder = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM);//表单类型
-        builder.addFormDataPart("token", token);
-        builder.addFormDataPart("shop_type", String.valueOf(2)+"");
-        builder.addFormDataPart("shop_name", shop_name+"");
-        builder.addFormDataPart("contacts_name", people+"");
-        builder.addFormDataPart("user_mobile", phone+"");
-        builder.addFormDataPart("province", province+"");
-        builder.addFormDataPart("city", city+"");
-        builder.addFormDataPart("address", address+"");
-        builder.addFormDataPart("category_id", Cat_id+"");
-        builder.addFormDataPart("retail_amount", mount+"");
-        builder.addFormDataPart("basic_amount", pack_mount+"");
-        builder.addFormDataPart("allow_return", String.valueOf(is_chane?1:0)+"");
-        File file = new File(path);//filePath 图片地址
-        RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        builder.addFormDataPart("shop_real_pic", file.getName(), imageBody);//"imgfile"+i 后台接收图片流的参数名
+            MultipartBody.Builder builder = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM);//表单类型
+            builder.addFormDataPart("token", token);
+            builder.addFormDataPart("shop_type", String.valueOf(2) + "");
+            builder.addFormDataPart("shop_name", shop_name + "");
+            builder.addFormDataPart("contacts_name", people + "");
+            builder.addFormDataPart("user_mobile", phone + "");
+            builder.addFormDataPart("province", province + "");
+            builder.addFormDataPart("city", city + "");
+            builder.addFormDataPart("address", address + "");
+            builder.addFormDataPart("category_id", Cat_id + "");
+            builder.addFormDataPart("retail_amount", mount + "");
+            builder.addFormDataPart("basic_amount", pack_mount + "");
+            builder.addFormDataPart("allow_return", String.valueOf(is_chane ? 1 : 0) + "");
+            File file = new File(path);//filePath 图片地址
+            RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            builder.addFormDataPart("shop_real_pic", file.getName(), imageBody);//"imgfile"+i 后台接收图片流的参数名
 
-        File file2 = new File(path_head);//filePath 图片地址
-        RequestBody imageBody2 = RequestBody.create(MediaType.parse("multipart/form-data"), file2);
-        builder.addFormDataPart("shop_logo", file2.getName(), imageBody2);//"imgfile"+i 后台接收图片流的参数名
+            File file2 = new File(path_head);//filePath 图片地址
+            RequestBody imageBody2 = RequestBody.create(MediaType.parse("multipart/form-data"), file2);
+            builder.addFormDataPart("shop_logo", file2.getName(), imageBody2);//"imgfile"+i 后台接收图片流的参数名
 
-        List<MultipartBody.Part> parts = builder.build().parts();
+            List<MultipartBody.Part> parts = builder.build().parts();
             view.showLoading();
-        meApi.openShop(parts)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>() {
-                    @Override
-                    public void call(String data) {
-                        view.hideLoading();
-                        LLog.d("数据id", data);
-                        try {
-                            JSONObject object = new JSONObject(data);
-                            int status = object.getInt("status");
-                            String info = object.getString("info");
-                            if (status == 1) {
-                               JSONObject datas =  object.getJSONObject("data");
-                             String shop_id   = datas.getString("shop_id");
-                              String shop_type = datas.getString("shop_type");
-                              view.openFactorySuccerr(shop_id);
+            meApi.openShop(parts)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String data) {
+                            view.hideLoading();
+                            LLog.d("数据id", data);
+                            try {
+                                JSONObject object = new JSONObject(data);
+                                int status = object.getInt("status");
+                                String info = object.getString("info");
+                                if (status == 1) {
+                                    JSONObject datas = object.getJSONObject("data");
+                                    String shop_id = datas.getString("shop_id");
+                                    String shop_type = datas.getString("shop_type");
+                                    view.openFactorySuccerr(shop_id);
+                                }
+                                ToastUtil.showToast(info);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            ToastUtil.showToast(info);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
 
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        throwable.printStackTrace();
-                        view.hideLoading();
-                        LLog.d("数据错误222", throwable.toString() + "");
-                    }
-                });
+                        }
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            throwable.printStackTrace();
+                            view.hideLoading();
+                            LLog.d("数据错误222", throwable.toString() + "");
+                        }
+                    });
 
         }
 
@@ -257,65 +259,65 @@ public class OpenShopPresenter implements OpenShopContract.Presenter{
     public void openRealityShop(String path_head, String path, String shop_name, String people, String phone, String province,
                                 String city, String address, String Cat_id, String mount, String pack_mount, boolean is_chane,
                                 String floor, String munnber) {
-        if (TextUtils.isEmpty(path_head)){
+        if (TextUtils.isEmpty(path_head)) {
             ToastUtil.showToast("选择店铺头像");
-        }else if (TextUtils.isEmpty(path)){
+        } else if (TextUtils.isEmpty(path)) {
             ToastUtil.showToast("选择店铺招牌");
-        }else {
-        MultipartBody.Builder builder = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM);//表单类型
-        builder.addFormDataPart("token", token);
-        builder.addFormDataPart("shop_type", String.valueOf(1)+"");
-        builder.addFormDataPart("shop_name", shop_name+"");
-        builder.addFormDataPart("contacts_name", people+"");
-        builder.addFormDataPart("user_mobile", phone+"");
-        builder.addFormDataPart("province", province+"");
-        builder.addFormDataPart("city", city+"");
-        builder.addFormDataPart("market_name", address+"");
-        builder.addFormDataPart("category_id", Cat_id+"");
-        builder.addFormDataPart("retail_amount", mount+"");
-        builder.addFormDataPart("floor_number", floor+"");
-        builder.addFormDataPart("room_number", munnber+"");
-        builder.addFormDataPart("basic_amount", pack_mount+"");
-        builder.addFormDataPart("allow_return", String.valueOf(is_chane?1:0)+"");
-        File file = new File(path);//filePath 图片地址
-        RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        builder.addFormDataPart("shop_real_pic", file.getName(), imageBody);//"imgfile"+i 后台接收图片流的参数名
-        File file2 = new File(path_head);//filePath 图片地址
-        RequestBody imageBody2 = RequestBody.create(MediaType.parse("multipart/form-data"), file2);
-        builder.addFormDataPart("shop_logo", file2.getName(), imageBody2);//"imgfile"+i 后台接收图片流的参数名
-        List<MultipartBody.Part> parts = builder.build().parts();
+        } else {
+            MultipartBody.Builder builder = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM);//表单类型
+            builder.addFormDataPart("token", token);
+            builder.addFormDataPart("shop_type", String.valueOf(1) + "");
+            builder.addFormDataPart("shop_name", shop_name + "");
+            builder.addFormDataPart("contacts_name", people + "");
+            builder.addFormDataPart("user_mobile", phone + "");
+            builder.addFormDataPart("province", province + "");
+            builder.addFormDataPart("city", city + "");
+            builder.addFormDataPart("market_name", address + "");
+            builder.addFormDataPart("category_id", Cat_id + "");
+            builder.addFormDataPart("retail_amount", mount + "");
+            builder.addFormDataPart("floor_number", floor + "");
+            builder.addFormDataPart("room_number", munnber + "");
+            builder.addFormDataPart("basic_amount", pack_mount + "");
+            builder.addFormDataPart("allow_return", String.valueOf(is_chane ? 1 : 0) + "");
+            File file = new File(path);//filePath 图片地址
+            RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            builder.addFormDataPart("shop_real_pic", file.getName(), imageBody);//"imgfile"+i 后台接收图片流的参数名
+            File file2 = new File(path_head);//filePath 图片地址
+            RequestBody imageBody2 = RequestBody.create(MediaType.parse("multipart/form-data"), file2);
+            builder.addFormDataPart("shop_logo", file2.getName(), imageBody2);//"imgfile"+i 后台接收图片流的参数名
+            List<MultipartBody.Part> parts = builder.build().parts();
             view.showLoading();
-        meApi.openShop(parts)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>() {
-                    @Override
-                    public void call(String data) {
-                        view.hideLoading();
-                        LLog.d("数据id", data);
-                        try {
-                            JSONObject object = new JSONObject(data);
-                            int status = object.getInt("status");
-                            String info = object.getString("info");
-                            if (status == 1) {
-                                JSONObject datas =  object.getJSONObject("data");
-                                String shop_id   = datas.getString("shop_id");
-                                String shop_type = datas.getString("shop_type");
-                             view.openRealitySuccerr(shop_id);
+            meApi.openShop(parts)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String data) {
+                            view.hideLoading();
+                            LLog.d("数据id", data);
+                            try {
+                                JSONObject object = new JSONObject(data);
+                                int status = object.getInt("status");
+                                String info = object.getString("info");
+                                if (status == 1) {
+                                    JSONObject datas = object.getJSONObject("data");
+                                    String shop_id = datas.getString("shop_id");
+                                    String shop_type = datas.getString("shop_type");
+                                    view.openRealitySuccerr(shop_id);
+                                }
+                                ToastUtil.showToast(info);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            ToastUtil.showToast(info);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        throwable.printStackTrace();
-                        view.hideLoading();
-                        LLog.d("数据错误222", throwable.toString() + "");
-                    }
-                });
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            throwable.printStackTrace();
+                            view.hideLoading();
+                            LLog.d("数据错误222", throwable.toString() + "");
+                        }
+                    });
         }
     }
 

@@ -119,7 +119,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         });
     }
 
-    private void thirdLogin(String platformName) {
+   /* private void thirdLogin(String platformName) {
 
         MobSDK.init(this);
         final Platform platform = ShareSDK.getPlatform(platformName);
@@ -143,7 +143,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             }
         });
         api.login(this);
-    }
+    }*/
 
     @Override
     public void onEmpty() {
@@ -200,12 +200,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             case R.id.iv_wx:
                 ToastUtil.showToast("正在启动微信...");
                 login_type = "weixin";
-                thirdLogin(Wechat.NAME);
+                //thirdLogin(Wechat.NAME);
                 break;
             case R.id.iv_qq:
                 login_type = "qq";
                 ToastUtil.showToast("正在启动QQ...");
-                thirdLogin(QQ.NAME);
+             //   thirdLogin(QQ.NAME);
                 break;
             case R.id.iv_zfb:
                 break;

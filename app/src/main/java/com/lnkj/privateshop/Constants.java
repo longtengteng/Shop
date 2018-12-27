@@ -5,27 +5,23 @@ import com.hyphenate.easeui.EaseConstant;
 /**
  * Created by WRJ on 2016/8/27.
  */
-public class Constants  extends EaseConstant {
-
-
+public class Constants extends EaseConstant {
 
 
 //    public static final String Base_URL = "http://dingzhi.pro3.liuniukeji.net/";
 //    public static final String Base_IMG_URL = "http://dingzhi.pro3.liuniukeji.net/";// 图片连接地址
 
 
-     public static final String Base_URL = "http://znshop.swzzkf.cn/";
-     public static final String Base_IMG_URL = "http://znshop.swzzkf.cn/";// 图片连接地址
-
-
+    public static final String Base_URL = "http://znshop.swzzkf.cn/";
+    public static final String Base_IMG_URL = "http://znshop.swzzkf.cn/";// 图片连接地址
 
 
     public static final String APP_ID = "wx41b0feae7eb97c40";// 微信appid
-    public static final String GOODSID="goodsid";
+    public static final String GOODSID = "goodsid";
     public static final String FINDPWD = "findpwd";
     public static final String REGISTE = "registe";
-    public static final int STATE_BUY =1; //买家
-    public static final int STATE_SELLER =2; //卖家
+    public static final int STATE_BUY = 1; //买家
+    public static final int STATE_SELLER = 2; //卖家
 
     public static final String NEW_FRIENDS_USERNAME = "item_new_friends";
     public static final String GROUP_USERNAME = "item_groups";

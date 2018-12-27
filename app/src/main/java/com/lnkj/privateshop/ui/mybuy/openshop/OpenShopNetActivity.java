@@ -44,7 +44,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static com.lnkj.privateshop.R.id.tv_provin;
 
 
-public class OpenShopNetActivity extends BaseActivity implements OpenShopContract.View,View.OnClickListener{
+public class OpenShopNetActivity extends BaseActivity implements OpenShopContract.View, View.OnClickListener {
     @Bind(R.id.img_back)
     ImageView imgBack;
     @Bind(R.id.tv_title)
@@ -88,9 +88,11 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     private View rootview;
     private ClassGoodsAdapter classadapter;
     private OpenShopPresenter mPresenter = new OpenShopPresenter(this);
-    private String path_head ;
+    private String path_head;
     private PopupWindow mPopWindow;
     String Cat_id;
+    String shop_type;
+
     @Override
     public int initContentView() {
         return R.layout.activity_open_shop;
@@ -99,21 +101,26 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     @Override
     public void initInjector() {
         ButterKnife.bind(this);
+        shop_type = getIntent().getStringExtra("shop_type");
+
         classadapter = new ClassGoodsAdapter(this);
-        rootview=View.inflate(this,R.layout.activity_open_shop,null);
+        rootview = View.inflate(this, R.layout.activity_open_shop, null);
         tvTitle.setText("免费开店");
         tv_look.setVisibility(View.GONE);
         mPresenter.getToken(token);
         mPresenter.getDataFromServer();
         mPresenter.getShopInfo();
-        etPhone.setText(PreferencesUtils.getString(this,"username"));
+        etPhone.setText(PreferencesUtils.getString(this, "username"));
+
     }
 
     @Override
     public void initUiAndListener() {
 
     }
+
     int position;
+
     //    显示分类选择
     private void showPopupWindowClass() {
         //设置contentView
@@ -129,7 +136,7 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                position =i;
+                position = i;
                 classadapter.setCheckedPosition(i);
 
             }
@@ -142,6 +149,7 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
         //显示PopupWindow
         mPopWindow.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
     }
+
     @Override
     public void onEmpty() {
 
@@ -166,6 +174,7 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     public void initView() {
 
     }
+
     @Override
     public void openFactorySuccerr(String Shop_id) {
 
@@ -178,10 +187,10 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
 
     @Override
     public void openSuccree(String Shop_id) {
-        PreferencesUtils.putString(this, "shop_id",Shop_id);
-        PreferencesUtils.putInt(this, "is_shop",1);
+        PreferencesUtils.putString(this, "shop_id", Shop_id);
+        PreferencesUtils.putInt(this, "is_shop", 1);
         Intent intent = new Intent(this, MoneyActivity.class);
-        intent.putExtra("shop_id",Shop_id);
+        intent.putExtra("shop_id", Shop_id);
         startActivity(intent);
         finish();
 
@@ -190,6 +199,7 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
 
     //获取分类成功
     List<AddGoodsBean.DataBean> classlists = new ArrayList<>();
+
     @Override
     public void getClassSucceed(AddGoodsBean beass) {
         classlists.addAll(beass.getData());
@@ -199,44 +209,44 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     @Override
     public void getShopInfoSucceed(EditShopBean.DataBean beans) {
         String shop_name = beans.getShop_name();
-        if (!TextUtils.isEmpty( shop_name)){
+        if (!TextUtils.isEmpty(shop_name)) {
             etShipName.setText(shop_name);
         }
         String contacts_name = beans.getContacts_name();
-        if (!TextUtils.isEmpty( contacts_name)){
+        if (!TextUtils.isEmpty(contacts_name)) {
             etPeople.setText(contacts_name);
         }
         String user_mobile = beans.getUser_mobile();
-        if (!TextUtils.isEmpty( user_mobile)){
+        if (!TextUtils.isEmpty(user_mobile)) {
             etPhone.setText(user_mobile);
         }
         String province = beans.getProvince();
         String city = beans.getCity();
-        if (!TextUtils.isEmpty( province)){
-            tvProvin.setText(province+"-"+city);
+        if (!TextUtils.isEmpty(province)) {
+            tvProvin.setText(province + "-" + city);
         }
 
         String address = beans.getAddress();
-        if (!TextUtils.isEmpty( address)){
+        if (!TextUtils.isEmpty(address)) {
             etAddress.setText(address);
         }
 
         String category_name = beans.getCategory_name();
-        if (!TextUtils.isEmpty( category_name)){
+        if (!TextUtils.isEmpty(category_name)) {
             tvClass.setText(category_name);
-            Cat_id=beans.getCategory_id();
+            Cat_id = beans.getCategory_id();
         }
         String basic_amount = beans.getBasic_amount();
-        if (!TextUtils.isEmpty( basic_amount)){
+        if (!TextUtils.isEmpty(basic_amount)) {
             etPackMount.setText(basic_amount);
         }
         String retail_amount = beans.getRetail_amount();
-        if (!TextUtils.isEmpty( retail_amount)){
+        if (!TextUtils.isEmpty(retail_amount)) {
             etMount.setText(retail_amount);
         }
     }
 
-    @OnClick({R.id.img_back, tv_provin, R.id.tv_class, R.id.btn_submit, R.id.rl_img,R.id.tv_look,R.id.ll_head})
+    @OnClick({R.id.img_back, tv_provin, R.id.tv_class, R.id.btn_submit, R.id.rl_img, R.id.tv_look, R.id.ll_head})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_back:
@@ -250,12 +260,12 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
                 showPopupWindowClass();
                 break;
             case R.id.btn_submit:
-                if ("请点击选择".equals(tvProvin.getText().toString())){
+                if ("请点击选择".equals(tvProvin.getText().toString())) {
                     province = "";
-                    city="";
+                    city = "";
                 }
-                mPresenter.openShop(path_head,path,etShipName.getText().toString(),etPeople.getText().toString(),etPhone.getText().toString(),
-                province,city,etAddress.getText().toString(),Cat_id,etMount.getText().toString(),etPackMount.getText().toString(),mswitch.isChecked());
+                mPresenter.openShop(shop_type, path_head, path, etShipName.getText().toString(), etPeople.getText().toString(), etPhone.getText().toString(),
+                        province, city, etAddress.getText().toString(), Cat_id, etMount.getText().toString(), etPackMount.getText().toString(), mswitch.isChecked());
                 break;
             case R.id.rl_img:
                 ImagePicker imagePicker2 = ImagePicker.getInstance();
@@ -266,8 +276,8 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
                 break;
 
             case R.id.tv_look:
-                Intent i = new Intent(this,LookImgActivity.class);
-                i.putExtra("type","网店");
+                Intent i = new Intent(this, LookImgActivity.class);
+                i.putExtra("type", "网店");
                 startActivity(i);
                 break;
             case R.id.ll_head:
@@ -279,23 +289,25 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
                 break;
         }
     }
-    private int IMAGE_PICKER_HEAD =0x00001;
-    private int IMAGE_PICKER =0x00002;
-    String  path;
+
+    private int IMAGE_PICKER_HEAD = 0x00001;
+    private int IMAGE_PICKER = 0x00002;
+    String path;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             if (data != null && requestCode == IMAGE_PICKER_HEAD) {
-                ArrayList<ImageItem> lists =     (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                   path_head = lists.get(0).path;
+                ArrayList<ImageItem> lists = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+                path_head = lists.get(0).path;
                 Glide.with(this).load
                         (path_head)
                         .into(imgHead);
             }
-            if (data != null && requestCode == IMAGE_PICKER){
-                ArrayList<ImageItem> lists =     (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                         path = lists.get(0).path;
+            if (data != null && requestCode == IMAGE_PICKER) {
+                ArrayList<ImageItem> lists = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+                path = lists.get(0).path;
                 Glide.with(this).load
                         (path)
                         .into(ivImg);
@@ -303,9 +315,11 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
             }
         }
     }
-    private String province="山东省";
-    private String city="临沂市";
-    private String district="兰山区";
+
+    private String province = "山东省";
+    private String city = "临沂市";
+    private String district = "兰山区";
+
     /**
      * 选取城市区域
      */
@@ -333,28 +347,28 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
             @Override
             public void onSelected(String... citySelected) {
                 //省份
-                 province = citySelected[0];
+                province = citySelected[0];
                 //城市
                 city = citySelected[1];
                 //区县（如果设定了两级联动，那么该项返回空）
-                 district = citySelected[2];
+                district = citySelected[2];
                 //邮编
                 String code = citySelected[3];
                 //为TextView赋值
-                tvProvin.setText(province.trim() + "-" + city.trim()+ "-"+district.trim());
+                tvProvin.setText(province.trim() + "-" + city.trim() + "-" + district.trim());
             }
         });
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.tv_cancel:
 
                 break;
             case R.id.tv_ok:
-                     Cat_id = classlists.get(position).getCat_id();
-                 tvClass.setText(classlists.get(position).getCat_name_mobile());
+                Cat_id = classlists.get(position).getCat_id();
+                tvClass.setText(classlists.get(position).getCat_name_mobile());
 
                 break;
             case R.id.ll_blank:
