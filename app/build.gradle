@@ -2,7 +2,47 @@ apply plugin: 'com.android.application'
 //apply plugin: 'android-apt'
 //apply plugin: 'com.droidtitan.lintcleaner'
 apply plugin: 'org.greenrobot.greendao' // apply plugin
+apply plugin: 'com.mob.sdk'
+MobSDK {
+    appKey "2747faab13f56"
+    appSecret "e7348bfd9b8ea8a4b6fe23487c536e17"
 
+    ShareSDK { //平台配置信息
+        devInfo {
+//            SinaWeibo {
+//                appKey "568898243"
+//                appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
+//                callbackUri "http://www.sharesdk.cn"
+//                shareByAppClient false
+//            }
+            Wechat {
+                appId "wxb949c034cc31d9a2"
+                appSecret "a8c926126f8a8795752863bafcf56610"
+            }
+            WechatMoments {
+                appId "wxb949c034cc31d9a2"
+                appSecret "a8c926126f8a8795752863bafcf56610"
+            }
+            QQ {
+                appId "101488775"
+                appKey "70af36abd05d399463952aa43d3199ee"
+                ShareByAppClient = "true"
+            }
+            QZone {
+                ShareByAppClient = "true"
+                appId "101488775"
+                appKey "70af36abd05d399463952aa43d3199ee"
+            }
+
+//            Facebook {
+//                appKey "1412473428822331"
+//                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
+//                callbackUri "https://mob.com"
+//            }
+        }
+    }
+
+}
 android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'

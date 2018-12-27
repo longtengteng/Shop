@@ -15,6 +15,7 @@ import com.lnkj.privateshop.utils.ToastUtil;
 import com.lnkj.privateshop.view.ProgreesDialog;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.view.CropImageView;
+import com.mob.MobSDK;
 import com.pgyersdk.crash.PgyCrashManager;
 
 import java.text.SimpleDateFormat;
@@ -71,7 +72,7 @@ public class MyApplication extends Application {
 
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
-
+        MobSDK.init(this);
         initComponent();
 
 //        initFrescoConfig();

@@ -3,6 +3,7 @@ package com.lnkj.privateshop.ui.login;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -15,12 +16,24 @@ import com.lnkj.privateshop.Constants;
 import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.ui.MainActivity;
 import com.lnkj.privateshop.ui.login.findpwd.FindPwdActivity;
+import com.lnkj.privateshop.ui.login.mob.LoginApi;
+import com.lnkj.privateshop.ui.login.mob.OnLoginListener;
+import com.lnkj.privateshop.ui.login.mob.UserInfo;
+import com.lnkj.privateshop.utils.ToastUtil;
+import com.mob.MobSDK;
+
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformDb;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.wechat.friends.Wechat;
 
 public class LoginActivity extends BaseActivity implements LoginContract.View {
 
@@ -44,7 +57,18 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     TextView tvTitle;
     @Bind(R.id.tv_left_blue)
     TextView tv_left_blue;
+
+    @Bind(R.id.iv_zfb)
+    ImageView iv_zfb;
+    @Bind(R.id.iv_qq)
+    ImageView iv_qq;
+    @Bind(R.id.iv_wx)
+    ImageView iv_wx;
+    @Bind(R.id.iv_weibo)
+    ImageView iv_weibo;
+
     String type;
+    String login_type = "";
 
     @Override
     public int initContentView() {
@@ -59,7 +83,17 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 .build()
                 .inject(this);
     }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("login_type", login_type);
+    }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        login_type = savedInstanceState.getString("login_type");
+    }
     @Override
     public void initUiAndListener() {
         ButterKnife.bind(this);
@@ -85,6 +119,31 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         });
     }
 
+    private void thirdLogin(String platformName) {
+
+        MobSDK.init(this);
+        final Platform platform = ShareSDK.getPlatform(platformName);
+        platformName = platform.getName();
+        LoginApi api = new LoginApi();
+        //设置登陆的平台后执行登陆的方法
+        api.setPlatform(platformName);
+        api.setOnLoginListener(new OnLoginListener() {
+            public boolean onLogin(String platformString, HashMap<String, Object> res) {
+                // 在这个方法填写尝试的代码，返回true表示还不能登录，需要注册
+                // 此处全部给回需要注册
+                PlatformDb platformDb = platform.getDb();
+                //      present.login_three(platformDb.getUserId(), login_type, platformDb.getUserName(), platformDb.getUserIcon());
+                // LogUtils.e("userInfo", platformDb.getUserName() + platformDb.getUserIcon() + platformDb.getUserGender() + platformDb.getUserId());
+                return false;
+            }
+
+            public boolean onRegister(UserInfo info) {
+                // 填写处理注册信息的代码，返回true表示数据合法，注册页面可以关闭
+                return true;
+            }
+        });
+        api.login(this);
+    }
 
     @Override
     public void onEmpty() {
@@ -131,10 +190,26 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
 
-    @OnClick({R.id.btn_login, R.id.tv_find_pwd, R.id.tv_register})
+    @OnClick({R.id.iv_weibo, R.id.iv_wx, R.id.iv_qq, R.id.iv_zfb, R.id.btn_login, R.id.tv_find_pwd, R.id.tv_register})
     public void onViewClicked(View view) {
         Intent intent = new Intent(LoginActivity.this, FindPwdActivity.class);
         switch (view.getId()) {
+
+            case R.id.iv_weibo:
+                break;
+            case R.id.iv_wx:
+                ToastUtil.showToast("正在启动微信...");
+                login_type = "weixin";
+                thirdLogin(Wechat.NAME);
+                break;
+            case R.id.iv_qq:
+                login_type = "qq";
+                ToastUtil.showToast("正在启动QQ...");
+                thirdLogin(QQ.NAME);
+                break;
+            case R.id.iv_zfb:
+                break;
+
             case R.id.btn_login:
                 loginPresenter.login(editAccount.getText().toString(), editPwd.getText().toString());
                 break;
