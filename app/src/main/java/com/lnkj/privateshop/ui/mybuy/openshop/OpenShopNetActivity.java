@@ -304,6 +304,7 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     private int IMAGE_PICKER = 0x00002;
     String path;
     String local;
+    String lat, lng;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -326,7 +327,10 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
             }
         }
         if (requestCode == 66) {
-            local = data.getStringExtra("local");
+            local = data.getStringExtra("address");
+            lng = data.getStringExtra("longitude");
+            lat = data.getStringExtra("latitude");
+            tv_local.setText(local);
         }
     }
 

@@ -52,7 +52,7 @@ class MapActivity : BaseActivity(), LocationSource, AMapLocationListener, AMap.O
     override fun onRegeocodeSearched(result: RegeocodeResult?, rCode: Int) {
         if (rCode == 1000) {
             if (result != null && result.getRegeocodeAddress() != null && result.getRegeocodeAddress().getFormatAddress() != null) {
-                val addressName = result.getRegeocodeAddress().getFormatAddress() + "附近"; // 逆转地里编码不是每次都可以得到对应地图上的opi
+                val addressName = result.getRegeocodeAddress().getFormatAddress(); // 逆转地里编码不是每次都可以得到对应地图上的opi
                 address = addressName
                 tv_address.text = addressName
             }
@@ -126,6 +126,17 @@ class MapActivity : BaseActivity(), LocationSource, AMapLocationListener, AMap.O
             mLocationClient?.stopLocation();
             mLocationClient?.onDestroy();
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent().also {
+            it.putExtra("latitude", latitude)
+            it.putExtra("longitude", longitude)
+            it.putExtra("address", address)
+        }
+        setResult(0, intent)
+        // finish()
+        super.onBackPressed()
     }
 
     override fun initUiAndListener() {

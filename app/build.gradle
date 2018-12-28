@@ -89,12 +89,6 @@ android {
         }
     }
     signingConfigs {
-//        正式 {
-//            storeFile file('D:/android/liuniu.keys')
-//            storePassword "lnkj@2015"
-//            keyAlias "liuniu"
-//            keyPassword "lnkj@2015"
-//        }
         debug {
             storeFile file("liuniu.keys")
             storePassword "lnkj@2015"
