@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 //apply plugin: 'android-apt'
 //apply plugin: 'com.droidtitan.lintcleaner'
 apply plugin: 'org.greenrobot.greendao' // apply plugin
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 //apply plugin: 'com.mob.sdk'
 
 /*MobSDK {
@@ -93,6 +95,12 @@ android {
 //            keyAlias "liuniu"
 //            keyPassword "lnkj@2015"
 //        }
+        debug {
+            storeFile file("liuniu.keys")
+            storePassword "lnkj@2015"
+            keyAlias "liuniu"
+            keyPassword "lnkj@2015"
+        }
 
         useLibrary 'org.apache.http.legacy'
         greendao {
@@ -106,6 +114,7 @@ android {
             jcenter()
         }
         dependencies {
+
 //            classpath 'com.android.tools.build:gradle:2.3.3'
 //        // Since Android's Gradle plugin 0.11, you have to use android-apt >= 1.3
 //        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
@@ -138,7 +147,7 @@ android {
     dependencies {
         compile fileTree(include: ['*.jar'], dir: 'libs')
         //Dagger
-
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
         //上拉加载，下拉刷新
         compile files('libs/zxing.jar')
         compile files('libs/alipaySdk-20170725.jar')

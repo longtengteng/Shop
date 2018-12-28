@@ -298,6 +298,7 @@ public class UserFragment extends BaseFragment implements UserContract.View {
                 @Override
                 public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                     Intent intent = new Intent(getActivity(), OpenShopNetActivity.class);
+                    intent.putExtra("shop_type", (position + 1) + "");
                     startActivity(intent);
                     dismiss();
                 }

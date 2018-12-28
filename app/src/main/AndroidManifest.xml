@@ -9,6 +9,7 @@
         android:protectionLevel="signature" />
     <!-- Required  一些系统要求的权限，如访问网络等 -->
 
+
     <uses-permission android:name="com.lnkj.privateshop.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -180,6 +181,7 @@
         <!-- <category android:name="com.lnkj.privateshop" /> -->
         <!-- </intent-filter> -->
         <!-- </receiver> -->
+
 
         <activity
             android:name=".BaseWebViewActivity"
@@ -377,6 +379,7 @@
         <activity
             android:name=".ui.goods.spec.SpecActivity"
             android:theme="@style/custom_dialog" />
+        <activity android:name=".fragment.user.MapActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -387,6 +390,14 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <!-- 高德定位相关开始 -->
+        <service android:name="com.amap.api.location.APSService" />
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="9a738990ac3c18b8cb3b18f08e51cd6b" />
+        <!-- 高德定位相关结束 -->
     </application>
 
 </manifest>

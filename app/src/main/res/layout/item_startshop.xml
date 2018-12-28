@@ -5,10 +5,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <Button
+    <TextView
         android:id="@+id/btn_start"
         style="@style/Button_default"
         android:layout_marginTop="8dp"
+        android:gravity="center"
         android:background="@drawable/button_bj_orange"
         android:textColor="@color/btn_bj"
         tools:text="实体工厂(我自设工厂)" />

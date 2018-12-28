@@ -25,6 +25,7 @@ import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.adapter.ClassGoodsAdapter;
 import com.lnkj.privateshop.entity.AddGoodsBean;
 import com.lnkj.privateshop.entity.EditShopBean;
+import com.lnkj.privateshop.fragment.user.MapActivity;
 import com.lnkj.privateshop.ui.mybuy.openshop.money.LookImgActivity;
 import com.lnkj.privateshop.ui.mybuy.openshop.money.MoneyActivity;
 import com.lnkj.privateshop.utils.PreferencesUtils;
@@ -43,7 +44,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.lnkj.privateshop.R.id.tv_provin;
 
-
+/*
+ * 开店，在开网店的基础上修改
+ *
+ * */
 public class OpenShopNetActivity extends BaseActivity implements OpenShopContract.View, View.OnClickListener {
     @Bind(R.id.img_back)
     ImageView imgBack;
@@ -85,6 +89,8 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     TextView tvImg;
     @Bind(R.id.tv_look)
     TextView tv_look;
+    @Bind(R.id.tv_local)
+    TextView tv_local;
     private View rootview;
     private ClassGoodsAdapter classadapter;
     private OpenShopPresenter mPresenter = new OpenShopPresenter(this);
@@ -102,7 +108,6 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     public void initInjector() {
         ButterKnife.bind(this);
         shop_type = getIntent().getStringExtra("shop_type");
-
         classadapter = new ClassGoodsAdapter(this);
         rootview = View.inflate(this, R.layout.activity_open_shop, null);
         tvTitle.setText("免费开店");
@@ -246,9 +251,14 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
         }
     }
 
-    @OnClick({R.id.img_back, tv_provin, R.id.tv_class, R.id.btn_submit, R.id.rl_img, R.id.tv_look, R.id.ll_head})
+
+    @OnClick({R.id.tv_local, R.id.img_back, tv_provin, R.id.tv_class, R.id.btn_submit, R.id.rl_img, R.id.tv_look, R.id.ll_head})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.tv_local:
+                Intent i = new Intent(this, MapActivity.class);
+                startActivityForResult(i, 66);
+                break;
             case R.id.img_back:
                 finish();
                 break;
@@ -276,9 +286,9 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
                 break;
 
             case R.id.tv_look:
-                Intent i = new Intent(this, LookImgActivity.class);
-                i.putExtra("type", "网店");
-                startActivity(i);
+                Intent j = new Intent(this, LookImgActivity.class);
+                j.putExtra("type", "网店");
+                startActivity(j);
                 break;
             case R.id.ll_head:
                 ImagePicker imagePicker = ImagePicker.getInstance();
@@ -293,6 +303,7 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     private int IMAGE_PICKER_HEAD = 0x00001;
     private int IMAGE_PICKER = 0x00002;
     String path;
+    String local;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -313,6 +324,9 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
                         .into(ivImg);
                 tvImg.setVisibility(View.GONE);
             }
+        }
+        if (requestCode == 66) {
+            local = data.getStringExtra("local");
         }
     }
 
