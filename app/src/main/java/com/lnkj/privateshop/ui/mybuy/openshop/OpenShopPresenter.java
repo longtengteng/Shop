@@ -117,8 +117,8 @@ public class OpenShopPresenter implements OpenShopContract.Presenter {
 
     //开网店
     @Override
-    public void openShop(String shop_type, String path_head, String path, String shop_name, String people, String phone,
-                         String province, String city, String address, String Cat_id, String mount, String pack_mount, boolean is_chane) {
+    public void openShop(String shop_type, String district, String path_head, String path, String shop_name, String people, String phone,
+                         String province, String city, String address, String lat, String lng) {
         if (TextUtils.isEmpty(path_head)) {
             ToastUtil.showToast("选择店铺头像");
         } else if (TextUtils.isEmpty(path)) {
@@ -128,17 +128,14 @@ public class OpenShopPresenter implements OpenShopContract.Presenter {
             MultipartBody.Builder builder = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM);//表单类型
             builder.addFormDataPart("token", token);
-            builder.addFormDataPart("shop_type", String.valueOf(3) + "");
+            builder.addFormDataPart("shop_type", shop_type + "");
             builder.addFormDataPart("shop_name", shop_name + "");
             builder.addFormDataPart("contacts_name", people + "");
             builder.addFormDataPart("user_mobile", phone + "");
             builder.addFormDataPart("province", province + "");
             builder.addFormDataPart("city", city + "");
+            builder.addFormDataPart("country", district);
             builder.addFormDataPart("address", address + "");
-            builder.addFormDataPart("category_id", Cat_id + "");
-            builder.addFormDataPart("retail_amount", mount + "");
-            builder.addFormDataPart("basic_amount", pack_mount + "");
-            builder.addFormDataPart("allow_return", String.valueOf(is_chane ? 1 : 0) + "");
             File file = new File(path);//filePath 图片地址
             RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
             builder.addFormDataPart("shop_real_pic", file.getName(), imageBody);//"imgfile"+i 后台接收图片流的参数名

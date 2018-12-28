@@ -130,8 +130,8 @@ class MapActivity : BaseActivity(), LocationSource, AMapLocationListener, AMap.O
 
     override fun onBackPressed() {
         val intent = Intent().also {
-            it.putExtra("latitude", latitude)
-            it.putExtra("longitude", longitude)
+            it.putExtra("latitude", latitude.toString())
+            it.putExtra("longitude", longitude.toString())
             it.putExtra("address", address)
         }
         setResult(0, intent)
@@ -146,8 +146,8 @@ class MapActivity : BaseActivity(), LocationSource, AMapLocationListener, AMap.O
         tv_right.text = "完成"
         tv_right.setOnClickListener {
             val intent = Intent().also {
-                it.putExtra("latitude", latitude)
-                it.putExtra("longitude", longitude)
+                it.putExtra("latitude", latitude.toString())
+                it.putExtra("longitude", longitude.toString())
                 it.putExtra("address", address)
             }
             setResult(0, intent)

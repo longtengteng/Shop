@@ -29,6 +29,7 @@ import com.lnkj.privateshop.fragment.user.MapActivity;
 import com.lnkj.privateshop.ui.mybuy.openshop.money.LookImgActivity;
 import com.lnkj.privateshop.ui.mybuy.openshop.money.MoneyActivity;
 import com.lnkj.privateshop.utils.PreferencesUtils;
+import com.lnkj.privateshop.utils.ToastUtil;
 import com.lnkj.privateshop.utils.UiUtils;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
@@ -96,7 +97,6 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     private OpenShopPresenter mPresenter = new OpenShopPresenter(this);
     private String path_head;
     private PopupWindow mPopWindow;
-    String Cat_id;
     String shop_type;
 
     @Override
@@ -227,6 +227,9 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
         }
         String province = beans.getProvince();
         String city = beans.getCity();
+
+        // String country = beans.getC
+
         if (!TextUtils.isEmpty(province)) {
             tvProvin.setText(province + "-" + city);
         }
@@ -236,11 +239,11 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
             etAddress.setText(address);
         }
 
-        String category_name = beans.getCategory_name();
+     /*   String category_name = beans.getCategory_name();
         if (!TextUtils.isEmpty(category_name)) {
             tvClass.setText(category_name);
             Cat_id = beans.getCategory_id();
-        }
+        }*/
         String basic_amount = beans.getBasic_amount();
         if (!TextUtils.isEmpty(basic_amount)) {
             etPackMount.setText(basic_amount);
@@ -273,9 +276,14 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
                 if ("请点击选择".equals(tvProvin.getText().toString())) {
                     province = "";
                     city = "";
+                    district = "";
                 }
-                mPresenter.openShop(shop_type, path_head, path, etShipName.getText().toString(), etPeople.getText().toString(), etPhone.getText().toString(),
-                        province, city, etAddress.getText().toString(), Cat_id, etMount.getText().toString(), etPackMount.getText().toString(), mswitch.isChecked());
+                if (TextUtils.isEmpty(lat)) {
+                    ToastUtil.showToast("请选择位置");
+                    return;
+                }
+                mPresenter.openShop(shop_type, district, path_head, path, etShipName.getText().toString(), etPeople.getText().toString(), etPhone.getText().toString(),
+                        province, city, etAddress.getText().toString(), lat, lng);
                 break;
             case R.id.rl_img:
                 ImagePicker imagePicker2 = ImagePicker.getInstance();
@@ -385,7 +393,7 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
 
                 break;
             case R.id.tv_ok:
-                Cat_id = classlists.get(position).getCat_id();
+                //     Cat_id = classlists.get(position).getCat_id();
                 tvClass.setText(classlists.get(position).getCat_name_mobile());
 
                 break;
