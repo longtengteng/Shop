@@ -434,7 +434,9 @@ public class MeApi {
     // 获取店铺详情
     public Observable<String> getShopInfo(Map<String, Object> map) {
         return meService.getShopInfo(map).subscribeOn(Schedulers.io());
-    }// 获取店铺评论列表
+    }
+
+    // 获取店铺评论列表
 
     public Observable<String> getShopCommentList(Map<String, Object> map) {
         return meService.getShopCommentList(map).subscribeOn(Schedulers.io());

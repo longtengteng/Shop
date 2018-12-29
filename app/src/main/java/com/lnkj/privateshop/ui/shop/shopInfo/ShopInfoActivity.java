@@ -52,16 +52,12 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-import static com.lnkj.privateshop.R.id.tv_phoen;
-import static com.lnkj.privateshop.R.id.tv_private;
 
 /**
  * 店铺详情
  */
 public class ShopInfoActivity extends BaseActivity implements ShopInfoContract.View {
     ShopInfoPresenter mPresenter = new ShopInfoPresenter(this, this);
-    @Bind(R.id.tv_ship_class)
-    TextView tv_ship_class;
     @Bind(R.id.iv_shop_bj)
     ImageView ivShopBj;
     @Bind(R.id.img_shop_head)
@@ -72,16 +68,6 @@ public class ShopInfoActivity extends BaseActivity implements ShopInfoContract.V
     TextView tvFollow;
     @Bind(R.id.tv_address)
     TextView tvAddress;
-    @Bind(R.id.tv_follow_ccount)
-    TextView tvFollowCcount;
-    @Bind(R.id.tv_percent)
-    TextView tvPercent;
-    @Bind(R.id.tv_sales_count)
-    TextView tvSalesCount;
-    @Bind(R.id.tv_good)
-    TextView tvGood;
-    @Bind(R.id.tv_comment)
-    TextView tvComment;
     @Bind(R.id.rl_parent)
     LinearLayout rlParent;
     @Bind(R.id.tabLayout)
@@ -92,14 +78,6 @@ public class ShopInfoActivity extends BaseActivity implements ShopInfoContract.V
     ViewPager viewpager;
     @Bind(R.id.scrollview)
     CoordinatorLayout scrollview;
-    @Bind(R.id.rv_classification)
-    ImageView rvClassification;
-    @Bind(R.id.tv_archives)
-    TextView tvArchives;
-    @Bind(tv_private)
-    TextView tvPrivate;
-    @Bind(tv_phoen)
-    TextView tvPhoen;
     @Bind(R.id.tv_context)
     TextView tvContext;
     ImageView ivMenu;
@@ -107,29 +85,12 @@ public class ShopInfoActivity extends BaseActivity implements ShopInfoContract.V
     RelativeLayout rl_bar;
     @Bind(R.id.rl_bar_to)
     RelativeLayout rl_bar_to;
-    @Bind(R.id.tv_margin)
-    TextView tv_margin;
-    @Bind(R.id.iv_return_goods)
-    ImageView iv_return_goods;
-
-    @Bind(R.id.im_grade1)
-    ImageView imGrade1;
-    @Bind(R.id.im_grade2)
-    ImageView imGrade2;
-    @Bind(R.id.im_grade3)
-    ImageView imGrade3;
-    @Bind(R.id.im_grade4)
-    ImageView imGrade4;
-    @Bind(R.id.im_grade5)
-    ImageView imGrade5;
-
     @Bind(R.id.img_beak)
     ImageView img_beak;
     @Bind(R.id.img_beak_to)
     ImageView img_beak_to;
     private String shop_id;
     MerchandiseFragment mFragment;
-    Membersragment mMemFragment;
     private List<Fragment> fragmentList;
     private List<String> titeList;
     private OrderViewPagerAdapter adapter;
@@ -152,11 +113,6 @@ public class ShopInfoActivity extends BaseActivity implements ShopInfoContract.V
         mPresenter.getShomInfo(shop_id);
         mPresenter.getShopArchives(shop_id);
 
-        if (!TextUtils.isEmpty(type)) {
-            tvPrivate.setVisibility(View.GONE);
-            tvPhoen.setVisibility(View.GONE);
-        }
-
         titeList = new ArrayList<>();
         fragmentList = new ArrayList<>();
 
@@ -165,10 +121,12 @@ public class ShopInfoActivity extends BaseActivity implements ShopInfoContract.V
         viewpager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewpager);
     }
+
     @Override
-    public void finsh(){
+    public void finsh() {
         ToastUtil.showToast("店铺不存在");
     }
+
     @Override
     public void initUiAndListener() {
         img_beak.setOnClickListener(new View.OnClickListener() {
@@ -244,50 +202,7 @@ public class ShopInfoActivity extends BaseActivity implements ShopInfoContract.V
     public void getShomInfoSucceed(ShopBean beans) {
 
         shopinfo = beans.getData();
-        if (shopinfo.getShop_type().equals("1")) {
-            tv_ship_class.setText("实");
-        } else if (shopinfo.getShop_type().equals("2")) {
-            tv_ship_class.setText("工");
-        } else if (shopinfo.getShop_type().equals("3")) {
-            tv_ship_class.setText("网");
-        }
-        ShopBean.DataBean.Shop_grade grade = shopinfo.getShop_grade();
-        if (grade != null) {
-            if (grade.getType().equals("G1")) {
-                imGrade1.setImageResource(R.mipmap.icon_heart);
-                imGrade2.setImageResource(R.mipmap.icon_heart);
-                imGrade3.setImageResource(R.mipmap.icon_heart);
-                imGrade4.setImageResource(R.mipmap.icon_heart);
-                imGrade5.setImageResource(R.mipmap.icon_heart);
-                goneOrVisible(grade.getNum());
-            } else if (grade.getType().equals("G2")) {
-                imGrade1.setImageResource(R.mipmap.icon_dimon);
-                imGrade2.setImageResource(R.mipmap.icon_dimon);
-                imGrade3.setImageResource(R.mipmap.icon_dimon);
-                imGrade4.setImageResource(R.mipmap.icon_dimon);
-                imGrade5.setImageResource(R.mipmap.icon_dimon);
-                goneOrVisible(grade.getNum());
-            } else if (grade.getType().equals("G3")) {
-                imGrade1.setImageResource(R.mipmap.icon_silvercrown);
-                imGrade2.setImageResource(R.mipmap.icon_silvercrown);
-                imGrade3.setImageResource(R.mipmap.icon_silvercrown);
-                imGrade4.setImageResource(R.mipmap.icon_silvercrown);
-                imGrade5.setImageResource(R.mipmap.icon_silvercrown);
-                goneOrVisible(grade.getNum());
-            } else if (grade.getType().equals("G4")) {
-                imGrade1.setImageResource(R.mipmap.icon_goldcrown);
-                imGrade2.setImageResource(R.mipmap.icon_goldcrown);
-                imGrade3.setImageResource(R.mipmap.icon_goldcrown);
-                imGrade4.setImageResource(R.mipmap.icon_goldcrown);
-                imGrade5.setImageResource(R.mipmap.icon_goldcrown);
-                goneOrVisible(grade.getNum());
-            }
-        }
-        if (!TextUtils.isEmpty(shopinfo.getAllow_return()) && shopinfo.getAllow_return().equals("1")) {
-            iv_return_goods.setVisibility(View.VISIBLE);
-        } else {
-            iv_return_goods.setVisibility(View.GONE);
-        }
+
 
         tvShopName.setText(shopinfo.getShop_name());
         Glide
@@ -300,107 +215,55 @@ public class ShopInfoActivity extends BaseActivity implements ShopInfoContract.V
                 .load(Constants.Base_URL + shopinfo.getShop_real_pic())
                 .error(R.mipmap.bg_img)
                 .into(ivShopBj);
-if (!TextUtils.isEmpty(shopinfo.getEmchat_username())){
-try {
-        EaseUser easeUser = new EaseUser(shopinfo.getEmchat_username());
-        easeUser.setAvatar(Constants.Base_IMG_URL + shopinfo.getHead_pic());
-        easeUser.setNickname(shopinfo.getNickname());
-//        UserDao dao = new UserDao(MyApplication.getApplication());
-//        List<EaseUser> users = new ArrayList<EaseUser>();
-//        users.add(easeUser);
-////        dao.saveContactList(users);
-//        DemoHelper.getInstance().updateContactList(users);
-
-    DemoHelper.getInstance().saveContact(easeUser);
-}catch (Exception e){}
-}
         if (TextUtils.isEmpty(shopinfo.getAddress())) {
             tvAddress.setText(shopinfo.getProvince() + "·" + shopinfo.getCity());
         } else {
             tvAddress.setText(shopinfo.getProvince() + "·" + shopinfo.getCity() + "·" + shopinfo.getAddress());
         }
-        if (shopinfo.getIs_favorite() == 0) {
+        if (shopinfo.getHas_focus() == 0) {
             tvFollow.setText("+关注");
         } else {
             tvFollow.setText("已关注");
             tvFollow.setClickable(false);
         }
-        tvFollowCcount.setText("关注" + shopinfo.getCollect_num());
-        tvSalesCount.setText("销量" + shopinfo.getGoods_sale_num());
-        tvPercent.setText("补货率" + shopinfo.getBuy_again_rate() + "%");
-        if (TextUtils.isEmpty(shopinfo.getDescription())) {
+        if (TextUtils.isEmpty(shopinfo.getNotice())) {
             tvContext.setVisibility(View.GONE);
         } else {
             tvContext.setVisibility(View.VISIBLE);
         }
-        tvContext.setText(shopinfo.getDescription());
-        tvGood.setText(shopinfo.getGood_comment_rate() + "%");
-        tvComment.setText(shopinfo.getComment_count() + "评论");
-
-        titeList.add("首页");
-        titeList.add("上新");
-        titeList.add("热销");
-        titeList.add("会员");
-        for (int i = 0; i < titeList.size() - 1; i++) {
+        tvContext.setText(shopinfo.getNotice());
+        for (int i = 0; i < beans.getData().getCat_info().size(); i++) {
+            titeList.add(beans.getData().getCat_info().get(i).getCat_name());
+        }
+        for (int i = 0; i < titeList.size(); i++) {
             mFragment = MerchandiseFragment.newInstance();
             Bundle bundle = new Bundle();
             bundle.putInt("index", i);
-            bundle.putString("shopID", shop_id);
+            bundle.putString("cat_id", beans.getData().getCat_info().get(i).getCat_id());
             mFragment.setArguments(bundle);
             fragmentList.add(mFragment);
         }
-        mMemFragment = Membersragment.newInstance();
-        Bundle bundle = new Bundle();
-        bundle.putString("shopID", shop_id);
-        mMemFragment.setArguments(bundle);
-        fragmentList.add(mMemFragment);
         adapter.bind(fragmentList, titeList);
     }
 
 
     @Override
     public void SetColloectShopSuccreed() {
-        if (shopinfo.getIs_favorite() == 0) {
-            shopinfo.setIs_favorite(1);
+        if (shopinfo.getHas_focus() == 0) {
+            shopinfo.setHas_focus(1);
             tvFollow.setText("已关注");
         } else {
             tvFollow.setText("+关注");
-            shopinfo.setIs_favorite(0);
+            shopinfo.setHas_focus(0);
         }
     }
 
     @Override
     public void getShopArchivesSucceed(ShopArchivesBean beans) {
-
-        try {
-            String number = beans.getData().getShop_bond();
-            String intNumber = number.substring(0, number.indexOf("."));
-            int num = Integer.parseInt(intNumber);
-
-            if (num<2000){
-                tv_margin.setVisibility(View.GONE);
-            }else if (num<3000){
-                tv_margin.setText("两千");
-            }else if (num<5000){
-                tv_margin.setText("三千");
-            }else if (num<10000){
-                tv_margin.setText("五千");
-            }else if (num<20000){
-                tv_margin.setText("一万");
-            }else if (num<50000){
-                tv_margin.setText("两万");
-            }else {
-                tv_margin.setText("五万");
-            }
-
-
-//            tv_margin.setText(MoneyFormat.toChineseCharI(intNumber));
-        } catch (Exception e) {
-        }
     }
 
 
-    @OnClick({R.id.tv_comment, R.id.rv_classification, R.id.tv_archives, tv_private, tv_phoen, R.id.tv_follow,
+    @OnClick({R.id.tv_follow,
             R.id.img_goods_car, R.id.img_menu, R.id.img_goods_car_to, R.id.img_menu_to})
     public void onViewClicked(View view) {
         Intent intent;
@@ -437,58 +300,7 @@ try {
                 intent.putExtra("type", "addshop");
                 startActivity(intent);
                 break;
-            case R.id.tv_comment:
-                intent = new Intent(this, ShopCommentActivity.class);
-                intent.putExtra("shop_id", shop_id);
-                startActivity(intent);
-                break;
-            case R.id.rv_classification:
-                intent = new Intent(this, ShopClassActivity.class);
-                intent.putExtra("shop_id", shop_id);
-                startActivity(intent);
-                break;
-            case R.id.tv_archives:
-                intent = new Intent(this, ShopArchivesActivity.class);
-                intent.putExtra("shop_id", shop_id);
-                startActivity(intent);
-                break;
-            case tv_private:
-                if (!is_bogin) {
-                    ToastUtil.showToast("您还没有登录，请去登录");
-                    Intent i = new Intent(this, LoginActivity.class);
-                    startActivity(i);
-                    return;
-                }
-                try {
-                    if (TextUtils.isEmpty(shopinfo.getEmchat_username())) {
-                        ToastUtil.showToast("客服不在线");
-                        return;
-                    }
-                    String emchat_username = PreferencesUtils.getString(this, "emchat_username");
-                    if (emchat_username.equals(shopinfo.getEmchat_username())) {
-                        ToastUtil.showToast("不能跟自己聊天");
-                    } else {
 
-                        Intent intent1 = new Intent(ShopInfoActivity.this, ChatActivity.class);
-                        intent1.putExtra("userId", shopinfo.getEmchat_username());
-                        startActivity(intent1);
-                    }
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    ToastUtil.showToast("客服不在线");
-                }
-                break;
-            case tv_phoen:
-                if (!is_bogin) {
-                    ToastUtil.showToast("您还没有登录，请去登录");
-                    Intent i = new Intent(this, LoginActivity.class);
-                    startActivity(i);
-                    return;
-                }
-                call(shopinfo.getUser_mobile());
-                break;
             case R.id.tv_follow:
                 if (!is_bogin) {
                     ToastUtil.showToast("您还没有登录，请去登录");
@@ -534,7 +346,7 @@ try {
         tv_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mPopWindow!=null){
+                if (mPopWindow != null) {
                     mPopWindow.dismiss();
                 }
                 Intent intent = new Intent(ShopInfoActivity.this, BeedBackActivity.class);
@@ -549,40 +361,6 @@ try {
         try {
             startActivity(intent);
         } catch (Exception e) {
-        }
-    }
-
-    public void goneOrVisible(int num) {
-        if (num == 1) {
-            imGrade1.setVisibility(View.VISIBLE);
-            imGrade2.setVisibility(View.GONE);
-            imGrade3.setVisibility(View.GONE);
-            imGrade4.setVisibility(View.GONE);
-            imGrade5.setVisibility(View.GONE);
-        } else if (num == 2) {
-            imGrade1.setVisibility(View.VISIBLE);
-            imGrade2.setVisibility(View.VISIBLE);
-            imGrade3.setVisibility(View.GONE);
-            imGrade4.setVisibility(View.GONE);
-            imGrade5.setVisibility(View.GONE);
-        } else if (num == 3) {
-            imGrade1.setVisibility(View.VISIBLE);
-            imGrade2.setVisibility(View.VISIBLE);
-            imGrade3.setVisibility(View.VISIBLE);
-            imGrade4.setVisibility(View.GONE);
-            imGrade5.setVisibility(View.GONE);
-        } else if (num == 4) {
-            imGrade1.setVisibility(View.VISIBLE);
-            imGrade2.setVisibility(View.VISIBLE);
-            imGrade3.setVisibility(View.VISIBLE);
-            imGrade4.setVisibility(View.VISIBLE);
-            imGrade5.setVisibility(View.GONE);
-        } else if (num == 5) {
-            imGrade1.setVisibility(View.VISIBLE);
-            imGrade2.setVisibility(View.VISIBLE);
-            imGrade3.setVisibility(View.VISIBLE);
-            imGrade4.setVisibility(View.VISIBLE);
-            imGrade5.setVisibility(View.VISIBLE);
         }
     }
 }

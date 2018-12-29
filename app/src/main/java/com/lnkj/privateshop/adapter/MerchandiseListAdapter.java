@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.lnkj.privateshop.Constants;
 import com.lnkj.privateshop.R;
+import com.lnkj.privateshop.entity.NewShopHomeBean;
 import com.lnkj.privateshop.entity.ShopMerchandiseListBean;
 
 import java.util.List;
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
 public class MerchandiseListAdapter extends RecyclerView.Adapter<MerchandiseListAdapter.ViewHolder> {
 
     private Context mContext;
-    List<ShopMerchandiseListBean.DataBean.GoodsListBean> beans;
+    List<NewShopHomeBean.DataBean> beans;
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mOnItemClickListener = listener;
     }
@@ -42,7 +43,7 @@ public class MerchandiseListAdapter extends RecyclerView.Adapter<MerchandiseList
 
     }
 
-    public void addAllData(List<ShopMerchandiseListBean.DataBean.GoodsListBean> beans) {
+    public void addAllData(List<NewShopHomeBean.DataBean> beans) {
         this.beans = beans;
 
         notifyDataSetChanged();
@@ -70,7 +71,7 @@ public class MerchandiseListAdapter extends RecyclerView.Adapter<MerchandiseList
                 .error(R.mipmap.bg_img)
                 .into(holder.imgGoods);
         holder.tvGoodsName.setText(beans.get(position).getGoods_name());
-        holder.tvGoodsPrice.setText("¥" + beans.get(position).getShop_price()+"—¥" + beans.get(position).getPack_price());
+        holder.tvGoodsPrice.setText("¥" + beans.get(position).getShop_price());
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

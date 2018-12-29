@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.alibaba.fastjson.JSON;
 import com.lnkj.privateshop.entity.MenGoodsListBean;
+import com.lnkj.privateshop.entity.NewShopHomeBean;
 import com.lnkj.privateshop.entity.ShopMerchandiseListBean;
 import com.lnkj.privateshop.utils.LLog;
 
@@ -26,6 +27,7 @@ public class MerchandisePresenter implements MerchandiseContract.Presenter {
 
     MerchandiseContract.View mView;
     private String token;
+
     public MerchandisePresenter(MerchandiseContract.View mView) {
         this.mView = mView;
     }
@@ -39,6 +41,7 @@ public class MerchandisePresenter implements MerchandiseContract.Presenter {
     public void detachView() {
 
     }
+
     @Override
     public void initView() {
 
@@ -46,16 +49,17 @@ public class MerchandisePresenter implements MerchandiseContract.Presenter {
 
     @Override
     public void getToken(String token) {
-        this.token=token;
+        this.token = token;
     }
 
     @Override
-    public void getDataFromServer(int p,String sort,String shop_id) {
+    public void getDataFromServer(int p, String sort, String shop_id) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("shop_id",shop_id);
-        map.put("p",p);
-        map.put("sort",sort);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("cat_id", shop_id);
+        map.put("p", p);
+        map.put("token", token);
+        // map.put("sort",sort);
         meApi.getShopmerchandiseList(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -66,8 +70,8 @@ public class MerchandisePresenter implements MerchandiseContract.Presenter {
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            if (status==1){
-                                ShopMerchandiseListBean beass = JSON.parseObject(data,ShopMerchandiseListBean.class);
+                            if (status == 1) {
+                                NewShopHomeBean beass = JSON.parseObject(data, NewShopHomeBean.class);
                                 mView.getGoodsListSucceed(beass);
                             }
                         } catch (JSONException e) {
@@ -88,13 +92,13 @@ public class MerchandisePresenter implements MerchandiseContract.Presenter {
     @Override
     public void getDataFromServer(int p, String shop_id) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("shop_id",shop_id);
-        map.put("p",p);
-        map.put("token",token);
-        System.out.println("shop_id:"+shop_id);
-        System.out.println("p:"+p);
-        System.out.println("token:"+token);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("shop_id", shop_id);
+        map.put("p", p);
+        map.put("token", token);
+        System.out.println("shop_id:" + shop_id);
+        System.out.println("p:" + p);
+        System.out.println("token:" + token);
         meApi.getShopMenberList(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -105,8 +109,8 @@ public class MerchandisePresenter implements MerchandiseContract.Presenter {
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            if (status==1){
-                                MenGoodsListBean beass = JSON.parseObject(data,MenGoodsListBean.class);
+                            if (status == 1) {
+                                MenGoodsListBean beass = JSON.parseObject(data, MenGoodsListBean.class);
                                 mView.getMenGoodsSuccreed(beass);
                             }
                         } catch (JSONException e) {

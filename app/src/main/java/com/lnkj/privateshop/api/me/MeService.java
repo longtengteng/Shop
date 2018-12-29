@@ -496,7 +496,7 @@ public interface MeService {
 
     //店铺详情
     @FormUrlEncoded
-    @POST("index.php/Api/ShopApi/shop_home")
+    @POST("index.php/Api/ShopEditApi/goToShop")
     Observable<String> getShopInfo(@FieldMap Map<String, Object> map);
 
     ////店铺详情
@@ -505,7 +505,7 @@ public interface MeService {
     Observable<String> getShopCommentList(@FieldMap Map<String, Object> map);
 
     @FormUrlEncoded
-    @POST("index.php/Api/ShopApi/shop_goods")
+    @POST("index.php/Api/ShopEditApi/getGoodsListByCategoryId")
     Observable<String> getShopmerchandiseList(@FieldMap Map<String, Object> map);
 
     @FormUrlEncoded

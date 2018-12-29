@@ -11,6 +11,7 @@ import com.lnkj.privateshop.BaseFragment;
 import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.adapter.MemListAdapter;
 import com.lnkj.privateshop.entity.MenGoodsListBean;
+import com.lnkj.privateshop.entity.NewShopHomeBean;
 import com.lnkj.privateshop.entity.ShopMerchandiseListBean;
 import com.lnkj.privateshop.ui.goods.GoodsInfoActivity;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
@@ -101,9 +102,8 @@ public class Membersragment extends BaseFragment implements MerchandiseContract.
 
     }
 
-
     @Override
-    public void getGoodsListSucceed(ShopMerchandiseListBean beass) {
+    public void getGoodsListSucceed(NewShopHomeBean beass) {
 
     }
 

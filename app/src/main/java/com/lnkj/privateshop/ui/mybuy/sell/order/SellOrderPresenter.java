@@ -21,21 +21,23 @@ import static com.lnkj.privateshop.utils.HttpUtil.meApi;
  * Created by Administrator on 2017/8/3 0003.
  */
 
-public class SellOrderPresenter implements SellOrderContract.Presenter{
+public class SellOrderPresenter implements SellOrderContract.Presenter {
     SellOrderContract.View view;
     private String token;
+
     public SellOrderPresenter(SellOrderContract.View view) {
-        this.view=view;
+        this.view = view;
 
     }
+
     @Override
     public void getDataFromServer(final int index) {
         view.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("order_status","");
-        System.out.println("token:"+token);
-       meApi.getSellOrder(map)
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("order_status", "");
+        System.out.println("token:" + token);
+        meApi.getSellOrder(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
                     @Override
@@ -45,12 +47,12 @@ public class SellOrderPresenter implements SellOrderContract.Presenter{
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            OrderAllBean beass = JSON.parseObject(data,OrderAllBean.class);
-                            if (index==1){
-                            view.getOrderData(beass);
+                            OrderAllBean beass = JSON.parseObject(data, OrderAllBean.class);
+                            if (index == 1) {
+                                view.getOrderData(beass);
 
-                            }else {
-                        view.addTabData(beass);
+                            } else {
+                                view.addTabData(beass);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -67,6 +69,7 @@ public class SellOrderPresenter implements SellOrderContract.Presenter{
                 });
 
     }
+
     @Override
     public void attachView(@NonNull SellOrderContract.View view) {
 

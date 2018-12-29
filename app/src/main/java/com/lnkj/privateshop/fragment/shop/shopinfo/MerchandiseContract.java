@@ -3,6 +3,7 @@ package com.lnkj.privateshop.fragment.shop.shopinfo;
 import com.lnkj.privateshop.BasePresenter;
 import com.lnkj.privateshop.BaseView;
 import com.lnkj.privateshop.entity.MenGoodsListBean;
+import com.lnkj.privateshop.entity.NewShopHomeBean;
 import com.lnkj.privateshop.entity.ShopMerchandiseListBean;
 
 /**
@@ -14,7 +15,7 @@ public class MerchandiseContract {
     interface View extends BaseView {
 
         void initView();
-        void getGoodsListSucceed(ShopMerchandiseListBean beass);
+        void getGoodsListSucceed(NewShopHomeBean beass);
         void okGoods();
         void getMenGoodsSuccreed(MenGoodsListBean beans);
     }

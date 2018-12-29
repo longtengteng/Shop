@@ -25,9 +25,10 @@ import static com.lnkj.privateshop.utils.HttpUtil.meApi;
  */
 
 public class ShopInfoPresenter implements ShopInfoContract.Presenter {
-   private  ShopInfoContract.View mView ;
+    private ShopInfoContract.View mView;
     private Context mContext;
- private String token;
+    private String token;
+
     public ShopInfoPresenter(ShopInfoContract.View mView, Context mContext) {
         this.mView = mView;
         this.mContext = mContext;
@@ -49,18 +50,17 @@ public class ShopInfoPresenter implements ShopInfoContract.Presenter {
     }
 
 
-
- @Override
- public void setToken(String token) {
-  this.token = token;
- }
+    @Override
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     @Override
     public void getShomInfo(String shopid) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("shop_id",shopid);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+    //    map.put("shop_id", shopid);
         meApi.getShopInfo(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -72,10 +72,10 @@ public class ShopInfoPresenter implements ShopInfoContract.Presenter {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
                             String info = object.getString("info");
-                            if (status==1){
-                                ShopBean beass = JSON.parseObject(data,ShopBean.class);
+                            if (status == 1) {
+                                ShopBean beass = JSON.parseObject(data, ShopBean.class);
                                 mView.getShomInfoSucceed(beass);
-                            }else {
+                            } else {
                                 ToastUtil.showToast(info);
                                 mView.finsh();
                             }
@@ -97,9 +97,9 @@ public class ShopInfoPresenter implements ShopInfoContract.Presenter {
 
     @Override
     public void setCollectShop(String shopid) {
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("shop_id",shopid);
-        map.put("token",token);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("shop_id", shopid);
+        map.put("token", token);
         meApi.setCollectShop(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -109,7 +109,7 @@ public class ShopInfoPresenter implements ShopInfoContract.Presenter {
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            if (status==1){
+                            if (status == 1) {
                                 mView.SetColloectShopSuccreed();
                             }
                         } catch (JSONException e) {
@@ -129,9 +129,9 @@ public class ShopInfoPresenter implements ShopInfoContract.Presenter {
     @Override
     public void getShopArchives(String shopid) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("shop_id",shopid);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("shop_id", shopid);
         meApi.getShopArchives(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -142,8 +142,8 @@ public class ShopInfoPresenter implements ShopInfoContract.Presenter {
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            if (status==1){
-                                ShopArchivesBean beass = JSON.parseObject(data,ShopArchivesBean.class);
+                            if (status == 1) {
+                                ShopArchivesBean beass = JSON.parseObject(data, ShopArchivesBean.class);
                                 mView.getShopArchivesSucceed(beass);
                             }
                         } catch (JSONException e) {

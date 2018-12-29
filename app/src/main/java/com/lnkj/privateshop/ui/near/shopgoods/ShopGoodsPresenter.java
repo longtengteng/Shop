@@ -21,20 +21,22 @@ import static com.lnkj.privateshop.utils.HttpUtil.meApi;
  * Created by Administrator on 2017/8/3 0003.
  */
 
-public class ShopGoodsPresenter implements ShopGoodsContract.Presenter{
+public class ShopGoodsPresenter implements ShopGoodsContract.Presenter {
     ShopGoodsContract.View view;
     private String token;
+
     public ShopGoodsPresenter(ShopGoodsContract.View view) {
-        this.view=view;
+        this.view = view;
 
     }
+
     @Override
     public void getDataFromServer(String id) {
 
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("shop_id",id);
-       meApi.getShopmerchandiseList(map)
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("shop_id", id);
+        meApi.getShopmerchandiseList(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
                     @Override
@@ -46,10 +48,10 @@ public class ShopGoodsPresenter implements ShopGoodsContract.Presenter{
                         JSONObject object = null;
                         try {
                             object = new JSONObject(data);
-                             int status = object.getInt("status");
-                            if (status==1){
-                            ShopMerchandiseListBean beass = JSON.parseObject(data,ShopMerchandiseListBean.class);
-                            view.getOrderData(beass);
+                            int status = object.getInt("status");
+                            if (status == 1) {
+                                ShopMerchandiseListBean beass = JSON.parseObject(data, ShopMerchandiseListBean.class);
+                                view.getOrderData(beass);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -84,8 +86,6 @@ public class ShopGoodsPresenter implements ShopGoodsContract.Presenter{
     public void getToken(String token) {
         this.token = token;
     }
-
-
 
 
 }
