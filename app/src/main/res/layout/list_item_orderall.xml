@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -97,11 +98,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:textColor="@color/tx99"
+                    tools:text="333"
                     android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/tv_goods_price_combined"
                     android:layout_width="0dp"
+                    tools:text="333"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:layout_weight="1"

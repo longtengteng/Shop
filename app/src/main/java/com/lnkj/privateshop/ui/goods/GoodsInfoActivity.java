@@ -288,7 +288,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
         bean = beass.getData().getGoods_info();
         tvTime.setText(bean.getDay_ago() + "天前发布");
         tvVolume.setText("月销" + bean.getSale_num());
-
+        tvNewPrice.setText("¥" + bean.getShop_price());
         tvGoodsName.setText(bean.getGoods_name());
         tvCollect.setText(bean.getCollect_num());
         GoodsBean.DataBean.ShopInfoBean shopinfo = beass.getData().getShop_info();

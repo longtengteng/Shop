@@ -43,6 +43,7 @@ class MapActivity : BaseActivity(), LocationSource, AMapLocationListener, AMap.O
     private var latitude: Double? = 0.0
     private var longitude: Double? = 0.0
     private var address: String? = ""
+    private var city: String? = ""
     private var isLocation = true
 
 
@@ -81,7 +82,7 @@ class MapActivity : BaseActivity(), LocationSource, AMapLocationListener, AMap.O
                 amapLocation.getLatitude()      //获取纬度
                 amapLocation.getLongitude();    //获取经度
                 amapLocation.getAccuracy();        //获取精度信息
-                amapLocation.getCity();            //城市信息
+                city = amapLocation.getCity();            //城市信息
 //                address = amapLocation.address
 //                latitude = amapLocation.latitude
 //                longitude = amapLocation.longitude
@@ -133,6 +134,7 @@ class MapActivity : BaseActivity(), LocationSource, AMapLocationListener, AMap.O
             it.putExtra("latitude", latitude.toString())
             it.putExtra("longitude", longitude.toString())
             it.putExtra("address", address)
+            it.putExtra("city", city)
         }
         setResult(0, intent)
         // finish()
@@ -149,6 +151,7 @@ class MapActivity : BaseActivity(), LocationSource, AMapLocationListener, AMap.O
                 it.putExtra("latitude", latitude.toString())
                 it.putExtra("longitude", longitude.toString())
                 it.putExtra("address", address)
+                it.putExtra("city", city)
             }
             setResult(0, intent)
             finish()
@@ -157,6 +160,7 @@ class MapActivity : BaseActivity(), LocationSource, AMapLocationListener, AMap.O
         latitude = intent.getDoubleExtra("latitude", 0.0)
         longitude = intent.getDoubleExtra("longitude", 0.0)
         address = intent.getStringExtra("longitude")
+        city = intent.getStringExtra("city")
         isLocation = intent.getBooleanExtra("isLocation", true)
 
         tv_address.text = address

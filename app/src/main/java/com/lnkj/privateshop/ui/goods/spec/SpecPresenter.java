@@ -65,7 +65,7 @@ public class SpecPresenter implements SpecContract.Presenter {
                                 SpecBean beass = JSON.parseObject(data, SpecBean.class);
                                 mView.getPriceAndStoreBySpceSucceed(beass);
                             } else {
-                                ToastUtil.showToast(info);
+                 //               ToastUtil.showToast(info);
                                 mView.finsh();
                             }
                         } catch (JSONException e) {

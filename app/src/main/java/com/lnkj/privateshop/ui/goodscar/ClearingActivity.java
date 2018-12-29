@@ -247,9 +247,9 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
                 address_id = data.getStringExtra("id");
                 if (address_id != null) {
                     if (!TextUtils.isEmpty(address_id)) {
-//                tvName.setText(data.getStringExtra("name"));
-//                tvAddress.setText(data.getStringExtra("Address"));
-//                tvPhone.setText(data.getStringExtra("Mobile"));
+                        tvName.setText(data.getStringExtra("name"));
+                        tvAddress.setText(data.getStringExtra("Address"));
+                        tvPhone.setText(data.getStringExtra("Mobile"));
                         StringBuffer sb = new StringBuffer();
                         if (goodslist != null) {
                             for (int i = 0; i < goodslist.size(); i++) {

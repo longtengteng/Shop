@@ -68,16 +68,17 @@ public class CarGoodslistAdaptre extends BaseAdapter {
                 .error(R.mipmap.bg_img)
                 .placeholder(R.mipmap.bg_img)
                 .into(holder.ivGoodsImg);
-        holder.tvBtnAlter.setOnClickListener(new View.OnClickListener() {
+       /* holder.tvBtnAlter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, AlterGoodsCarActivity.class);
                 intent.putExtra("goods_id", goodslist.get(i).getGoods_id());
                 mContext.startActivity(intent);
             }
-        });
+        });*/
         holder.ll_check.setVisibility(View.GONE);
         holder.tvBtnAlter.setVisibility(View.VISIBLE);
+        holder.tvBtnAlter.setText(goodslist.get(i).getSpec_name());
         return view;
     }
 

@@ -32,7 +32,6 @@ import static com.lnkj.privateshop.R.id.tv_goods_count_bottom;
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
 
 
-
     private Context mContext;
     private int index;
     List<OrderAllBean.DataBean.OrderListBean> orderlist;
@@ -63,13 +62,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindViewHolder(OrderAdapter.ViewHolder holder, final int position) {
-        final OrderAllBean.DataBean.OrderListBean bean =   orderlist.get(position);
+        final OrderAllBean.DataBean.OrderListBean bean = orderlist.get(position);
         holder.itemView.setTag(position);
         holder.tvShopsName.setText(bean.getShop_name());
 
-      final String roder_status =   bean.getOrder_status();
-        if (roder_status.equals("0")){
-        holder.tvStatus.setText("交易取消");
+        final String roder_status = bean.getOrder_status();
+        if (roder_status.equals("0")) {
+            holder.tvStatus.setText("交易取消");
             holder.tvStatus.setTextColor(Color.parseColor("#999999"));
             holder.tvBtnLeft.setVisibility(View.GONE);
             holder.tvBtnLeftTow.setVisibility(View.GONE);
@@ -77,8 +76,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.tvBtnDelete.setText("删除订单");
             holder.tvBtnDelete.setBackgroundResource(R.drawable.button_bj);
             holder.tvBtnDelete.setTextColor(Color.parseColor("#999999"));
-        }else if (roder_status.equals("1")){
-        holder.tvStatus.setText("等待付款");
+        } else if (roder_status.equals("1")) {
+            holder.tvStatus.setText("等待付款");
             holder.tvStatus.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnLeft.setVisibility(View.VISIBLE);
             holder.tvBtnLeftTow.setVisibility(View.GONE);
@@ -86,7 +85,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.tvBtnDelete.setText("前往付款");
             holder.tvBtnDelete.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnDelete.setBackgroundResource(R.drawable.button_bj_orange);
-        }else if (roder_status.equals("2")){
+        } else if (roder_status.equals("2")) {
             holder.tvStatus.setText("等待发货");
             holder.tvStatus.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnLeftTow.setVisibility(View.GONE);
@@ -94,7 +93,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.tvBtnDelete.setText("提醒发货");
             holder.tvBtnDelete.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnDelete.setBackgroundResource(R.drawable.button_bj_orange);
-        }else if (roder_status.equals("3")){
+        } else if (roder_status.equals("3")) {
             holder.tvStatus.setText("等待收货");
             holder.tvStatus.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnLeftTow.setVisibility(View.GONE);
@@ -103,7 +102,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.tvBtnLeft.setText("查看物流");
             holder.tvBtnDelete.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnDelete.setBackgroundResource(R.drawable.button_bj_orange);
-        }else if (roder_status.equals("4")){
+        } else if (roder_status.equals("4")) {
             holder.tvStatus.setText("交易完成");
             holder.tvStatus.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnLeftTow.setVisibility(View.VISIBLE);
@@ -113,41 +112,38 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             holder.tvBtnLeftTow.setText("查看物流");
             holder.tvBtnDelete.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnDelete.setBackgroundResource(R.drawable.button_bj_orange);
-            if (bean.getIs_evaluation().equals("0")){
-                 holder.tvBtnDelete.setVisibility(View.VISIBLE);
-            }else {
+            if (bean.getIs_evaluation().equals("0")) {
+                holder.tvBtnDelete.setVisibility(View.VISIBLE);
+            } else {
                 holder.tvBtnDelete.setVisibility(View.GONE);
             }
         }
-        String str="共 <font color='#FF7722'>"+ bean.getTotal_buy_number()+"</font> 件";
+        String str = "共 <font color='#FF7722'>" + bean.getTotal_buy_number() + "</font> 件";
         holder.tvGoodsCountBottom.setText((Html.fromHtml(str)));
-        if (TextUtils.isEmpty(bean.getExpress_amount())||bean.getExpress_amount().equals("0.00")){
+        if (TextUtils.isEmpty(bean.getExpress_amount()) || bean.getExpress_amount().equals("0.00")) {
             holder.tvYunfei.setText("免运费");
-        }else {
-            holder.tvYunfei.setText("含运费"+ bean.getExpress_amount()+"元");
+        } else {
+            holder.tvYunfei.setText("含运费" + bean.getExpress_amount() + "元");
         }
-        holder.tvGoodsPriceCombined.setText("¥"+bean.getReal_pay_amount());
+        holder.tvGoodsPriceCombined.setText("¥" + bean.getTotal_amount());
         holder.tvBtnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (roder_status.equals("0")){
+                if (roder_status.equals("0")) {
 //                    ToastUtil.showToast("删除订单");
-                    mOrderClickListener.onDeleteOrderCilck( orderlist,position);
-                }else if (roder_status.equals("1")){
+                    mOrderClickListener.onDeleteOrderCilck(orderlist, position);
+                } else if (roder_status.equals("1")) {
 //                    ToastUtil.showToast("前往付款");
-                    mOrderClickListener.onGoPayCilck(orderlist,position);
-                }
-                else if (roder_status.equals("2")){
+                    mOrderClickListener.onGoPayCilck(orderlist, position);
+                } else if (roder_status.equals("2")) {
 //                    ToastUtil.showToast("提醒发货");
-                    mOrderClickListener.onRemindDeliveryCilck(orderlist,position);
-                }
-                else if (roder_status.equals("3")){
+                    mOrderClickListener.onRemindDeliveryCilck(orderlist, position);
+                } else if (roder_status.equals("3")) {
 //                    ToastUtil.showToast("确认收货");
-                    mOrderClickListener.onOkGoodsCilck(orderlist,position);
-                }
-                else if (roder_status.equals("4")){
+                    mOrderClickListener.onOkGoodsCilck(orderlist, position);
+                } else if (roder_status.equals("4")) {
 //                    ToastUtil.showToast("前往评价");
-                    mOrderClickListener.onGoEvaluationCilck(orderlist,position);
+                    mOrderClickListener.onGoEvaluationCilck(orderlist, position);
 
                 }
             }
@@ -155,17 +151,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.tvBtnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             if (roder_status.equals("1")){
+                if (roder_status.equals("1")) {
 //                    ToastUtil.showToast("删除订单");
-                 mOrderClickListener.onCancelorder(orderlist,position);
-                }
-                else if (roder_status.equals("3")){
+                    mOrderClickListener.onCancelorder(orderlist, position);
+                } else if (roder_status.equals("3")) {
 //                    ToastUtil.showToast("查看物流");
-                 mOrderClickListener.onLookLogisticsCilck(orderlist,position);
-                }
-                else if (roder_status.equals("4")){
+                    mOrderClickListener.onLookLogisticsCilck(orderlist, position);
+                } else if (roder_status.equals("4")) {
 //                    ToastUtil.showToast("查看物流");
-                 mOrderClickListener.onLookLogisticsCilck(orderlist,position);
+                    mOrderClickListener.onLookLogisticsCilck(orderlist, position);
 //                 mOrderClickListener.onAgainCilck(orderlist,position);
 
                 }
@@ -174,26 +168,26 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.tvBtnLeftTow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (roder_status.equals("4")){
+                if (roder_status.equals("4")) {
 //                    ToastUtil.showToast("删除订单");
 //                    mOrderClickListener.onDeleteOrderCilck(orderlist,position);
-                    mOrderClickListener.onLookLogisticsCilck(orderlist,position);
+                    mOrderClickListener.onLookLogisticsCilck(orderlist, position);
                 }
 
             }
         });
-        OrderListAdapter  adapter =new OrderListAdapter(mContext,bean.getGoods_info());
+        OrderListAdapter adapter = new OrderListAdapter(mContext, bean.getGoods_info());
         holder.myListView.setAdapter(adapter);
         holder.myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                mOrderClickListener.onItemClick(orderlist,position);
+                mOrderClickListener.onItemClick(orderlist, position);
             }
         });
         holder.llItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mOrderClickListener.onItemClick(orderlist,position);
+                mOrderClickListener.onItemClick(orderlist, position);
             }
         });
 
@@ -223,38 +217,41 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         TextView tvBtnLeftTow;
         @Bind(R.id.meListView)
         MyListView myListView;
-@Bind(R.id.ll_item)
+        @Bind(R.id.ll_item)
         LinearLayout llItem;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
 
         }
     }
 
 
     public OrderClickListener mOrderClickListener;
-    public void setmIDeleteBtnClickListener( OrderClickListener mOrderClickListener) {
+
+    public void setmIDeleteBtnClickListener(OrderClickListener mOrderClickListener) {
         this.mOrderClickListener = mOrderClickListener;
     }
 
     public interface OrderClickListener {
-        void onDeleteOrderCilck(    List<OrderAllBean.DataBean.OrderListBean> orderlist,int position ); //删除订单
+        void onDeleteOrderCilck(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position); //删除订单
 
-        void onLookLogisticsCilck(    List<OrderAllBean.DataBean.OrderListBean> orderlist,int position); //查看物流
+        void onLookLogisticsCilck(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position); //查看物流
 
-        void onRemindDeliveryCilck(    List<OrderAllBean.DataBean.OrderListBean> orderlist,int position); // 提醒发货
+        void onRemindDeliveryCilck(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position); // 提醒发货
 
-        void onGoPayCilck(     List<OrderAllBean.DataBean.OrderListBean> orderlist,int position); //去支付
+        void onGoPayCilck(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position); //去支付
 
-        void onOkGoodsCilck(     List<OrderAllBean.DataBean.OrderListBean> orderlist,int position); //确认收货
+        void onOkGoodsCilck(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position); //确认收货
 
-        void onGoEvaluationCilck(  List<OrderAllBean.DataBean.OrderListBean> orderlist,int position);// 前往评价
-        void onAgainCilck(  List<OrderAllBean.DataBean.OrderListBean> orderlist,int position);// 再次购买
+        void onGoEvaluationCilck(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position);// 前往评价
 
-        void onCancelorder(List<OrderAllBean.DataBean.OrderListBean> orderlist,int position); //取消订单
+        void onAgainCilck(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position);// 再次购买
 
-        void onItemClick(List<OrderAllBean.DataBean.OrderListBean> orderlist,int position);
+        void onCancelorder(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position); //取消订单
+
+        void onItemClick(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position);
     }
 
 }

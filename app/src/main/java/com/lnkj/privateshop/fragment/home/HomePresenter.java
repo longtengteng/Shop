@@ -58,7 +58,7 @@ public class HomePresenter implements HomeContract.Presenter {
     public void getBannerFromServer() {
         mView.showLoading();
         Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
+       // map.put("token",token);
         meApi.getBanner(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -91,7 +91,7 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void getAdvertising() {
         Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
+      //  map.put("token",token);
         meApi.getadvertising(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -124,7 +124,7 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void getTime() {
         Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
+      //  map.put("token",token);
         meApi.getLimitedFavour(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -157,7 +157,7 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void getWholesale() {
         Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
+     //   map.put("token",token);
         meApi.getOrderWholeSale(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -191,7 +191,7 @@ public class HomePresenter implements HomeContract.Presenter {
     public void gethotActivityBanner() {
         mView.showLoading();
         Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
+   //     map.put("token",token);
         meApi.gethotActivityBanner(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -226,7 +226,7 @@ public class HomePresenter implements HomeContract.Presenter {
     public void getLimitedFavourList() {
         mView.showLoading();
         Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
+     //   map.put("token",token);
         meApi.getLimitFavour(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -261,7 +261,7 @@ public class HomePresenter implements HomeContract.Presenter {
     public void getGoodsCategoryList() {
         mView.showLoading();
         Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
+    //    map.put("token",token);
         meApi.getGoodsCategoryList(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {

@@ -24,7 +24,7 @@ public class HomeLimitAdapter extends BaseQuickAdapter<HomeLimitFavourBean.DataB
         if (item == null)
             return;
         helper.setText(R.id.tv_name, item.getGoods_name());
-        helper.setText(R.id.tv_original_price, item.getShop_price());
+        helper.setText(R.id.tv_original_price, item.getShop_price()+"元");
         helper.setText(R.id.tv_money_now, item.getNow_price());
 
         CountdownView mCvCountdownView = (CountdownView) helper.getView(R.id.mCvCountdownView);

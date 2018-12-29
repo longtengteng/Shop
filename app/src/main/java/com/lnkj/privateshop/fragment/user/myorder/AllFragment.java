@@ -41,8 +41,6 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
 //    private OrderAllBean.DataBean beans;
 
 
-
-
     @Override
     protected int getContentResid() {
         return R.layout.fragment_order_all;
@@ -67,7 +65,7 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
             @Override
             public void onDeleteOrderCilck(final List<OrderAllBean.DataBean.OrderListBean> orderlist, final int position) {
                 LLog.d(TAG, "删除订单");
-                CenterActionDialog dialog =   new CenterActionDialog(getActivity());
+                CenterActionDialog dialog = new CenterActionDialog(getActivity());
                 dialog.setActionString("您要删除订单吗？",
                         "确定",
                         "取消");
@@ -85,6 +83,7 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
                 dialog.show();
 
             }
+
             @Override
             public void onLookLogisticsCilck(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position) {
 //                ToastUtil.showToast("查看物流");
@@ -92,8 +91,9 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
                 intent.putExtra("orderId", orderlist.get(position).getOrder_sn());
                 try {
 
-                intent.putExtra("goods_pic", Constants.Base_URL+orderlist.get(position).getGoods_info().get(0).getGoods_img());
-                }catch (Exception e){}
+                    intent.putExtra("goods_pic", Constants.Base_URL + orderlist.get(position).getGoods_info().get(0).getGoods_img());
+                } catch (Exception e) {
+                }
                 getActivity().startActivity(intent);
             }
 
@@ -112,11 +112,13 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
                 intent.putExtra("total_amount", orderlist.get(position).getReal_pay_amount());
                 intent.putExtra("express", orderlist.get(position).getExpress_amount());
                 try {
-                    double f = Double.parseDouble(orderlist.get(position).getReal_pay_amount())-Double.parseDouble(orderlist.get(position).getExpress_amount());
+                    double f = Double.parseDouble(orderlist.get(position).getReal_pay_amount()) - Double.parseDouble(orderlist.get(position).getExpress_amount());
                     BigDecimal bg = new BigDecimal(f);
                     double f1 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                intent.putExtra("total_goods_amount", f1+"");
-                }catch (Error e){}
+                    intent.putExtra("total_goods_amount", f1 + "");
+                } catch (Error e) {
+
+                }
 
 
 //                total_goods_num = getIntent().getStringExtra("total_goods_num");  商品数量
@@ -126,10 +128,11 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
 //                total_amount = getIntent().getStringExtra("total_amount"); 订单总价
                 startActivity(intent);
             }
+
             //取消订单
             @Override
             public void onCancelorder(final List<OrderAllBean.DataBean.OrderListBean> orderlist, final int position) {
-                CenterActionDialog dialog =   new CenterActionDialog(getActivity());
+                CenterActionDialog dialog = new CenterActionDialog(getActivity());
                 dialog.setActionString("您要取消该订单吗？",
                         "确定",
                         "取消");
@@ -151,7 +154,7 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
             @Override
             public void onOkGoodsCilck(final List<OrderAllBean.DataBean.OrderListBean> orderlist, final int position) {
 
-                CenterActionDialog dialog =   new CenterActionDialog(getActivity());
+                CenterActionDialog dialog = new CenterActionDialog(getActivity());
                 dialog.setActionString("您要确认收货吗？",
                         "确定",
                         "取消");
@@ -225,22 +228,22 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
     @Override
     public void onResume() {
         super.onResume();
-        MyOrderActivity parentActivity = (MyOrderActivity ) getActivity();
+        MyOrderActivity parentActivity = (MyOrderActivity) getActivity();
         parentActivity.getDataFromSercer();
         p = 1;
-        mPresenter.getDataFromService(p,index);
+        mPresenter.getDataFromService(p, index);
     }
 
     @Override
     public void onRefresh() {
         p = 1;
-        mPresenter.getDataFromService(p,index);
+        mPresenter.getDataFromService(p, index);
     }
 
     @Override
     public void onLoadMore() {
         p++;
-        mPresenter.getDataFromService(p,index);
+        mPresenter.getDataFromService(p, index);
     }
 
     @Override
@@ -286,17 +289,17 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
 
     @Override
     public void remoOrder(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position, String s) {
-        mPresenter.getDataFromService(p,index);
+        mPresenter.getDataFromService(p, index);
 
-        MyOrderActivity parentActivity = (MyOrderActivity ) getActivity();
+        MyOrderActivity parentActivity = (MyOrderActivity) getActivity();
         parentActivity.getDataFromSercer();
     }
 
     @Override
     public void okGoods(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position, String s) {
 
-        mPresenter.getDataFromService(p,index);
-        MyOrderActivity parentActivity = (MyOrderActivity ) getActivity();
+        mPresenter.getDataFromService(p, index);
+        MyOrderActivity parentActivity = (MyOrderActivity) getActivity();
         parentActivity.getDataFromSercer();
     }
 
@@ -304,15 +307,15 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
     public void onCancelorderScuurdde(List<OrderAllBean.DataBean.OrderListBean> orderlist, int position, String s) {
 
 
-        MyOrderActivity parentActivity = (MyOrderActivity ) getActivity();
+        MyOrderActivity parentActivity = (MyOrderActivity) getActivity();
         parentActivity.getDataFromSercer();
     }
 
     @Override
     public void remindDelivery(String s) {
-        mPresenter.getDataFromService(p,index);
+        mPresenter.getDataFromService(p, index);
 
-        MyOrderActivity parentActivity = (MyOrderActivity ) getActivity();
+        MyOrderActivity parentActivity = (MyOrderActivity) getActivity();
         parentActivity.getDataFromSercer();
     }
 
@@ -324,10 +327,10 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
         }
         list.addAll(orderlist);
         adapter.addAllData(list, index);
-        if (list.size()==0){
+        if (list.size() == 0) {
             layout_no_datas.setVisibility(View.VISIBLE);
             mpullLoadMoreRecyclerView.setVisibility(View.GONE);
-        }else {
+        } else {
             layout_no_datas.setVisibility(View.GONE);
             mpullLoadMoreRecyclerView.setVisibility(View.VISIBLE);
         }

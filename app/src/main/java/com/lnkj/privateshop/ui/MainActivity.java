@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -31,6 +32,7 @@ import com.lnkj.privateshop.fragment.goodscar.GoodsFragment;
 import com.lnkj.privateshop.fragment.home.HomeFragment;
 import com.lnkj.privateshop.fragment.looking.LookingFragment;
 import com.lnkj.privateshop.fragment.near.NearFrament;
+import com.lnkj.privateshop.fragment.user.MapActivity;
 import com.lnkj.privateshop.fragment.user.UserFragment;
 import com.lnkj.privateshop.ui.addgoods.AddGoodsActivity;
 import com.lnkj.privateshop.ui.ease.EaseConversationListActivity;
@@ -90,7 +92,10 @@ public class MainActivity extends BaseActivity implements
     ImageView imageView;
     Boolean is_bogin;
     private GoodsClick mBroadcastReceiver;
-
+    @Bind(R.id.ll_local)
+    LinearLayout ll_local;
+    @Bind(R.id.tv_local)
+    TextView tv_local;
 
     @Override
     protected void onResume() {
@@ -158,6 +163,24 @@ public class MainActivity extends BaseActivity implements
             fragmentTransaction.hide(goodsFragment);
             fragmentTransaction.commit();
             radioLooking.setChecked(true);
+        }
+        ll_local.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplication(), MapActivity.class);
+                startActivityForResult(i, 66);
+            }
+        });
+    }
+
+    String city;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 66) {
+            city = data.getStringExtra("city");
+            tv_local.setText(city);
         }
 
     }
