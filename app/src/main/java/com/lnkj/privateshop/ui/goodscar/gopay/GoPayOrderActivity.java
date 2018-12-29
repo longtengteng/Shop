@@ -100,6 +100,7 @@ public class GoPayOrderActivity extends BaseActivity implements GoPayOrderContra
     }
 
     private AlertDialog alertDialog;
+
     @OnClick({R.id.ll_yue, R.id.ll_alipay, R.id.ll_wechat, R.id.img_back, R.id.btn_ok})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -127,8 +128,9 @@ public class GoPayOrderActivity extends BaseActivity implements GoPayOrderContra
                 } else if (cbWechat.isChecked()) {
                     mPresenter.payWxpay(order_sn);
                 } else {
-                 int   isPay_password =  PreferencesUtils.getInt(this,"isPay_password");
-                    if (isPay_password==1){
+                    mPresenter.payYe(order_sn, "");
+                    /*int isPay_password = PreferencesUtils.getInt(this, "isPay_password");
+                    if (isPay_password == 1) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
                         final View view2 = View.inflate(GoPayOrderActivity.this, R.layout.layout_lialog_one, null);
                         builder.setView(view2);
@@ -138,12 +140,12 @@ public class GoPayOrderActivity extends BaseActivity implements GoPayOrderContra
                         TextView text_title = (TextView) view2.findViewById(R.id.text_title);
                         text_title.setText("输入支付密码");
                         TextView tv_ok_d = (TextView) view2.findViewById(R.id.tv_ok);
-                        TextView  tv_quxiao = (TextView) view2.findViewById(R.id.tv_quxiao);
+                        TextView tv_quxiao = (TextView) view2.findViewById(R.id.tv_quxiao);
                         final EditText mEditText = (EditText) view2.findViewById(R.id.mEditText);
                         tv_ok_d.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                mPresenter.payYe(order_sn, mEditText.getText().toString());
+
                             }
                         });
                         //取消
@@ -154,10 +156,10 @@ public class GoPayOrderActivity extends BaseActivity implements GoPayOrderContra
                             }
                         });
                         alertDialog.show();
-                    }else {
-                        Intent intent = new Intent(GoPayOrderActivity.this,ChagePayPwdActivity.class);
+                    } else {
+                        Intent intent = new Intent(GoPayOrderActivity.this, ChagePayPwdActivity.class);
                         startActivity(intent);
-                    }
+                    }*/
                 }
                 break;
         }
@@ -281,13 +283,13 @@ public class GoPayOrderActivity extends BaseActivity implements GoPayOrderContra
                         Intent intent = new Intent(GoPayOrderActivity.this, PaySuccessActivity.class);
                         startActivity(intent);
 //                        finish();
-                    }  else {
+                    } else {
                         // 判断resultStatus 为非"9000"则代表可能支付失败
                         // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
                         if (TextUtils.equals(resultStatus, "8000")) {
                             ToastUtil.showToast("支付结果确认中");
 
-                        }else if (TextUtils.equals(resultStatus, "4000")) {
+                        } else if (TextUtils.equals(resultStatus, "4000")) {
                             ToastUtil.showToast("支付失败：请安装支付宝");
                         } else {
                             // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误

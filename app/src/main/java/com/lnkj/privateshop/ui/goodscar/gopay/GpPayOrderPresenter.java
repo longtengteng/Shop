@@ -21,9 +21,10 @@ import static com.lnkj.privateshop.utils.HttpUtil.meApi;
  */
 
 public class GpPayOrderPresenter implements GoPayOrderContract.Presenter {
-   private  GoPayOrderContract.View mView ;
+    private GoPayOrderContract.View mView;
 
- private String token;
+    private String token;
+
     public GpPayOrderPresenter(GoPayOrderContract.View mView) {
         this.mView = mView;
 
@@ -45,19 +46,18 @@ public class GpPayOrderPresenter implements GoPayOrderContract.Presenter {
     }
 
 
-
- @Override
- public void setToken(String token) {
-  this.token = token;
- }
+    @Override
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     @Override
     public void payWxpay(String order_sn) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("order_sn",order_sn);
-        map.put("pay_code","2");
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("order_sn", order_sn);
+        map.put("pay_code", "2");
         meApi.getPay(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -70,7 +70,7 @@ public class GpPayOrderPresenter implements GoPayOrderContract.Presenter {
                             int status = object.getInt("status");
                             String info = object.getString("info");
                             JSONObject datas = object.getJSONObject("data");
-                            if (status==1){
+                            if (status == 1) {
                                 mView.payWxpaySuccreed(datas);
                             }
                         } catch (JSONException e) {
@@ -91,10 +91,10 @@ public class GpPayOrderPresenter implements GoPayOrderContract.Presenter {
     @Override
     public void payMent(String order_sin) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("order_sn",order_sin);
-        map.put("pay_code","1");
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("order_sn", order_sin);
+        map.put("pay_code", "1");
         meApi.getPay(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -107,7 +107,7 @@ public class GpPayOrderPresenter implements GoPayOrderContract.Presenter {
                             int status = object.getInt("status");
                             String info = object.getString("info");
                             String datas = object.getString("data");
-                            if (status==1){
+                            if (status == 1) {
                                 mView.payMentSuccreed(datas);
                             }
                         } catch (JSONException e) {
@@ -126,13 +126,13 @@ public class GpPayOrderPresenter implements GoPayOrderContract.Presenter {
     }
 
     @Override
-    public void payYe(String order_sin,String pwd) {
+    public void payYe(String order_sin, String pwd) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("order_sn",order_sin);
-        map.put("pay_code","4");
-        map.put("pay_password",pwd);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("order_sn", order_sin);
+        map.put("pay_code", "4");
+        //   map.put("pay_password",pwd);
         meApi.getPay(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -145,7 +145,7 @@ public class GpPayOrderPresenter implements GoPayOrderContract.Presenter {
                             int status = object.getInt("status");
                             String info = object.getString("info");
                             String datas = object.getString("data");
-                            if (status==1){
+                            if (status == 1) {
                                 mView.payYe(datas);
                             }
                             ToastUtil.showToast(info);

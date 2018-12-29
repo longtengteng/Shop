@@ -35,7 +35,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class PayOrderActivity extends BaseActivity implements PayOrderContract.View{
+public class PayOrderActivity extends BaseActivity implements PayOrderContract.View {
 
 
     @Bind(R.id.img_back)
@@ -80,6 +80,7 @@ public class PayOrderActivity extends BaseActivity implements PayOrderContract.V
     public int initContentView() {
         return R.layout.activity_pay_order;
     }
+
     @Override
     public void initInjector() {
         ButterKnife.bind(this);
@@ -95,7 +96,8 @@ public class PayOrderActivity extends BaseActivity implements PayOrderContract.V
     public void initUiAndListener() {
 
     }
-    @OnClick({R.id.ll_yue, R.id.ll_alipay, R.id.ll_wechat,R.id.img_back,R.id.btn_ok})
+
+    @OnClick({R.id.ll_yue, R.id.ll_alipay, R.id.ll_wechat, R.id.img_back, R.id.btn_ok})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_yue:
@@ -117,17 +119,17 @@ public class PayOrderActivity extends BaseActivity implements PayOrderContract.V
                 finish();
                 break;
             case R.id.btn_ok:
-                if (cbAlipay.isChecked()){
-                    if (matters.equals("缴纳开店费")){
-                        PreferencesUtils.putString(PayOrderActivity.this,"paytype", "Money");
+                if (cbAlipay.isChecked()) {
+                    if (matters.equals("缴纳开店费")) {
+                        PreferencesUtils.putString(PayOrderActivity.this, "paytype", "Money");
                     }
                     mPresenter.payMent(price);
-                }else if (cbWechat.isChecked()){
-                    if (matters.equals("缴纳开店费")){
-                        PreferencesUtils.putString(PayOrderActivity.this,"paytype", "Money");
+                } else if (cbWechat.isChecked()) {
+                    if (matters.equals("缴纳开店费")) {
+                        PreferencesUtils.putString(PayOrderActivity.this, "paytype", "Money");
                     }
                     mPresenter.payWxpay(price);
-                }else {
+                } else {
                     final CenterActionDialog dialog = new CenterActionDialog(this);
                     dialog.setActionString("确定用余额支付吗？",
                             "确定",
@@ -135,8 +137,8 @@ public class PayOrderActivity extends BaseActivity implements PayOrderContract.V
                     dialog.setActionListener(new CenterActionDialog.ActionLisenter() {
                         @Override
                         public void sureAction() {
-                            if (matters.equals("缴纳开店费")){
-                                PreferencesUtils.putString(PayOrderActivity.this,"paytype", "Money");
+                            if (matters.equals("缴纳开店费")) {
+                                PreferencesUtils.putString(PayOrderActivity.this, "paytype", "Money");
                             }
                             mPresenter.payYue(price);
                         }
@@ -177,29 +179,31 @@ public class PayOrderActivity extends BaseActivity implements PayOrderContract.V
     public void initView() {
 
     }
+
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
+
     @Override
     public void payWxpaySuccreed(final JSONObject result) {
-        PreferencesUtils.putString(PayOrderActivity.this,"PayType", "margin");
+        PreferencesUtils.putString(PayOrderActivity.this, "PayType", "margin");
         try {
             String appid = result.getString("appid");
-            String noncestr= result.getString("noncestr");
-            String packagee= result.getString("package");
-            String partnerid= result.getString("partnerid");
-            String prepayid= result.getString("prepayid");
-            String sign= result.getString("sign");
-            String timestamp= result.getLong("timestamp")+"";
+            String noncestr = result.getString("noncestr");
+            String packagee = result.getString("package");
+            String partnerid = result.getString("partnerid");
+            String prepayid = result.getString("prepayid");
+            String sign = result.getString("sign");
+            String timestamp = result.getLong("timestamp") + "";
             PayReq payreq = new PayReq();
-            IWXAPI api = WXAPIFactory.createWXAPI(PayOrderActivity.this,appid);
+            IWXAPI api = WXAPIFactory.createWXAPI(PayOrderActivity.this, appid);
             api.registerApp(appid);
-            payreq.appId=appid;
-            payreq.partnerId=partnerid;
-            payreq.prepayId=prepayid;
-            payreq.packageValue=packagee;
-            payreq.nonceStr=noncestr;
-            payreq.timeStamp=timestamp;
-            payreq.sign=sign;
+            payreq.appId = appid;
+            payreq.partnerId = partnerid;
+            payreq.prepayId = prepayid;
+            payreq.packageValue = packagee;
+            payreq.nonceStr = noncestr;
+            payreq.timeStamp = timestamp;
+            payreq.sign = sign;
             api.sendReq(payreq);
         } catch (JSONException e1) {
             ToastUtil.showToast("支付失败");
@@ -230,8 +234,10 @@ public class PayOrderActivity extends BaseActivity implements PayOrderContract.V
             Thread payThread = new Thread(payRunnable);
             payThread.start();
             progressDialog.dismiss();
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
+
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -262,9 +268,9 @@ public class PayOrderActivity extends BaseActivity implements PayOrderContract.V
                         if (TextUtils.equals(resultStatus, "8000")) {
                             ToastUtil.showToast("支付结果确认中");
 
-                        } else if (TextUtils.equals(resultStatus, "4000")){
+                        } else if (TextUtils.equals(resultStatus, "4000")) {
                             ToastUtil.showToast("未安装支付宝");
-                        }else {
+                        } else {
                             // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
                             ToastUtil.showToast("支付失败" + resultStatus);
                         }
@@ -294,6 +300,7 @@ public class PayOrderActivity extends BaseActivity implements PayOrderContract.V
         }
 
     };
+
     @Override
     public void payYueSuccreed(String data) {
 //        finish();
@@ -303,5 +310,6 @@ public class PayOrderActivity extends BaseActivity implements PayOrderContract.V
 
 
         Intent intent = new Intent(PayOrderActivity.this, PaySuccessActivity.class);
-        startActivity(intent);    }
+        startActivity(intent);
+    }
 }

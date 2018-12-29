@@ -15,7 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ChagePayPwdActivity extends BaseActivity implements ChagePayPwdContract.View{
+public class ChagePayPwdActivity extends BaseActivity implements ChagePayPwdContract.View {
 
     @Bind(R.id.img_back)
     ImageView imgBack;
@@ -34,8 +34,9 @@ public class ChagePayPwdActivity extends BaseActivity implements ChagePayPwdCont
     @Bind(R.id.btn_login)
     Button btnLogin;
     @Bind(R.id.et_pay_pwd_to)
-            EditText et_pay_pwd_to;
+    EditText et_pay_pwd_to;
     ChagePayPwdPresenter mPresenter = new ChagePayPwdPresenter(this);
+
     @Override
     public int initContentView() {
         return R.layout.activity_chage_pay_pwd;
@@ -54,7 +55,6 @@ public class ChagePayPwdActivity extends BaseActivity implements ChagePayPwdCont
     }
 
 
-
     @OnClick({R.id.img_back, R.id.btn_number, R.id.btn_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -65,7 +65,7 @@ public class ChagePayPwdActivity extends BaseActivity implements ChagePayPwdCont
                 mPresenter.sendCode(editAccount.getText().toString());
                 break;
             case R.id.btn_login:
-                mPresenter.upladData(editAccount.getText().toString(),editNumber.getText().toString(),etPayPwd.getText().toString(),et_pay_pwd_to.getText().toString());
+                mPresenter.upladData(editAccount.getText().toString(), editNumber.getText().toString(), etPayPwd.getText().toString(), et_pay_pwd_to.getText().toString());
                 break;
         }
     }
@@ -87,7 +87,7 @@ public class ChagePayPwdActivity extends BaseActivity implements ChagePayPwdCont
 
     @Override
     public void hideLoading() {
-    progressDialog.dismiss();
+        progressDialog.dismiss();
     }
 
     @Override
@@ -97,15 +97,16 @@ public class ChagePayPwdActivity extends BaseActivity implements ChagePayPwdCont
 
     @Override
     public void upladSuccreed() {
-         PreferencesUtils.putInt(this,"isPay_password",1);
+        PreferencesUtils.putInt(this, "isPay_password", 1);
         finish();
     }
 
 
     TimeCountUtil timeCountUtil;
+
     @Override
     public void sendCodeSuccreed() {
-        timeCountUtil = new TimeCountUtil(this, 60000, 1000,btnNumber);
+        timeCountUtil = new TimeCountUtil(this, 60000, 1000, btnNumber);
         timeCountUtil.start();
     }
 }
