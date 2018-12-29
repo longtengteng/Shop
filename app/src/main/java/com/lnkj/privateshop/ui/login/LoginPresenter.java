@@ -45,87 +45,90 @@ public class LoginPresenter implements LoginContract.Presenter {
         this.loginApi = loginApi;
 
     }
+
     @Override
     public void initView() {
         mView.initView();
         mView.setTitle("登录");
     }
+
     @Override
     public void login(final String username, final String pwd) {
-        if (TextUtils.isEmpty(username)){
+        if (TextUtils.isEmpty(username)) {
             ToastUtil.showToast("请输入用户名");
             return;
-        }else if (TextUtils.isEmpty(pwd)){
+        } else if (TextUtils.isEmpty(pwd)) {
             ToastUtil.showToast("请输入密码");
             return;
         }
-            Map<String,Object> map = new HashMap<>();
-            map.put("username", username);
-            map.put("password",pwd);
+        Map<String, Object> map = new HashMap<>();
+        map.put("username", username);
+        map.put("password", pwd);
 //        map.put("username", "admin");
 //        map.put("password","123456");
-           // mView.showLoading();
+        // mView.showLoading();
         mView.showLoading();
-            subscriptSpan = loginApi.login(map)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Action1<String>() {
+        subscriptSpan = loginApi.login(map)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
 
-                        @Override
-                        public void call(String userBean) {
+                    @Override
+                    public void call(String userBean) {
 
-                            LLog.d(TAG,userBean);
-                            try {
-                                JSONObject object = new JSONObject(userBean);
-                                int status = object.getInt("status");
-                                String info = object.getString("info");
-                                if (status==1){
-                                    UserBean userbean =  JSON.parseObject(userBean,UserBean.class);
-                                    UserBean.DataBean bean = userbean.getData();
-                                    PreferencesUtils.putString(mContext,"user_name", bean.getUser_name());
-                                    PreferencesUtils.putString(mContext,"birthday", bean.getBirthday());
-                                    PreferencesUtils.putString(mContext,"disabled", bean.getDisabled());
-                                    PreferencesUtils.putString(mContext,"email", bean.getEmail());
-                                    PreferencesUtils.putString(mContext,"frozen_money", bean.getFrozen_money());
-                                    PreferencesUtils.putString(mContext,"token", bean.getToken());
-                                    PreferencesUtils.putString(mContext,"head_pic", bean.getHead_pic());
-                                    PreferencesUtils.putString(mContext,"mobile", bean.getMobile());
-                                    PreferencesUtils.putString(mContext,"nickname", bean.getNickname());
-                                    PreferencesUtils.putString(mContext,"password", pwd+"");
-                                    PreferencesUtils.putString(mContext,"username", username+"");
-                                    PreferencesUtils.putString(mContext,"user_id", bean.getUser_id());
-                                    PreferencesUtils.putString(mContext,"sex", bean.getSex());
-                                    PreferencesUtils.putString(mContext,"shop_id", bean.getShop_id());
-                                    PreferencesUtils.putInt(mContext,"is_shop", bean.getIs_shop());
-                                    PreferencesUtils.putInt(mContext,"isPay_password", bean.getPay_password());
-                                    PreferencesUtils.putBoolean(mContext,"is_bogin",true);
-                                    PreferencesUtils.putString(mContext,"emchat_username",bean.getEmchat_username());
-                                    PreferencesUtils.putString(mContext,"emchat_password",bean.getEmchat_password());
-                                    String emchat_username= bean.getEmchat_username();
-                                    String emchat_password =bean.getEmchat_password();
-                                    mView.hideLoading();
-                                    mView.toMain();
+                        LLog.d(TAG, userBean);
+                        try {
+                            JSONObject object = new JSONObject(userBean);
+                            int status = object.getInt("status");
+                            String info = object.getString("info");
+                            if (status == 1) {
+                                UserBean userbean = JSON.parseObject(userBean, UserBean.class);
+                                UserBean.DataBean bean = userbean.getData();
+                                PreferencesUtils.putString(mContext, "user_name", bean.getUser_name());
+                                PreferencesUtils.putString(mContext, "birthday", bean.getBirthday());
+                                PreferencesUtils.putString(mContext, "disabled", bean.getDisabled());
+                                PreferencesUtils.putString(mContext, "email", bean.getEmail());
+                                PreferencesUtils.putString(mContext, "frozen_money", bean.getFrozen_money());
+                                PreferencesUtils.putString(mContext, "token", bean.getToken());
+                                PreferencesUtils.putString(mContext, "head_pic", bean.getHead_pic());
+                                PreferencesUtils.putString(mContext, "mobile", bean.getMobile());
+                                PreferencesUtils.putString(mContext, "nickname", bean.getNickname());
+                                PreferencesUtils.putString(mContext, "password", pwd + "");
+                                PreferencesUtils.putString(mContext, "username", username + "");
+                                PreferencesUtils.putString(mContext, "user_id", bean.getUser_id());
+                                PreferencesUtils.putString(mContext, "sex", bean.getSex());
+                                PreferencesUtils.putString(mContext, "shop_id", bean.getShop_id());
+                                PreferencesUtils.putInt(mContext, "is_shop", bean.getIs_shop());
+                                PreferencesUtils.putInt(mContext, "isPay_password", bean.getPay_password());
+                                PreferencesUtils.putBoolean(mContext, "is_bogin", true);
+                                PreferencesUtils.putString(mContext, "emchat_username", bean.getEmchat_username());
+                                PreferencesUtils.putString(mContext, "emchat_password", bean.getEmchat_password());
+                                String emchat_username = bean.getEmchat_username();
+                                String emchat_password = bean.getEmchat_password();
+                                mView.hideLoading();
+                                mView.toMain();
 //                                    loginEmob(emchat_username,emchat_password);
-                                }else {
-                                    mView.hideLoading();
-                                     ToastUtil.showToast(info);
+                            } else {
+                                mView.hideLoading();
+                                ToastUtil.showToast(info);
 
-                                }
-//                                mView.toMain();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
-
+//                                mView.toMain();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    }, new Action1<Throwable>() {
-                        @Override
-                        public void call(Throwable throwable) {
-                            throwable.printStackTrace();
-                           // mView.hideLoading();
 
-                        }
-                    });
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                        // mView.hideLoading();
+
+                    }
+                });
 
     }
+
     public void loginEmob(final String userName, String password) {
 //        userName =  userName.substring(0,
 //                userName.length() - 1).trim();
@@ -136,16 +139,16 @@ public class LoginPresenter implements LoginContract.Presenter {
         // reset current user name before login
         DemoHelper.getInstance().setCurrentUserName(userName);
 
-        EMClient.getInstance().login(userName,password, new EMCallBack() {
+        EMClient.getInstance().login(userName, password, new EMCallBack() {
             @Override
             public void onSuccess() {
 
-                String userPic = PreferencesUtils.getString(mContext,"head_pic");
-                String NickName = PreferencesUtils.getString(mContext,"nickname");
+                String userPic = PreferencesUtils.getString(mContext, "head_pic");
+                String NickName = PreferencesUtils.getString(mContext, "nickname");
 
 
                 DemoHelper.getInstance().getUserProfileManager().updateCurrentUserNickName(NickName);
-                DemoHelper.getInstance().getUserProfileManager().setCurrentUserAvatar(Constants.Base_IMG_URL+userPic);
+                DemoHelper.getInstance().getUserProfileManager().setCurrentUserAvatar(Constants.Base_IMG_URL + userPic);
                 DemoHelper.getInstance().setCurrentUserName(userName); // 环信Id
 
                 EMClient.getInstance().groupManager().loadAllGroups();

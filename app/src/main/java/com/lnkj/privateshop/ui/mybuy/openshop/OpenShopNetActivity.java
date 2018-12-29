@@ -194,9 +194,9 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     public void openSuccree(String Shop_id) {
         PreferencesUtils.putString(this, "shop_id", Shop_id);
         PreferencesUtils.putInt(this, "is_shop", 1);
-        Intent intent = new Intent(this, MoneyActivity.class);
+       /* Intent intent = new Intent(this, MoneyActivity.class);
         intent.putExtra("shop_id", Shop_id);
-        startActivity(intent);
+        startActivity(intent);*/
         finish();
 
     }

@@ -25,6 +25,7 @@ import com.lnkj.privateshop.BaseFragment;
 import com.lnkj.privateshop.Constants;
 import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.entity.StartShopBean;
+import com.lnkj.privateshop.entity.UseInfoBean;
 import com.lnkj.privateshop.fragment.shop.ShopCommentPresenter;
 import com.lnkj.privateshop.fragment.user.sell.selluserFragment;
 import com.lnkj.privateshop.ui.ease.EaseConversationListActivity;
@@ -85,6 +86,8 @@ public class UserFragment extends BaseFragment implements UserContract.View {
 
     }
 
+    Boolean is_bogin;
+
     @Override
     public void onResume() {
         super.onResume();
@@ -94,38 +97,16 @@ public class UserFragment extends BaseFragment implements UserContract.View {
         } else {
             tv_count.setVisibility(View.GONE);
         }
+
+        is_bogin = PreferencesUtils.getBoolean(getContext(), "is_bogin");
+        if (is_bogin) {
+            mPresenter.getDataFromService();
+        }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        is_shop = PreferencesUtils.getInt(getActivity(), "is_shop");
-        if (is_shop == 0) {
-            tvSwitch.setText("免费开店");
-            index = -1;
-            fragmentTransaction.hide(sellFragment);
-            fragmentTransaction.show(myFragment);
-            rlBj.setBackgroundColor(Color.parseColor("#FF7722"));
-        } else {
-            int state = PreferencesUtils.getInt(getActivity(), "state", Constants.STATE_BUY);
-            if (state == Constants.STATE_BUY) {
-                fragmentTransaction.hide(sellFragment);
-                fragmentTransaction.show(myFragment);
-                rlBj.setBackgroundColor(Color.parseColor("#FF7722"));
-                tvSwitch.setText("切换为卖家");
-                index = 1;
-            } else {
-                index = 0;
-                fragmentTransaction.hide(myFragment);
-                fragmentTransaction.show(sellFragment);
-                rlBj.setBackgroundColor(Color.parseColor("#27a2f8"));
-                tvSwitch.setText("切换为买家");
-            }
-        }
-        fragmentTransaction.commit();
 
     }
 
@@ -139,9 +120,17 @@ public class UserFragment extends BaseFragment implements UserContract.View {
         sellFragment = new selluserFragment();
         fragmentTransaction.add(R.id.fl_content, myFragment);
         fragmentTransaction.add(R.id.fl_content, sellFragment);
-        is_shop = PreferencesUtils.getInt(getActivity(), "is_shop");
+        is_shop = PreferencesUtils.getInt(getActivity(), "has_shop");
         if (is_shop == 0) {
             tvSwitch.setText("免费开店");
+            index = -1;
+            fragmentTransaction.hide(sellFragment);
+            fragmentTransaction.show(myFragment);
+            rlBj.setBackgroundColor(Color.parseColor("#FF7722"));
+//            tvSwitch.setText("切换为卖家");
+            fragmentTransaction.commit();
+        } else if (is_shop == -1) {
+            tvSwitch.setText("审核中");
             index = -1;
             fragmentTransaction.hide(sellFragment);
             fragmentTransaction.show(myFragment);
@@ -231,6 +220,38 @@ public class UserFragment extends BaseFragment implements UserContract.View {
         startBeanList.clear();
         startBeanList.addAll(startShopBean.getData());
         popunWin = new PopupWindows(getActivity(), prentview);
+    }
+
+    @Override
+    public void getUserInfoSuccreed(UseInfoBean beans) {
+        PreferencesUtils.putInt(getActivity(), "has_shop", beans.getData().getHas_shop());
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        is_shop = PreferencesUtils.getInt(getActivity(), "has_shop", 0);
+        if (is_shop == 0) {
+            tvSwitch.setText("免费开店");
+            index = -1;
+            fragmentTransaction.hide(sellFragment);
+            fragmentTransaction.show(myFragment);
+            rlBj.setBackgroundColor(Color.parseColor("#FF7722"));
+        } else {
+            int state = PreferencesUtils.getInt(getActivity(), "state", Constants.STATE_BUY);
+            if (state == Constants.STATE_BUY) {
+                fragmentTransaction.hide(sellFragment);
+                fragmentTransaction.show(myFragment);
+                rlBj.setBackgroundColor(Color.parseColor("#FF7722"));
+                tvSwitch.setText("切换为卖家");
+                index = 1;
+            } else {
+                index = 0;
+                fragmentTransaction.hide(myFragment);
+                fragmentTransaction.show(sellFragment);
+                rlBj.setBackgroundColor(Color.parseColor("#27a2f8"));
+                tvSwitch.setText("切换为买家");
+            }
+        }
+        fragmentTransaction.commit();
     }
 
     @Override

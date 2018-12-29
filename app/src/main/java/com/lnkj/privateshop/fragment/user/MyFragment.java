@@ -90,6 +90,7 @@ public class MyFragment extends BaseFragment implements MyContract.View {
     private MyPresenter myPresenter = new MyPresenter(this);
     @Bind(R.id.rl_edit)
     RelativeLayout rl_edit;
+
     @Override
     protected int getContentResid() {
         return R.layout.fragment_my;
@@ -101,15 +102,17 @@ public class MyFragment extends BaseFragment implements MyContract.View {
         ButterKnife.bind(this, view);
         myPresenter.setToken(token);
     }
+
     Boolean is_bogin;
+
     @Override
     public void onResume() {
         super.onResume();
-      is_bogin =PreferencesUtils.getBoolean(getContext(), "is_bogin");
-        if (is_bogin){
-        myPresenter.getDataFromService();
-        myPresenter.getOrderData();
-        }else {
+        is_bogin = PreferencesUtils.getBoolean(getContext(), "is_bogin");
+        if (is_bogin) {
+            myPresenter.getDataFromService();
+            myPresenter.getOrderData();
+        } else {
             tvName.setText("注册/登录");
             tvVip.setVisibility(View.GONE);
 //            rl_edit.setOnClickListener(new View.OnClickListener() {
@@ -177,11 +180,13 @@ public class MyFragment extends BaseFragment implements MyContract.View {
                 .error(R.mipmap.de_photo)
                 .into(imgHead);
 
-        PreferencesUtils.putString(getActivity(),"head_pic",beans.getData().getHead_pic());
-        PreferencesUtils.putString(getActivity(),"nickname",beans.getData().getNickname());
+        PreferencesUtils.putString(getActivity(), "head_pic", beans.getData().getHead_pic());
+        PreferencesUtils.putString(getActivity(), "nickname", beans.getData().getNickname());
+        PreferencesUtils.putInt(getActivity(), "is_shop", beans.getData().getIs_shop());
+        PreferencesUtils.putInt(getActivity(), "has_shop", beans.getData().getHas_shop());
 
         DemoHelper.getInstance().getUserProfileManager().updateCurrentUserNickName(beans.getData().getNickname());
-        DemoHelper.getInstance().getUserProfileManager().setCurrentUserAvatar(Constants.Base_IMG_URL+beans.getData().getHead_pic());
+        DemoHelper.getInstance().getUserProfileManager().setCurrentUserAvatar(Constants.Base_IMG_URL + beans.getData().getHead_pic());
     }
 
     @Override
@@ -202,9 +207,9 @@ public class MyFragment extends BaseFragment implements MyContract.View {
 
     @OnClick({R.id.rl_order, R.id.ll_payment, R.id.ll_delivery, R.id.ll_togoods, R.id.ll_comments,
             R.id.ll_refund, R.id.rl_collection, R.id.rl_focus, R.id.rl_foot, R.id.rl_remain,
-            R.id.rl_address, R.id.rl_help, R.id.rl_service, R.id.img_head,R.id.rl_edit})
+            R.id.rl_address, R.id.rl_help, R.id.rl_service, R.id.img_head, R.id.rl_edit})
     public void onViewClicked(View view) {
-        if (!is_bogin){
+        if (!is_bogin) {
             ToastUtil.showToast("您还没有登录，请去登录");
             return;
         }
@@ -279,7 +284,8 @@ public class MyFragment extends BaseFragment implements MyContract.View {
                     intent.putExtra("Register_time", databean.getRegister_time());
                     intent.putExtra("User_level", databean.getUser_level());
                     startActivity(intent);
-                }catch (Exception e){}
+                } catch (Exception e) {
+                }
                 break;
             case R.id.rl_edit:
                 try {
@@ -289,7 +295,7 @@ public class MyFragment extends BaseFragment implements MyContract.View {
                     intent.putExtra("Register_time", databean.getRegister_time());
                     intent.putExtra("User_level", databean.getUser_level());
                     startActivity(intent);
-                }catch (Exception e){
+                } catch (Exception e) {
                 }
                 break;
 
@@ -301,7 +307,7 @@ public class MyFragment extends BaseFragment implements MyContract.View {
         try {
 //            List<EaseUser> users = new ArrayList<EaseUser>();
             EaseUser easeUser = new EaseUser(bean.getChat_username());
-            easeUser.setAvatar(Constants.Base_IMG_URL+bean.getChat_headpic());
+            easeUser.setAvatar(Constants.Base_IMG_URL + bean.getChat_headpic());
             easeUser.setNickname(bean.getChat_nickname());
 //            users.add(easeUser);
             DemoHelper.getInstance().saveContact(easeUser);

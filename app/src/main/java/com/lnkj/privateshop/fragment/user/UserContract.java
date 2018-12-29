@@ -12,6 +12,8 @@ public class UserContract {
         void initView();
 
         void apply_start_shop(StartShopBean startShopBean);
+
+        void getUserInfoSuccreed(UseInfoBean beans);
     }
 
     interface Presenter extends BasePresenter<View> {
@@ -19,5 +21,7 @@ public class UserContract {
         void setToken(String token);
 
         void apply_start_shop();
+
+        void getDataFromService();
     }
 }

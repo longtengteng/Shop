@@ -1,10 +1,12 @@
 package com.lnkj.privateshop.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2017/8/29 0029.
  */
 
-public class UseInfoBean {
+public class UseInfoBean implements Serializable {
 
 
     /**
@@ -41,7 +43,7 @@ public class UseInfoBean {
         this.status = status;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * credit : 0
          * head_pic : /Uploads/Picture/User/115/20171008_153000_15074478007342_7790.jpg
@@ -54,11 +56,20 @@ public class UseInfoBean {
 
         private String credit;
         private String head_pic;
-        private int is_openShop;
+        private int is_shop;
         private String nickname;
         private String points;
         private String register_time;
         private String user_level;
+        private int has_shop;
+
+        public int getHas_shop() {
+            return has_shop;
+        }
+
+        public void setHas_shop(int has_shop) {
+            this.has_shop = has_shop;
+        }
 
         public String getCredit() {
             return credit;
@@ -76,12 +87,12 @@ public class UseInfoBean {
             this.head_pic = head_pic;
         }
 
-        public int getIs_openShop() {
-            return is_openShop;
+        public int getIs_shop() {
+            return is_shop;
         }
 
-        public void setIs_openShop(int is_openShop) {
-            this.is_openShop = is_openShop;
+        public void setIs_shop(int is_shop) {
+            this.is_shop = is_shop;
         }
 
         public String getNickname() {

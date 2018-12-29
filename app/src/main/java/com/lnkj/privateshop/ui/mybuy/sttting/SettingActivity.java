@@ -164,7 +164,7 @@ TextView tv_pay_pwd;
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 PreferencesUtils.putString(SettingActivity.this, "token", "");
-                                PreferencesUtils.putInt(SettingActivity.this, "is_shop", 0);
+                              //  PreferencesUtils.putInt(SettingActivity.this, "is_shop", 0);
                                 PreferencesUtils.putBoolean(SettingActivity.this, "is_bogin", false);
 
                                 Intent intent = new Intent(SettingActivity.this, LoginActivity.class);

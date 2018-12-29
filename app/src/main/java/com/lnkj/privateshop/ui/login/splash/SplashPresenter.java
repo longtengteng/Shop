@@ -91,7 +91,7 @@ public class SplashPresenter implements SplashContract.Presenter {
     @Override
     public void next() {
         PreferencesUtils.putString(mContext, "token", "");
-        PreferencesUtils.putInt(mContext, "is_shop", 0);
+    //    PreferencesUtils.putInt(mContext, "is_shop", 0);
         Boolean Is_login = PreferencesUtils.getBoolean(mContext, "is_bogin");
         if (Is_login==null){
             PreferencesUtils.putBoolean(mContext, "is_bogin",false);

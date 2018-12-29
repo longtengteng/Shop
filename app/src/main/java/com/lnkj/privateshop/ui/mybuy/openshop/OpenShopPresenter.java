@@ -135,6 +135,8 @@ public class OpenShopPresenter implements OpenShopContract.Presenter {
             builder.addFormDataPart("province", province + "");
             builder.addFormDataPart("city", city + "");
             builder.addFormDataPart("country", district);
+            builder.addFormDataPart("lat", lat);
+            builder.addFormDataPart("lng", lng);
             builder.addFormDataPart("address", address + "");
             File file = new File(path);//filePath 图片地址
             RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);

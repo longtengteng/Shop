@@ -622,7 +622,7 @@ public interface MeService {
 
     ////获取买家个人信息
     @FormUrlEncoded
-    @POST("index.php/Api/UserCenterApi/getUserInfo ")
+    @POST("index.php/Api/UserCenterApi/getUserInfo")
     Observable<String> getUserInfo(@FieldMap Map<String, Object> map);
 
     //获取运费模版
