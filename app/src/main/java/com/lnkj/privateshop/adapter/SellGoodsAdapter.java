@@ -35,11 +35,11 @@ public class SellGoodsAdapter extends RecyclerView.Adapter<SellGoodsAdapter.View
 
     private Context mContext;
     private int index;
-    private List<SellGoods.DataBean.GoodsListBean> orderlist=new ArrayList<>();
+    private List<SellGoods.DataBean.GoodsListBean> orderlist = new ArrayList<>();
 
     public OnItemClickListener mOnItemClickListener = null;
 
-    public  interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
@@ -51,20 +51,23 @@ public class SellGoodsAdapter extends RecyclerView.Adapter<SellGoodsAdapter.View
     public SellGoodsAdapter(Context mContext) {
         this.mContext = mContext;
     }
-    public   void listisfalst(){
-        if (orderlist!=null){
+
+    public void listisfalst() {
+        if (orderlist != null) {
             for (int i = 0; i < orderlist.size(); i++) {
-                    orderlist.get(i).setIschecked(false);
+                orderlist.get(i).setIschecked(false);
             }
         }
     }
+
     public void addAllData(List<SellGoods.DataBean.GoodsListBean> orderlist, int index) {
         this.orderlist.clear();
-        this.orderlist .addAll(orderlist);
+        this.orderlist.addAll(orderlist);
         this.index = index;
         notifyDataSetChanged();
     }
-    public void addIndex(int index){
+
+    public void addIndex(int index) {
         this.index = index;
         notifyDataSetChanged();
     }
@@ -91,41 +94,43 @@ public class SellGoodsAdapter extends RecyclerView.Adapter<SellGoodsAdapter.View
                 .error(R.mipmap.bg_img)
                 .into(holder.imgGoods);
         holder.tvGoodsName.setText(orderlist.get(position).getGoods_name());
-        holder.tvPrice.setText("￥" + orderlist.get(position).getPack_price() + " - ￥" + orderlist.get(position).getShop_price());
-        holder.shopAddress.setText(orderlist.get(position).getClick_count() + "次浏览   销量" + orderlist.get(position).getSale_num());
+        holder.tvPrice.setText("￥" + orderlist.get(position).getShop_price());
+        holder.shopAddress.setText("销量" + orderlist.get(position).getSale_num());
         holder.cbCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    orderlist.get(position).setIschecked(b);
+                orderlist.get(position).setIschecked(b);
             }
         });
 
-        if (index==1){
+        if (index == 1) {
             holder.cbCheck.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             holder.cbCheck.setVisibility(View.GONE);
         }
-            holder.llPrent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mOnItemClickListener!=null)
+        holder.llPrent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mOnItemClickListener != null)
                     mOnItemClickListener.onItemClick(position);
-                }
-            });
+            }
+        });
     }
-    public String  getGoodsId() {
+
+    public String getGoodsId() {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < orderlist.size(); i++) {
-            if (orderlist.get(i).getIschecked()){
-                if (sb.length()!=0){
+            if (orderlist.get(i).getIschecked()) {
+                if (sb.length() != 0) {
                     sb.append(",");
                 }
                 sb.append(orderlist.get(i).getGoods_id());
             }
         }
 
-        return  sb.toString();
+        return sb.toString();
     }
+
     @Override
     public int getItemCount() {
         return orderlist == null ? 0 : orderlist.size();
@@ -151,7 +156,6 @@ public class SellGoodsAdapter extends RecyclerView.Adapter<SellGoodsAdapter.View
 
         }
     }
-
 
 
 }

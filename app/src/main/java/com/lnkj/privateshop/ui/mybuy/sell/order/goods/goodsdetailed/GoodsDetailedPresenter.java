@@ -26,6 +26,7 @@ public class GoodsDetailedPresenter implements GoodsDetailedContract.Presenter {
 
     GoodsDetailedContract.View mView;
     private String token;
+
     public GoodsDetailedPresenter(GoodsDetailedContract.View mView) {
         this.mView = mView;
     }
@@ -39,6 +40,7 @@ public class GoodsDetailedPresenter implements GoodsDetailedContract.Presenter {
     public void detachView() {
 
     }
+
     @Override
     public void initView() {
 
@@ -46,15 +48,15 @@ public class GoodsDetailedPresenter implements GoodsDetailedContract.Presenter {
 
     @Override
     public void getToken(String token) {
-        this.token=token;
+        this.token = token;
     }
 
     @Override
     public void getGoodsFromServer(String goodsid) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("goods_id",goodsid);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("goods_id", goodsid);
         meApi.getGoodsInfo(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -65,8 +67,8 @@ public class GoodsDetailedPresenter implements GoodsDetailedContract.Presenter {
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            if (status==1){
-                                GoodsBean beass = JSON.parseObject(data,GoodsBean.class);
+                            if (status == 1) {
+                                GoodsBean beass = JSON.parseObject(data, GoodsBean.class);
                                 mView.getGoodssucceed(beass);
                             }
                         } catch (JSONException e) {
@@ -87,10 +89,10 @@ public class GoodsDetailedPresenter implements GoodsDetailedContract.Presenter {
     @Override
     public void upGoods(String goodsid) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("goods_id",goodsid);
-        map.put("goods_state",1);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("goods_id", goodsid);
+        map.put("goods_state", 1);
         meApi.getdownGoods(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -101,8 +103,8 @@ public class GoodsDetailedPresenter implements GoodsDetailedContract.Presenter {
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            String info =object.getString("info");
-                            if (status==1){
+                            String info = object.getString("info");
+                            if (status == 1) {
                                 mView.upGoodsSucceed();
                             }
                             ToastUtil.showToast(info);
@@ -124,10 +126,10 @@ public class GoodsDetailedPresenter implements GoodsDetailedContract.Presenter {
     @Override
     public void downGoods(String goodsid) {
         mView.showLoading();
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("token",token);
-        map.put("goods_id",goodsid);
-        map.put("goods_state",0);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", token);
+        map.put("goods_id", goodsid);
+        map.put("goods_state", 0);
         meApi.getdownGoods(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {
@@ -138,8 +140,8 @@ public class GoodsDetailedPresenter implements GoodsDetailedContract.Presenter {
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            String info =object.getString("info");
-                            if (status==1){
+                            String info = object.getString("info");
+                            if (status == 1) {
                                 mView.DownGoodsSucceed();
                             }
                             ToastUtil.showToast(info);

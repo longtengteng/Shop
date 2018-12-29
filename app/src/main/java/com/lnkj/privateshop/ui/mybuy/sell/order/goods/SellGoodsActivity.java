@@ -46,9 +46,10 @@ public class SellGoodsActivity extends BaseActivity implements SellGoodsContract
 
     private List<Fragment> fragmentList;
     private List<String> titeList;
-    private OrderViewPagerAdapter adapter ;
+    private OrderViewPagerAdapter adapter;
     private SelGoodsFragment mFragment;
     private SelGoodsFragment mFragment2;
+
     @Override
     public int initContentView() {
         return R.layout.activity_sell_goods;
@@ -65,18 +66,17 @@ public class SellGoodsActivity extends BaseActivity implements SellGoodsContract
         titeList = new ArrayList<>();
         titeList.add("已上架");
         titeList.add("已下架");
-        fragmentList =new ArrayList<>();
+        fragmentList = new ArrayList<>();
 
         Bundle bundle = new Bundle();
-        bundle.putInt("index",1);
-        mFragment =SelGoodsFragment.newInstance();
+        bundle.putInt("index", 1);
+        mFragment = SelGoodsFragment.newInstance();
         mFragment.setArguments(bundle);
 
         Bundle bundle1 = new Bundle();
-        bundle1.putInt("index",0);
+        bundle1.putInt("index", 0);
         mFragment2 = SelGoodsFragment.newInstance();
         mFragment2.setArguments(bundle1);
-
 
 
         fragmentList.add(mFragment);
@@ -85,7 +85,7 @@ public class SellGoodsActivity extends BaseActivity implements SellGoodsContract
         adapter = new OrderViewPagerAdapter(getSupportFragmentManager());
         viewpager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewpager);
-        adapter.bind(fragmentList,titeList);
+        adapter.bind(fragmentList, titeList);
 
 //        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 //            @Override
@@ -172,14 +172,14 @@ public class SellGoodsActivity extends BaseActivity implements SellGoodsContract
     }
 
 
-
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, SellGoodsActivity.class);
         context.startActivity(intent);
     }
 
-    private int index=0;
-    @OnClick({R.id.img_back, R.id.tv_right_blue, R.id.tv_left_blue,R.id.btn_up_new})
+    private int index = 0;
+
+    @OnClick({R.id.img_back, R.id.tv_right_blue, R.id.tv_left_blue, R.id.btn_up_new})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_back:
@@ -212,10 +212,10 @@ public class SellGoodsActivity extends BaseActivity implements SellGoodsContract
 //
 //                    }
 //                }
-                if (viewpager.getCurrentItem()==0){
+                if (viewpager.getCurrentItem() == 0) {
 //                mFragment.addIndex(index);
-                startActivity(new Intent(this, UpGoodsActivity.class));
-                }else  if (viewpager.getCurrentItem()==1){
+                    startActivity(new Intent(this, UpGoodsActivity.class));
+                } else if (viewpager.getCurrentItem() == 1) {
 //                    mFragment2.addIndex(index);
                     startActivity(new Intent(this, DownGoodsActivity.class));
                 }

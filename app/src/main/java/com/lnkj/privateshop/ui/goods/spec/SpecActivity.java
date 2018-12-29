@@ -59,6 +59,8 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
     TextView tvBuynow;
     @Bind(R.id.dialog)
     LinearLayout dialog;
+    @Bind(R.id.ll_bug)
+    LinearLayout ll_bug;
     private SpecPresenter presenter = new SpecPresenter(this, this);
     String img, price, storage;
     List<GoodsBean.DataBean.GoodsSpecBean> specBeanList = new ArrayList<>();
@@ -68,6 +70,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
     List<String> spec = new ArrayList<>();
     List<String> spec_name_list = new ArrayList<>();
     String spec_name2;
+    String from_sell;
 
     @Override
     public int initContentView() {
@@ -80,6 +83,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
         presenter.setToken(token);
         specBeanList = (List<GoodsBean.DataBean.GoodsSpecBean>) getIntent().getSerializableExtra("speclist");
         goods_id = getIntent().getStringExtra("goods_id");
+        from_sell = getIntent().getStringExtra("from_sell");
         rvSpec.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SpecAdapter(specBeanList);
         adapter.bindToRecyclerView(rvSpec);
@@ -109,6 +113,12 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
             spec_name_list.add("");
         }
         //   ToastUtil.showToast(spec + "" + spec.size());
+
+        if (from_sell != null) {
+            ll_bug.setVisibility(View.GONE);
+        } else {
+            ll_bug.setVisibility(View.VISIBLE);
+        }
     }
 
     String spec_content3;

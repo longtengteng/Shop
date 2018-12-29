@@ -159,11 +159,13 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     private GoodsBean.DataBean.GoodsInfoBean bean;
     private Boolean is_bogin;
     private String act_id;
+    private String from_sell;
 
     @Override
     public int initContentView() {
         goods_id = getIntent().getStringExtra("goods_id");
         act_id = getIntent().getStringExtra("act_id");
+        from_sell = getIntent().getStringExtra("from_sell");
         return R.layout.activity_goods_info;
     }
 
@@ -198,6 +200,19 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
 
     @Override
     public void initUiAndListener() {
+        if (from_sell != null) {
+            imgGoodsCarTo.setVisibility(View.GONE);
+            imgMenuTo.setVisibility(View.GONE);
+            imgGoodsCar.setVisibility(View.GONE);
+            imgMenu.setVisibility(View.GONE);
+            llBottom.setVisibility(View.GONE);
+        } else {
+            imgGoodsCarTo.setVisibility(View.VISIBLE);
+            imgMenuTo.setVisibility(View.VISIBLE);
+            imgGoodsCar.setVisibility(View.VISIBLE);
+            imgMenu.setVisibility(View.VISIBLE);
+            llBottom.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -397,6 +412,10 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
             case R.id.ll_spec:
                 /*商品规格选择*/
                 intent = new Intent(this, SpecActivity.class);
+                if (from_sell != null) {
+                    intent.putExtra("from_sell", "from_sell");
+                }
+
                 intent.putExtra("speclist", (Serializable) dataBean.getGoods_spec());
                 intent.putExtra("img", dataBean.getGoods_info().getGoods_img());
                 intent.putExtra("price", dataBean.getGoods_info().getShop_price());
