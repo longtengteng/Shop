@@ -62,8 +62,8 @@ public class MoneyActivity extends BaseActivity implements MoneyContract.View {
         ButterKnife.bind(this);
         mPresenter.getToken(token);
         tvTitle.setText("资金管理");
-        tvRightBlue.setText("诚信保证");
-        tvRightBlue.setVisibility(View.VISIBLE);
+      //  tvRightBlue.setText("诚信保证");
+      //  tvRightBlue.setVisibility(View.VISIBLE);
 
     }
 
@@ -170,7 +170,7 @@ public class MoneyActivity extends BaseActivity implements MoneyContract.View {
     public void getDepositSuccreed(SellUserBean bean) {
         int is_pay_bond = bean.getData().getIs_pay_bond();
         if (is_pay_bond == 0) {
-            tvMones.setVisibility(View.VISIBLE);
+            tvMones.setVisibility(View.GONE);
         } else {
             tvMones.setVisibility(View.GONE);
         }

@@ -370,12 +370,14 @@ public class OrderDetailedActivity extends BaseActivity implements OrderDetailde
                     return;
                 }
                 if (status.equals("1")) {
+
                     //前往付款
                     Intent intent = new Intent(this, GoPayOrderActivity.class);
                     intent.putExtra("order_sn", Order_id);
                     intent.putExtra("total_goods_num", data.getTotal_buy_number());
                     intent.putExtra("total_amount", data.getReal_pay_amount());
                     intent.putExtra("express", data.getExpress_amount() == null ? "0.00" : data.getExpress_amount());
+                    //商品总价的错误情况
                     try {
                         double f = Double.parseDouble(data.getReal_pay_amount()) - Double.parseDouble(data.getExpress_amount() == null ? "0.00" : data.getExpress_amount());
                         BigDecimal bg = new BigDecimal(f);

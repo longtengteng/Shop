@@ -184,9 +184,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
                 android:layout_marginTop="10dp"
-                tools:text="¥238"
                 android:textColor="@color/btn_bj"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:text="¥238" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -615,7 +615,7 @@
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:layout_alignParentBottom="true"
-        android:paddingLeft="20dp">
+        android:paddingLeft="15dp">
 
 
         <TextView
@@ -634,9 +634,8 @@
             android:id="@+id/img_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
             android:layout_toRightOf="@+id/img_chat"
-            android:drawableTop="@mipmap/gooddetail_icon_shop"
+            android:drawableTop="@mipmap/collect_star"
             android:paddingBottom="7dp"
             android:paddingTop="7dp"
             android:text="收藏"

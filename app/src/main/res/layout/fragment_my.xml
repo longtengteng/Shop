@@ -292,6 +292,7 @@
             <TextView style="@style/divider_line" />
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/rl_foot"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"

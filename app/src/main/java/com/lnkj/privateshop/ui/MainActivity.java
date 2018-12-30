@@ -283,6 +283,7 @@ public class MainActivity extends BaseActivity implements
 //                fragmentTransaction.hide(myFragment);
                 fragmentTransaction.hide(myUserFragment);
                 fragmentTransaction.show(nearFrament);
+                ToastUtil.showToast("开发中，敬请期待！");
                 rl_seach.setVisibility(View.GONE);
                 break;
             case R.id.radio_looking:
@@ -292,6 +293,7 @@ public class MainActivity extends BaseActivity implements
 //                fragmentTransaction.hide(myFragment);
                 fragmentTransaction.hide(myUserFragment);
                 fragmentTransaction.show(lookingFragment);
+                ToastUtil.showToast("开发中，敬请期待！");
                 rl_seach.setVisibility(View.VISIBLE);
                 break;
             case R.id.radio_goods:
@@ -303,6 +305,7 @@ public class MainActivity extends BaseActivity implements
                         fragmentTransaction.hide(nearFrament);
                         fragmentTransaction.hide(myUserFragment);
                         fragmentTransaction.show(goodsFragment);
+                        ToastUtil.showToast("开发中，敬请期待！");
                         rl_seach.setVisibility(View.GONE);
                     } else {
                         ToastUtil.showToast("您还没有登录，请去登录");

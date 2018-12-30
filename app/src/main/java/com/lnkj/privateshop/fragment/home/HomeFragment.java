@@ -217,7 +217,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
-                        try {
+                    /*    try {
                             if (databeans.get(position).getType().equals("5")) {
                                 if (!TextUtils.isEmpty(databeans.get(position).getItem_id())) {
                                     Intent intent = new Intent(getActivity(), ShopInfoActivity.class);
@@ -240,7 +240,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                             }
                         } catch (Exception e) {
 
-                        }
+                        }*/
                     }
                 })
                 .setCanLoop(true);
@@ -268,7 +268,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                 .setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
-                        try {
+                      /*  try {
                             if (databeans_hot.get(position).getType().equals("5")) {
                                 if (!TextUtils.isEmpty(databeans_hot.get(position).getItem_id())) {
                                     Intent intent = new Intent(getActivity(), ShopInfoActivity.class);
@@ -291,7 +291,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                             }
                         } catch (Exception e) {
 
-                        }
+                        }*/
                     }
                 })
                 .setCanLoop(true);
