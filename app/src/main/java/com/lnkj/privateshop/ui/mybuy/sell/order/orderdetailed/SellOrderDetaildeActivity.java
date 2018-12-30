@@ -168,7 +168,7 @@ TextView tv_phone;
             tvOrderState.setText("等待付款");
             tvBtnLeftOne.setVisibility(View.VISIBLE);
             tvBtnTwo.setVisibility(View.VISIBLE);
-            tvBtnThree.setVisibility(View.VISIBLE);
+            tvBtnThree.setVisibility(View.GONE);
             tvBtnThree.setText("修改价格");
             tvBtnTwo.setText("取消订单");
             tvBtnLeftOne.setText("提醒付款");

@@ -62,7 +62,7 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
     String buy_number;
     String act_id;//限时特惠传递的参数
     String goods_spec_key;
-
+    int is_from_cart = 0;
     @Override
     public int initContentView() {
         return R.layout.activity_clearing;
@@ -75,6 +75,12 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
         tvTitle.setText("填写订单");
         act_id = getIntent().getStringExtra("act_id");
         from_info = getIntent().getStringExtra("from_info");
+
+        if (from_info != null) {
+            is_from_cart = 0;
+        } else {
+            is_from_cart = 1;
+        }
         shop_id = getIntent().getStringExtra("shop_id");
         goods_id = getIntent().getStringExtra("goods_id");
         goods_spec_key = getIntent().getStringExtra("goods_spec_key");
@@ -170,7 +176,6 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
         intent.putExtra("express", bean.getOrder_express_price());
         intent.putExtra("total_goods_amount", bean.getOrder_price());
         intent.putExtra("total_amount", bean.getFinal_price());
-
         finish();
         startActivityForResult(intent, 20);
     }
@@ -204,12 +209,7 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
                 }
 
                 try {
-                    int is_from_cart = 0;
-                    if (from_info != null) {
-                        is_from_cart = 0;
-                    } else {
-                        is_from_cart = 1;
-                    }
+
                     /*remark*/
                     final StringBuffer remark_all = new StringBuffer();
                     for (int i = 0; i < goodslist.size(); i++) {

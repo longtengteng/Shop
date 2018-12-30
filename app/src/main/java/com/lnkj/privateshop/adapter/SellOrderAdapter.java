@@ -85,7 +85,7 @@ public class SellOrderAdapter extends RecyclerView.Adapter<SellOrderAdapter.View
             holder.tvStatus.setText("等待付款");
             holder.tvStatus.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnLeft.setVisibility(View.VISIBLE);
-            holder.tvBtnLeftTow.setVisibility(View.VISIBLE);
+            holder.tvBtnLeftTow.setVisibility(View.GONE);
             holder.tvBtnLeft.setText("取消订单");
             holder.tvBtnDelete.setText("催促买家");
             holder.tvBtnLeftTow.setText("修改价格");

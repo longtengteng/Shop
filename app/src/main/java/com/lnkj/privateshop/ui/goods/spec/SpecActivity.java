@@ -247,6 +247,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
     public void getGoodsInfoSucceed(OrderConBean orderConBean) {
         Intent intent = new Intent(this, ClearingActivity.class);
         intent.putExtra("orderConBean", orderConBean.getData());
+        intent.putExtra("from_info", "info");
         startActivity(intent);
     }
 
