@@ -113,6 +113,7 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
             }
 
         } catch (Exception e) {
+
         }
 
 
