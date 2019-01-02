@@ -32,12 +32,11 @@ import static com.lnkj.privateshop.R.id.tv_goods_count_bottom;
 public class SellRefundsAdapter extends RecyclerView.Adapter<SellRefundsAdapter.ViewHolder> {
 
 
-
     private Context mContext;
     private int index;
     List<SellReutrnBean.DataBean> orderlist;
 
-    public SellRefundsAdapter(Context mContext,int intex) {
+    public SellRefundsAdapter(Context mContext, int intex) {
         this.mContext = mContext;
         this.index = index;
 
@@ -64,37 +63,38 @@ public class SellRefundsAdapter extends RecyclerView.Adapter<SellRefundsAdapter.
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindViewHolder(SellRefundsAdapter.ViewHolder holder, final int position) {
-        final SellReutrnBean.DataBean bean =   orderlist.get(position);
+        final SellReutrnBean.DataBean bean = orderlist.get(position);
         holder.itemView.setTag(position);
         holder.tvShopsName.setText(bean.getShop_name());
-String refund_type = bean.getRefund_type();
-      final String roder_status =   bean.getShop_state();
+        String refund_type = bean.getRefund_type();
+        final String roder_status = bean.getShop_state();
 
-        if (roder_status.equals("1")){
+        if (roder_status.equals("1")) {
             try {
-            if (bean.getRefund_type().equals("1")){
-                holder.tvStatus.setText("申请退款");
-            }else {
-                holder.tvStatus.setText("申请退货退款");
-            }
+                if (bean.getRefund_type().equals("1")) {
+                    holder.tvStatus.setText("申请退款");
+                } else {
+                    holder.tvStatus.setText("申请退货退款");
+                }
 
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
             holder.tvStatus.setTextColor(Color.parseColor("#999999"));
             holder.tvBtnLeft.setVisibility(View.VISIBLE);
             holder.tvBtnLeftTow.setVisibility(View.GONE);
-            holder.tvBtnLeft.setText(bean.getRefund_type().equals("1")?"拒绝退款":"拒绝退货退款");
-            holder.tvBtnDelete.setText(bean.getRefund_type().equals("1")?"同意退款":"同意退货退款");
+            holder.tvBtnLeft.setText(bean.getRefund_type().equals("1") ? "拒绝退款" : "拒绝退货退款");
+            holder.tvBtnDelete.setText(bean.getRefund_type().equals("1") ? "同意退款" : "同意退货退款");
             holder.tvBtnDelete.setBackgroundResource(R.drawable.button_bj_orange);
             holder.tvBtnDelete.setTextColor(Color.parseColor("#ff7722"));
-        }else if (roder_status.equals("10")){
-             holder.tvStatus.setText("等待收货");
+        } else if (roder_status.equals("10")) {
+            holder.tvStatus.setText("等待收货");
             holder.tvStatus.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnLeft.setVisibility(View.GONE);
             holder.tvBtnLeftTow.setVisibility(View.GONE);
             holder.tvBtnDelete.setText("确认收货并退款");
             holder.tvBtnDelete.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnDelete.setBackgroundResource(R.drawable.button_bj_orange);
-        }else if (roder_status.equals("2")){
+        } else if (roder_status.equals("2")) {
             holder.tvStatus.setText("等待买家发货");
             holder.tvStatus.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnLeftTow.setVisibility(View.GONE);
@@ -102,16 +102,16 @@ String refund_type = bean.getRefund_type();
             holder.tvBtnDelete.setText("提醒退货");
             holder.tvBtnDelete.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnDelete.setBackgroundResource(R.drawable.button_bj_orange);
-        }else if (roder_status.equals("3")){
-            holder.tvStatus.setText(bean.getRefund_type().equals("1")?"拒绝退款":"拒绝退货退款");
+        } else if (roder_status.equals("3")) {
+            holder.tvStatus.setText(bean.getRefund_type().equals("1") ? "拒绝退款" : "拒绝退货退款");
             holder.tvStatus.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnLeftTow.setVisibility(View.GONE);
             holder.tvBtnLeft.setVisibility(View.GONE);
             holder.tvBtnDelete.setText("删除订单");
             holder.tvBtnDelete.setTextColor(Color.parseColor("#999999"));
             holder.tvBtnDelete.setBackgroundResource(R.drawable.button_bj);
-        }else if (roder_status.equals("4")){
-            holder.tvStatus.setText(bean.getRefund_type().equals("1")?"仅退款 退款成功":"退货退款 退款成功");
+        } else if (roder_status.equals("4")) {
+            holder.tvStatus.setText(bean.getRefund_type().equals("1") ? "仅退款 退款成功" : "退货退款 退款成功");
             holder.tvStatus.setTextColor(Color.parseColor("#FF7722"));
             holder.tvBtnLeftTow.setVisibility(View.GONE);
             holder.tvBtnLeft.setVisibility(View.GONE);
@@ -119,49 +119,46 @@ String refund_type = bean.getRefund_type();
             holder.tvBtnDelete.setTextColor(Color.parseColor("#999999"));
             holder.tvBtnDelete.setBackgroundResource(R.drawable.button_bj);
         }
-        String str="共<font color='#ff7722'>"+bean.getGoods_count()+"</font>件";
+        String str = "共<font color='#ff7722'>" + bean.getGoods_count() + "</font>件";
         holder.tvGoodsCountBottom.setText(Html.fromHtml(str));
 
-        holder.tvYunfei.setText("(含运费"+bean.getExpress_amount()+"元)");
-        holder.tvGoodsPriceCombined.setText("¥"+bean.getReal_pay_amount());
+        holder.tvYunfei.setText("(含运费" + bean.getExpress_amount() + "元)");
+        holder.tvGoodsPriceCombined.setText("¥" + bean.getReal_pay_amount());
 
         holder.tvBtnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (roder_status.equals("1")){
-                    if (bean.getRefund_type().equals("1")){
-                        if (mOrderClickListener!=null){
-                            mOrderClickListener.onOkRoNoGoods(position,"1");
+                if (roder_status.equals("1")) {
+                    if (bean.getRefund_type().equals("1")) {
+                        if (mOrderClickListener != null) {
+                            mOrderClickListener.onOkRoNoGoods(position, "1");
                         }
 
-                    }else {
-                        if (mOrderClickListener!=null){
-                            mOrderClickListener.onOkRoNoGoods(position,"2");
+                    } else {
+                        if (mOrderClickListener != null) {
+                            mOrderClickListener.onOkRoNoGoods(position, "2");
                         }
                     }
 
-                }else if (roder_status.equals("10")){
+                } else if (roder_status.equals("10")) {
                     ToastUtil.showToast("确认收货");
-                    if (mOrderClickListener!=null){
+                    if (mOrderClickListener != null) {
                         mOrderClickListener.onReceiveGoods(position);
                     }
-                }
-                else if (roder_status.equals("2")){
+                } else if (roder_status.equals("2")) {
 //                    ToastUtil.showToast("催促买家");
-                    if (mOrderClickListener!=null){
+                    if (mOrderClickListener != null) {
                         mOrderClickListener.onUrged(bean.getRefund_id());
                     }
-                }
-                else if (roder_status.equals("3")){
+                } else if (roder_status.equals("3")) {
 //                    ToastUtil.showToast("删除订单");
-                    if (mOrderClickListener!=null){
+                    if (mOrderClickListener != null) {
                         mOrderClickListener.onDeleteOrder(position);
                     }
 
-                }
-                else if (roder_status.equals("4")){
+                } else if (roder_status.equals("4")) {
 //                    ToastUtil.showToast("删除订单");
-                    if (mOrderClickListener!=null){
+                    if (mOrderClickListener != null) {
                         mOrderClickListener.onDeleteOrder(position);
                     }
 
@@ -171,32 +168,32 @@ String refund_type = bean.getRefund_type();
         holder.tvBtnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             if (roder_status.equals("1")){
+                if (roder_status.equals("1")) {
 //                 ToastUtil.showToast("确认退款");
-                 if (bean.getRefund_type().equals("1")){
+                    if (bean.getRefund_type().equals("1")) {
 //                        holder.tvStatus.setText("买家申请退款");
-                     if (mOrderClickListener!=null){
-                         mOrderClickListener.onOkRoNoGoods(position,"3");
-                     }
+                        if (mOrderClickListener != null) {
+                            mOrderClickListener.onOkRoNoGoods(position, "3");
+                        }
 
-                 }else {
+                    } else {
 //                        holder.tvStatus.setText("买家申请退货退款");
-                     if (mOrderClickListener!=null){
-                         mOrderClickListener.onOkRoNoGoods(position,"4");
-                     }
-                 }
+                        if (mOrderClickListener != null) {
+                            mOrderClickListener.onOkRoNoGoods(position, "4");
+                        }
+                    }
                 }
             }
         });
 
-        RefundsrListAdapter  adapter =new RefundsrListAdapter(mContext,bean.getGoods_list());
+        RefundsrListAdapter adapter = new RefundsrListAdapter(mContext, bean.getGoods_list());
         holder.myListView.setAdapter(adapter);
         holder.myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (mOrderClickListener!=null){
-                mOrderClickListener.onItemClick(bean.getOrder_sn(),bean.getGoods_list().get(i).getOrder_goods_id(),
-                        roder_status,bean.getRefund_type(),position);
+                if (mOrderClickListener != null) {
+                    mOrderClickListener.onItemClick(bean.getOrder_sn(), bean.getGoods_list().get(i).getOrder_goods_id(),
+                            roder_status, bean.getRefund_type(), position);
 
                 }
             }
@@ -237,28 +234,33 @@ String refund_type = bean.getRefund_type();
         TextView tvBtnLeftTow;
         @Bind(R.id.meListView)
         MyListView myListView;
-@Bind(R.id.ll_item)
+        @Bind(R.id.ll_item)
         LinearLayout llItem;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
 
         }
     }
 
 
     public OrderClickListener mOrderClickListener;
-    public void setmOrderClickListener( OrderClickListener mOrderClickListener) {
+
+    public void setmOrderClickListener(OrderClickListener mOrderClickListener) {
         this.mOrderClickListener = mOrderClickListener;
     }
 
     public interface OrderClickListener {
         void onReceiveGoods(int p); //确认收货
-        void onUrged(String order_sn); //催促买家
-        void onDeleteOrder(int p);// 删除订单
-       void onOkRoNoGoods(int p,String refund_type); //同意、拒绝退款
 
-        void onItemClick(String order_sn,String order_goods_id,String roder_status,String Refund_type,int position);
+        void onUrged(String order_sn); //催促买家
+
+        void onDeleteOrder(int p);// 删除订单
+
+        void onOkRoNoGoods(int p, String refund_type); //同意、拒绝退款
+
+        void onItemClick(String order_sn, String order_goods_id, String roder_status, String Refund_type, int position);
     }
 
 }

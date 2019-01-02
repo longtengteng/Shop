@@ -25,7 +25,7 @@ public interface SellReturnContract {
     interface Presenter extends BasePresenter<View> {
         void getToken(String token);
         void getReturnOrder(String shop_state,int p);
-         void OkRoNoGoods(String order_sn, String refund_type,String password);
+         void OkRoNoGoods(String order_sn, String refund_type,String order_goods_id);
         void ReceiveGoods(String order_sn,String pwd);
         void onUrged(String order_sn);
         void onDeleteOrder(String order_sn);

@@ -23,11 +23,12 @@ import static com.lnkj.privateshop.utils.HttpUtil.meApi;
  * Created by Administrator on 2017/8/3 0003.
  */
 
-public class SellReturnPresenter implements SellReturnContract.Presenter{
+public class SellReturnPresenter implements SellReturnContract.Presenter {
     SellReturnContract.View view;
     private String token;
+
     public SellReturnPresenter(SellReturnContract.View view) {
-        this.view=view;
+        this.view = view;
 
     }
 
@@ -47,18 +48,18 @@ public class SellReturnPresenter implements SellReturnContract.Presenter{
     }
 
     @Override
-    public void getReturnOrder(String shop_state,int p) {
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("token",token);
-        map.put("shop_state",shop_state);
-        map.put("p",p);
-        String shop_id = PreferencesUtils.getString(MyApplication.mContext,"shop_id");
-        map.put("shop_id",shop_id);
+    public void getReturnOrder(String shop_state, int p) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("token", token);
+        map.put("shop_state", shop_state);
+        map.put("p", p);
+        String shop_id = PreferencesUtils.getString(MyApplication.mContext, "shop_id");
+        map.put("shop_id", shop_id);
 
-        System.out.println("shop_state"+shop_state);
-        System.out.println("shop_id"+shop_id);
-        System.out.println("p"+p);
-        System.out.println("token"+token);
+        System.out.println("shop_state" + shop_state);
+        System.out.println("shop_id" + shop_id);
+        System.out.println("p" + p);
+        System.out.println("token" + token);
 
         view.showLoading();
         meApi.sellReturnDetails(map)
@@ -71,11 +72,11 @@ public class SellReturnPresenter implements SellReturnContract.Presenter{
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            String info =object.getString("info");
-                            if (status==1){
-                                SellReutrnBean beass = JSON.parseObject(data,SellReutrnBean.class);
+                            String info = object.getString("info");
+                            if (status == 1) {
+                                SellReutrnBean beass = JSON.parseObject(data, SellReutrnBean.class);
                                 view.succree(beass);
-                            }else {
+                            } else {
                                 ToastUtil.showToast(info);
                             }
                         } catch (JSONException e) {
@@ -94,15 +95,12 @@ public class SellReturnPresenter implements SellReturnContract.Presenter{
     }
 
     @Override
-    public void OkRoNoGoods(String order_sn, String refund_type,String password) {
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("token",token);
-        map.put("order_sn",order_sn);
-        map.put("refund_type",refund_type);
-        map.put("password",password);
-//        System.out.println("token"+token);
-//        System.out.println("order_sn"+order_sn);
-//        System.out.println("refund_type"+refund_type);
+    public void OkRoNoGoods(String order_sn, String refund_type, String order_goods_id) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("token", token);
+        map.put("order_sn", order_sn);
+        map.put("refund_type", refund_type);
+        map.put("order_goods_id", order_goods_id);
         view.showLoading();
         meApi.sellReturnOkOrNO(map)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -114,11 +112,11 @@ public class SellReturnPresenter implements SellReturnContract.Presenter{
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            String info =object.getString("info");
-                            if (status==1){
+                            String info = object.getString("info");
+                            if (status == 1) {
                                 view.OkRoNoGOodssuccree();
                             }
-                                ToastUtil.showToast(info);
+                            ToastUtil.showToast(info);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -137,11 +135,11 @@ public class SellReturnPresenter implements SellReturnContract.Presenter{
     }
 
     @Override
-    public void ReceiveGoods(String order_sn,String pwd) {
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("token",token);
-        map.put("order_sn",order_sn);
-        map.put("password",pwd);
+    public void ReceiveGoods(String order_sn, String pwd) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("token", token);
+        map.put("order_sn", order_sn);
+        map.put("password", pwd);
         view.showLoading();
         meApi.ReceiveGoods(map)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -153,8 +151,8 @@ public class SellReturnPresenter implements SellReturnContract.Presenter{
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            String info =object.getString("info");
-                            if (status==1){
+                            String info = object.getString("info");
+                            if (status == 1) {
                                 view.OnDeleteOrderSucreed();
                             }
                             ToastUtil.showToast(info);
@@ -175,9 +173,9 @@ public class SellReturnPresenter implements SellReturnContract.Presenter{
 
     @Override
     public void onUrged(String order_sn) {
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("token",token);
-        map.put("refund_id",order_sn);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("token", token);
+        map.put("refund_id", order_sn);
         view.showLoading();
         meApi.onUrged(map)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -189,8 +187,8 @@ public class SellReturnPresenter implements SellReturnContract.Presenter{
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            String info =object.getString("info");
-                            if (status==1){
+                            String info = object.getString("info");
+                            if (status == 1) {
 
                             }
                             ToastUtil.showToast(info);
@@ -213,9 +211,9 @@ public class SellReturnPresenter implements SellReturnContract.Presenter{
 
     @Override
     public void onDeleteOrder(String order_sn) {
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("token",token);
-        map.put("order_sn",order_sn);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("token", token);
+        map.put("order_sn", order_sn);
         view.showLoading();
         meApi.onDeleteOrder(map)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -227,8 +225,8 @@ public class SellReturnPresenter implements SellReturnContract.Presenter{
                         try {
                             JSONObject object = new JSONObject(data);
                             int status = object.getInt("status");
-                            String info =object.getString("info");
-                            if (status==1){
+                            String info = object.getString("info");
+                            if (status == 1) {
                                 view.OnDeleteOrderSucreed();
                             }
                             ToastUtil.showToast(info);

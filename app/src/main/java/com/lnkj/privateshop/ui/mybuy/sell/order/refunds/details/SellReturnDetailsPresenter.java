@@ -92,12 +92,12 @@ public class SellReturnDetailsPresenter implements SellReturnDetailsContract.Pre
     }
 
     @Override
-    public void OkRoNoGoods(String order_sn, String refund_type,String password) {
+    public void OkRoNoGoods(String order_sn, String refund_type,String order_goods_id) {
         HashMap<String,Object> map = new HashMap<>();
         map.put("token",token);
         map.put("order_sn",order_sn);
         map.put("refund_type",refund_type);
-        map.put("password",password);
+        map.put("order_goods_id",order_goods_id);
         mView.showLoading();
         meApi.sellReturnOkOrNO(map)
                 .observeOn(AndroidSchedulers.mainThread())

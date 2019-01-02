@@ -182,7 +182,7 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                         tv_ok_d.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                mPresenter.OkRoNoGoods(order_sn,"1",mEditText.getText().toString());
+                                mPresenter.OkRoNoGoods(order_sn,"1",order_goods_id);
                             }
                         });
                         //取消
@@ -222,7 +222,7 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                     dialog.setActionListener(new CenterActionDialog.ActionLisenter() {
                         @Override
                         public void sureAction() {
-                            mPresenter.OkRoNoGoods(order_sn,"2","");
+                            mPresenter.OkRoNoGoods(order_sn,"2",order_goods_id);
                         }
 
                         @Override
@@ -244,7 +244,7 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                     dialog.setActionListener(new CenterActionDialog.ActionLisenter() {
                         @Override
                         public void sureAction() {
-                            mPresenter.OkRoNoGoods(order_sn,"3","");
+                            mPresenter.OkRoNoGoods(order_sn,"3",order_goods_id);
                         }
 
                         @Override
@@ -261,7 +261,7 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                     dialog.setActionListener(new CenterActionDialog.ActionLisenter() {
                         @Override
                         public void sureAction() {
-                            mPresenter.OkRoNoGoods(order_sn,"4","");
+                            mPresenter.OkRoNoGoods(order_sn,"4",order_goods_id);
                         }
                         @Override
                         public void cancelAction() {
