@@ -37,6 +37,7 @@ import com.lnkj.privateshop.entity.GoodsBean;
 import com.lnkj.privateshop.entity.OrderConBean;
 import com.lnkj.privateshop.entity.ShopEmchatBean;
 import com.lnkj.privateshop.ui.MainActivity;
+import com.lnkj.privateshop.ui.ShopCarActivity;
 import com.lnkj.privateshop.ui.ease.EaseConversationListActivity;
 import com.lnkj.privateshop.ui.goods.spec.SpecActivity;
 import com.lnkj.privateshop.ui.goodscar.ClearingActivity;
@@ -432,11 +433,12 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                 }
                 break;
             case R.id.img_goods_car:
-                intent = new Intent(this, MainActivity.class);
+         /*       intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("type", "addshop");
+                startActivity(intent);*/
+                intent = new Intent(this, ShopCarActivity.class);
                 startActivity(intent);
-
                 break;
             case R.id.ll_attr:
                 /*商品属性显示*/
@@ -445,9 +447,12 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                 startActivity(intent);
                 break;
             case R.id.img_goods_car_to:
-                intent = new Intent(this, MainActivity.class);
+          /*      intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("type", "addshop");
+                startActivity(intent);*/
+
+                intent = new Intent(this, ShopCarActivity.class);
                 startActivity(intent);
                 break;
             case R.id.img_beak:

@@ -634,10 +634,9 @@
             android:id="@+id/img_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/img_chat"
             android:drawableTop="@mipmap/collect_star"
-            android:paddingBottom="7dp"
-            android:paddingTop="7dp"
             android:text="收藏"
             android:textColor="@color/tx66"
             android:textSize="11sp" />

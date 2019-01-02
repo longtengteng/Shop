@@ -86,7 +86,8 @@ public class MainActivity extends BaseActivity implements
     HomeFragment homeFragment; //首页
     NearFrament nearFrament; //圈子
     LookingFragment lookingFragment; //找货
-    GoodsFragment goodsFragment; //进货车
+    TestFragment goodsFragment;
+    // GoodsFragment goodsFragment; //进货车
     //    MyFragment  myFragment;// 我的
     UserFragment myUserFragment;
     ImageView imageView;
@@ -121,7 +122,7 @@ public class MainActivity extends BaseActivity implements
             fragmentTransaction.hide(lookingFragment);
             fragmentTransaction.hide(homeFragment);
             fragmentTransaction.commit();
-            goodsFragment.initView();
+            //    goodsFragment.initView();
             radioGoods.setChecked(true);
         } else if (!TextUtils.isEmpty(type) && type.equals("openshop")) {
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -440,9 +441,10 @@ public class MainActivity extends BaseActivity implements
         homeFragment = new HomeFragment();
         nearFrament = new NearFrament();
         lookingFragment = new LookingFragment();
-        goodsFragment = new GoodsFragment();
+        goodsFragment = new TestFragment();
         myUserFragment = new UserFragment();
 
+/*
         goodsFragment.setmClickListener(new GoodsFragment.OrderClickListener() {
             @Override
             public void onOrderCilck() {
@@ -457,8 +459,7 @@ public class MainActivity extends BaseActivity implements
                 fragmentTransaction.commit();
                 radioHome.setChecked(true);
             }
-        });
-
+        });*/
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -483,8 +484,8 @@ public class MainActivity extends BaseActivity implements
                     radioGoods.setVisibility(View.VISIBLE);
                     imgAdd.setVisibility(View.GONE);
                 } else if (index == 0) {
-                    radioGoods.setVisibility(View.GONE);
-                    imgAdd.setVisibility(View.VISIBLE);
+                    radioGoods.setVisibility(View.VISIBLE);
+                    imgAdd.setVisibility(View.GONE);
                 } else {
                     radioGoods.setVisibility(View.VISIBLE);
                     imgAdd.setVisibility(View.GONE);
@@ -499,8 +500,8 @@ public class MainActivity extends BaseActivity implements
         } else {
             int state = PreferencesUtils.getInt(this, "state", Constants.STATE_BUY);
             if (state == Constants.STATE_SELLER) {
-                radioGoods.setVisibility(View.GONE);
-                imgAdd.setVisibility(View.VISIBLE);
+                radioGoods.setVisibility(View.VISIBLE);
+                imgAdd.setVisibility(View.GONE);
             } else {
                 radioGoods.setVisibility(View.VISIBLE);
                 imgAdd.setVisibility(View.GONE);
