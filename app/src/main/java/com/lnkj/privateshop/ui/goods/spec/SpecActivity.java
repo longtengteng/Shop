@@ -248,6 +248,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
         Intent intent = new Intent(this, ClearingActivity.class);
         intent.putExtra("orderConBean", orderConBean.getData());
         intent.putExtra("goods_id",goods_id);
+        intent.putExtra("goods_spec_key",spec_content3);
         intent.putExtra("from_info", "info");
         startActivity(intent);
     }

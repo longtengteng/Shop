@@ -64,6 +64,7 @@ public class CarGoodslistAdaptre extends BaseAdapter {
         }
         holder.tvGoodsName.setText(goodslist.get(i).getGoods_name());
         holder.tvPrice.setText("￥" + goodslist.get(i).getPrice());
+        holder.tvCount.setText("×"+goodslist.get(i).getBuy_number());
         Glide.with(mContext).load(Constants.Base_URL + goodslist.get(i).getGoods_img())
                 .error(R.mipmap.bg_img)
                 .placeholder(R.mipmap.bg_img)
