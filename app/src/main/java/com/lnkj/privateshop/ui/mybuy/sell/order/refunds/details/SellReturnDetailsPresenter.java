@@ -97,7 +97,7 @@ public class SellReturnDetailsPresenter implements SellReturnDetailsContract.Pre
         map.put("token",token);
         map.put("order_sn",order_sn);
         map.put("refund_type",refund_type);
-        map.put("order_goods_id",order_goods_id);
+      //  map.put("order_goods_id",order_goods_id);
         mView.showLoading();
         meApi.sellReturnOkOrNO(map)
                 .observeOn(AndroidSchedulers.mainThread())

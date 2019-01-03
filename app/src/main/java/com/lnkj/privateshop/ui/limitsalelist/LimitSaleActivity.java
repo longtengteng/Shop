@@ -157,7 +157,7 @@ public class LimitSaleActivity extends BaseActivity implements PullLoadMoreRecyc
 
     @Override
     public void onLoadMore() {
-        page++;
+        page=1;
         mPresenter.getDataFromServer(page);
     }
 

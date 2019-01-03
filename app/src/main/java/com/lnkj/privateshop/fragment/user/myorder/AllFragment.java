@@ -119,8 +119,6 @@ public class AllFragment extends BaseFragment implements PullLoadMoreRecyclerVie
                 } catch (Error e) {
 
                 }
-
-
 //                total_goods_num = getIntent().getStringExtra("total_goods_num");  商品数量
 //                total_goods_amount = getIntent().getStringExtra("total_goods_amount"); 商品价格
 

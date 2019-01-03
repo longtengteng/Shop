@@ -94,7 +94,7 @@ public class GoPayOrderActivity extends BaseActivity implements GoPayOrderContra
         tvTitle.setText("支付");
         tvExpress.setText("¥" + express);
         tvTotalAmount.setText("¥" + total_amount);
-        tvTotalGoodsAmount.setText("¥" + total_goods_amount);
+        tvTotalGoodsAmount.setText("¥" + total_goods_amount);//商品总价
         tvTotalGoodsNum.setText("共" + total_goods_num + "件");
 
     }
