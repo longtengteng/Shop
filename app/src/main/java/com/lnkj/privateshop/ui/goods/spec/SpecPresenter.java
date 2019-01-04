@@ -43,12 +43,13 @@ public class SpecPresenter implements SpecContract.Presenter {
     }
 
     @Override
-    public void getPriceAndStoreBySpce(String goods_spec_key, String goods_id) {
+    public void getPriceAndStoreBySpce(String goods_spec_key, String goods_id,String act_id) {
         mView.showLoading();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
         map.put("goods_spec_key", goods_spec_key);
         map.put("goods_id", goods_id);
+        map.put("act_id",act_id);
 //            map.put("goods_id",259+"");
         meApi.getPriceAndStoreBySpce(map)
                 .observeOn(AndroidSchedulers.mainThread())

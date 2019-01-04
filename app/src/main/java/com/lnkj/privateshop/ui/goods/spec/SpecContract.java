@@ -34,7 +34,7 @@ public class SpecContract {
 
         void setToken(String token);
 
-        void getPriceAndStoreBySpce(String goods_spec_key, String goods_id);
+        void getPriceAndStoreBySpce(String goods_spec_key, String goods_id,String act_id);
 
         void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type);
 

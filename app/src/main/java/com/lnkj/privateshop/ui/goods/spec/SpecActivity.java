@@ -71,6 +71,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
     List<String> spec_name_list = new ArrayList<>();
     String spec_name2;
     String from_sell;
+    String act_id;
 
     @Override
     public int initContentView() {
@@ -83,6 +84,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
         presenter.setToken(token);
         specBeanList = (List<GoodsBean.DataBean.GoodsSpecBean>) getIntent().getSerializableExtra("speclist");
         goods_id = getIntent().getStringExtra("goods_id");
+        act_id = getIntent().getStringExtra("act_id");
         from_sell = getIntent().getStringExtra("from_sell");
         rvSpec.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SpecAdapter(specBeanList);
@@ -149,9 +151,11 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
                 } else {
                     spec_name2 = spec_name1.replace(",", " ");
                 }
+                if (act_id == null) {
+                    act_id="";
+                }
 
-
-                presenter.getPriceAndStoreBySpce(spec_content3, goods_id);
+                presenter.getPriceAndStoreBySpce(spec_content3, goods_id, act_id);
                 //   ToastUtil.showToast(spec + "");
             }
         });
@@ -247,8 +251,8 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
     public void getGoodsInfoSucceed(OrderConBean orderConBean) {
         Intent intent = new Intent(this, ClearingActivity.class);
         intent.putExtra("orderConBean", orderConBean.getData());
-        intent.putExtra("goods_id",goods_id);
-        intent.putExtra("goods_spec_key",spec_content3);
+        intent.putExtra("goods_id", goods_id);
+        intent.putExtra("goods_spec_key", spec_content3);
         intent.putExtra("from_info", "info");
         startActivity(intent);
     }

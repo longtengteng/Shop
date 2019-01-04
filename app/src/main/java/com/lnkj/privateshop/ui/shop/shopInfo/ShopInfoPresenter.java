@@ -60,7 +60,7 @@ public class ShopInfoPresenter implements ShopInfoContract.Presenter {
         mView.showLoading();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
-    //    map.put("shop_id", shopid);
+     map.put("shop_id", shopid);
         meApi.getShopInfo(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {

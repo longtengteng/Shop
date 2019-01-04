@@ -420,6 +420,9 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                 intent.putExtra("speclist", (Serializable) dataBean.getGoods_spec());
                 intent.putExtra("img", dataBean.getGoods_info().getGoods_img());
                 intent.putExtra("price", dataBean.getGoods_info().getShop_price());
+                if (act_id!=null){
+                    intent.putExtra("act_id",act_id);
+                }
                 intent.putExtra("storage", dataBean.getGoods_info().getStorage());
                 intent.putExtra("goods_id", dataBean.getGoods_info().getGoods_id());
                 startActivityForResult(intent, 69);

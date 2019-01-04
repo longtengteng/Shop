@@ -55,7 +55,6 @@ public class GoodsListCarAdapter extends RecyclerView.Adapter<GoodsListCarAdapte
     }
 
     public void clearData() {
-
         notifyDataSetChanged();
     }
 

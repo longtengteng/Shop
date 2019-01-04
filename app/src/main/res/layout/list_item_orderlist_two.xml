@@ -103,7 +103,7 @@
             android:id="@+id/mGridView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:numColumns="3">
+            android:numColumns="1">
         </com.lnkj.privateshop.view.MyGridView>
         <TextView
             android:visibility="gone"
