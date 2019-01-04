@@ -705,6 +705,7 @@ public class MainActivity extends BaseActivity implements
                 //                    buffer.append(amapLocation.getCountry() + "" + amapLocation.getProvince() + "" + amapLocation.getCity() + "" + amapLocation.getProvince() + "" + amapLocation.getDistrict() + "" + amapLocation.getStreet() + "" + amapLocation.getStreetNum());
                 //                    ToastUtils.showShort(buffer.toString())
 
+
                 ToastUtil.showToast(amapLocation.getProvince()+city+"oooo");
             } else {
                 //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
