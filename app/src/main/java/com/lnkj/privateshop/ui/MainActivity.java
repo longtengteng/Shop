@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -20,6 +22,21 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.LocationSource;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.CameraPosition;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.MyLocationStyle;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
@@ -58,7 +75,7 @@ import static com.lnkj.privateshop.utils.TagAliasOperatorHelper.ACTION_SET;
 import static com.lnkj.privateshop.utils.TagAliasOperatorHelper.sequence;
 
 public class MainActivity extends BaseActivity implements
-        RadioGroup.OnCheckedChangeListener, MainContract.View {
+        RadioGroup.OnCheckedChangeListener, MainContract.View, LocationSource, AMapLocationListener, AMap.OnCameraChangeListener, GeocodeSearch.OnGeocodeSearchListener {
 
     @Inject
     public MainPresenter mainPresenter = new MainPresenter(MainActivity.this);
@@ -97,6 +114,28 @@ public class MainActivity extends BaseActivity implements
     LinearLayout ll_local;
     @Bind(R.id.tv_local)
     TextView tv_local;
+    @Bind(R.id.map)
+    MapView map;
+
+    /*地图相关*/
+    private AMap aMap;//地图对象
+    private AMapLocationClient mLocationClient;   //发起定位
+    private AMapLocationClientOption mLocationOption;
+    LocationSource.OnLocationChangedListener mListener;
+
+    GeocodeSearch geocoderSearch;//你编码对象
+
+    //标识，用于判断是否只显示一次定位信息和用户重新定位
+    private boolean isFirstLoc = true;
+
+    private Double latitude = 0.0;
+    private Double longitude = 0.0;
+    private String address = "";
+    private String province = "";
+    private String city = "";
+    private String country = "";
+    private boolean isLocation = true;
+
 
     @Override
     protected void onResume() {
@@ -108,6 +147,20 @@ public class MainActivity extends BaseActivity implements
         } else {
             tv_count.setVisibility(View.GONE);
         }
+        map.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        map.onPause();
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        map.onCreate(savedInstanceState);
     }
 
     private void processExtraData(Intent intent) {
@@ -174,7 +227,6 @@ public class MainActivity extends BaseActivity implements
         });
     }
 
-    String city;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -260,6 +312,60 @@ public class MainActivity extends BaseActivity implements
 //                }
             }
         });
+
+        //获取地图对象
+        aMap = map.getMap();
+        //设置显示定位按钮 并且可以点击
+        UiSettings settings = aMap.getUiSettings();
+        //设置定位监听
+        aMap.setLocationSource(this);
+        // 是否显示定位按钮
+        if (isLocation) {
+            settings.setMyLocationButtonEnabled(true);
+        }
+        // 是否可触发定位并显示定位层
+        aMap.setMyLocationEnabled(true);
+        geocoderSearch = new GeocodeSearch(this);
+        //设置地图拖动监听
+        aMap.setOnCameraChangeListener(this);
+        //逆编码监听事件
+        geocoderSearch.setOnGeocodeSearchListener(this);
+        //定位的小图标
+        MyLocationStyle myLocationStyle = new MyLocationStyle();
+        //        myLocationStyle.myLocationIcon(BitmapDescriptorFactory.fromResource(R.mipmap.point_map));
+        myLocationStyle.radiusFillColor(android.R.color.transparent);
+        myLocationStyle.strokeColor(android.R.color.transparent);
+        aMap.setMyLocationStyle(myLocationStyle);
+
+        aMap.moveCamera(CameraUpdateFactory.zoomTo(17f)); //缩放比例
+
+        //开始定位
+        initLocation();
+    }
+
+    private void initLocation() {
+        mLocationClient = new AMapLocationClient(getApplicationContext());
+        //设置定位回调监听
+        mLocationClient.setLocationListener(this);
+        //初始化定位参数
+        mLocationOption = new AMapLocationClientOption();
+        //设置定位模式
+        //Hight_Accuracy为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //设置是否返回地址信息（默认返回地址信息）
+        mLocationOption.setNeedAddress(true);
+        //设置是否只定位一次,默认为false
+        mLocationOption.setOnceLocation(false);
+        //设置是否强制刷新WIFI，默认为强制刷新
+        mLocationOption.setWifiActiveScan(true);
+        //设置是否允许模拟位置,默认为false，不允许模拟位置
+        mLocationOption.setMockEnable(false);
+        //设置定位间隔,单位毫秒,默认为2000ms
+        mLocationOption.setInterval(2000);
+        //给定位客户端对象设置定位参数
+        mLocationClient.setLocationOption(mLocationOption);
+        //启动定位
+        mLocationClient.startLocation();
 
     }
 
@@ -565,6 +671,90 @@ public class MainActivity extends BaseActivity implements
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(mBroadcastReceiver);
+        if (mLocationClient != null) {
+            mLocationClient.stopLocation();
+            mLocationClient.onDestroy();
+        }
+        map.onDestroy();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        map.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onLocationChanged(AMapLocation amapLocation) {
+        if (amapLocation != null) {
+            if (amapLocation.getErrorCode() == 0) {
+                //定位成功回调信息，设置相关消息
+                amapLocation.getLocationType();  //获取当前定位结果来源，如网络定位结果，详见官方定位类型表
+                amapLocation.getLatitude();      //获取纬度
+                amapLocation.getLongitude();    //获取经度
+                amapLocation.getAccuracy();        //获取精度信息
+                city = amapLocation.getCity();            //城市信息
+//                address = amapLocation.address
+//                latitude = amapLocation.latitude
+//                longitude = amapLocation.longitude
+//                tv_address.text = amapLocation.address
+                // 如果不设置标志位，此时再拖动地图时，它会不断将地图移动到当前的位置
+                mLocationClient.stopLocation();
+                //获取定位信息
+                //                    val buffer = StringBuffer()
+                //                    buffer.append(amapLocation.getCountry() + "" + amapLocation.getProvince() + "" + amapLocation.getCity() + "" + amapLocation.getProvince() + "" + amapLocation.getDistrict() + "" + amapLocation.getStreet() + "" + amapLocation.getStreetNum());
+                //                    ToastUtils.showShort(buffer.toString())
+
+                ToastUtil.showToast(amapLocation.getProvince()+city+"oooo");
+            } else {
+                //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
+                Log.e("AmapError", "location Error, ErrCode:" + amapLocation.getErrorCode() + ", errInfo:" + amapLocation.getErrorInfo());
+
+                ToastUtil.showToast("定位失败");
+
+            }
+        }
+    }
+
+    @Override
+    public void onCameraChange(CameraPosition cameraPosition) {
+
+    }
+
+    @Override
+    public void onCameraChangeFinish(CameraPosition cameraPosition) {
+        LatLng latLng = cameraPosition.target;
+        latitude = latLng.latitude;
+        longitude = latLng.longitude;
+    }
+
+    @Override
+    public void activate(OnLocationChangedListener listener) {
+        mListener = listener;
+    }
+
+    @Override
+    public void deactivate() {
+        mListener = null;
+        if (mLocationClient != null) {
+            mLocationClient.stopLocation();
+            mLocationClient.onDestroy();
+        }
+    }
+
+    @Override
+    public void onRegeocodeSearched(RegeocodeResult result, int rCode) {
+        if (rCode == 1000) {
+            if (result != null && result.getRegeocodeAddress() != null && result.getRegeocodeAddress().getFormatAddress() != null) {
+                String addressName = result.getRegeocodeAddress().getFormatAddress(); // 逆转地里编码不是每次都可以得到对应地图上的opi
+                address = addressName;
+            }
+        }
+    }
+
+    @Override
+    public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+
     }
 
     public class GoodsClick extends BroadcastReceiver {
