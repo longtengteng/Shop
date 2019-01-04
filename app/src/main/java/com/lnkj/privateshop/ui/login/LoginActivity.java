@@ -83,6 +83,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 .build()
                 .inject(this);
     }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -94,6 +95,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         super.onRestoreInstanceState(savedInstanceState);
         login_type = savedInstanceState.getString("login_type");
     }
+
     @Override
     public void initUiAndListener() {
         ButterKnife.bind(this);
@@ -119,7 +121,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         });
     }
 
-   /* private void thirdLogin(String platformName) {
+    private void thirdLogin(String platformName) {
 
         MobSDK.init(this);
         final Platform platform = ShareSDK.getPlatform(platformName);
@@ -132,6 +134,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 // 在这个方法填写尝试的代码，返回true表示还不能登录，需要注册
                 // 此处全部给回需要注册
                 PlatformDb platformDb = platform.getDb();
+                loginPresenter.login_three(login_type, "", platformDb.getUserId(), platformDb.getUserName(), platformDb.getUserIcon());
                 //      present.login_three(platformDb.getUserId(), login_type, platformDb.getUserName(), platformDb.getUserIcon());
                 // LogUtils.e("userInfo", platformDb.getUserName() + platformDb.getUserIcon() + platformDb.getUserGender() + platformDb.getUserId());
                 return false;
@@ -143,7 +146,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             }
         });
         api.login(this);
-    }*/
+    }
 
     @Override
     public void onEmpty() {
@@ -183,6 +186,11 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     }
 
+    @Override
+    public void login_three() {
+
+    }
+
 
     public static void statitActivity(Context context) {
 
@@ -199,13 +207,15 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 break;
             case R.id.iv_wx:
                 ToastUtil.showToast("正在启动微信...");
-                login_type = "weixin";
-                //thirdLogin(Wechat.NAME);
+                //login_type = "weixin";
+                login_type = "2";
+                thirdLogin(Wechat.NAME);
                 break;
             case R.id.iv_qq:
-                login_type = "qq";
+                login_type = "1";
+                //  login_type = "qq";
                 ToastUtil.showToast("正在启动QQ...");
-             //   thirdLogin(QQ.NAME);
+                thirdLogin(QQ.NAME);
                 break;
             case R.id.iv_zfb:
                 break;

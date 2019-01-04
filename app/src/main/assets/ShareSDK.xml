@@ -3,7 +3,7 @@
 <SinaWeibo Enable="false" />
 <TencentWeibo Enable="false" />
 <Douban Enable="false" />
-<QZone ShareByAppClient="true" AppId="101488775" AppKey="70af36abd05d399463952aa43d3199ee" />
+<QZone ShareByAppClient="true" AppId="101529809" AppKey="2310bfc36d93af4d303ded3d6bb6309b" />
 <Renren Enable="false" />
 <KaiXin Enable="false" />
 <Facebook Enable="false" />
@@ -16,9 +16,9 @@
 <Tumblr Enable="false" />
 <Email Enable="false" />
 <ShortMessage Enable="false" />
-<Wechat AppId="wxb949c034cc31d9a2" AppSecret="a8c926126f8a8795752863bafcf56610" />
-<WechatMoments AppId="wxb949c034cc31d9a2" AppSecret="a8c926126f8a8795752863bafcf56610" />
-<QQ AppId="101488775" AppKey="70af36abd05d399463952aa43d3199ee" ShareByAppClient="true" />
+<Wechat AppId="wxd565152807ee4297" AppSecret="9eeab5f7c8e26f508036ecb06c59025e" />
+<WechatMoments AppId="wxd565152807ee4297" AppSecret="9eeab5f7c8e26f508036ecb06c59025e" />
+<QQ AppId="101529809" AppKey="2310bfc36d93af4d303ded3d6bb6309b" ShareByAppClient="true" />
 <Instapaper Enable="false" />
 <Pocket Enable="false" />
 <YouDao Enable="false" />

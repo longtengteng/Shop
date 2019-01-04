@@ -43,7 +43,7 @@ import butterknife.OnClick;
 
 import static com.lnkj.privateshop.R.id.tv_cause;
 
-public class SellRetrunDetailsActivity extends BaseActivity implements SellReturnDetailsContract.View{
+public class SellRetrunDetailsActivity extends BaseActivity implements SellReturnDetailsContract.View {
     @Bind(R.id.img_back)
     ImageView imgBack;
     @Bind(R.id.tv_title)
@@ -104,22 +104,24 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
         ButterKnife.bind(this);
         btnFormer.setVisibility(View.VISIBLE);
         tvTitle.setText("退款退货详情");
-        order_sn=getIntent().getStringExtra("order_sn");
-        order_goods_id=getIntent().getStringExtra("order_goods_id");
+        order_sn = getIntent().getStringExtra("order_sn");
+        order_goods_id = getIntent().getStringExtra("order_goods_id");
         shop_status = getIntent().getStringExtra("roder_status");
         refund_type = getIntent().getStringExtra("refund_type");
 
 
         mPresenter.getToken(token);
-        mPresenter.ShipPingGoods(order_sn,order_goods_id);
+        mPresenter.ShipPingGoods(order_sn, order_goods_id);
     }
 
     @Override
     public void initUiAndListener() {
 
     }
+
     private AlertDialog alertDialog;
-    @OnClick({R.id.img_back, R.id.iv_speak,  R.id.tv_btn_look,R.id.tv_copy_nummber,R.id.btn_ok,R.id.btn_no,R.id.btn_delete,R.id.btn_former})
+
+    @OnClick({R.id.img_back, R.id.iv_speak, R.id.tv_btn_look, R.id.tv_copy_nummber, R.id.btn_ok, R.id.btn_no, R.id.btn_delete, R.id.btn_former})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_back:
@@ -128,7 +130,7 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
 
             case R.id.iv_speak:
                 try {
-                    if (bean.getEmchat()==null){
+                    if (bean.getEmchat() == null) {
                         ToastUtil.showToast("买家不在线");
                         return;
                     }
@@ -144,7 +146,7 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
 //                        daoUtils.insertUserInfo(emchatBean);
 //                    }
                     EaseUser easeUser = new EaseUser(bean.getEmchat().getEmchat_username());
-                    easeUser.setAvatar(Constants.Base_IMG_URL+bean.getEmchat().getHead_pic());
+                    easeUser.setAvatar(Constants.Base_IMG_URL + bean.getEmchat().getHead_pic());
                     easeUser.setNickname(bean.getEmchat().getNickname());
                     List<EaseUser> users = new ArrayList<EaseUser>();
                     users.add(easeUser);
@@ -159,44 +161,14 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                 }
 
                 break;
-                case R.id.tv_btn_look:
-            Intent i = new Intent(this,RecordActivity.class);
-                i.putExtra("order_sn",order_sn);
+            case R.id.tv_btn_look:
+                Intent i = new Intent(this, RecordActivity.class);
+                i.putExtra("order_sn", order_sn);
                 startActivity(i);
                 break;
             case R.id.btn_ok:
-                if (!TextUtils.isEmpty(refund_type)&&refund_type.equals("1")){
-                    int   isPay_password =  PreferencesUtils.getInt(this,"isPay_password");
-                    if (isPay_password==1){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        final View view2 = View.inflate(SellRetrunDetailsActivity.this, R.layout.layout_lialog_one, null);
-                        builder.setView(view2);
-                        alertDialog = builder.create();
-                        alertDialog.setCanceledOnTouchOutside(false);
-                        alertDialog.setCancelable(false);
-                        TextView text_title = (TextView) view2.findViewById(R.id.text_title);
-                        text_title.setText("输入支付密码");
-                        TextView tv_ok_d = (TextView) view2.findViewById(R.id.tv_ok);
-                        TextView  tv_quxiao = (TextView) view2.findViewById(R.id.tv_quxiao);
-                        final EditText mEditText = (EditText) view2.findViewById(R.id.mEditText);
-                        tv_ok_d.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                mPresenter.OkRoNoGoods(order_sn,"1",order_goods_id);
-                            }
-                        });
-                        //取消
-                        tv_quxiao.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                alertDialog.dismiss();
-                            }
-                        });
-                        alertDialog.show();
-                    }else {
-                        Intent intent = new Intent(SellRetrunDetailsActivity.this,ChagePayPwdActivity.class);
-                        startActivity(intent);
-                    }
+                if (!TextUtils.isEmpty(refund_type) && refund_type.equals("1")) {
+                    mPresenter.OkRoNoGoods(order_sn, "1", order_goods_id);
 //                    CenterActionDialog dialog =   new CenterActionDialog(this);
 //                    dialog.setActionString("同意退款吗？",
 //                            "确定",
@@ -214,15 +186,15 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
 //                    });
 //                    dialog.show();
 
-                }else {
-                    CenterActionDialog dialog =   new CenterActionDialog(this);
+                } else {
+                    CenterActionDialog dialog = new CenterActionDialog(this);
                     dialog.setActionString("同意退款退货吗？",
                             "确定",
                             "取消");
                     dialog.setActionListener(new CenterActionDialog.ActionLisenter() {
                         @Override
                         public void sureAction() {
-                            mPresenter.OkRoNoGoods(order_sn,"2",order_goods_id);
+                            mPresenter.OkRoNoGoods(order_sn, "2", order_goods_id);
                         }
 
                         @Override
@@ -236,15 +208,15 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                 }
                 break;
             case R.id.btn_no:
-                if (!TextUtils.isEmpty(refund_type)&&refund_type.equals("1")){
-                    CenterActionDialog dialog =   new CenterActionDialog(this);
+                if (!TextUtils.isEmpty(refund_type) && refund_type.equals("1")) {
+                    CenterActionDialog dialog = new CenterActionDialog(this);
                     dialog.setActionString("拒绝退款吗？",
                             "确定",
                             "取消");
                     dialog.setActionListener(new CenterActionDialog.ActionLisenter() {
                         @Override
                         public void sureAction() {
-                            mPresenter.OkRoNoGoods(order_sn,"3",order_goods_id);
+                            mPresenter.OkRoNoGoods(order_sn, "3", order_goods_id);
                         }
 
                         @Override
@@ -253,16 +225,17 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                         }
                     });
                     dialog.show();
-                }else {
-                    CenterActionDialog dialog =   new CenterActionDialog(this);
+                } else {
+                    CenterActionDialog dialog = new CenterActionDialog(this);
                     dialog.setActionString("拒绝退款退货吗？",
                             "确定",
                             "取消");
                     dialog.setActionListener(new CenterActionDialog.ActionLisenter() {
                         @Override
                         public void sureAction() {
-                            mPresenter.OkRoNoGoods(order_sn,"4",order_goods_id);
+                            mPresenter.OkRoNoGoods(order_sn, "4", order_goods_id);
                         }
+
                         @Override
                         public void cancelAction() {
 
@@ -272,45 +245,12 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                 }
                 break;
             case R.id.btn_delete:
-                if (shop_status.equals("10")){
-                    int   isPay_password =  PreferencesUtils.getInt(this,"isPay_password");
-                    if (isPay_password==1){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        final View view2 = View.inflate(SellRetrunDetailsActivity.this, R.layout.layout_lialog_one, null);
-                        builder.setView(view2);
-                        alertDialog = builder.create();
-                        alertDialog.setCanceledOnTouchOutside(false);
-                        alertDialog.setCancelable(false);
-                        TextView text_title = (TextView) view2.findViewById(R.id.text_title);
-                        text_title.setText("输入支付密码");
-                        TextView tv_ok_d = (TextView) view2.findViewById(R.id.tv_ok);
-                        TextView  tv_quxiao = (TextView) view2.findViewById(R.id.tv_quxiao);
-                        final EditText mEditText = (EditText) view2.findViewById(R.id.mEditText);
-                        tv_ok_d.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (alertDialog!=null)
-                                    alertDialog.dismiss();
-                                mPresenter.ReceiveGoods(order_sn,mEditText.getText().toString());
-                            }
-                        });
-                        //取消
-                        tv_quxiao.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (alertDialog!=null)
-                                alertDialog.dismiss();
-                            }
-                        });
-                        alertDialog.show();
-                    }else {
-                        Intent intent = new Intent(SellRetrunDetailsActivity.this,ChagePayPwdActivity.class);
-                        startActivity(intent);
-                    }
-                }else if (shop_status.equals("2")){
+                if (shop_status.equals("10")) {
+                    mPresenter.ReceiveGoods(order_sn, "");
+                } else if (shop_status.equals("2")) {
                     mPresenter.onUrged(bean.getRefund_id());
-                }else if (shop_status.equals("3")){
-                    CenterActionDialog dialog =   new CenterActionDialog(this);
+                } else if (shop_status.equals("3")) {
+                    CenterActionDialog dialog = new CenterActionDialog(this);
                     dialog.setActionString("删除该申请？",
                             "确定",
                             "取消");
@@ -319,6 +259,7 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                         public void sureAction() {
                             mPresenter.onDeleteOrder(order_sn);
                         }
+
                         @Override
                         public void cancelAction() {
 
@@ -326,8 +267,8 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                     });
                     dialog.show();
 
-                }else if (shop_status.equals("4")){
-                    CenterActionDialog dialog =   new CenterActionDialog(this);
+                } else if (shop_status.equals("4")) {
+                    CenterActionDialog dialog = new CenterActionDialog(this);
                     dialog.setActionString("删除该申请？",
                             "确定",
                             "取消");
@@ -336,6 +277,7 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                         public void sureAction() {
                             mPresenter.onDeleteOrder(order_sn);
                         }
+
                         @Override
                         public void cancelAction() {
 
@@ -346,9 +288,9 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                 }
                 break;
             case R.id.btn_former:
-                Intent intent = new Intent(this,SellOrderDetaildeActivity.class);
-                intent.putExtra("orderId",order_sn);
-                intent.putExtra("type","retrun");
+                Intent intent = new Intent(this, SellOrderDetaildeActivity.class);
+                intent.putExtra("orderId", order_sn);
+                intent.putExtra("type", "retrun");
                 startActivity(intent);
                 break;
             case R.id.tv_copy_nummber:
@@ -359,6 +301,7 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
                 break;
         }
     }
+
     @Override
     public void onEmpty() {
 
@@ -391,7 +334,7 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
         tvShopName.setText(bean.getShop_name());
         tvOrderNumber.setText(order_sn);
         tvOrderTime.setText(bean.getAdd_time());
-        tvPrice.setText("¥"+bean.getAmount());
+        tvPrice.setText("¥" + bean.getAmount());
 
         tvMessage.setText(bean.getDescription());
         tvCause.setText(bean.getReason());
@@ -399,8 +342,8 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
         tvOrderMode.setText(bean.getRefund_type());
 
 
-        final List<String> images= bean.getImages();
-        RetrunImageAdapter adapter = new RetrunImageAdapter(images,this);
+        final List<String> images = bean.getImages();
+        RetrunImageAdapter adapter = new RetrunImageAdapter(images, this);
         mGridVIew.setAdapter(adapter);
         mGridVIew.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -424,32 +367,32 @@ public class SellRetrunDetailsActivity extends BaseActivity implements SellRetur
         });
 
 
-        if ( !TextUtils.isEmpty(refund_type)){
-            if (refund_type.equals("1")){
+        if (!TextUtils.isEmpty(refund_type)) {
+            if (refund_type.equals("1")) {
                 btn_no.setText("拒绝退款");
-              btn_ok.setText("同意退款");
-            }else {
+                btn_ok.setText("同意退款");
+            } else {
                 btn_no.setText("拒绝退货退款");
                 btn_ok.setText("同意退货退款");
             }
         }
 
-        if (shop_status.equals("1")){
+        if (shop_status.equals("1")) {
             ll_bottom_boton.setVisibility(View.VISIBLE);
             btn_delete.setVisibility(View.GONE);
-        }else if (shop_status.equals("10")){
+        } else if (shop_status.equals("10")) {
             ll_bottom_boton.setVisibility(View.GONE);
             btn_delete.setVisibility(View.VISIBLE);
             btn_delete.setText("确认收货并退款");
-        }else if (shop_status.equals("2")){
+        } else if (shop_status.equals("2")) {
             ll_bottom_boton.setVisibility(View.GONE);
             btn_delete.setVisibility(View.VISIBLE);
             btn_delete.setText("提醒退货");
-        }else if (shop_status.equals("3")){
+        } else if (shop_status.equals("3")) {
             ll_bottom_boton.setVisibility(View.GONE);
             btn_delete.setVisibility(View.VISIBLE);
             btn_delete.setText("删除订单");
-        }else if (shop_status.equals("4")){
+        } else if (shop_status.equals("4")) {
             ll_bottom_boton.setVisibility(View.GONE);
             btn_delete.setVisibility(View.VISIBLE);
             btn_delete.setText("删除订单");

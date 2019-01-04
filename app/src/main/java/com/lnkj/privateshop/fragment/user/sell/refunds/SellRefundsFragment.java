@@ -95,11 +95,7 @@ public class SellRefundsFragment extends BaseFragment implements PullLoadMoreRec
                     }
                 });
                 dialog.show();
-
-
             }
-
-
             //同意或者拒绝
             @Override
             public void onOkRoNoGoods(final int position, final String refund_type) {

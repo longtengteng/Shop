@@ -20,6 +20,8 @@ public class LoginContract {
         void toMain();//登陆成功前往主界面
 
         void setTitle(String s);
+
+        void login_three();
     }
 
 
@@ -27,5 +29,7 @@ public class LoginContract {
         void initView();
 
         void login(String phone, String pwd);
+
+        void login_three(String login_type, String parent_id, String open_id, String nickname, String head_pic);
     }
 }

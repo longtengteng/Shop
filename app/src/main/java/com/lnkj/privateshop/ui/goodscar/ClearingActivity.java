@@ -63,6 +63,7 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
     String act_id;//限时特惠传递的参数
     String goods_spec_key;
     int is_from_cart = 0;
+
     @Override
     public int initContentView() {
         return R.layout.activity_clearing;

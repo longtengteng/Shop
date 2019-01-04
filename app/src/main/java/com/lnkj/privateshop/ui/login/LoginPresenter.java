@@ -129,6 +129,78 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     }
 
+    @Override
+    public void login_three(String login_type, String parent_id, String open_id, String nickname, String head_pic) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("login_type", login_type);
+        map.put("parent_id", parent_id);
+        map.put("open_id", open_id);
+        map.put("nickname", nickname);
+        map.put("head_pic", head_pic);
+        // mView.showLoading();
+        mView.showLoading();
+        subscriptSpan = loginApi.loginThree(map)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+
+                    @Override
+                    public void call(String userBean) {
+
+                        LLog.d(TAG, userBean);
+                        try {
+                            JSONObject object = new JSONObject(userBean);
+                            int status = object.getInt("status");
+                            String info = object.getString("info");
+                            if (status == 1) {
+                                UserBean userbean = JSON.parseObject(userBean, UserBean.class);
+                                UserBean.DataBean bean = userbean.getData();
+                                PreferencesUtils.putString(mContext, "user_name", bean.getUser_name());
+                                PreferencesUtils.putString(mContext, "birthday", bean.getBirthday());
+                                PreferencesUtils.putString(mContext, "disabled", bean.getDisabled());
+                                PreferencesUtils.putString(mContext, "email", bean.getEmail());
+                                PreferencesUtils.putString(mContext, "frozen_money", bean.getFrozen_money());
+                                PreferencesUtils.putString(mContext, "token", bean.getToken());
+                                PreferencesUtils.putString(mContext, "head_pic", bean.getHead_pic());
+                                PreferencesUtils.putString(mContext, "mobile", bean.getMobile());
+                                PreferencesUtils.putString(mContext, "nickname", bean.getNickname());
+                                //   PreferencesUtils.putString(mContext, "password", pwd + "");
+                                //   PreferencesUtils.putString(mContext, "username", nickname + "");
+                                PreferencesUtils.putString(mContext, "user_id", bean.getUser_id());
+                                PreferencesUtils.putString(mContext, "sex", bean.getSex());
+                                PreferencesUtils.putString(mContext, "shop_id", bean.getShop_id());
+                                PreferencesUtils.putInt(mContext, "is_shop", bean.getIs_shop());
+                                PreferencesUtils.putInt(mContext, "isPay_password", bean.getPay_password());
+                                PreferencesUtils.putBoolean(mContext, "is_bogin", true);
+                                PreferencesUtils.putString(mContext, "emchat_username", bean.getEmchat_username());
+                                PreferencesUtils.putString(mContext, "emchat_password", bean.getEmchat_password());
+                                String emchat_username = bean.getEmchat_username();
+                                String emchat_password = bean.getEmchat_password();
+                                mView.hideLoading();
+                                mView.toMain();
+//                                    loginEmob(emchat_username,emchat_password);
+                            } else {
+                                mView.hideLoading();
+                                ToastUtil.showToast(info);
+
+                            }
+//                                mView.toMain();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                        // mView.hideLoading();
+
+                    }
+                });
+
+
+    }
+
     public void loginEmob(final String userName, String password) {
 //        userName =  userName.substring(0,
 //                userName.length() - 1).trim();

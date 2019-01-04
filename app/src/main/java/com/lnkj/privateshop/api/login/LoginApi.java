@@ -30,6 +30,10 @@ public class LoginApi {
     public Observable<String> login(Map<String,Object> map) {
         return loginService.login(map).subscribeOn(Schedulers.io());
     }
+    //三方登录
+    public Observable<String> loginThree(Map<String,Object> map) {
+        return loginService.loginThree(map).subscribeOn(Schedulers.io());
+    }
     //获取验证码
     public Observable<String> getRePWRandNumber(Map<String,String> map) {
         return loginService.getRePWRandNumber(map).subscribeOn(Schedulers.io());

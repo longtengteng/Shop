@@ -4,11 +4,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao' // apply plugin
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'com.mob.sdk'
+apply plugin: 'com.mob.sdk'
 
-/*MobSDK {
-    appKey "2747faab13f56"
-    appSecret "e7348bfd9b8ea8a4b6fe23487c536e17"
+MobSDK {
+    appKey "299ca112d5711"
+    appSecret "7f3ecbf4689b85f826ac0be146c43629"
 
     ShareSDK { //平台配置信息
         devInfo {
@@ -19,22 +19,22 @@ apply plugin: 'kotlin-android-extensions'
 //                shareByAppClient false
 //            }
             Wechat {
-                appId "wxb949c034cc31d9a2"
-                appSecret "a8c926126f8a8795752863bafcf56610"
+                appId "wxd565152807ee4297"
+                appSecret "9eeab5f7c8e26f508036ecb06c59025e"
             }
             WechatMoments {
-                appId "wxb949c034cc31d9a2"
-                appSecret "a8c926126f8a8795752863bafcf56610"
+                appId "wxd565152807ee4297"
+                appSecret "9eeab5f7c8e26f508036ecb06c59025e"
             }
             QQ {
-                appId "101488775"
-                appKey "70af36abd05d399463952aa43d3199ee"
+                appId "101529809"
+                appKey "2310bfc36d93af4d303ded3d6bb6309b"
                 ShareByAppClient = "true"
             }
             QZone {
                 ShareByAppClient = "true"
-                appId "101488775"
-                appKey "70af36abd05d399463952aa43d3199ee"
+                appId "101529809"
+                appKey "2310bfc36d93af4d303ded3d6bb6309b"
             }
 
 //            Facebook {
@@ -45,7 +45,7 @@ apply plugin: 'kotlin-android-extensions'
         }
     }
 
-}*/
+}
 android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
@@ -74,6 +74,11 @@ android {
 //            moduleName "native"
 //            abiFilters "armeabi-v7a", "x86", "armeabi"
 //        }
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64',   'arm64-v8a', "x86", 'x86_64'
+        }
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -145,7 +150,7 @@ android {
         //上拉加载，下拉刷新
         compile files('libs/zxing.jar')
         compile files('libs/alipaySdk-20170725.jar')
-        compile files('libs/ShareSDK-Wechat-Core-3.0.2.jar')
+      //  compile files('libs/ShareSDK-Wechat-Core-3.0.2.jar')
         compile files('libs/jpush-android-3.0.8.jar')
         compile project(':easeui')
         // add library
@@ -168,7 +173,7 @@ android {
         compile 'io.reactivex:rxjava:1.1.5'
         compile 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
         compile 'com.github.clans:fab:1.6.2'
-        //       compile 'com.umeng.analytics:analytics:latest.integration'
+       //     compile 'com.umeng.analytics:analytics:latest.integration'
         compile 'com.github.castorflex.smoothprogressbar:library:1.1.0'
         compile 'com.yalantis:phoenix:1.2.3'
         compile 'com.demievil.library:refreshlayout:1.0.0@aar'

@@ -26,6 +26,12 @@ public interface LoginService {
     @FormUrlEncoded
     @POST("index.php/Api/PublicApi/login")
     Observable<String> login(@FieldMap Map<String,Object> map);
+    /**
+     * 三方登陆
+     */
+    @FormUrlEncoded
+    @POST("index.php/Api/PublicApi/otherLogin")
+    Observable<String> loginThree(@FieldMap Map<String,Object> map);
 
     //获取验证码
     @FormUrlEncoded
