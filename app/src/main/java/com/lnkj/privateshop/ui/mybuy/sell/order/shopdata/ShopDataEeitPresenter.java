@@ -154,6 +154,8 @@ public class ShopDataEeitPresenter implements ShopDataEditContract.Presenter {
         this.token = token;
     }
 
+
+
     @Override
     public void getDataFromServer() {
         Map<String, Object> map = new HashMap<String, Object>();

@@ -320,6 +320,16 @@ public class OpenShopPresenter implements OpenShopContract.Presenter {
         }
     }
 
+    @Override
+    public void saveEditShop(String province, String city, String country, String address, String lat, String lng, String contacts_name, String user_mobile, String shop_logo, String shop_real_pic) {
+
+    }
+
+    @Override
+    public void getEditShop() {
+
+    }
+
 
     @Override
     public void attachView(@NonNull OpenShopContract.View view) {

@@ -25,6 +25,7 @@ import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.adapter.ClassGoodsAdapter;
 import com.lnkj.privateshop.entity.AddGoodsBean;
 import com.lnkj.privateshop.entity.EditShopBean;
+import com.lnkj.privateshop.entity.GetEditShopBean;
 import com.lnkj.privateshop.fragment.user.MapActivity;
 import com.lnkj.privateshop.ui.mybuy.openshop.money.LookImgActivity;
 import com.lnkj.privateshop.ui.mybuy.openshop.money.MoneyActivity;
@@ -201,6 +202,11 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
 
     }
 
+    @Override
+    public void saveEditShopSuccree() {
+        finish();
+    }
+
 
     //获取分类成功
     List<AddGoodsBean.DataBean> classlists = new ArrayList<>();
@@ -252,6 +258,11 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
         if (!TextUtils.isEmpty(retail_amount)) {
             etMount.setText(retail_amount);
         }
+    }
+
+    @Override
+    public void getEditShopSucceed(GetEditShopBean.DataBean getEditShopBean) {
+
     }
 
 

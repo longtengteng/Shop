@@ -18,6 +18,7 @@ import com.lnkj.privateshop.entity.GoodsCategoryBean;
 import com.lnkj.privateshop.entity.SellUserBean;
 import com.lnkj.privateshop.entity.ServiceEmchatBean;
 import com.lnkj.privateshop.ui.mybuy.help.HelpActivity;
+import com.lnkj.privateshop.ui.mybuy.openshop.OpenShopNetActivity;
 import com.lnkj.privateshop.ui.mybuy.sell.order.SellOrderActivity;
 import com.lnkj.privateshop.ui.mybuy.sell.order.appraiseadmin.CommentAdminActivity;
 import com.lnkj.privateshop.ui.mybuy.sell.order.carriage.CarriageActivity;
@@ -164,7 +165,11 @@ public class selluserFragment extends BaseFragment implements selluserContract.V
             case R.id.rl_address:
                 if (databean.getUrl_type().equals("2")) {
                     //修改店铺信息
-                    if (shop_type.equals("3")) { //网批店
+                    intent = new Intent(getActivity(), OpenShopNetActivity.class);
+                    intent.putExtra("modify_shop","selluser");
+                //    intent.putExtra("shop_id", PreferencesUtils.getString(getActivity(), "shop_id"));
+                    startActivity(intent);
+                   /* if (shop_type.equals("3")) { //网批店
                         intent = new Intent(getActivity(), ShopNetActivity.class);
                         intent.putExtra("shop_id", PreferencesUtils.getString(getActivity(), "shop_id"));
                         startActivity(intent);
@@ -177,12 +182,12 @@ public class selluserFragment extends BaseFragment implements selluserContract.V
                         intent = new Intent(getActivity(), EntityShopActivity.class);
                         intent.putExtra("shop_id", PreferencesUtils.getString(getActivity(), "shop_id"));
                         startActivity(intent);
-                    }
+                    }*/
                 } else if (databean.getUrl_type().equals("0")) {
                     intent = new Intent(getActivity(), com.lnkj.privateshop.ui.mybuy.openshop.money.MoneyActivity.class);
                     intent.putExtra("shop_id", PreferencesUtils.getString(getActivity(), "shop_id"));
                     startActivity(intent);
-                }else if (databean.getUrl_type().equals("3")){ //审核失败
+                } else if (databean.getUrl_type().equals("3")) { //审核失败
                     intent = new Intent(getActivity(), com.lnkj.privateshop.ui.mybuy.openshop.money.MoneyActivity.class);
                     intent.putExtra("shop_id", PreferencesUtils.getString(getActivity(), "shop_id"));
                     startActivity(intent);
@@ -263,15 +268,15 @@ public class selluserFragment extends BaseFragment implements selluserContract.V
         index = databean.getIs_pay_bond();
         shop_type = databean.getShop_type();
 
-            if (databean.getUrl_type().equals("0")) {
-                tv_pay_bond.setText("缴纳保证金");
-            } else if (databean.getUrl_type().equals("1")) {
-                tv_pay_bond.setText("审核中");
-            } else if (databean.getUrl_type().equals("2")) {
-                tv_pay_bond.setText("");
-            }else if (databean.getUrl_type().equals("3")){
-                tv_pay_bond.setText("审核拒绝");
-            }
+        if (databean.getUrl_type().equals("0")) {
+            tv_pay_bond.setText("缴纳保证金");
+        } else if (databean.getUrl_type().equals("1")) {
+            tv_pay_bond.setText("审核中");
+        } else if (databean.getUrl_type().equals("2")) {
+            tv_pay_bond.setText("");
+        } else if (databean.getUrl_type().equals("3")) {
+            tv_pay_bond.setText("审核拒绝");
+        }
 
 
         if (databean.getIs_set_template() == 1) {
