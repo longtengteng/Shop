@@ -699,11 +699,28 @@ public class MeApi {
         return meService.article(map).subscribeOn(Schedulers.io());
     }
 
+    //圈子文章点赞
+    public Observable<String> articleLike(Map<String, Object> map) {
+        return meService.articleLike(map).subscribeOn(Schedulers.io());
+    }
+    //圈子文章评论列表
+    public Observable<String> ArticleApi_articleComment(Map<String, Object> map) {
+        return meService.ArticleApi_articleComment(map).subscribeOn(Schedulers.io());
+    }
+
+    //圈子文章评论
+    public Observable<String> articleComment(Map<String, Object> map) {
+        return meService.articleComment(map).subscribeOn(Schedulers.io());
+    }
+    //圈子文章详情
+    public Observable<String> articleContent(Map<String, Object> map) {
+        return meService.articleContent(map).subscribeOn(Schedulers.io());
+    }
+
     //圈子文章分类列表
     public Observable<String> articleCategory(Map<String, Object> map) {
         return meService.articleCategory(map).subscribeOn(Schedulers.io());
     }
-
 
     //限时特惠的列表
     public Observable<String> getLimitSaleList(Map<String, Object> map) {
