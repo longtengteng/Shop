@@ -74,6 +74,8 @@ public class ArticleFragment extends BaseFragment implements ArticleContract.Vie
     protected void init(View view) {
         super.init(view);
         ButterKnife.bind(this, view);
+        img_back.setVisibility(View.INVISIBLE);
+        tv_title.setText("圈子");
         mPresenter.setToken(token);
         mPresenter.getArticleCategory();
 
@@ -107,7 +109,6 @@ public class ArticleFragment extends BaseFragment implements ArticleContract.Vie
         for (int i = 0; i < cateList.size(); i++) {
             titeList = Arrays.copyOf(titeList, titeList.length + 1);
             titeList[titeList.length - 1] = cateList.get(i).getName();
-
             fragmentList.add(ArticleSonFragment.newInstance(cateList.get(i).getArticle_category_id()));
         }
         mAdapter = new MyPagerAdapter(getChildFragmentManager());

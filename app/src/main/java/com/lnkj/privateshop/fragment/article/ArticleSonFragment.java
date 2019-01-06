@@ -53,7 +53,7 @@ public class ArticleSonFragment extends BaseFragment implements PullLoadMoreRecy
         super.init(view);
         ButterKnife.bind(this, view);
         //设置是否可以下拉刷新
-        article_category_id=getActivity().getIntent().getStringExtra("article_category_id");
+        article_category_id=getArguments().getString("article_category_id");
         pullLoadMoreRecyclerView.setPullRefreshEnable(true);
         pullLoadMoreRecyclerView.setRefreshing(true);
         pullLoadMoreRecyclerView.setPushRefreshEnable(true);
