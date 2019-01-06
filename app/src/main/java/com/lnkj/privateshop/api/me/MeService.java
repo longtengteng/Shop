@@ -26,6 +26,28 @@ public interface MeService {
     Observable<String> articleCategory(@FieldMap Map<String, Object> map);
 
 
+    //圈子文章点赞事件
+    @FormUrlEncoded
+    @POST("index.php/Api/ArticleUserApi/articleLike")
+    Observable<String> articleLike(@FieldMap Map<String, Object> map);
+
+    //圈子文章评论列表
+    @FormUrlEncoded
+    @POST("index.php/Api/ArticleApi/articleComment")
+    Observable<String> ArticleApi_articleComment(@FieldMap Map<String, Object> map);
+
+
+    //圈子文章评论
+    @FormUrlEncoded
+    @POST("index.php/Api/ArticleUserApi/articleComment")
+    Observable<String> articleComment(@FieldMap Map<String, Object> map);
+
+
+    //圈子文章详情接口
+    @FormUrlEncoded
+    @POST("index.php/Api/ArticleApi/articleContent")
+    Observable<String> articleContent(@FieldMap Map<String, Object> map);
+
     //启动页广告
     @FormUrlEncoded
     @POST("index.php/Api/PublicApi/startAppAd")

@@ -15,9 +15,13 @@ import com.lnkj.privateshop.ui.limitsalelist.LimitSaleActivity;
 import com.lnkj.privateshop.ui.limitsalelist.LimitSalePresenter;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
-import butterknife.Bind;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ArticleSonFragment extends BaseFragment implements ArticleContract.View {
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+public class ArticleSonFragment extends BaseFragment implements PullLoadMoreRecyclerView.PullLoadMoreListener,ArticleContract.View {
 
     @Bind(R.id.pullLoadMoreRecyclerView)
     PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
@@ -28,6 +32,9 @@ public class ArticleSonFragment extends BaseFragment implements ArticleContract.
     private ArticlePresenter mPresenter = new ArticlePresenter(this);
     private ArticleAdapter adapter;
     LinearLayout layout_no_datas;
+    private List<ArticleBean.DataBean> articleBeanList = new ArrayList<>();
+    String article_category_id;
+
     @Override
     protected int getContentResid() {
         return R.layout.fragment_articleson;
@@ -44,7 +51,21 @@ public class ArticleSonFragment extends BaseFragment implements ArticleContract.
     @Override
     protected void init(View view) {
         super.init(view);
+        ButterKnife.bind(this, view);
+        //设置是否可以下拉刷新
+        article_category_id=getActivity().getIntent().getStringExtra("article_category_id");
+        pullLoadMoreRecyclerView.setPullRefreshEnable(true);
+        pullLoadMoreRecyclerView.setRefreshing(true);
+        pullLoadMoreRecyclerView.setPushRefreshEnable(true);
+        pullLoadMoreRecyclerView.setFooterViewText("拼命加载中");
+        pullLoadMoreRecyclerView.setOnPullLoadMoreListener((PullLoadMoreRecyclerView.PullLoadMoreListener) this);
+        pullLoadMoreRecyclerView.setGridLayout(1);
 
+
+        adapter = new ArticleAdapter(articleBeanList);
+        pullLoadMoreRecyclerView.setAdapter(adapter);
+        mPresenter.setToken(token);
+        mPresenter.getDataFromServer(page,article_category_id );
 
     }
 
@@ -60,7 +81,18 @@ public class ArticleSonFragment extends BaseFragment implements ArticleContract.
 
     @Override
     public void succeed(ArticleBean beass) {
-
+        if (page == 1) {
+            articleBeanList.clear();
+        }
+        articleBeanList.addAll(beass.getData());
+        adapter.setNewData(articleBeanList);
+        if (articleBeanList.size() == 0 && page == 1) {
+            layout_no_datas.setVisibility(View.VISIBLE);
+            pullLoadMoreRecyclerView.setVisibility(View.GONE);
+        } else {
+            layout_no_datas.setVisibility(View.GONE);
+            pullLoadMoreRecyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -86,5 +118,18 @@ public class ArticleSonFragment extends BaseFragment implements ArticleContract.
     @Override
     public void hideLoading() {
 
+    }
+
+    @Override
+    public void onRefresh() {
+        page = 1;
+        articleBeanList.clear();
+        mPresenter.getDataFromServer(page,article_category_id);
+    }
+
+    @Override
+    public void onLoadMore() {
+        page++;
+        mPresenter.getDataFromServer(page,article_category_id);
     }
 }
