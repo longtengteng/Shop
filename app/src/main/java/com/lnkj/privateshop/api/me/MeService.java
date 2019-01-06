@@ -15,6 +15,16 @@ import rx.Observable;
  * Created by WRJ on 2016/10/7.
  */
 public interface MeService {
+    //圈子文章列表
+    @FormUrlEncoded
+    @POST("index.php/Api/ArticleApi/article")
+    Observable<String> article(@FieldMap Map<String, Object> map);
+
+    //圈子文章分类列表
+    @FormUrlEncoded
+    @POST("index.php/Api/ArticleApi/articleCategory")
+    Observable<String> articleCategory(@FieldMap Map<String, Object> map);
+
 
     //启动页广告
     @FormUrlEncoded

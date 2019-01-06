@@ -15,6 +15,7 @@ public class PicassoImageLoader implements ImageLoader {
 
     @Override
     public void displayImage(Activity activity, String path, ImageView imageView, int width, int height) {
+
         Glide
                 .with(activity)
                 .load(path)

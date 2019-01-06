@@ -446,6 +446,7 @@ public class MeApi {
     public Observable<String> apply_start_shop(Map<String, Object> map) {
         return meService.apply_start_shop(map).subscribeOn(Schedulers.io());
     }
+
     //获取店铺商品列表
     public Observable<String> getShopmerchandiseList(Map<String, Object> map) {
         return meService.getShopmerchandiseList(map).subscribeOn(Schedulers.io());
@@ -692,6 +693,17 @@ public class MeApi {
     public Observable<String> getGoodsCategoryList(Map<String, Object> map) {
         return meService.getGoodsCategoryList(map).subscribeOn(Schedulers.io());
     }
+
+    //圈子文章的列表
+    public Observable<String> article(Map<String, Object> map) {
+        return meService.article(map).subscribeOn(Schedulers.io());
+    }
+
+    //圈子文章分类列表
+    public Observable<String> articleCategory(Map<String, Object> map) {
+        return meService.articleCategory(map).subscribeOn(Schedulers.io());
+    }
+
 
     //限时特惠的列表
     public Observable<String> getLimitSaleList(Map<String, Object> map) {

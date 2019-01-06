@@ -45,6 +45,7 @@ import com.lnkj.privateshop.Constants;
 import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.ease.DemoHelper;
 import com.lnkj.privateshop.ease.domain.db.DemoDBManager;
+import com.lnkj.privateshop.fragment.article.ArticleFragment;
 import com.lnkj.privateshop.fragment.goodscar.GoodsFragment;
 import com.lnkj.privateshop.fragment.home.HomeFragment;
 import com.lnkj.privateshop.fragment.looking.LookingFragment;
@@ -101,7 +102,7 @@ public class MainActivity extends BaseActivity implements
     @Bind(R.id.rl_seach)
     RelativeLayout rl_seach;
     HomeFragment homeFragment; //首页
-    NearFrament nearFrament; //圈子
+    ArticleFragment nearFrament; //圈子
     LookingFragment lookingFragment; //找货
     TestFragment goodsFragment;
     // GoodsFragment goodsFragment; //进货车
@@ -545,7 +546,7 @@ public class MainActivity extends BaseActivity implements
 
         mRadioGroup.setOnCheckedChangeListener(this);
         homeFragment = new HomeFragment();
-        nearFrament = new NearFrament();
+        nearFrament = new ArticleFragment();
         lookingFragment = new LookingFragment();
         goodsFragment = new TestFragment();
         myUserFragment = new UserFragment();

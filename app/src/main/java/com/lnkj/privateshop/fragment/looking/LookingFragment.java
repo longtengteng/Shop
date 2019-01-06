@@ -53,8 +53,6 @@ public class LookingFragment extends BaseFragment implements LookingContract.Vie
     @Override
     protected void loadDatas() {
         super.loadDatas();
-
-
         mLinearLayoutManager = new LinearLayoutManager(mContext);
         rvSort.setLayoutManager(mLinearLayoutManager);
         mPresenter.getDataFromService();
