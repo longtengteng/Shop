@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.lljjcoder.citypickerview.widget.CityPicker;
 import com.lnkj.privateshop.BaseActivity;
+import com.lnkj.privateshop.Constants;
 import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.adapter.ClassGoodsAdapter;
 import com.lnkj.privateshop.entity.AddGoodsBean;
@@ -99,6 +100,7 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     private String path_head;
     private PopupWindow mPopWindow;
     String shop_type;
+    String editShop;
 
     @Override
     public int initContentView() {
@@ -109,9 +111,16 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
     public void initInjector() {
         ButterKnife.bind(this);
         shop_type = getIntent().getStringExtra("shop_type");
+        editShop = getIntent().getStringExtra("editShop");
         classadapter = new ClassGoodsAdapter(this);
         rootview = View.inflate(this, R.layout.activity_open_shop, null);
-        tvTitle.setText("免费开店");
+        if (editShop != null) {
+            tvTitle.setText("管理店铺");
+            etShipName.setEnabled(false);
+        } else {
+            tvTitle.setText("免费开店");
+            etShipName.setEnabled(true);
+        }
         tv_look.setVisibility(View.GONE);
         mPresenter.getToken(token);
         mPresenter.getDataFromServer();
@@ -231,9 +240,23 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
         if (!TextUtils.isEmpty(user_mobile)) {
             etPhone.setText(user_mobile);
         }
-        String province = beans.getProvince();
-        String city = beans.getCity();
-
+        province = beans.getProvince();
+        city = beans.getCity();
+        district = beans.getCountry();
+        lat=beans.getLat();
+        lng=beans.getLng();
+        path_head=beans.getShop_logo();
+        path=beans.getShop_real_pic();
+        Glide
+                .with(this)
+                .load(path_head)
+                .error(R.mipmap.default_pic)
+                .into(imgHead);
+        Glide
+                .with(this)
+                .load(path)
+                .error(R.color.color_eb)
+                .into(ivImg);
         // String country = beans.getC
 
         if (!TextUtils.isEmpty(province)) {
@@ -284,6 +307,11 @@ public class OpenShopNetActivity extends BaseActivity implements OpenShopContrac
                 showPopupWindowClass();
                 break;
             case R.id.btn_submit:
+                if (editShop != null) {
+                    mPresenter.saveEditShop(province, city, district, etAddress.getText().toString().trim(), lat, lng, etPeople.getText().toString().trim(), etPhone.getText().toString().trim(), path_head, path);
+                    return;
+                }
+
                 if ("请点击选择".equals(tvProvin.getText().toString())) {
                     province = "";
                     city = "";

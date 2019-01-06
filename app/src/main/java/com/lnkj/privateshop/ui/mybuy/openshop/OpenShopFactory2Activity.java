@@ -25,6 +25,7 @@ import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.adapter.ClassGoodsAdapter;
 import com.lnkj.privateshop.entity.AddGoodsBean;
 import com.lnkj.privateshop.entity.EditShopBean;
+import com.lnkj.privateshop.entity.GetEditShopBean;
 import com.lnkj.privateshop.ui.mybuy.openshop.money.LookImgActivity;
 import com.lnkj.privateshop.ui.mybuy.openshop.money.qualificationActivity;
 import com.lnkj.privateshop.utils.PreferencesUtils;
@@ -169,6 +170,11 @@ public class OpenShopFactory2Activity  extends BaseActivity implements OpenShopC
     }
 
     @Override
+    public void saveEditShopSuccree() {
+
+    }
+
+    @Override
     public void openFactorySuccerr(String Shop_id) {
         Intent intent = new Intent(this,qualificationActivity.class);
         intent.putExtra("type" ,2);
@@ -228,6 +234,11 @@ public class OpenShopFactory2Activity  extends BaseActivity implements OpenShopC
         if (!TextUtils.isEmpty( retail_amount)){
             etMount.setText(retail_amount);
         }
+    }
+
+    @Override
+    public void getEditShopSucceed(GetEditShopBean.DataBean getEditShopBean) {
+
     }
 
     @OnClick({R.id.img_back, R.id.tv_provin, R.id.tv_class, R.id.btn_submit, R.id.rl_img,R.id.tv_look,R.id.ll_head})

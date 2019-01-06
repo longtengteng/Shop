@@ -166,13 +166,10 @@ public class selluserFragment extends BaseFragment implements selluserContract.V
                 if (databean.getUrl_type().equals("2")) {
                     //修改店铺信息
                     intent = new Intent(getActivity(), OpenShopNetActivity.class);
-                    intent.putExtra("modify_shop","selluser");
-                //    intent.putExtra("shop_id", PreferencesUtils.getString(getActivity(), "shop_id"));
+                    intent.putExtra("editShop", "selluserFragment");
                     startActivity(intent);
-                   /* if (shop_type.equals("3")) { //网批店
-                        intent = new Intent(getActivity(), ShopNetActivity.class);
-                        intent.putExtra("shop_id", PreferencesUtils.getString(getActivity(), "shop_id"));
-                        startActivity(intent);
+                  /*  if (shop_type.equals("3")) { //网批店
+
                     } else if (shop_type.equals("2")) {//工厂店
                         intent = new Intent(getActivity(), ShopFactoryActivity.class);
                         intent.putExtra("shop_id", PreferencesUtils.getString(getActivity(), "shop_id"));

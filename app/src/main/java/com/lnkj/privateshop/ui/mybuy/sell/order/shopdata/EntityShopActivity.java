@@ -43,7 +43,7 @@ import butterknife.OnClick;
 
 import static com.lnkj.privateshop.R.id.btn_submit;
 import static com.lnkj.privateshop.R.id.tv_provin;
-
+/*修改店铺信息*/
 public class EntityShopActivity extends BaseActivity implements ShopDataEditContract.View, View.OnClickListener{
     String shop_id;
     ShopDataEeitPresenter mPresenter = new ShopDataEeitPresenter(this);

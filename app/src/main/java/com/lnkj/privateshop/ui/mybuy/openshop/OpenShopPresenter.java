@@ -322,7 +322,65 @@ public class OpenShopPresenter implements OpenShopContract.Presenter {
 
     @Override
     public void saveEditShop(String province, String city, String country, String address, String lat, String lng, String contacts_name, String user_mobile, String shop_logo, String shop_real_pic) {
+        MultipartBody.Builder builder = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM);//表单类型
+        builder.addFormDataPart("token", token);
+        builder.addFormDataPart("province", province+"");
+        builder.addFormDataPart("city", city+"");
+        builder.addFormDataPart("country", country+"");
+        builder.addFormDataPart("address", address+"");
+        builder.addFormDataPart("lat", lat+"");
+        builder.addFormDataPart("lng", lng+"");
+        builder.addFormDataPart("lng", address + "");
+        builder.addFormDataPart("contacts_name", contacts_name+"");
+        builder.addFormDataPart("user_mobile", user_mobile+"");
+        if (shop_real_pic.contains("http")) {
+            builder.addFormDataPart("shop_real_pic", shop_real_pic+"");
+        } else {
+            File file = new File(shop_real_pic);//filePath 图片地址
+            RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            builder.addFormDataPart("shop_real_pic", file.getName(), imageBody);//"imgfile"+i 后台接收图片流的参数名
+        }
+        if (shop_logo.contains("http")) {
+            builder.addFormDataPart("shop_logo", shop_logo+"");
+        } else {
+            File file2 = new File(shop_logo);//filePath 图片地址
+            RequestBody imageBody2 = RequestBody.create(MediaType.parse("multipart/form-data"), file2);
+            builder.addFormDataPart("shop_logo", file2.getName(), imageBody2);//"imgfile"+i 后台接收图片流的参数名
+        }
 
+        List<MultipartBody.Part> parts = builder.build().parts();
+        view.showLoading();
+        meApi.saveEditShop(parts)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String data) {
+                        view.hideLoading();
+                        LLog.d("数据id", data);
+                        try {
+                            JSONObject object = new JSONObject(data);
+                            int status = object.getInt("status");
+                            String info = object.getString("info");
+                            if (status == 1) {
+                              //  JSONObject datas = object.getJSONObject("data");
+                              //  String shop_id = datas.getString("shop_id");
+                              //  String shop_type = datas.getString("shop_type");
+                                view.saveEditShopSuccree();
+                            }
+                            ToastUtil.showToast(info);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                        view.hideLoading();
+                        LLog.d("数据错误222", throwable.toString() + "");
+                    }
+                });
     }
 
     @Override

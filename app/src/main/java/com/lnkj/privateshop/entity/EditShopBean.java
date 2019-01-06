@@ -67,7 +67,34 @@ public class EditShopBean {
          * market_name :
          * floor_number : null
          */
+        private String country;
+        private String lat;
 
+        public String getLat() {
+            return lat;
+        }
+
+        public void setLat(String lat) {
+            this.lat = lat;
+        }
+
+        public String getLng() {
+            return lng;
+        }
+
+        public void setLng(String lng) {
+            this.lng = lng;
+        }
+
+        public String getCountry() {
+            return country;
+        }
+
+        public void setCountry(String country) {
+            this.country = country;
+        }
+
+        private String lng;
         private String shop_id;
         private String shop_type;
         private String shop_type_name;
@@ -165,7 +192,7 @@ public class EditShopBean {
             this.shop_grade = shop_grade;
         }
 
-        public static class Shop_grade{
+        public static class Shop_grade {
             private String type;
             private int num;
 

@@ -26,6 +26,7 @@ import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.adapter.ClassGoodsAdapter;
 import com.lnkj.privateshop.entity.AddGoodsBean;
 import com.lnkj.privateshop.entity.EditShopBean;
+import com.lnkj.privateshop.entity.GetEditShopBean;
 import com.lnkj.privateshop.ui.mybuy.openshop.money.RealityActivity;
 import com.lnkj.privateshop.utils.PreferencesUtils;
 import com.lnkj.privateshop.utils.UiUtils;
@@ -179,6 +180,11 @@ public class OpenShopRealityActivity extends BaseActivity implements OpenShopCon
     }
 
     @Override
+    public void saveEditShopSuccree() {
+
+    }
+
+    @Override
     public void openFactorySuccerr(String Shop_id) {
 
     }
@@ -249,6 +255,11 @@ public class OpenShopRealityActivity extends BaseActivity implements OpenShopCon
             etMount.setText(retail_amount);
         }
 
+
+    }
+
+    @Override
+    public void getEditShopSucceed(GetEditShopBean.DataBean getEditShopBean) {
 
     }
 
