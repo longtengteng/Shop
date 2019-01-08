@@ -391,7 +391,6 @@ public class MainActivity extends BaseActivity implements
 //                fragmentTransaction.hide(myFragment);
                 fragmentTransaction.hide(myUserFragment);
                 fragmentTransaction.show(nearFrament);
-                ToastUtil.showToast("开发中，敬请期待！");
                 rl_seach.setVisibility(View.GONE);
                 break;
             case R.id.radio_looking:

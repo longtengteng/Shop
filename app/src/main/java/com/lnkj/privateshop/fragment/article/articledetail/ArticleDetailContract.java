@@ -4,6 +4,7 @@ import com.lnkj.privateshop.BasePresenter;
 import com.lnkj.privateshop.BaseView;
 import com.lnkj.privateshop.entity.ArticleBean;
 import com.lnkj.privateshop.entity.ArticleCateBean;
+import com.lnkj.privateshop.entity.ArticleContentBean;
 
 public class ArticleDetailContract {
     //界面处理逻辑
@@ -13,10 +14,7 @@ public class ArticleDetailContract {
 
         void PullLoadMoreComplete();
 
-        void succeed(ArticleBean beass);
-
-        void getArticleCategory(ArticleCateBean articleCateBean);
-
+        void succeed(ArticleContentBean beass);
 
     }
 
@@ -24,9 +22,7 @@ public class ArticleDetailContract {
     interface Presenter extends BasePresenter<View> {
         void getToken(String token);
 
-        void getDataFromServer(int page, String article_category_id);
-
-        void getArticleCategory();
+        void getDataFromServer(String article_id);
 
         void setToken(String token);
 

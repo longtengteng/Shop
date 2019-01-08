@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lnkj.privateshop.BaseFragment;
 import com.lnkj.privateshop.R;
 import com.lnkj.privateshop.adapter.LimitSaleAdapter;
 import com.lnkj.privateshop.entity.ArticleBean;
 import com.lnkj.privateshop.entity.ArticleCateBean;
+import com.lnkj.privateshop.fragment.article.articledetail.ArticleDetailActivity;
 import com.lnkj.privateshop.ui.goods.GoodsInfoActivity;
 import com.lnkj.privateshop.ui.limitsalelist.LimitSaleActivity;
 import com.lnkj.privateshop.ui.limitsalelist.LimitSalePresenter;
@@ -21,7 +23,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ArticleSonFragment extends BaseFragment implements PullLoadMoreRecyclerView.PullLoadMoreListener,ArticleContract.View {
+public class ArticleSonFragment extends BaseFragment implements PullLoadMoreRecyclerView.PullLoadMoreListener, ArticleContract.View {
 
     @Bind(R.id.pullLoadMoreRecyclerView)
     PullLoadMoreRecyclerView pullLoadMoreRecyclerView;
@@ -53,7 +55,7 @@ public class ArticleSonFragment extends BaseFragment implements PullLoadMoreRecy
         super.init(view);
         ButterKnife.bind(this, view);
         //设置是否可以下拉刷新
-        article_category_id=getArguments().getString("article_category_id");
+        article_category_id = getArguments().getString("article_category_id");
         pullLoadMoreRecyclerView.setPullRefreshEnable(true);
         pullLoadMoreRecyclerView.setRefreshing(true);
         pullLoadMoreRecyclerView.setPushRefreshEnable(true);
@@ -65,8 +67,15 @@ public class ArticleSonFragment extends BaseFragment implements PullLoadMoreRecy
         adapter = new ArticleAdapter(articleBeanList);
         pullLoadMoreRecyclerView.setAdapter(adapter);
         mPresenter.setToken(token);
-        mPresenter.getDataFromServer(page,article_category_id );
-
+        mPresenter.getDataFromServer(page, article_category_id);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+                intent.putExtra("article_id", articleBeanList.get(position).getArticle_id());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -93,6 +102,8 @@ public class ArticleSonFragment extends BaseFragment implements PullLoadMoreRecy
             layout_no_datas.setVisibility(View.GONE);
             pullLoadMoreRecyclerView.setVisibility(View.VISIBLE);
         }
+        adapter.notifyDataSetChanged();
+
     }
 
     @Override
@@ -117,19 +128,19 @@ public class ArticleSonFragment extends BaseFragment implements PullLoadMoreRecy
 
     @Override
     public void hideLoading() {
-
+        pullLoadMoreRecyclerView.setPullLoadMoreCompleted();
     }
 
     @Override
     public void onRefresh() {
         page = 1;
         articleBeanList.clear();
-        mPresenter.getDataFromServer(page,article_category_id);
+        mPresenter.getDataFromServer(page, article_category_id);
     }
 
     @Override
     public void onLoadMore() {
         page++;
-        mPresenter.getDataFromServer(page,article_category_id);
+        mPresenter.getDataFromServer(page, article_category_id);
     }
 }
