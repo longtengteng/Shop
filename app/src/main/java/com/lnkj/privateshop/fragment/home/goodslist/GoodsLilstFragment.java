@@ -76,7 +76,7 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
         mpullLoadMoreRecyclerView.setLayoutManager(gManager);
         adapter = new HomeGoodsListAdapter(getActivity());
         mpullLoadMoreRecyclerView.setAdapter(adapter);
-      //  mPresenter.getAdvertising();
+        //  mPresenter.getAdvertising();
         mPresenter.getDataFromServer(p, cat_id);
         adapter.setOnItemClickListener(new HomeGoodsListAdapter.OnItemClickListener() {
             @Override
@@ -84,6 +84,7 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
                 if (beans.get(position).getType() == 1) {
                     Intent intent = new Intent(getActivity(), GoodsInfoActivity.class);
                     intent.putExtra("goods_id", beans.get(position).getGoods_id());
+                    intent.putExtra("from_shop_id", beans.get(position).getFrom_shop_id());
                     startActivity(intent);
                 } else {
                     try {
@@ -93,6 +94,7 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
                             startActivity(intent);
                         } else if (beans.get(position).getTypet().equals("6")) {
                             Intent intent = new Intent(getActivity(), GoodsInfoActivity.class);
+                            intent.putExtra("from_shop_id", beans.get(position).getFrom_shop_id());
                             intent.putExtra("goods_id", beans.get(position).getItem_id());
                             startActivity(intent);
                         } else {
@@ -165,6 +167,7 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
             bean.setGoods_img(beass.getData().get(i - 1).getGoods_img());
             bean.setGoods_name(beass.getData().get(i - 1).getGoods_name());
             bean.setPack_price(beass.getData().get(i - 1).getPack_price());
+            bean.setFrom_shop_id(beass.getData().get(i - 1).getFrom_shop_id());
             bean.setType(1);
             beans.add(bean);
             if (i != 0 && i % 8 == 0) {
@@ -201,7 +204,7 @@ public class GoodsLilstFragment extends BaseFragment implements GoodsListContrac
     public void getAdvertisingSuccreed(AdvertisingBean beass) {
 //        adapter.addAllDataList();
         list.addAll(beass.getData());
-      //  mPresenter.getDataFromServer(p, cat_id);
+        //  mPresenter.getDataFromServer(p, cat_id);
     }
 
     //    @Override

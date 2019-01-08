@@ -43,13 +43,13 @@ public class SpecPresenter implements SpecContract.Presenter {
     }
 
     @Override
-    public void getPriceAndStoreBySpce(String goods_spec_key, String goods_id,String act_id) {
+    public void getPriceAndStoreBySpce(String goods_spec_key, String goods_id, String act_id) {
         mView.showLoading();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
         map.put("goods_spec_key", goods_spec_key);
         map.put("goods_id", goods_id);
-        map.put("act_id",act_id);
+        map.put("act_id", act_id);
 //            map.put("goods_id",259+"");
         meApi.getPriceAndStoreBySpce(map)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -66,7 +66,7 @@ public class SpecPresenter implements SpecContract.Presenter {
                                 SpecBean beass = JSON.parseObject(data, SpecBean.class);
                                 mView.getPriceAndStoreBySpceSucceed(beass);
                             } else {
-                 //               ToastUtil.showToast(info);
+                                //               ToastUtil.showToast(info);
                                 mView.finsh();
                             }
                         } catch (JSONException e) {
@@ -89,7 +89,7 @@ public class SpecPresenter implements SpecContract.Presenter {
     }
 
     @Override
-    public void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type) {
+    public void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type, String from_shop_id) {
         mView.showLoading();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
@@ -97,6 +97,7 @@ public class SpecPresenter implements SpecContract.Presenter {
         map.put("goods_id", goods_id);
         map.put("buy_number", buy_number);
         map.put("act_id", act_id);
+        map.put("from_shop_id", from_shop_id);
         map.put("act_type", act_type);
 //            map.put("goods_id",259+"");
         meApi.getaddCart(map)
@@ -138,13 +139,14 @@ public class SpecPresenter implements SpecContract.Presenter {
     }
 
     @Override
-    public void cartConfirm(String goods_id,String buy_number,String goods_spec_key) {
+    public void cartConfirm(String goods_id, String buy_number, String goods_spec_key, String from_shop_id) {
         mView.showLoading();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
         map.put("is_from_cart", "0");
         map.put("goods_id", goods_id);
         map.put("buy_number", buy_number);
+        map.put("from_shop_id", from_shop_id);
         map.put("goods_spec_key", goods_spec_key);
         meApi.orderConfirm(map)
                 .observeOn(AndroidSchedulers.mainThread())

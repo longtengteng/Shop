@@ -385,6 +385,7 @@
         <activity android:name=".fragment.user.MapActivity" />
         <activity android:name=".ui.ShopCarActivity" />
         <activity android:name=".fragment.article.articledetail.ArticleDetailActivity" />
+        <activity android:name=".fragment.article.articleComment.ArticleCommentActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

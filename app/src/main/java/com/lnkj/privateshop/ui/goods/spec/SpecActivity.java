@@ -72,6 +72,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
     String spec_name2;
     String from_sell;
     String act_id;
+    String from_shop_id;
 
     @Override
     public int initContentView() {
@@ -86,6 +87,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
         goods_id = getIntent().getStringExtra("goods_id");
         act_id = getIntent().getStringExtra("act_id");
         from_sell = getIntent().getStringExtra("from_sell");
+        from_shop_id = getIntent().getStringExtra("from_shop_id");
         rvSpec.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SpecAdapter(specBeanList);
         adapter.bindToRecyclerView(rvSpec);
@@ -152,7 +154,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
                     spec_name2 = spec_name1.replace(",", " ");
                 }
                 if (act_id == null) {
-                    act_id="";
+                    act_id = "";
                 }
 
                 presenter.getPriceAndStoreBySpce(spec_content3, goods_id, act_id);
@@ -191,10 +193,10 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
                 tvItemNumber.setText(tv_number + "");
                 break;
             case R.id.tv_cart:
-                presenter.addCart(spec_content3, goods_id, tvItemNumber.getText().toString().trim(), "", "0");
+                presenter.addCart(spec_content3, goods_id, tvItemNumber.getText().toString().trim(), "", "0",from_shop_id);
                 break;
             case R.id.tv_buynow:
-                presenter.cartConfirm(goods_id, tvItemNumber.getText().toString().trim(), spec_content3);
+                presenter.cartConfirm(goods_id, tvItemNumber.getText().toString().trim(), spec_content3, from_shop_id);
                 break;
         }
     }
@@ -252,6 +254,7 @@ public class SpecActivity extends BaseActivity implements SpecContract.View {
         Intent intent = new Intent(this, ClearingActivity.class);
         intent.putExtra("orderConBean", orderConBean.getData());
         intent.putExtra("goods_id", goods_id);
+        intent.putExtra("from_shop_id", from_shop_id);
         intent.putExtra("goods_spec_key", spec_content3);
         intent.putExtra("from_info", "info");
         startActivity(intent);

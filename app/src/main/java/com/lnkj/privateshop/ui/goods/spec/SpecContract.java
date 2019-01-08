@@ -23,7 +23,9 @@ public class SpecContract {
         void addCart();
 
         void cartConfirm(BugNowBean bugNowBean);
+
         void getGoodsInfoSucceed(OrderConBean orderConBean);
+
         void btnClickable(boolean clickable);
 
     }
@@ -34,10 +36,10 @@ public class SpecContract {
 
         void setToken(String token);
 
-        void getPriceAndStoreBySpce(String goods_spec_key, String goods_id,String act_id);
+        void getPriceAndStoreBySpce(String goods_spec_key, String goods_id, String act_id);
 
-        void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type);
+        void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type,String from_shop_id);
 
-        void cartConfirm(String goods_id,String buy_number,String goods_spec_key);
+        void cartConfirm(String goods_id, String buy_number, String goods_spec_key, String from_shop_id);
     }
 }

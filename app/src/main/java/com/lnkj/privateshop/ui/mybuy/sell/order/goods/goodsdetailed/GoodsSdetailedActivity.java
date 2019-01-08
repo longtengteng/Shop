@@ -94,31 +94,36 @@ public class GoodsSdetailedActivity extends BaseActivity implements GoodsDetaile
     TextView tvShopUpdate;
     @Bind(R.id.tv_shop_supplement)
     TextView tvShopSupplement;
-//    @Bind(R.id.rl_bar)
+    //    @Bind(R.id.rl_bar)
     RelativeLayout rl_bar;
     @Bind(R.id.rl_bar_to)
     RelativeLayout rl_bar_to;
     @Bind(R.id.img_shop_head)
     ImageView img_shop_head;
+    String from_shop_id;
+
     @Override
     public int initContentView() {
         return R.layout.activity_goods_sdetailed;
     }
-  private  static String  FLAG ;
+
+    private static String FLAG;
+
     @Override
     public void initInjector() {
         ButterKnife.bind(this);
+        from_shop_id = getIntent().getStringExtra("from_shop_id");
         rl_bar = (RelativeLayout) findViewById(R.id.rl_bar);
-        FLAG =  getIntent().getStringExtra("flag");
+        FLAG = getIntent().getStringExtra("flag");
         goodsid = getIntent().getStringExtra("goodsid");
         mPresenter.getToken(token);
-        if (FLAG.equals("down")){
+        if (FLAG.equals("down")) {
             tvDown.setText("上架");
-            Drawable drawable= getResources().getDrawable(R.mipmap.good_icon_up);
+            Drawable drawable = getResources().getDrawable(R.mipmap.good_icon_up);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvDown.setCompoundDrawables(drawable, null, null, null);
-        }else {
-            Drawable drawable= getResources().getDrawable(R.mipmap.good_icon_down);
+        } else {
+            Drawable drawable = getResources().getDrawable(R.mipmap.good_icon_down);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             tvDown.setCompoundDrawables(drawable, null, null, null);
             tvDown.setText("下架");
@@ -129,14 +134,14 @@ public class GoodsSdetailedActivity extends BaseActivity implements GoodsDetaile
             public void onTranslucent(float alpha) {
                 rl_bar.setAlpha(alpha);
 //                System.out.println("alpha:"+alpha);
-                if (alpha<0.017){
+                if (alpha < 0.017) {
                     rl_bar_to.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     rl_bar_to.setVisibility(View.GONE);
                 }
             }
         });
-        mPresenter.getGoodsFromServer(goodsid);
+        mPresenter.getGoodsFromServer(goodsid, from_shop_id);
     }
 
     @Override
@@ -168,8 +173,10 @@ public class GoodsSdetailedActivity extends BaseActivity implements GoodsDetaile
     public void initView() {
 
     }
-    private List<String> imgurllist =new ArrayList<>();
+
+    private List<String> imgurllist = new ArrayList<>();
     private GoodsBean.DataBean.GoodsInfoBean bean;
+
     @Override
     public void getGoodssucceed(GoodsBean beass) {
         //1219
@@ -281,7 +288,7 @@ public class GoodsSdetailedActivity extends BaseActivity implements GoodsDetaile
     }
 
 
-    @OnClick({R.id.img_beak,  R.id.tv_delete, R.id.tv_down,R.id.img_beak_to})
+    @OnClick({R.id.img_beak, R.id.tv_delete, R.id.tv_down, R.id.img_beak_to})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_beak:
@@ -291,21 +298,22 @@ public class GoodsSdetailedActivity extends BaseActivity implements GoodsDetaile
                 finish();
                 break;
             case R.id.tv_delete: //编辑
-                Intent intent  = new Intent(this, AddGoodsActivity.class);
-                intent.putExtra("goods_id",goodsid);
+                Intent intent = new Intent(this, AddGoodsActivity.class);
+                intent.putExtra("goods_id", goodsid);
                 startActivity(intent);
                 break;
             case R.id.tv_down:
                 mPresenter.getToken(token);
-                if (FLAG.equals("down")){
+                if (FLAG.equals("down")) {
                     mPresenter.upGoods(goodsid);
-                }else {
+                } else {
                     mPresenter.downGoods(goodsid);
                 }
 
                 break;
         }
     }
+
     public class ImageViewHolder implements Holder<String> {
         private ImageView imageView;
 

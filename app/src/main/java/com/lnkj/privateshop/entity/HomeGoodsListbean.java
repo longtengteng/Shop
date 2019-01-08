@@ -55,6 +55,15 @@ public class HomeGoodsListbean {
         private String goods_img;
         private String shop_price;
         private String pack_price;
+        private String from_shop_id;
+
+        public String getFrom_shop_id() {
+            return from_shop_id;
+        }
+
+        public void setFrom_shop_id(String from_shop_id) {
+            this.from_shop_id = from_shop_id;
+        }
 
         public String getPack_price() {
             return pack_price;

@@ -161,11 +161,13 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
     private Boolean is_bogin;
     private String act_id;
     private String from_sell;
+    private String from_shop_id;
 
     @Override
     public int initContentView() {
         goods_id = getIntent().getStringExtra("goods_id");
         act_id = getIntent().getStringExtra("act_id");
+        from_shop_id = getIntent().getStringExtra("from_shop_id");
         from_sell = getIntent().getStringExtra("from_sell");
         return R.layout.activity_goods_info;
     }
@@ -179,7 +181,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
         if (act_id != null) {
             presenter.getGoodsDetailFromLimit(goods_id, act_id);
         } else {
-            presenter.getGoodsInfo(goods_id);
+            presenter.getGoodsInfo(goods_id, from_shop_id);
         }
 
 //        presenter.getShopEmchat(goods_id + "");
@@ -400,7 +402,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                         ToastUtil.showToast("请选择规格");
                         return;
                     }
-                    presenter.cartConfirm(goods_id, "1", spec_content3);
+                    presenter.cartConfirm(goods_id, "1", spec_content3,from_shop_id);
                 } else {
                     ToastUtil.showToast("您还没有登录，请去登录");
                     intent = new Intent(this, LoginActivity.class);
@@ -416,12 +418,12 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                 if (from_sell != null) {
                     intent.putExtra("from_sell", "from_sell");
                 }
-
+                intent.putExtra("from_shop_id", from_shop_id);
                 intent.putExtra("speclist", (Serializable) dataBean.getGoods_spec());
                 intent.putExtra("img", dataBean.getGoods_info().getGoods_img());
                 intent.putExtra("price", dataBean.getGoods_info().getShop_price());
-                if (act_id!=null){
-                    intent.putExtra("act_id",act_id);
+                if (act_id != null) {
+                    intent.putExtra("act_id", act_id);
                 }
                 intent.putExtra("storage", dataBean.getGoods_info().getStorage());
                 intent.putExtra("goods_id", dataBean.getGoods_info().getGoods_id());
@@ -479,7 +481,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
                         ToastUtil.showToast("请选择规格");
                         return;
                     }
-                    presenter.addCart(spec_content3, goods_id, "1", "", "0");
+                    presenter.addCart(spec_content3, goods_id, "1", "", "0", from_shop_id);
                 } else {
                     ToastUtil.showToast("您还没有登录，请去登录");
                     intent = new Intent(this, LoginActivity.class);
@@ -606,6 +608,7 @@ public class GoodsInfoActivity extends BaseActivity implements GoodsInfoContract
         intent.putExtra("from_info", "info");
         intent.putExtra("goods_id", goods_id);
         intent.putExtra("act_id", act_id);
+        intent.putExtra("from_shop_id", from_shop_id);
         intent.putExtra("goods_spec_key", spec_content3);
         startActivity(intent);
     }

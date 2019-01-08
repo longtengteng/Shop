@@ -23,7 +23,7 @@ public class GoodsDetailedContract {
     interface Presenter extends BasePresenter<View> {
         void initView();
         void getToken(String token);
-        void getGoodsFromServer(String goodsid);
+        void getGoodsFromServer(String goodsid,String from_shop_id);
         void upGoods(String goodsid);
         void downGoods(String goodsid);
 

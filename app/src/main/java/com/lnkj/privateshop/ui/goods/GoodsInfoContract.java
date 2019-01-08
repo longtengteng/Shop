@@ -44,7 +44,7 @@ public class GoodsInfoContract {
 
         void setToken(String token);
 
-        void getGoodsInfo(String goodsid);
+        void getGoodsInfo(String goodsid,String from_shop_id);
 
         void getGoodsDetailFromLimit(String goods_id, String act_id);
 
@@ -52,9 +52,9 @@ public class GoodsInfoContract {
 
         void getShopEmchat(String shop_id);
 
-        void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type);//加入购物车
+        void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type, String from_shop_id);//加入购物车
 
-        void cartConfirm(String goods_id,String buy_number,String goods_spec_key);
+        void cartConfirm(String goods_id,String buy_number,String goods_spec_key,String from_shop_id);
 
     }
 }

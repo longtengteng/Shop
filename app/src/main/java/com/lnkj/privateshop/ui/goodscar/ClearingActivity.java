@@ -63,6 +63,7 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
     String act_id;//限时特惠传递的参数
     String goods_spec_key;
     int is_from_cart = 0;
+    String from_shop_id;
 
     @Override
     public int initContentView() {
@@ -74,6 +75,7 @@ public class ClearingActivity extends BaseActivity implements ClearingContract.V
         mPresenter.setToken(token);
         ButterKnife.bind(this);
         tvTitle.setText("填写订单");
+        from_shop_id = getIntent().getStringExtra("from_shop_id");
         act_id = getIntent().getStringExtra("act_id");
         from_info = getIntent().getStringExtra("from_info");
 

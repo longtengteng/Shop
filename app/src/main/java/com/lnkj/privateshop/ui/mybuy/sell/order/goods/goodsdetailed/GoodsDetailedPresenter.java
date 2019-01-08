@@ -52,11 +52,12 @@ public class GoodsDetailedPresenter implements GoodsDetailedContract.Presenter {
     }
 
     @Override
-    public void getGoodsFromServer(String goodsid) {
+    public void getGoodsFromServer(String goodsid,String from_shop_id) {
         mView.showLoading();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
         map.put("goods_id", goodsid);
+        map.put("from_shop_id",from_shop_id);
         meApi.getGoodsInfo(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<String>() {

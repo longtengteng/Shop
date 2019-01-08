@@ -61,11 +61,12 @@ public class GoodsInfoPresenter implements GoodsInfoContract.Presenter {
     }
 
     @Override
-    public void getGoodsInfo(String goodsid) {
+    public void getGoodsInfo(String goodsid, String from_shop_id) {
         mView.showLoading();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
         map.put("goods_id", goodsid);
+        map.put("from_shop_id", from_shop_id);
 //            map.put("goods_id",259+"");
         meApi.getGoodsInfo(map)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -206,7 +207,7 @@ public class GoodsInfoPresenter implements GoodsInfoContract.Presenter {
     }
 
     @Override
-    public void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type) {
+    public void addCart(String goods_spec_key, String goods_id, String buy_number, String act_id, String act_type, String from_shop_id) {
         mView.showLoading();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
@@ -215,6 +216,7 @@ public class GoodsInfoPresenter implements GoodsInfoContract.Presenter {
         map.put("buy_number", buy_number);
         map.put("act_id", act_id);
         map.put("act_type", act_type);
+        map.put("from_shop_id", from_shop_id);
 //            map.put("goods_id",259+"");
         meApi.getaddCart(map)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -256,13 +258,14 @@ public class GoodsInfoPresenter implements GoodsInfoContract.Presenter {
     }
 
     @Override
-    public void cartConfirm(String goods_id, String buy_number, String goods_spec_key) {
+    public void cartConfirm(String goods_id, String buy_number, String goods_spec_key, String from_shop_id) {
         mView.showLoading();
         mView.btnClickable(false);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", token);
         map.put("goods_id", goods_id);
         map.put("is_from_cart", "0");
+        map.put("from_shop_id", from_shop_id);
         map.put("buy_number", buy_number);
         map.put("goods_spec_key", goods_spec_key);
         meApi.orderConfirm(map)
