@@ -13,16 +13,22 @@ public class ShopCommentContract {
     interface View extends BaseView {
 
         void initView();
+
         void showLoading();//显示加载框
+
         void hideLoading();//隐藏加载框
+
         void setTitle(String s);
+
         void getShomCommentSucceed(ShowCommentBean beans);
     }
 
 
     interface Presenter extends BasePresenter<View> {
         void initView();
+
         void setToken(String token);
-        void  getShomComment(String shopid);
+
+        void getShomComment(String shopid);
     }
 }

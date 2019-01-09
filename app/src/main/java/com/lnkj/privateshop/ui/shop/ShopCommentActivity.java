@@ -27,8 +27,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ShopCommentActivity extends BaseActivity implements ShopCommentContract.View{
-    ShopCommentPresenter mPresenter = new ShopCommentPresenter(this,this);
+public class ShopCommentActivity extends BaseActivity implements ShopCommentContract.View {
+    ShopCommentPresenter mPresenter = new ShopCommentPresenter(this, this);
     @Bind(R.id.img_back)
     ImageView imgBack;
     @Bind(R.id.tv_title)
@@ -68,8 +68,9 @@ public class ShopCommentActivity extends BaseActivity implements ShopCommentCont
     ShopCommentFragment mFragment;
     private List<Fragment> fragmentList;
     private List<String> titeList;
-    private OrderViewPagerAdapter adapter ;
+    private OrderViewPagerAdapter adapter;
     private String shop_id;
+
     @Override
     public int initContentView() {
         return R.layout.activity_shop_comment;
@@ -86,13 +87,13 @@ public class ShopCommentActivity extends BaseActivity implements ShopCommentCont
         mPresenter.getShomComment(shop_id);
 
 
-
     }
 
     @Override
     public void initUiAndListener() {
 
     }
+
     @OnClick({R.id.img_back, R.id.rc_rate_mass, R.id.rb_rate_ervice, R.id.rb_rate_velocity})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -140,39 +141,39 @@ public class ShopCommentActivity extends BaseActivity implements ShopCommentCont
 
     @Override
     public void getShomCommentSucceed(ShowCommentBean beans) {
-        ShowCommentBean.DataBean ShopInfo =  beans.getData();
-        if (ShopInfo!=null){
-            tvGoodComment.setText(ShopInfo.getFavorableRate()+"%");
-            tvCountComment.setText(ShopInfo.getCommentCount()+"条评论");
+        ShowCommentBean.DataBean ShopInfo = beans.getData();
+        if (ShopInfo != null) {
+            tvGoodComment.setText(ShopInfo.getFavorableRate() + "%");
+            tvCountComment.setText(ShopInfo.getCommentCount() + "条评论");
 
-            tvMass.setText(ShopInfo.getGoods_rank()+"");
-            rcRateMass.setRating((Float.parseFloat(ShopInfo.getGoods_rank()+"")));
+            tvMass.setText(ShopInfo.getGoods_rank() + "");
+            rcRateMass.setRating((Float.parseFloat(ShopInfo.getGoods_rank() + "")));
 
-            tvService.setText(ShopInfo.getService_rank()+"");
-            rbRateErvice.setRating(Float.parseFloat(ShopInfo.getService_rank()+""));
+            tvService.setText(ShopInfo.getService_rank() + "");
+            rbRateErvice.setRating(Float.parseFloat(ShopInfo.getService_rank() + ""));
 
-            tvVelocity.setText(ShopInfo.getExpress_rank()+"");
-            rbRateVelocity.setRating(Float.parseFloat(ShopInfo.getExpress_rank()+""));
+            tvVelocity.setText(ShopInfo.getExpress_rank() + "");
+            rbRateVelocity.setRating(Float.parseFloat(ShopInfo.getExpress_rank() + ""));
 
             titeList = new ArrayList<>();
             fragmentList = new ArrayList<>();
-            titeList.add("全部\n( "+ShopInfo.getCommentCount()+" )");
-            titeList.add("好评\n( "+ShopInfo.getLikeCount()+" )");
-            titeList.add("中评\n( "+ShopInfo.getMedCount()+" )");
-            titeList.add("差评\n( "+ShopInfo.getLowCount()+" )");
-            titeList.add("晒图\n( "+ShopInfo.getImgCount()+" )");
+            titeList.add("全部\n( " + ShopInfo.getCommentCount() + " )");
+            titeList.add("好评\n( " + ShopInfo.getLikeCount() + " )");
+            titeList.add("中评\n( " + ShopInfo.getMedCount() + " )");
+            titeList.add("差评\n( " + ShopInfo.getLowCount() + " )");
+            titeList.add("晒图\n( " + ShopInfo.getImgCount() + " )");
             for (int i = 0; i < titeList.size(); i++) {
                 mFragment = ShopCommentFragment.newInstance();
                 Bundle bundle = new Bundle();
-                bundle.putInt("index",i);
-                bundle.putString("shopID",shop_id);
+                bundle.putInt("index", i);
+                bundle.putString("shopID", shop_id);
                 mFragment.setArguments(bundle);
                 fragmentList.add(mFragment);
             }
             adapter = new OrderViewPagerAdapter(getSupportFragmentManager());
             viewpager.setAdapter(adapter);
             tabLayout.setupWithViewPager(viewpager);
-            adapter.bind(fragmentList,titeList);
+            adapter.bind(fragmentList, titeList);
         }
     }
 }

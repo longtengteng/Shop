@@ -43,7 +43,6 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
     private ArticleDetailPresenter mPresenter = new ArticleDetailPresenter(this);
 
-
     @Override
     public int initContentView() {
 

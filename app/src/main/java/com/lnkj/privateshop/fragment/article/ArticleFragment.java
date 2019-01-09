@@ -78,7 +78,6 @@ public class ArticleFragment extends BaseFragment implements ArticleContract.Vie
         tv_title.setText("圈子");
         mPresenter.setToken(token);
         mPresenter.getArticleCategory();
-
     }
 
     public void setVisibility(int state) {

@@ -17,7 +17,7 @@
         tl:tl_indicator_color="#F8F3F7"
         tl:tl_indicator_corner_radius="25dp"
         tl:tl_indicator_style="BLOCK"
-        tl:tl_tab_space_equal="true"
+        tl:tl_tab_space_equal="false"
         tl:tl_textSelectColor="@color/tx33"
         tl:tl_textUnselectColor="@color/tx66"></com.flyco.tablayout.SlidingTabLayout>
 
